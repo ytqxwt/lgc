@@ -38,16 +38,22 @@ public class BaseInfoRegexSpecification implements Specification<BaseInfo> {
           predicates.add(cb.like(root.get("nativePlace").as(String.class), "%" + mr.getNativePlace() + "%"));
           break;
         case "startWorkDate":
-          predicates.add(cb.like(root.get("startWorkDate").as(String.class), "%" + mr.getStartWorkDate() + "%"));
+          String startWorkDate[] = mr.getStartWorkDate().split("~");
+          predicates.add(cb.greaterThanOrEqualTo(root.get("startWorkDate").as(String.class), startWorkDate[0]));
+          predicates.add(cb.lessThanOrEqualTo(root.get("startWorkDate").as(String.class), startWorkDate[1]));
           break;
         case "formationType":
           predicates.add(cb.like(root.get("formationType").as(String.class), "%" + mr.getFormationType() + "%"));
           break;
         case "toSchoolDate":
-          predicates.add(cb.like(root.get("toSchoolDate").as(String.class), "%" + mr.getToSchoolDate() + "%"));
+          String toSchoolDate[] = mr.getToSchoolDate().split(",");
+          predicates.add(cb.greaterThanOrEqualTo(root.get("toSchoolDate").as(String.class), toSchoolDate[1]));
+          predicates.add(cb.lessThanOrEqualTo(root.get("toSchoolDate").as(String.class), toSchoolDate[2]));
           break;
         case "retireDate":
-          predicates.add(cb.like(root.get("retireDate").as(String.class), "%" + mr.getRetireDate() + "%"));
+          String retireDate[] = mr.getStartWorkDate().split(",");
+          predicates.add(cb.greaterThanOrEqualTo(root.get("retireDate").as(String.class), retireDate[1]));
+          predicates.add(cb.lessThanOrEqualTo(root.get("retireDate").as(String.class), retireDate[2]));
           break;
         case "retireType":
           predicates.add(cb.like(root.get("retireType").as(String.class), "%" + mr.getRetireType() + "%"));

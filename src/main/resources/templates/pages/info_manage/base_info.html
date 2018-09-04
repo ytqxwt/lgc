@@ -2,17 +2,17 @@
 <div style="padding: 15px;">
 
 	<div style="width: 94%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;"><span
-		  style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">筛选标签</span></div>
-
-
+					style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">筛选标签</span></div>
 
 
 	<form class="layui-form">
 		<div class="wrap">
 			<div class="label-selected">
-				<a href="javascript:;" class="layui-btn layui-btn-sm show-labelitem" style="float: right; margin: 4px; display: block;line-height: 30px;">展开标签库
+				<a href="javascript:;" class="layui-btn layui-btn-sm show-labelitem"
+				   style="float: right; margin: 4px; display: block;line-height: 30px;">展开标签库
 				</a>
-				<a href="javascript:;" class="layui-btn layui-btn-sm hide-labelitem" style="float: right; margin: 4px; display: none;line-height: 30px;">收起标签库
+				<a href="javascript:;" class="layui-btn layui-btn-sm hide-labelitem"
+				   style="float: right; margin: 4px; display: none;line-height: 30px;">收起标签库
 				</a>
 				<input type="hidden" name="label">
 			</div>
@@ -77,7 +77,7 @@
 	</form>
 
 	<div style="width: 94%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;"><span
-		  style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">必填信息</span></div>
+					style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">必填信息</span></div>
 
 	<form lay-filter="formSearch" id="form_search" style="display: none" class="layui-form between-content">
 		<style>
@@ -463,7 +463,7 @@
 	</form>
 
 	<div style="width: 94%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;"><span
-		  style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">筛选结果</span></div>
+					style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">筛选结果</span></div>
 
 	<div style="width:94%;margin:0 auto">
 		<table id="info_table" lay-filter="info_table"></table>
@@ -475,264 +475,263 @@
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
-	layui.use(['table', 'form', 'layer', 'laydate', 'laypage'], function () {
-		var table = layui.table;
-		var form = layui.form;
-		var laydate = layui.laydate;
-		var laypage = layui.laypage;
-		form.render();
-		//监听提交
-		form.on('submit(formSubmitSearch)', function (data) {
-			console.log(data)
-			var info_tableIns = table.render({
-				elem: '#info_table',
-				height: 315,
-				method: 'post',
-				where: data.field,
-				url: '/baseInfo/searchByMultipleRegex',
-				page: true,
-				cols: [
-					[ //表头
-						{
-							type: 'checkbox',
-							fixed: 'left'
-						}, {
-							field: 'name',
-							title: '姓名',
-							width: 80,
-							sort: true,
-							fixed: 'left'
-						}, {
-							field: 'idCard',
-							title: '身份证号',
-							width: 80
-						}, {
-							field: 'sex',
-							title: '性别',
-							width: 80,
-							sort: true
-						}, {
-							field: 'nativePlace',
-							title: '籍贯',
-							width: 80
-						}, {
-							fixed: 'right',
-							width: 178,
-							align: 'center',
-							toolbar: '#barDemo'
-						}
-					]
-				],
-				done: function (res, curr, count) {
-					//如果是异步请求数据方式，res即为你接口返回的信息。
-					//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-					console.log(res);
+  layui.use(['table', 'form', 'layer', 'laydate', 'laypage'], function () {
+    var table = layui.table;
+    var form = layui.form;
+    var laydate = layui.laydate;
+    var laypage = layui.laypage;
+    form.render();
+    //监听提交
+    form.on('submit(formSubmitSearch)', function (data) {
+      console.log(data)
+      var info_tableIns = table.render({
+        elem: '#info_table',
+        // height: 315,
+        method: 'post',
+        where: data.field,
+        url: '/baseInfo/searchByMultipleRegex',
+        page: true,
+        cols: [
+          [ //表头
+            {
+              type: 'checkbox',
+              fixed: 'left'
+            }, {
+            field: 'name',
+            title: '姓名',
+            width: 80,
+            sort: true,
+            fixed: 'left'
+          }, {
+            field: 'idCard',
+            title: '身份证号',
+            width: 80
+          }, {
+            field: 'sex',
+            title: '性别',
+            width: 80,
+            sort: true
+          }, {
+            field: 'nativePlace',
+            title: '籍贯',
+            width: 80
+          }, {
+            fixed: 'right',
+            width: 178,
+            align: 'center',
+            toolbar: '#barDemo'
+          }
+          ]
+        ],
+        done: function (res, curr, count) {
+          //如果是异步请求数据方式，res即为你接口返回的信息。
+          //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+          console.log(res);
 
-					//得到当前页码
-					console.log(curr);
+          //得到当前页码
+          console.log(curr);
 
-					//得到数据总量
-					console.log(count);
-				}
-			});
-			console.log("do me")
-			return false;
-		});
-		laydate.render({
-			elem: '#laydate_retire_date',
-			type: 'date',
-			range: '~'
-		})
-		var info_tableIns = table.render({
-			elem: '#info_table',
-			height: 315,
-			method: 'post',
-			url: '/baseInfo/findByPage' //数据接口
-				,
-			page: true //开启分页
-				,
-			cols: [
-				[ //表头
-					{
-						type: 'checkbox',
-						fixed: 'left'
-					}, {
-						field: 'name',
-						title: '姓名',
-						width: 80,
-						sort: true,
-						fixed: 'left'
-					}, {
-						field: 'idCard',
-						title: '身份证号',
-						width: 80
-					}, {
-						field: 'sex',
-						title: '性别',
-						width: 80,
-						sort: true
-					}, {
-						field: 'nativePlace',
-						title: '籍贯',
-						width: 80
-					}, {
-						fixed: 'right',
-						width: 178,
-						align: 'center',
-						toolbar: '#barDemo'
-					}
-				]
-			],
-			done: function (res, curr, count) {
-				//如果是异步请求数据方式，res即为你接口返回的信息。
-				//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-				console.log(res);
+          //得到数据总量
+          console.log(count);
+        }
+      });
+      console.log("do me")
+      return false;
+    });
+    laydate.render({
+      elem: '#laydate_start_work_date',
+      type: 'date',
+      range: '~'
+    })
+    var info_tableIns = table.render({
+      elem: '#info_table',
+      height: 315,
+      method: 'post',
+      url: '/baseInfo/findByPage' //数据接口
+      ,
+      page: true //开启分页
+      ,
+      cols: [
+        [ //表头
+          {
+            type: 'checkbox',
+            fixed: 'left'
+          }, {
+          field: 'name',
+          title: '姓名',
+          width: 80,
+          sort: true,
+          fixed: 'left'
+        }, {
+          field: 'idCard',
+          title: '身份证号',
+          width: 80
+        }, {
+          field: 'sex',
+          title: '性别',
+          width: 80,
+          sort: true
+        }, {
+          field: 'nativePlace',
+          title: '籍贯',
+          width: 80
+        }, {
+          fixed: 'right',
+          width: 178,
+          align: 'center',
+          toolbar: '#barDemo'
+        }
+        ]
+      ],
+      done: function (res, curr, count) {
+        //如果是异步请求数据方式，res即为你接口返回的信息。
+        //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+        console.log(res);
 
-				//得到当前页码
-				console.log(curr);
+        //得到当前页码
+        console.log(curr);
 
-				//得到数据总量
-				console.log(count);
-			}
-		});
-		//监听表格复选框选择
-		table.on('checkbox(info_table)', function (obj) {
-			console.log(obj)
-		});
-		//监听工具条
-		table.on('tool(info_table)', function (obj) {
-			console.log(obj);
-			var data = obj.data;
-			if (obj.event === 'detail') {
-				layer.msg('ID：' + data.id + ' 的查看操作');
-			} else if (obj.event === 'del') {
-				layer.confirm('真的删除行么', function (index) {
-					obj.del();
-					layer.close(index);
-				});
-			} else if (obj.event === 'edit') {
-				layer.alert('编辑行：<br>' + JSON.stringify(data))
-				// obj.update({
-				//     username: '123'
-				//     ,title: 'xxx'
-				// });
-			}
-		});
-	})
-
-
-
-	layui.use(['table', 'form', 'formSelects'], function () {
-		var formSelects = layui.formSelects;
-		var form = layui.form;
-		var $ = layui.$;
-		formSelects.data('xm_nativePlace', 'server', {
-			url: '/city/getCityToNativePlace',
-			linkage: true,
-			linkageWidth: 130
-		});
-		$(function () {
-			$(".show-labelitem").on("click", function () {
-				$(this).hide();
-				$(".hide-labelitem").show();
-				$("#labelItem").show();
-			});
-			$(".hide-labelitem").on("click", function () {
-				$(this).hide();
-				$(".show-labelitem").show();
-				$("#labelItem").hide();
-			});
-			$(".label-item").on("click", "li", function () {
-				var id = $(this).attr("data");
-				var text = $(this).children("span").html();
-				var labelHTML = "<li data='" + id + "''>x " + text + "</li>";
-				if ($(this).hasClass("selected")) {
-					return false;
-				}
-				// else if ($(".label-selected").children("li").length >= 8) {
-				//   layer.msg("最多可以选择8个哦");
-				//   return false;
-				// }
-				$(".label-selected").append(labelHTML);
-				val = '';
-				for (var i = 0; i < $(".label-selected").children("li").length; i++) {
-					val += $(".label-selected").children("li").eq(i).attr("data") + ',';
-				}
-				$("input[name='label']").val(val);
-				$(this).addClass("selected");
-
-				changeLabel();
+        //得到数据总量
+        console.log(count);
+      }
+    });
+    //监听表格复选框选择
+    table.on('checkbox(info_table)', function (obj) {
+      console.log(obj)
+    });
+    //监听工具条
+    table.on('tool(info_table)', function (obj) {
+      console.log(obj);
+      var data = obj.data;
+      if (obj.event === 'detail') {
+        layer.msg('ID：' + data.id + ' 的查看操作');
+      } else if (obj.event === 'del') {
+        layer.confirm('真的删除行么', function (index) {
+          obj.del();
+          layer.close(index);
+        });
+      } else if (obj.event === 'edit') {
+        layer.alert('编辑行：<br>' + JSON.stringify(data))
+        // obj.update({
+        //     username: '123'
+        //     ,title: 'xxx'
+        // });
+      }
+    });
+  })
 
 
-			});
-			var val = "";
-			$(".label-selected").on("click", "li", function () {
-				var id = $(this).attr("data");
-				val = '';
-				$(this).remove();
-				for (var i = 0; i < $(".label-selected").children("li").length; i++) {
-					val += $(".label-selected").children("li").eq(i).attr("data") + ',';
-				}
-				$("input[name='label']").val(val);
-				$(".label-item").find("li[data='" + id + "']").removeClass("selected");
+  layui.use(['table', 'form', 'formSelects'], function () {
+    var formSelects = layui.formSelects;
+    var form = layui.form;
+    var $ = layui.$;
+    formSelects.data('xm_nativePlace', 'server', {
+      url: '/city/getCityToNativePlace',
+      linkage: true,
+      linkageWidth: 130
+    });
+    $(function () {
+      $(".show-labelitem").on("click", function () {
+        $(this).hide();
+        $(".hide-labelitem").show();
+        $("#labelItem").show();
+      });
+      $(".hide-labelitem").on("click", function () {
+        $(this).hide();
+        $(".show-labelitem").show();
+        $("#labelItem").hide();
+      });
+      $(".label-item").on("click", "li", function () {
+        var id = $(this).attr("data");
+        var text = $(this).children("span").html();
+        var labelHTML = "<li data='" + id + "''>x " + text + "</li>";
+        if ($(this).hasClass("selected")) {
+          return false;
+        }
+        // else if ($(".label-selected").children("li").length >= 8) {
+        //   layer.msg("最多可以选择8个哦");
+        //   return false;
+        // }
+        $(".label-selected").append(labelHTML);
+        val = '';
+        for (var i = 0; i < $(".label-selected").children("li").length; i++) {
+          val += $(".label-selected").children("li").eq(i).attr("data") + ',';
+        }
+        $("input[name='label']").val(val);
+        $(this).addClass("selected");
+
+        changeLabel();
 
 
-				changeLabel()
-			});
+      });
+      var val = "";
+      $(".label-selected").on("click", "li", function () {
+        var id = $(this).attr("data");
+        val = '';
+        $(this).remove();
+        for (var i = 0; i < $(".label-selected").children("li").length; i++) {
+          val += $(".label-selected").children("li").eq(i).attr("data") + ',';
+        }
+        $("input[name='label']").val(val);
+        $(".label-item").find("li[data='" + id + "']").removeClass("selected");
 
 
-			// //点击更换标签
-			// var limit = 0;
-			// $(".replacelable").on("click", function () {
-			//   layer.load(1);
-			//   limit += 32;
-			//   $.ajax({
-			//     url: window.location.href,
-			//     type: "post",
-			//     datatype: "json",
-			//     data: {
-			//       labellimit: limit
-			//     },
-			//     success: function (data) {
-			//       layer.closeAll('loading');
-			//       $(".label-item").find("li").remove();//删除原先所有，本来想让数据表随机搜索的，想着有点mmp，就没搞，用的是limit
-			//       var html = '';
-			//       for (var i in data) {
-			//         html += "<li data=\"" + data[i].term_id + "\">x<span>" + data[i].name + "</span></li>";//拼接标签
-			//       }
-			//       $(".label-item").append(html);//追加至文档
-			//     },
-			//     error: function () {
-			//       layer.closeAll('loading');
-			//       layer.msg("错误~~~");
-			//     }
-			//   })
-			// })
-			//获取标签
-			function changeLabel() {
-				if ($("input[name='label']").val() == "") {
-					$('#form_search').css('display', 'none')
-					return false;
-				} else {
-					// layer.msg("标签内容为：" + $("input[name='label']").val());
-					var labelList = $("input[name='label']").val().split(",");
-					$('#form_search').css('display', 'block')
-					$('.layui-form-item').css('display', 'none')
-					$('#btngup_search').css('display', 'block')
-					for (var i = 0; i < labelList.length - 1; i++) {
-						var label = labelList[i]
-						console.log(label)
-						$('input[name=' + label + ']').parents('.layui-form-item').css('display', 'block')
-					}
-					form.val('formSearch', {
-						'select': $("input[name='label']").val()
-					})
-					form.render();
-					formSelects.render();
-				}
-			}
-		})
-	})
+        changeLabel()
+      });
+
+
+      // //点击更换标签
+      // var limit = 0;
+      // $(".replacelable").on("click", function () {
+      //   layer.load(1);
+      //   limit += 32;
+      //   $.ajax({
+      //     url: window.location.href,
+      //     type: "post",
+      //     datatype: "json",
+      //     data: {
+      //       labellimit: limit
+      //     },
+      //     success: function (data) {
+      //       layer.closeAll('loading');
+      //       $(".label-item").find("li").remove();//删除原先所有，本来想让数据表随机搜索的，想着有点mmp，就没搞，用的是limit
+      //       var html = '';
+      //       for (var i in data) {
+      //         html += "<li data=\"" + data[i].term_id + "\">x<span>" + data[i].name + "</span></li>";//拼接标签
+      //       }
+      //       $(".label-item").append(html);//追加至文档
+      //     },
+      //     error: function () {
+      //       layer.closeAll('loading');
+      //       layer.msg("错误~~~");
+      //     }
+      //   })
+      // })
+      //获取标签
+      function changeLabel() {
+        if ($("input[name='label']").val() == "") {
+          $('#form_search').css('display', 'none')
+          return false;
+        } else {
+          // layer.msg("标签内容为：" + $("input[name='label']").val());
+          var labelList = $("input[name='label']").val().split(",");
+          $('#form_search').css('display', 'block')
+          $('.layui-form-item').css('display', 'none')
+          $('#btngup_search').css('display', 'block')
+          for (var i = 0; i < labelList.length - 1; i++) {
+            var label = labelList[i]
+            console.log(label)
+            $('input[name=' + label + ']').parents('.layui-form-item').css('display', 'block')
+          }
+          form.val('formSearch', {
+            'select': $("input[name='label']").val()
+          })
+          form.render();
+          formSelects.render();
+        }
+      }
+    })
+  })
 </script>
 <style>
 	.wrap {

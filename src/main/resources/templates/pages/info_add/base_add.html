@@ -1,428 +1,371 @@
-<!--<style>-->
-<!--/*公共样式*/-->
-<!--.layui-form-label {-->
-<!--width: 148px;-->
-<!--}-->
-
-<!--.layui-form-item {-->
-<!--margin-bottom: 22px;-->
-<!--}-->
-
-<!--/*私有样式*/-->
-<!--.between {-->
-<!--width: 80%;-->
-<!--margin: 0 auto;-->
-<!--padding: 40px 200px;-->
-<!--}-->
-
-<!--.between-content {-->
-<!--width: 60%;-->
-<!--}-->
-
-<!--.img-div {-->
-<!--width: 121px;-->
-<!--height: 121px;-->
-<!--float: right;-->
-<!--}-->
-
-<!--.layui-upload-img {-->
-<!--width: 121px;-->
-<!--height: 121px;-->
-<!--}-->
-
-<!--.biaodan {-->
-<!--float: left;-->
-<!--}-->
-<!--</style>-->
-<!-- 内容主体区域 -->
-<!--<div class="between">-->
-<form id="form_baseAdd" class="layui-form between-content" method="post" action="/baseInfo/set">
-	<div class="img-div">
-		<img src="../../img/base_add/default_handsome.jpg" class="layui-upload-img" id="uploadPhoto">
-		<div id="upload_err"></div>
-		<!--<button type="button" class="layui-btn" id="uploadPhoto">-->
-		<!--<i class="layui-icon">&#xe67c;</i>上传一寸彩照-->
-		<!--</button>-->
+<div align="right">
+	<button style="" class="layui-btn" id="btn_printForm">打印空表</button>
+</div>
+<br>
+<form id="form_baseAdd" method="post" action="/baseInfo/set">
+	<div class="BiaoTou" align="center"><strong>江西理工大学离退休人员基本信息表</strong>
 	</div>
-	<div class="biaodan">
-		<div class="layui-form-item ">
-			<label class="layui-form-label">姓名</label>
-			<div class="layui-input-inline">
-				<input type="text" name="name" lay-verify="required" class="layui-input">
-			</div>
-		</div>
+	<br>
+	<br>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">身份证号</label>
-			<div class="layui-input-inline">
-				<input type="text" name="idCard" required lay-verify="identity" class="layui-input">
-			</div>
-		</div>
+	<div class="SongTX4" align="center">
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">性别</label>
-			<div class="layui-input-block">
-				<input type="radio" name="sex" value="男" title="男" checked>
-				<input type="radio" name="sex" value="女" title="女">
-			</div>
-		</div>
+		<table style="border-collapse:collapse " width="660" cellspacing="0" cellpadding="2" border="1">
+			<tbody>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">姓名</td>
+				<td width="14%" height="44"><input name="name" class="select" type="text"
+				                                   style="border: none;width:60px"/></td>
+				<td width="11.4%" height="44">性别</td>
+				<td width="14%" height="44">
+					<select name="sex" style="border: none;width: 25px;-moz-appearance: none;-webkit-appearance: none">
+						<option value=""></option>
+						<option value="男">男</option>
+						<option value="女">女</option>
+					</select>
+				</td>
+				<td width="11.4%" height="44">出生日期</td>
+				<td colspan="2" width="11.4%" height="44"><input class="select" style="border: none;width: 150px"
+				                                                 type="text"
+				                                                 name="birth" id="birth"></td>
+				<td rowspan="3" width="16%" height="44">
+					<img src="../../img/base_add/default_handsome.png" style="width: 100%" id="uploadPhoto">
+					<div id="upload_err"></div>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">政治面貌</td>
+				<td width="14%" height="44">
+					<select name="politicalOutlook">
+						<option value=""></option>
+						<option value="中共党员">中共党员</option>
+						<option value="群众">群众</option>
+						<option value="中共预备党员">中共预备党员</option>
+						<option value="共青团员">共青团员</option>
+						<option value="民盟盟员">民盟盟员</option>
+						<option value="民革党员">民革党员</option>
+						<option value="无党派人士">无党派人士</option>
+					</select></td>
+				<td width="11.4%" height="44">民族</td>
+				<td width="14%" height="44"><input class="select" type="text" style="border: none;width: 30px"/>
+				</td>
+				<td width="11.4%" height="44">电话号码</td>
+				<td colspan="2" height="44"><input name="phone" class="select" type="text"
+				                                   style="border: none;width: 100px"/></td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">编制类型</td>
+				<td width="14%" height="44">
+					<select name="formationType ">
+						<option value=""></option>
+						<option value="干部">干部</option>
+						<option value="聘干">聘干</option>
+						<option value="工人">工人</option>
+						<option value="合同制工人">合同制工人</option>
+					</select></td>
+				<td width="11.4%" height="44">职务</td>
+				<td width="14%" height="44"><textarea name="job" class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:80px;"></textarea>
+				</td>
+				<td width="11.4%" height="44">职称</td>
+				<td colspan="2" height="44"><input name="jobLevel" class="select" type="text"
+				                                   style="border: none;max-width: 130px"/>
+				</td>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">籍贯</label>
-			<div class="layui-input-block">
-				<select name="nativePlace" lay-verify="" lay-search xm-select="xm_nativePlace">
-					<!-- <option value="北京">北京</option> -->
-					<!-- <option value="赣州">赣州</option> -->
-					<!-- <option value="南昌">南昌</option> -->
-				</select>
-			</div>
-		</div>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">籍贯</td>
+				<td colspan="3" height="44">
+					<select type="text" class="select no_print" style="border: none;width: 500px" name="nativePlace"
+					        lay-verify=""
+					        lay-search xm-select-radio="" xm-select-skin="default" xm-select="xm_nativePlace">
+					</select>
+				</td>
+				<td width="11.4%" height="44">邮编</td>
+				<td colspan="3" height="44"><input name="zipCode" class="select" type="text"
+				                                   style="border: none;width:150px"/>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">身份证号</td>
+				<td colspan="7" height="44"><input name="idCard" class="select" type="text"
+				                                   style="border: none;width: 500px"/></td>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">开始工作时间</label>
-			<div class="layui-input-inline">
-				<input type="text" name="startWorkDate" class="layui-input" id="laydate_start_work_date">
-			</div>
-		</div>
+			</tr>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">编制类型</label>
-			<div class="layui-input-inline">
-				<select name="formationType" lay-verify="">
-					<option value="干部">干部</option>
-					<option value="聘干">聘干</option>
-					<option value="工人">工人</option>
-					<option value="合同制工人">合同制工人</option>
-				</select>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">现户口地址</td>
+				<td colspan="7" height="44"><input name="accountAddressCurrent" class="select" type="text"
+				                                   style="border: none;width: 500px;text-align: left"/></td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">通讯地址</td>
+				<td colspan="7" height="44"><input name="addressCurrent" class="select" type="text"
+				                                   style="border: none;width: 500px;text-align: left"/></td>
 
-			</div>
-		</div>
+			</tr>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">到校时间</label>
-			<div class="layui-input-inline">
-				<input type="text" name="toSchoolDate" id="laydate_to_school_date" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">退休时间</label>
-			<div class="layui-input-inline">
-				<input type="text" name="retireDate" id="laydate_retire_date" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">退休类型</label>
-			<div class="layui-input-inline">
-				<input type="text" name="retireType" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">退休时部门</label>
-			<div class="layui-input-inline">
-				<input type="text" name="retireInDepartment" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">职务</label>
-			<div class="layui-input-inline">
-				<input type="text" name="job" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">职称</label>
-			<div class="layui-input-inline">
-				<input type="text" name="jobLevel" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">专业/工种</label>
-			<div class="layui-input-inline">
-				<input type="text" name="majorOrWork" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">工资号</label>
-			<div class="layui-input-inline">
-				<input type="text" name="salaryNumber" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">政治面貌</label>
-			<div class="layui-input-inline">
-				<input type="text" name="politicalOutlook" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">现所属支部</label>
-			<div class="layui-input-inline">
-				<input type="text" name="presentBranch" class="layui-input">
-			</div>
-		</div>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">到校时间</td>
+				<td colspan="3" height="44"><input class="select" style="border: none;width: 150px" type="text"
+				                                   name="startWorkDate" id="laydate_to_school_date">
+				</td>
+				<td width="11.4%" height="44">开始工作时间</td>
+				<td colspan="3" height="44">
+					<input class="select" style="border: none;width: 150px" type="text" name="startWorkDate"
+					       id="laydate_start_work_date">
 
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">政府特殊津贴</label>
-			<div class="layui-input-block">
-				<input type="radio" name="governmentAllowance" value="有" title="有" checked>
-				<input type="radio" name="governmentAllowance" value="无" title="无">
-			</div>
-		</div>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">退休部门</td>
+				<td width="14%" height="44"><textarea name="retireInDepartment" class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:80px;"></textarea>
+				</td>
+				<td width="11.4%" height="44">退休类型</td>
+				<td width="14%" height="44">
+					<select name="retireType"
+					        style="border: none;width: 70px;-moz-appearance: none;-webkit-appearance: none">
+						<option value=""></option>
+						<option value="volvo">提前退休</option>
+						<option value="saab">正式退休</option>
+					</select>
+				</td>
+				<td width="11.4%" height="44">退休时间</td>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">复转退军人</label>
-			<div class="layui-input-block">
-				<input type="radio" name="onceInArmy" value="是" title="是" checked>
-				<input type="radio" name="onceInArmy" value="否" title="否">
-			</div>
-		</div>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">伤残</label>
-			<div class="layui-input-block">
-				<input type="radio" name="disabled" value="是" title="是" checked>
-				<input type="radio" name="disabled" value="否" title="否">
-			</div>
-		</div>
+				<td colspan="3"><input class="select" style="border: none;width: 150px" type="text" name="startWorkDate"
+				                       id="laydate_retire_date">
+				</td>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">是否军属/烈属</label>
-			<div class="layui-input-block">
-				<input type="radio" name="armyFamily" value="是" title="是" checked>
-				<input type="radio" name="armyFamily" value="否" title="否">
-			</div>
-		</div>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">立战功</label>
-			<div class="layui-input-inline">
-				<input type="text" name="exploit" class="layui-input">
-			</div>
-		</div>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">专业/工种</td>
+				<td width="14%" height="44"><textarea name="majorOrWork" class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:80px;"></textarea>
+				</td>
+				<td width="11.4%" height="44">工资号</td>
+				<td width="14%" height="44">
+					<input name="salaryNumber" type="text" class="select" style="border: none;width:70px"/>
+				</td>
+				<td width="11.4%" height="44">现所属支部</td>
+				<td colspan="3" height="44"><textarea name="presentBranch" class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:170px;"></textarea>
+				</td>
+			</tr>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">劳模</label>
-			<div class="layui-input-inline">
-				<input type="text" name="modelWorker" class="layui-input">
-			</div>
-		</div>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">目前身体健康状况</label>
-			<div class="layui-input-inline">
-				<input type="text" name="healthCurrent" class="layui-input">
-			</div>
-		</div>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">邮箱</td>
+				<td width="14%" height="44"><textarea class="select" type="text"
+				                                      style="background-color:transparent;padding-top: 9px;resize:none;border: none;width:80px;"></textarea>
+				</td>
+				<td width="11.4%" height="44">QQ</td>
+				<td width="14%" height="44">
+					<input name="qqNumber" type="text" style="border: none;width: 80px"/>
+				</td>
+				<td width="11.4%" height="44">家庭电话</td>
+				<td colspan="3" height="44"><input name="homePhone" type="text" class="select"
+				                                   style="border: none;width: 150px"/></td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">是否本校双职工</td>
+				<td width="14%" height="44"><label> <input name="doubleWorker" type="radio" value="是"/>是 </label>
+					<label> <input name="doubleWorker" type="radio" value="否"/>否 </label></td>
+				<td width="11.4%" height="44">是否为复转退军人</td>
+				<td width="14%" height="44">
+					<label> <input name="onceInArmy" type="radio" value="是"/>是 </label>
+					<label> <input name="onceInArmy" type="radio" value="否"/>否 </label>
+				</td>
+				<td width="11.4%" height="44">是否为军属/烈属</td>
+				<td width="14%" height="44"><label> <input name="armyFamily" type="radio" value="是"/>是 </label>
+					<label> <input name="armyFamily" type="radio" value="否"/>否 </label></td>
+				<td width="11.4%" height="44">是否为劳模</td>
+				<td width="14%" height="44"><label> <input name="modelWorker" type="radio" value=""/>是 </label>
+					<label> <input name="modelWorker" type="radio" value=""/>否 </label></td>
+			</tr>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">慢性疾病</label>
-			<div class="layui-input-inline">
-				<input type="text" name="diseaseChronic" class="layui-input">
-			</div>
-		</div>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">目前健康状况</td>
+				<td width="14%" height="44">
+					<select name="healthCurrent">
+						<option value=""></option>
+						<option value="volvo">健康</option>
+						<option value="健康">一般</option>
+						<option value="较差">较差</option>
+					</select></td>
+				<td width="11.4%" height="44">是否有慢性病</td>
+				<td width="14%" height="44">
+					<label> <input name="diseaseChronic" type="radio" value="是"/>是 </label>
+					<label> <input name="diseaseChronic" type="radio" value="否"/>否 </label>
+				</td>
+				<td width="11.4%" height="44">慢性病描述</td>
+				<td colspan="3" height="44"><textarea class="select" type="text"
+				                                      style="background-color:transparent;padding-top: 13px;resize:none;border: none;width:240px;"></textarea>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">是否伤残</td>
+				<td width="14%" height="44">
+					<label> <input name="disabled" type="radio" value="是"/>是 </label>
+					<label> <input name="disabled" type="radio" value="否"/>否 </label></td>
+				<td width="11.4%" height="44">伤残说明</td>
+				<td colspan="5" height="44"><textarea class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:400px;"></textarea>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">是否享受政府津贴</td>
+				<td width="14%" height="44">
+					<label> <input name="governmentAllowance" type="radio" value="是"/>是 </label>
+					<label> <input name="governmentAllowance" type="radio" value="否"/>否 </label></td>
+				<td width="11.4%" height="44">津贴详情</td>
+				<td colspan="5" height="44"><textarea class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:400px;"></textarea>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">是否立战功</td>
+				<td width="14%" height="44">
+					<label> <input name="exploit" type="radio" value="是"/>是 </label>
+					<label> <input name="exploit" type="radio" value="否"/>否 </label></td>
+				<td width="11.4%" height="44">战功描述</td>
+				<td colspan="5" height="44"><textarea class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:400px;"></textarea>
+				</td>
+			</tr>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">手机号</label>
-			<div class="layui-input-inline">
-				<!--<input type="text" name="phone" lay-verify="phone"-->
-				<input type="text" name="phone" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">家庭电话</label>
-			<div class="layui-input-inline">
-				<!--<input type="text" name="homePhone" lay-verify="phone"-->
-				<input type="text" name="homePhone" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">QQ</label>
-			<div class="layui-input-inline">
-				<input type="text" name="qqNumber" class="layui-input">
-			</div>
-		</div>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">微信</label>
-			<div class="layui-input-inline">
-				<input type="text" name="wxNumber" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">是否与子女生活</label>
-			<div class="layui-input-block">
-				<input type="radio" name="liveWithChildren" value="是" title="是" checked>
-				<input type="radio" name="liveWithChildren" value="否" title="否">
-			</div>
-		</div>
+			</tbody>
+		</table>
+		<div style="page-break-after: always;"></div>
+		<br>
+		<table style="border-collapse:collapse " width="660" cellspacing="0" cellpadding="2" border="1">
+			<tbody>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">与子女共同生活</td>
+				<td width="14%" height="44"><label> <input name="liveWithChildren" type="radio" value=""/>是 </label>
+					<label> <input name="liveWithChildren" type="radio" value=""/>否 </label></td>
+				<td width="11.4%" height="44">子女姓名</td>
+				<td width="14%" height="44">
+					<input class="select" type="text" style="border: none;width: 80px"/>
+				</td>
+				<td width="11.4%" height="44">子女邮箱</td>
+				<td colspan="4" height="44"><input class="select" name="familyEmail" type="text"
+				                                   style="border: none;width: 240px"/>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">子女地址</td>
+				<td colspan="3" height="44"><textarea name="adressChildren" class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:190px;"></textarea>
+				</td>
+				<td width="11.4%" height="44">子女电话</td>
+				<td colspan="3" height="44">
+					<input type="text" style="border: none;width:  190px"/>
+				</td>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">现居住地址\通信地址</label>
-			<div class="layui-input-inline">
-				<input type="text" name="addressCurrent" class="layui-input">
-			</div>
-		</div>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">婚姻状况</td>
+				<td width="14%" height="44">
+					<select name="maritalStatus" lay-verify=""
+					        style="border: none;width: 70px;-moz-appearance: none;-webkit-appearance: none">
+						<option value=""></option>
+						<option value="已婚">已婚</option>
+						<option value="未婚">未婚</option>
+						<option value="再婚">再婚</option>
+						<option value="丧婚">丧婚</option>
+					</select></td>
+				<td width="11.4%" height="44">配偶姓名</td>
+				<td width="14%" height="44">
+					<input name="nameMate" type="text" style="border: none;width: 80px"/>
+				</td>
+				<td width="11.4%" height="44">配偶健康状况</td>
+				<td colspan="4" height="44"><select style="width: 80px">
+					<option value=""></option>
+					<option value="volvo">健康</option>
+					<option value="saab">一般</option>
+					<option value="saab">较差</option>
+				</select></td>
+			</tr>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">邮编</label>
-			<div class="layui-input-inline">
-				<input type="text" name="zipCode" class="layui-input">
-			</div>
-		</div>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">现户口地址</label>
-			<div class="layui-input-inline">
-				<input type="text" name="accountAddressCurrent" class="layui-input">
-			</div>
-		</div>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">配偶电话</td>
+				<td colspan="3" height="44"><input name="phoneMate" class="select" type="text"
+				                                   style="border: none;width: 190px"/></td>
+				<td width="11.4%" height="44">配偶邮箱</td>
+				<td colspan="3" height="44">
+					<input name="emailMate" type="text" style="border: none;width:190px"/>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">是否有校内联系人</td>
+				<td width="14%" height="44"><label> <input name="Fruit" type="radio" value=""/>是 </label>
+					<label> <input name="Fruit" type="radio" value=""/>否 </label></td>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">配偶或子女电子邮箱</label>
-			<div class="layui-input-inline">
-				<!--<input type="text" name="familyEmail" lay-verify="email"-->
-				<input type="text" name="familyEmail" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">子女家庭地址</label>
-			<div class="layui-input-inline">
-				<input type="text" name="adressChildren" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">校内联系人姓名</label>
-			<div class="layui-input-inline">
-				<input type="text" name="nameLinkMan" class="layui-input">
-			</div>
-		</div>
+				<td width="11.4%" height="44">联系人姓名</td>
+				<td width="14%" height="44">
+					<input name="nameLinkMan" class="select" type="text" style="border: none;width: 80px"/>
+				</td>
+				<td width="11.4%" height="44">联系人部门</td>
+				<td colspan="4" height="44"><textarea name="departmentLinkMan" class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:190px;"></textarea>
+				</td>
+			</tr>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">校内联系人部门</label>
-			<div class="layui-input-inline">
-				<input type="text" name="departmentLinkMan" class="layui-input">
-			</div>
-		</div>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">联系人地址</td>
+				<td colspan="3" height="44"><textarea name="addressLinkMan" class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:190px;"></textarea>
+				</td>
+				<td width="11.4%" height="44">联系人电话</td>
+				<td colspan="3" height="44">
+					<input name="phoneLinkMan" class="select" type="text" style="border: none;width:  190px"/>
+				</td>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">校内联系人地址</label>
-			<div class="layui-input-inline">
-				<input type="text" name="addressLinkMan" class="layui-input">
-			</div>
-		</div>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">爱好的文体项目</td>
+				<td colspan="3" height="44"><input name="favoriteHobby" class="select" type="text"
+				                                   style="border: none;width:190px"/></td>
+				<td width="11.4%" height="44">目前体育健身项目</td>
+				<td colspan="3" height="44">
+					<input class="select" name="sport" type="text" style="border: none;width:190px"/>
+				</td>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">校内联系人电话</label>
-			<div class="layui-input-inline">
-				<!--<input type="text" name="phoneLinkMan" lay-verify="phone"-->
-				<input type="text" name="phoneLinkMan" class="layui-input">
-			</div>
-		</div>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="11.4%" height="44">是否参加老年体协活动组</td>
+				<td width="14%" height="44"><label> <input name="activityGroup" type="radio" value="是"/>是 </label>
+					<label> <input class="select" name="activityGroup" type="radio" value="否"/>否 </label></td>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">参加老年体协活动小组</label>
-			<div class="layui-input-inline">
-				<input type="text" name="activityGroup" class="layui-input">
-			</div>
-		</div>
+				<td width="11.4%" height="44">老年体协活动组中担任职务</td>
+				<td width="14%" height="44">
+                    <textarea name="dutyInSocialGroup" class="select" type="text"
+                              style="padding-top: 9px;resize:none;border: none;width:80px;"></textarea>
+				</td>
+				<td width="11.4%" height="44">是否浏览网页</td>
+				<td colspan="4" height="44"><label> <input name="browseWebsite" type="radio" value="是"/>是 </label>
+					<label> <input name="browseWebsite" type="radio" value="否"/>否 </label></td>
+			</tr>
+			</tbody>
+		</table>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">婚姻状况</label>
-			<div class="layui-input-inline">
-				<select name="maritalStatus" lay-verify="">
-					<option value="已婚">已婚</option>
-					<option value="未婚">未婚</option>
-					<option value="再婚">再婚</option>
-					<option value="丧婚">丧婚</option>
-				</select>
-			</div>
-		</div>
+		<button class="layui-btn no_print" type="submit" id="btn_submit">完成</button>
 
-		<div class="layui-form-item">
-			<label class="layui-form-label">配偶姓名</label>
-			<div class="layui-input-inline">
-				<input type="text" name="nameMate" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">配偶电话</label>
-			<div class="layui-input-inline">
-				<!--<input type="text" name="phoneMate" lay-verify="phone"-->
-				<input type="text" name="phoneMate" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">配偶健康状况</label>
-			<div class="layui-input-inline">
-				<input type="text" name="healthMate" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">配偶邮箱</label>
-			<div class="layui-input-inline">
-				<!--<input type="text" name="emailMate" lay-verify="email"-->
-				<input type="text" name="emailMate" class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">现在坚持的体育健身项目</label>
-			<div class="layui-input-inline">
-				<input type="text" name="sport" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">文、体爱好项目</label>
-			<div class="layui-input-inline">
-				<input type="text" name="favoriteHobby" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">是否本校双职工</label>
-			<div class="layui-input-block">
-				<input type="radio" name="doubleWorker" value="是" title="是" checked>
-				<input type="radio" name="doubleWorker" value="否" title="否">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">校外团体中担任的职务</label>
-			<div class="layui-input-inline">
-				<input type="text" name="dutyInSocialGroup" class="layui-input">
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">是否浏览本处网站</label>
-			<div class="layui-input-block">
-				<input type="radio" name="browseWebsite" value="是" title="是" checked>
-				<input type="radio" name="browseWebsite" value="否" title="否">
-			</div>
-		</div>
-		<div class="layui-form-item no_print">
-			<div class="layui-input-block">
-				<button class="layui-btn" lay-submit lay-filter="formDemo" id="next">下一步</button>
-				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-			</div>
-		</div>
 	</div>
+
 </form>
-<button class="layui-btn" id="btn_printForm">打印表单</button>
-<!--</div>-->
+
+
 <script>
   layui.use(['form', 'upload', 'laydate', 'formSelects'], function () {
     var element = layui.element;
     var form = layui.form;
     var $ = layui.$;
+    var upload = layui.upload;
     form.render();
     var laydate = layui.laydate;
     var formSelects = layui.formSelects;
@@ -447,10 +390,7 @@
       console.log(JSON.stringify(data.field));
       return true;
     });
-    // $('#next').click(function () {
-    //     $('.layui-body').load('pages/info_add/base_add2.html');
-    // });
-    var upload = layui.upload;
+
 
     //时间选择器
     laydate.render({
@@ -465,6 +405,11 @@
       elem: '#laydate_retire_date',
       type: 'date'
     });
+    laydate.render({
+      elem: '#birth',
+      type: 'date'
+    });
+
 
     //普通图片上传
     var uploadInst = upload.render({
@@ -503,3 +448,141 @@
     })
   });
 </script>
+
+<style type="text/css">
+	@media print {
+		.SongTX4 {
+			font-family: "宋体";
+			font-size: 12pt;
+		}
+
+		.FenBiaoTou {
+			font-family: "黑体";
+			font-size: 24px;
+			letter-spacing: 8px;
+			line-height: 40px;
+			width: 1024px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		.fenbiaotwo {
+			margin: 0px;
+		}
+
+		.BiaoTou {
+			font-family: "华文中宋";
+			font-size: 22pt;
+			letter-spacing: 5px;
+			line-height: 45px;
+		}
+
+		.biaozhun {
+			font-family: "宋体";
+			font-size: 12pt;
+			line-height: 120%;
+			padding-right: 0.5%;
+			padding-left: 0.5%;
+			text-align: justify;
+		}
+
+		.yiju {
+			font-family: "宋体";
+			font-size: 11pt;
+			line-height: 120%;
+			padding-right: 0.5%;
+			padding-left: 0.5%;
+			text-align: justify;
+			text-align: center;
+		}
+
+		select {
+
+			text-align: center;
+			text-align-last: center;
+			border: none;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			font-family: "宋体";
+			font-size: 12pt;
+		}
+
+		.select {
+			text-align: center;
+			text-align-last: center;
+			border: none;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			font-family: "宋体";
+			font-size: 12pt;
+		}
+
+	}
+
+	.SongTX4 {
+		font-family: "宋体";
+		font-size: 12pt;
+	}
+
+	.FenBiaoTou {
+		font-family: "黑体";
+		font-size: 24px;
+		letter-spacing: 8px;
+		line-height: 40px;
+		width: 1024px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.fenbiaotwo {
+		margin: 0;
+	}
+
+	.BiaoTou {
+		font-family: "华文中宋";
+		font-size: 22pt;
+		letter-spacing: 5px;
+		line-height: 45px;
+	}
+
+	.biaozhun {
+		font-family: "宋体";
+		font-size: 12pt;
+		line-height: 120%;
+		padding-right: 0.5%;
+		padding-left: 0.5%;
+		text-align: justify;
+	}
+
+	.yiju {
+		font-family: "宋体";
+		font-size: 11pt;
+		line-height: 120%;
+		padding-right: 0.5%;
+		padding-left: 0.5%;
+		text-align: justify;
+		text-align: center;
+	}
+
+	select {
+		text-align: center;
+		text-align-last: center;
+		border: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		font-family: "宋体";
+		font-size: 12pt;
+	}
+
+	.select {
+		text-align: center;
+		text-align-last: center;
+		border: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		font-family: "宋体";
+		font-size: 12pt;
+	}
+</style>
+
+
