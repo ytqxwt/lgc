@@ -1,0 +1,64 @@
+<!-- 内容主体区域 -->
+<div style="padding: 15px;">
+	<form class="layui-form between-content" method="post" action="/baseInfo/set">
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">住院人</label>
+			<div class="layui-input-inline">
+				<input type="text" name="name" required
+				       class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">工资号</label>
+			<div class="layui-input-inline">
+				<input type="text" name="salaryNumber" required
+				       class="layui-input">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">住院时间</label>
+			<div class="layui-input-inline">
+				<!--hospital_start hospital_end-->
+				<input type="text" name="" required
+				       class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">住院原因</label>
+			<div class="layui-input-inline">
+				<input type="text" name="reason" required
+				       class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">探望次数</label>
+			<div class="layui-input-inline">
+				<input type="text" name="visitTimes" required
+				       class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">探望详情</label>
+			<div class="layui-input-inline">
+				<input type="text" name="visitDetails" required
+				       class="layui-input">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="formDemo" id="next">提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+  layui.use(['form'], function () {
+    var form = layui.form;
+    form.render();
+    console.log("eeeeee")
+  })
+</script>

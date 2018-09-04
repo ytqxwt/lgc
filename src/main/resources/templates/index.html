@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>江西理工大学离退休出人员信息管理系统</title>
+	<link rel="stylesheet" href="layui/css/layui.css">
+	<link rel="stylesheet" href="css/site.css">
+	<link rel="stylesheet" href="css/formSelects-v4.css">
+</head>
+
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+	<div class="layui-header">
+		<div class="layui-logo">离退休出人员管理系统</div>
+		<ul class="layui-nav layui-layout-right">
+			<li class="layui-nav-item">
+				<a href="javascript:;">
+					<img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+					贤心
+				</a>
+				<dl class="layui-nav-child">
+					<dd><a href="">基本资料</a></dd>
+					<dd><a href="">安全设置</a></dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item"><a href="">退出</a></li>
+		</ul>
+	</div>
+
+	<div class="layui-side layui-bg-black">
+		<div class="layui-side-scroll">
+			<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+			<ul class="layui-nav layui-nav-tree">
+				<li class="layui-nav-item layui-nav-itemed">
+					<a class="" href="javascript:;">信息添加</a>
+					<dl class="layui-nav-child">
+						<dd><a href="javascript:" id="base_add">人员添加</a></dd>
+						<dd><a href="javascript:" id="survivors_add">遗嘱添加</a></dd>
+						<dd><a href="javascript:" id="case_add">病例添加</a></dd>
+						<dd><a href="javascript:">批量导入</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a class="" href="javascript:;">信息管理</a>
+					<dl class="layui-nav-child">
+						<dd><a href="javascript:" id="base_info">人员信息</a></dd>
+						<dd><a href="javascript:">遗嘱信息</a></dd>
+						<dd><a href="javascript:">病例信息</a></dd>
+						<dd><a href="javascript:">数据统计</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:">权限管理</a>
+					<dl class="layui-nav-child">
+						<dd><a href="javascript:" id="user_manage">用户管理</a></dd>
+						<dd><a href="javascript:" id="power_manage">修改权限</a></dd>
+						<dd><a href="javascript:">我的资料</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:">系统设置</a>
+					<dl class="layui-nav-child">
+						<dd><a href="javascript:">修改表单</a></dd>
+						<dd><a href="javascript:">意见反馈</a></dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="layui-body">
+		<!-- 内容主体区域 -->
+		<div style="padding: 15px;">
+			我是test
+		</div>
+	</div>
+
+	<div class="layui-footer">
+		<!-- 底部固定区域 -->
+		Copyright 江西理工大学离退休处
+	</div>
+</div>
+<script src="layui/layui.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jQuery.print.min.js"></script>
+<script>
+  layui.config({
+    base: '/js/'
+  }).extend({
+    formSelects: 'formSelects-v4'
+  });
+  layui.use('element', function () {
+    var element = layui.element;
+    var $ = layui.$;
+
+    //左侧导航栏路由
+    $('#base_add').click(function () {
+      $('.layui-body').load('pages/info_add/base_add.html');
+    });
+    $('#survivors_add').click(function () {
+      $('.layui-body').load('pages/info_add/survivors_add.html');
+    });
+    $('#case_add').click(function () {
+      $('.layui-body').load('pages/info_add/case_add.html');
+    });
+    $('#user_manage').click(function () {
+      $('.layui-body').load('pages/power_manage/user_manage.html');
+    });
+    $('#base_info').click(function () {
+      $('.layui-body').load('pages/info_manage/base_info.html');
+    });
+  });
+</script>
+</body>
+
+<div id="layer_power" class="layui-table-box" style="display: none;">
+	<table cellspacing="1" align="center">
+		<tr>
+			<td>
+				<table style="background-color:white" width="100%">
+					<tr>
+						<td>
+							<fieldset>
+								<legend>可选授权名称</legend>
+								<select name="left_select" multiple="multiple" size="10" id="left_select" style="width : 152px">
+
+								</select>
+							</fieldset>
+						</td>
+						<td>
+							<button class="layui-btn-sm" onclick="left()">
+								<
+							</button>
+							<br>
+							<button class="layui-btn-sm" onclick="left(true)">
+								<<
+							</button>
+							<br>
+							<button class="layui-btn-sm" onclick="right()">></button>
+							<br>
+							<button class="layui-btn-sm" onclick="right(true)">>></button>
+							<br>
+						</td>
+						<td>
+							<fieldset>
+								<legend>已选授权名称</legend>
+								<select name="right_select" multiple="multiple" style="width : 152px" size="10" id="right_select">
+
+								</select>
+							</fieldset>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
+
+</html>

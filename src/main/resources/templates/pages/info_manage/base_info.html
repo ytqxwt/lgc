@@ -1,0 +1,808 @@
+<!-- 内容主体区域 -->
+<div style="padding: 15px;">
+
+	<div style="width: 94%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;"><span
+		  style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">筛选标签</span></div>
+
+
+
+
+	<form class="layui-form">
+		<div class="wrap">
+			<div class="label-selected">
+				<a href="javascript:;" class="layui-btn layui-btn-sm show-labelitem" style="float: right; margin: 4px; display: block;line-height: 30px;">展开标签库
+				</a>
+				<a href="javascript:;" class="layui-btn layui-btn-sm hide-labelitem" style="float: right; margin: 4px; display: none;line-height: 30px;">收起标签库
+				</a>
+				<input type="hidden" name="label">
+			</div>
+			<div class="layui-col-md12" id="labelItem" style="float: none;">
+				<!--标签库-->
+				<div class="label-item" style="margin-bottom: 20px;">
+					<!--<a href="javascript:;" class="replacelable" style="position: absolute;right:1rem;bottom:.75rem;color: #1994dc"-->
+					<!--onselectstart="return false">换一批</a>-->
+					<li data="name"><span>姓名</span></li>
+					<li data="idCard"><span>身份证号</span></li>
+					<li data="sex"><span>性别</span></li>
+					<li data="nativePlace"><span>籍贯</span></li>
+					<li data="startWorkDate"><span>开始工作时间</span></li>
+					<li data="formationType"><span>编制类型</span></li>
+					<li data="toSchoolDate"><span>到校时间</span></li>
+					<li data="retireDate"><span>退休时间</span></li>
+					<li data="retireType"><span>退休类型</span></li>
+					<li data="retireInDepartment"><span>退休时部门</span></li>
+					<li data="job"><span>职务</span></li>
+					<li data="jobLevel"><span>职称</span></li>
+					<li data="majorOrWork"><span>专业</span></li>
+					<li data="salaryNumber"><span>工资号</span></li>
+					<li data="politicalOutlook"><span>政治面貌</span></li>
+					<li data="presentBranch"><span>现所属支部</span></li>
+					<li data="governmentAllowance"><span>政府特殊津贴</span></li>
+					<li data="onceInArmy"><span>复转退军人</span></li>
+					<li data="disabled"><span>伤残</span></li>
+					<li data="armyFamily"><span>军属</span></li>
+					<li data="exploit"><span>立战功</span></li>
+					<li data="modelWorker"><span>劳模</span></li>
+					<li data="healthCurrent"><span>目前身体健康状况</span></li>
+					<li data="diseaseChronic"><span>慢性疾病</span></li>
+					<li data="phone"><span>手机号</span></li>
+					<li data="homePhone"><span>家庭电话</span></li>
+					<li data="qqNumber"><span>QQ</span></li>
+					<li data="wxNumber"><span>微信</span></li>
+					<li data="liveWithChildren"><span>是否与子女生活</span></li>
+					<li data="addressCurrent"><span>现居住地址</span></li>
+					<li data="zipCode"><span>邮编</span></li>
+					<li data="accountAddressCurrent"><span>现户口地址</span></li>
+					<li data="familyEmail"><span>配偶或子女电子邮箱</span></li>
+					<li data="adressChildren"><span>子女家庭地址</span></li>
+					<li data="nameLinkMan"><span>校内联系人姓名</span></li>
+					<li data="departmentLinkMan"><span>校内联系人部门</span></li>
+					<li data="addressLinkMan"><span>校内联系人地址</span></li>
+					<li data="phoneLinkMan"><span>校内联系人电话</span></li>
+					<li data="activityGroup"><span>参加老年体协活动小组</span></li>
+					<li data="maritalStatus"><span>婚姻状况</span></li>
+					<li data="nameMate"><span>配偶姓名</span></li>
+					<li data="phoneMate"><span>配偶电话</span></li>
+					<li data="healthMate"><span>配偶健康状况</span></li>
+					<li data="emailMate"><span>配偶邮箱</span></li>
+					<li data="sport"><span>现在坚持的体育健身项目</span></li>
+					<li data="favoriteHobby"><span>文、体爱好项目</span></li>
+					<li data="doubleWorker"><span>是否本校双职工</span></li>
+					<li data="dutyInSocialGroup"><span>校外团体中担任的职务</span></li>
+					<li data="browseWebsite"><span>是否浏览本处网站</span></li>
+				</div>
+			</div>
+			<!--<a href="javascript:;" class="layui-btn" id="cell">获取</a>-->
+		</div>
+	</form>
+
+	<div style="width: 94%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;"><span
+		  style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">必填信息</span></div>
+
+	<form lay-filter="formSearch" id="form_search" style="display: none" class="layui-form between-content">
+		<style>
+			#form_search > .layui-form-item {
+				display: none;
+			}
+		</style>
+
+		<div class="chosen" style="margin-left: 60px;">
+			<div class="layui-form-item" style="padding-top: 10px;">
+				<label class="layui-form-label">姓名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="name" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">身份证号</label>
+				<div class="layui-input-inline">
+					<input type="text" name="idCard" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">性别</label>
+				<div class="layui-input-block">
+					<input type="radio" name="sex" value="男" title="男" checked>
+					<input type="radio" name="sex" value="女" title="女">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">籍贯</label>
+				<div class="layui-input-block">
+					<select name="nativePlace" lay-verify="" lay-search xm-select="xm_nativePlace">
+						<!-- <option value="北京">北京</option>
+						<option value="赣州">赣州</option>
+						<option value="南昌">南昌</option> -->
+					</select>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">开始工作时间</label>
+				<div class="layui-input-inline">
+					<input type="text" name="startWorkDate" class="layui-input" id="laydate_start_work_date">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">编制类型</label>
+				<div class="layui-input-inline">
+					<select name="formationType" lay-verify="" xm-select="formationType">
+						<option value="">可检索多个</option>
+						<option value="干部">干部</option>
+						<option value="聘干">聘干</option>
+						<option value="工人">工人</option>
+						<option value="合同制工人">合同制工人</option>
+					</select>
+
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">到校时间</label>
+				<div class="layui-input-inline">
+					<input type="text" name="toSchoolDate" id="laydate_to_school_date" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">退休时间</label>
+				<div class="layui-input-inline">
+					<input type="text" name="retireDate" id="laydate_retire_date" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">退休类型</label>
+				<div class="layui-input-inline">
+					<input type="text" name="retireType" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">退休时部门</label>
+				<div class="layui-input-inline">
+					<input type="text" name="retireInDepartment" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">职务</label>
+				<div class="layui-input-inline">
+					<input type="text" name="job" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">职称</label>
+				<div class="layui-input-inline">
+					<input type="text" name="jobLevel" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">专业/工种</label>
+				<div class="layui-input-inline">
+					<input type="text" name="majorOrWork" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">工资号</label>
+				<div class="layui-input-inline">
+					<input type="text" name="salaryNumber" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">政治面貌</label>
+				<div class="layui-input-inline">
+					<input type="text" name="politicalOutlook" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">现所属支部</label>
+				<div class="layui-input-inline">
+					<input type="text" name="presentBranch" class="layui-input">
+				</div>
+			</div>
+
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">政府特殊津贴</label>
+				<div class="layui-input-block">
+					<input type="radio" name="governmentAllowance" value="有" title="有" checked>
+					<input type="radio" name="governmentAllowance" value="无" title="无">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">复转退军人</label>
+				<div class="layui-input-block">
+					<input type="radio" name="onceInArmy" value="是" title="是" checked>
+					<input type="radio" name="onceInArmy" value="否" title="否">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">伤残</label>
+				<div class="layui-input-block">
+					<input type="radio" name="disabled" value="是" title="是" checked>
+					<input type="radio" name="disabled" value="否" title="否">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">是否军属/烈属</label>
+				<div class="layui-input-block">
+					<input type="radio" name="armyFamily" value="是" title="是" checked>
+					<input type="radio" name="armyFamily" value="否" title="否">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">立战功</label>
+				<div class="layui-input-inline">
+					<input type="text" name="exploit" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">劳模</label>
+				<div class="layui-input-inline">
+					<input type="text" name="modelWorker" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">目前身体健康状况</label>
+				<div class="layui-input-inline">
+					<input type="text" name="healthCurrent" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">慢性疾病</label>
+				<div class="layui-input-inline">
+					<input type="text" name="diseaseChronic" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">手机号</label>
+				<div class="layui-input-inline">
+					<!--<input type="text" name="phone" lay-verify="phone"-->
+					<input type="text" name="phone" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">家庭电话</label>
+				<div class="layui-input-inline">
+					<!--<input type="text" name="homePhone" lay-verify="phone"-->
+					<input type="text" name="homePhone" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">QQ</label>
+				<div class="layui-input-inline">
+					<input type="text" name="qqNumber" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">微信</label>
+				<div class="layui-input-inline">
+					<input type="text" name="wxNumber" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">是否与子女生活</label>
+				<div class="layui-input-block">
+					<input type="radio" name="liveWithChildren" value="是" title="是" checked>
+					<input type="radio" name="liveWithChildren" value="否" title="否">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">现居住地址\通信地址</label>
+				<div class="layui-input-inline">
+					<input type="text" name="addressCurrent" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">邮编</label>
+				<div class="layui-input-inline">
+					<input type="text" name="zipCode" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">现户口地址</label>
+				<div class="layui-input-inline">
+					<input type="text" name="accountAddressCurrent" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">配偶或子女电子邮箱</label>
+				<div class="layui-input-inline">
+					<!--<input type="text" name="familyEmail" lay-verify="email"-->
+					<input type="text" name="familyEmail" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">子女家庭地址</label>
+				<div class="layui-input-inline">
+					<input type="text" name="addressChildren" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">校内联系人姓名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nameLinkMan" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">校内联系人部门</label>
+				<div class="layui-input-inline">
+					<input type="text" name="departmentLinkMan" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">校内联系人地址</label>
+				<div class="layui-input-inline">
+					<input type="text" name="addressLinkMan" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">校内联系人电话</label>
+				<div class="layui-input-inline">
+					<!--<input type="text" name="phoneLinkMan" lay-verify="phone"-->
+					<input type="text" name="phoneLinkMan" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">参加老年体协活动小组</label>
+				<div class="layui-input-inline">
+					<input type="text" name="activityGroup" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">婚姻状况</label>
+				<div class="layui-input-inline">
+					<select name="maritalStatus" lay-verify="">
+						<option value="已婚">已婚</option>
+						<option value="未婚">未婚</option>
+						<option value="再婚">再婚</option>
+						<option value="丧婚">丧婚</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">配偶姓名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nameMate" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">配偶电话</label>
+				<div class="layui-input-inline">
+					<!--<input type="text" name="phoneMate" lay-verify="phone"-->
+					<input type="text" name="phoneMate" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">配偶健康状况</label>
+				<div class="layui-input-inline">
+					<input type="text" name="healthMate" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">配偶邮箱</label>
+				<div class="layui-input-inline">
+					<!--<input type="text" name="emailMate" lay-verify="email"-->
+					<input type="text" name="emailMate" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">现在坚持的体育健身项目</label>
+				<div class="layui-input-inline">
+					<input type="text" name="sport" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">文、体爱好项目</label>
+				<div class="layui-input-inline">
+					<input type="text" name="favoriteHobby" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">是否本校双职工</label>
+				<div class="layui-input-block">
+					<input type="radio" name="doubleWorker" value="是" title="是" checked>
+					<input type="radio" name="doubleWorker" value="否" title="否">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">校外团体中担任的职务</label>
+				<div class="layui-input-inline">
+					<input type="text" name="dutyInSocialGroup" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">是否浏览本处网站</label>
+				<div class="layui-input-block">
+					<input type="radio" name="browseWebsite" value="是" title="是" checked>
+					<input type="radio" name="browseWebsite" value="否" title="否">
+				</div>
+			</div>
+		</div>
+		<input type="text" name="select" hidden>
+		<div class="layui-form-item" id="btngup_search" style="margin-bottom: 30px;">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit="" type="button" lay-filter="formSubmitSearch">检索</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+
+	</form>
+
+	<div style="width: 94%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;"><span
+		  style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">筛选结果</span></div>
+
+	<div style="width:94%;margin:0 auto">
+		<table id="info_table" lay-filter="info_table"></table>
+	</div>
+</div>
+<script type="text/html" id="barDemo">
+	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+	<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+	layui.use(['table', 'form', 'layer', 'laydate', 'laypage'], function () {
+		var table = layui.table;
+		var form = layui.form;
+		var laydate = layui.laydate;
+		var laypage = layui.laypage;
+		form.render();
+		//监听提交
+		form.on('submit(formSubmitSearch)', function (data) {
+			console.log(data)
+			var info_tableIns = table.render({
+				elem: '#info_table',
+				height: 315,
+				method: 'post',
+				where: data.field,
+				url: '/baseInfo/searchByMultipleRegex',
+				page: true,
+				cols: [
+					[ //表头
+						{
+							type: 'checkbox',
+							fixed: 'left'
+						}, {
+							field: 'name',
+							title: '姓名',
+							width: 80,
+							sort: true,
+							fixed: 'left'
+						}, {
+							field: 'idCard',
+							title: '身份证号',
+							width: 80
+						}, {
+							field: 'sex',
+							title: '性别',
+							width: 80,
+							sort: true
+						}, {
+							field: 'nativePlace',
+							title: '籍贯',
+							width: 80
+						}, {
+							fixed: 'right',
+							width: 178,
+							align: 'center',
+							toolbar: '#barDemo'
+						}
+					]
+				],
+				done: function (res, curr, count) {
+					//如果是异步请求数据方式，res即为你接口返回的信息。
+					//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+					console.log(res);
+
+					//得到当前页码
+					console.log(curr);
+
+					//得到数据总量
+					console.log(count);
+				}
+			});
+			console.log("do me")
+			return false;
+		});
+		laydate.render({
+			elem: '#laydate_retire_date',
+			type: 'date',
+			range: '~'
+		})
+		var info_tableIns = table.render({
+			elem: '#info_table',
+			height: 315,
+			method: 'post',
+			url: '/baseInfo/findByPage' //数据接口
+				,
+			page: true //开启分页
+				,
+			cols: [
+				[ //表头
+					{
+						type: 'checkbox',
+						fixed: 'left'
+					}, {
+						field: 'name',
+						title: '姓名',
+						width: 80,
+						sort: true,
+						fixed: 'left'
+					}, {
+						field: 'idCard',
+						title: '身份证号',
+						width: 80
+					}, {
+						field: 'sex',
+						title: '性别',
+						width: 80,
+						sort: true
+					}, {
+						field: 'nativePlace',
+						title: '籍贯',
+						width: 80
+					}, {
+						fixed: 'right',
+						width: 178,
+						align: 'center',
+						toolbar: '#barDemo'
+					}
+				]
+			],
+			done: function (res, curr, count) {
+				//如果是异步请求数据方式，res即为你接口返回的信息。
+				//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+				console.log(res);
+
+				//得到当前页码
+				console.log(curr);
+
+				//得到数据总量
+				console.log(count);
+			}
+		});
+		//监听表格复选框选择
+		table.on('checkbox(info_table)', function (obj) {
+			console.log(obj)
+		});
+		//监听工具条
+		table.on('tool(info_table)', function (obj) {
+			console.log(obj);
+			var data = obj.data;
+			if (obj.event === 'detail') {
+				layer.msg('ID：' + data.id + ' 的查看操作');
+			} else if (obj.event === 'del') {
+				layer.confirm('真的删除行么', function (index) {
+					obj.del();
+					layer.close(index);
+				});
+			} else if (obj.event === 'edit') {
+				layer.alert('编辑行：<br>' + JSON.stringify(data))
+				// obj.update({
+				//     username: '123'
+				//     ,title: 'xxx'
+				// });
+			}
+		});
+	})
+
+
+
+	layui.use(['table', 'form', 'formSelects'], function () {
+		var formSelects = layui.formSelects;
+		var form = layui.form;
+		var $ = layui.$;
+		formSelects.data('xm_nativePlace', 'server', {
+			url: '/city/getCityToNativePlace',
+			linkage: true,
+			linkageWidth: 130
+		});
+		$(function () {
+			$(".show-labelitem").on("click", function () {
+				$(this).hide();
+				$(".hide-labelitem").show();
+				$("#labelItem").show();
+			});
+			$(".hide-labelitem").on("click", function () {
+				$(this).hide();
+				$(".show-labelitem").show();
+				$("#labelItem").hide();
+			});
+			$(".label-item").on("click", "li", function () {
+				var id = $(this).attr("data");
+				var text = $(this).children("span").html();
+				var labelHTML = "<li data='" + id + "''>x " + text + "</li>";
+				if ($(this).hasClass("selected")) {
+					return false;
+				}
+				// else if ($(".label-selected").children("li").length >= 8) {
+				//   layer.msg("最多可以选择8个哦");
+				//   return false;
+				// }
+				$(".label-selected").append(labelHTML);
+				val = '';
+				for (var i = 0; i < $(".label-selected").children("li").length; i++) {
+					val += $(".label-selected").children("li").eq(i).attr("data") + ',';
+				}
+				$("input[name='label']").val(val);
+				$(this).addClass("selected");
+
+				changeLabel();
+
+
+			});
+			var val = "";
+			$(".label-selected").on("click", "li", function () {
+				var id = $(this).attr("data");
+				val = '';
+				$(this).remove();
+				for (var i = 0; i < $(".label-selected").children("li").length; i++) {
+					val += $(".label-selected").children("li").eq(i).attr("data") + ',';
+				}
+				$("input[name='label']").val(val);
+				$(".label-item").find("li[data='" + id + "']").removeClass("selected");
+
+
+				changeLabel()
+			});
+
+
+			// //点击更换标签
+			// var limit = 0;
+			// $(".replacelable").on("click", function () {
+			//   layer.load(1);
+			//   limit += 32;
+			//   $.ajax({
+			//     url: window.location.href,
+			//     type: "post",
+			//     datatype: "json",
+			//     data: {
+			//       labellimit: limit
+			//     },
+			//     success: function (data) {
+			//       layer.closeAll('loading');
+			//       $(".label-item").find("li").remove();//删除原先所有，本来想让数据表随机搜索的，想着有点mmp，就没搞，用的是limit
+			//       var html = '';
+			//       for (var i in data) {
+			//         html += "<li data=\"" + data[i].term_id + "\">x<span>" + data[i].name + "</span></li>";//拼接标签
+			//       }
+			//       $(".label-item").append(html);//追加至文档
+			//     },
+			//     error: function () {
+			//       layer.closeAll('loading');
+			//       layer.msg("错误~~~");
+			//     }
+			//   })
+			// })
+			//获取标签
+			function changeLabel() {
+				if ($("input[name='label']").val() == "") {
+					$('#form_search').css('display', 'none')
+					return false;
+				} else {
+					// layer.msg("标签内容为：" + $("input[name='label']").val());
+					var labelList = $("input[name='label']").val().split(",");
+					$('#form_search').css('display', 'block')
+					$('.layui-form-item').css('display', 'none')
+					$('#btngup_search').css('display', 'block')
+					for (var i = 0; i < labelList.length - 1; i++) {
+						var label = labelList[i]
+						console.log(label)
+						$('input[name=' + label + ']').parents('.layui-form-item').css('display', 'block')
+					}
+					form.val('formSearch', {
+						'select': $("input[name='label']").val()
+					})
+					form.render();
+					formSelects.render();
+				}
+			}
+		})
+	})
+</script>
+<style>
+	.wrap {
+		width: 100%;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	.label-selected {
+		width: 100%;
+		min-height: 38px;
+		margin: 10px 0;
+		border: 1px solid #ccc;
+		background-color: #fff;
+		position: relative;
+	}
+
+	.cell {
+		display: block;
+		width: 90px;
+		height: 28px;
+		line-height: 28px;
+		border: 3px;
+		background: #009688;
+		color: #fff;
+		text-align: center;
+	}
+
+	.label-selected li {
+		display: inline-block;
+		height: 27px;
+		line-height: 27px;
+		font-size: .8rem;
+		padding: 0 1rem;
+		border: 1px solid #e6e6e6;
+		border-radius: 2px;
+		cursor: pointer;
+		margin: 4px 2px;
+		color: #666;
+	}
+
+	#labelItem {
+		margin-bottom: 10px;
+		display: none;
+	}
+
+	.label-item {
+		border: 1px solid #e6e6e6;
+		padding: 10px;
+		border-radius: 0 2px 2px 0;
+		position: relative;
+		overflow: hidden;
+		background: #fff;
+	}
+
+	.label-item li {
+		display: inline-block;
+		height: 27px;
+		line-height: 27px;
+		font-size: .8rem;
+		padding: 0 1rem;
+		border: 1px solid #e6e6e6;
+		border-radius: 2px;
+		cursor: pointer;
+		margin-bottom: 5px;
+		margin-left: 2px;
+		color: #666;
+	}
+
+	.label-item .selected {
+		color: #ccc;
+	}
+</style>

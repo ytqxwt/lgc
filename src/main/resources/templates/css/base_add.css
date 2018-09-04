@@ -1,0 +1,25 @@
+/*公共样式*/
+.layui-form-label{
+    width: 148px;
+}
+.layui-form-item{
+    margin-bottom: 22px;
+}
+
+
+/*私有样式*/
+.between{
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px 200px;
+}
+.between-content{
+    width: 60%;
+}
+.img-div{
+    width: 121px;
+    float: right;
+}
+.biaodan{
+    float: left;
+}

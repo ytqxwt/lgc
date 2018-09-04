@@ -1,0 +1,49 @@
+	<!-- 内容主体区域 -->
+	<div style="padding: 15px;">
+		<form class="layui-form" action="">
+			<div class="layui-form-item layui-col-md-offset3">
+				<img src="../../img/base_add/default_handsome.jpg" id="btn_uploadPhoto">
+				<!--<button type="button" class="layui-btn" id="btn_uploadPhoto">-->
+				<!--<i class="layui-icon">&#xe67c;</i>上传一寸彩照-->
+				<!--</button>-->
+			</div>
+			<div class="layui-form-item ">
+				<label class="layui-form-label">姓名test new</label>
+				<div class="layui-input-inline">
+					<input type="text" name="title" required lay-verify="required"
+					       autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">身份证号</label>
+				<div class="layui-input-inline">
+					<input type="text" name="title" required lay-verify="required"
+					       autocomplete="off" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">性别</label>
+				<div class="layui-input-block">
+					<input type="radio" name="sex" value="男" title="男" checked>
+					<input type="radio" name="sex" value="女" title="女">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">籍贯</label>
+				<div class="layui-input-inline">
+					<select name="city" lay-verify="" lay-search>
+						<option value="北京">北京</option>
+						<option value="赣州">赣州</option>
+						<option value="南昌">南昌</option>
+					</select>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formDemo" id="next">下一步</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				</div>
+			</div>
+		</form>
+	</div>
