@@ -39,7 +39,7 @@
 						<dd><a href="javascript:" id="base_add">人员添加</a></dd>
 						<dd><a href="javascript:" id="survivors_add">遗嘱添加</a></dd>
 						<dd><a href="javascript:" id="case_add">病例添加</a></dd>
-						<dd><a href="javascript:">批量导入</a></dd>
+						<dd><a href="javascript:" id="import_batch">批量导入</a></dd>
 					</dl>
 				</li>
 				<li class="layui-nav-item">
@@ -63,7 +63,7 @@
 					<a href="javascript:">系统设置</a>
 					<dl class="layui-nav-child">
 						<dd><a href="javascript:">修改表单</a></dd>
-						<dd><a href="javascript:">意见反馈</a></dd>
+						<dd><a href="javascript:" id="feefback">意见反馈</a></dd>
 					</dl>
 				</li>
 			</ul>
@@ -100,10 +100,13 @@
       $('.layui-body').load('pages/info_add/base_add.html');
     });
     $('#survivors_add').click(function () {
-      $('.layui-body').load('pages/info_add/survivors_add.html');
+      $('.layui-body').load('pages/info_add/survivors_add1.html');
     });
     $('#case_add').click(function () {
       $('.layui-body').load('pages/info_add/case_add.html');
+    });
+    $('#import_batch').click(function () {
+      $('.layui-body').load('pages/info_add/import_batch.html');
     });
     $('#user_manage').click(function () {
       $('.layui-body').load('pages/power_manage/user_manage.html');
@@ -111,10 +114,13 @@
     $('#base_info').click(function () {
       $('.layui-body').load('pages/info_manage/base_info.html');
     });
+    $('#feefback').click(function () {
+      $('.layui-body').load('pages/system_setting/feedback.html');
+    });
+
   });
 </script>
 </body>
-
 <div id="layer_power" class="layui-table-box" style="display: none;">
 	<table cellspacing="1" align="center">
 		<tr>
@@ -157,5 +163,6 @@
 		</tr>
 	</table>
 </div>
+
 
 </html>

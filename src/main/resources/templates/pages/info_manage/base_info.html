@@ -112,7 +112,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">籍贯</label>
 				<div class="layui-input-block">
-					<select name="nativePlace" lay-verify="" lay-search xm-select="xm_nativePlace">
+					<select lay-ignore="" name="nativePlace" lay-verify="" lay-search xm-select="xm_nativePlace">
 						<!-- <option value="北京">北京</option>
 						<option value="赣州">赣州</option>
 						<option value="南昌">南昌</option> -->
@@ -719,13 +719,13 @@
           $('.layui-form-item').css('display', 'none')
           $('#btngup_search').css('display', 'block')
           for (var i = 0; i < labelList.length - 1; i++) {
-            var label = labelList[i]
-            console.log(label)
+            var label = labelList[i];
+            console.log(label);
             $('input[name=' + label + ']').parents('.layui-form-item').css('display', 'block')
           }
           form.val('formSearch', {
             'select': $("input[name='label']").val()
-          })
+          });
           form.render();
           formSelects.render();
         }

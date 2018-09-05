@@ -1,0 +1,397 @@
+<style type="text/css">
+    @media print {
+        .SongTX4 {
+            font-family: "宋体";
+            font-size: 12pt;
+        }
+
+        .FenBiaoTou {
+            font-family: "黑体";
+            font-size: 24px;
+            letter-spacing: 8px;
+            line-height: 40px;
+            width: 1024px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .fenbiaotwo {
+            margin: 0px;
+        }
+
+        .BiaoTou {
+            font-family: "华文中宋";
+            font-size: 22pt;
+            letter-spacing: 5px;
+            line-height: 45px;
+        }
+
+        .biaozhun {
+            font-family: "宋体";
+            font-size: 12pt;
+            line-height: 120%;
+            padding-right: 0.5%;
+            padding-left: 0.5%;
+            text-align: justify;
+        }
+
+        .yiju {
+            font-family: "宋体";
+            font-size: 11pt;
+            line-height: 120%;
+            padding-right: 0.5%;
+            padding-left: 0.5%;
+            text-align: justify;
+            text-align: center;
+        }
+
+        select {
+
+            text-align: center;
+            text-align-last: center;
+            border: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            font-family: "宋体";
+            font-size: 12pt;
+        }
+
+        .select {
+            text-align: center;
+            text-align-last: center;
+            border: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            font-family: "宋体";
+            font-size: 12pt;
+        }
+
+    }
+
+    .SongTX4 {
+        font-family: "宋体";
+        font-size: 12pt;
+    }
+
+    .FenBiaoTou {
+        font-family: "黑体";
+        font-size: 24px;
+        letter-spacing: 8px;
+        line-height: 40px;
+        width: 1024px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .fenbiaotwo {
+        margin: 0px;
+    }
+
+    .BiaoTou {
+        font-family: "华文中宋";
+        font-size: 22pt;
+        letter-spacing: 5px;
+        line-height: 45px;
+    }
+
+    .biaozhun {
+        font-family: "宋体";
+        font-size: 12pt;
+        line-height: 120%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
+        text-align: justify;
+    }
+
+    .yiju {
+        font-family: "宋体";
+        font-size: 11pt;
+        line-height: 120%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
+        text-align: justify;
+        text-align: center;
+    }
+
+    select {
+        text-align: center;
+        text-align-last: center;
+        border: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        font-family: "宋体";
+        font-size: 12pt;
+    }
+
+    .select {
+        text-align: center;
+        text-align-last: center;
+        border: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        font-family: "宋体";
+        font-size: 12pt;
+    }
+</style>
+
+<div align="right">
+    <button style="" class="layui-btn" id="btn_printForm">打印空表</button>
+</div>
+<br>
+<form id="form_baseAdd" method="post" action="/baseInfo/set">
+    <div class="BiaoTou" align="center"><strong>江西理工大学离退休人员遗属信息表</strong>
+    </div>
+    <br>
+    <br>
+
+    <div class="SongTX4" align="center">
+
+        <table style="border-collapse:collapse " width="660" cellspacing="0" cellpadding="2" border="1">
+            <tbody>
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="44">姓名</td>
+                <td width="16.7%" height="44"><input name="name" class="select" type="text"
+                                                     style="border: none;width:60px"/></td>
+                <td width="13.63%" height="44">性别</td>
+                <td width="16.7%" height="44">
+                    <select name="sex" style="border: none;width: 25px;-moz-appearance: none;-webkit-appearance: none">
+                        <option value=""></option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </td>
+                <td width="13.63%" height="44">出生日期</td>
+                <td colspan="2" width="25.75%" height="44"><input class="select" style="border: none;width: 150px"
+                                                                  type="text"
+                                                                  name="birth" id="birth"></td>
+            </tr>
+
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="44">政治面貌</td>
+                <td width="16.7%" height="44">
+                    <select name="politicalOutlook">
+                        <option value=""></option>
+                        <option value="中共党员">中共党员</option>
+                        <option value="群众">群众</option>
+                        <option value="中共预备党员">中共预备党员</option>
+                        <option value="共青团员">共青团员</option>
+                        <option value="民盟盟员">民盟盟员</option>
+                        <option value="民革党员">民革党员</option>
+                        <option value="无党派人士">无党派人士</option>
+                    </select></td>
+                <td width="13.63%" height="44">民族</td>
+                <td width="16.7%" height="44"><input class="select" type="text" style="border: none;width: 30px"/>
+                </td>
+                <td width="13.63%" height="44">电话号码</td>
+                <td colspan="2" height="44"><input name="phone" class="select" type="text"
+                                                   style="border: none;width: 100px"/></td>
+            </tr>
+
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="44">身份证号</td>
+                <td colspan="6" height="44"><input name="idCard" required class="select" type="text"
+                                                   style="border: none;width: 500px"/></td>
+            </tr>
+
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="44">籍贯</td>
+                <td colspan="6" height="44">
+                    <select type="text" class="select no_print" style="border: none;width: 500px" name="nativePlace"
+                            lay-verify=""
+                            lay-search xm-select-radio="" xm-select-skin="default" xm-select="xm_nativePlace">
+                    </select>
+                </td>
+            </tr>
+
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="44">家庭住址</td>
+                <td colspan="6" height="44"><input name="address" type="text"
+                                                   style="border: none;width: 500px;text-align: center;
+        text-align-last: left;
+        border: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        font-family:'宋体';
+                    font-size: 12pt;"/></td>
+            </tr>
+
+
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="80">所在地居民委员会或村委会办公电话</td>
+                <td colspan="6" height="44"><input name="communityPhone"  type="text"
+                                                   style="border: none;width: 500px;text-align: center;
+        text-align-last: left;
+        border: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        font-family:'宋体';
+                    font-size: 12pt;"/></td>
+            </tr>
+
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="44">已故职工姓名</td>
+                <td width="16.7%" height="44"><input name="nameDead" class="select" type="text"
+                                                     style="border: none;width:60px"/></td>
+                <td width="13.63%" height="44">与已故职工关系</td>
+                <td width="16.7%" height="44">
+                    <select name="relationDead"
+                            style="border: none;width: 25px;-moz-appearance: none;-webkit-appearance: none">
+                        <option value=""></option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                </td>
+                <td width="13.63%" height="44">已故职工逝世时间</td>
+                <td colspan="2" width="25.75%" height="44"><input class="select" style="border: none;width: 150px"
+                                                                  type="text"
+                                                                  name="timeDead" id="timeDead"></td>
+            </tr>
+
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="44">每月抚恤金额</td>
+                <td colspan="3" height="44"><input name="pension" class="select" type="text"
+                                                   style="border: none;width:60px"/></td>
+
+                <td width="13.63%" height="44">抚恤金发放时间</td>
+                <td colspan="2" width="25.75%" height="44"><input class="select" style="border: none;width: 150px"
+                                                                  type="text"
+                                                                  name="pensionReleaseTime"></td>
+            </tr>
+
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="44">抚恤金代领人姓名</td>
+                <td width="16.7%" height="44"><input name="nameDailin" class="select" type="text"
+                                                     style="border: none;width: 30px"/>
+                </td>
+                <td width="13.63%" height="44">代领人与遗属关系</td>
+                <td width="16.7%" height="44"><input name="relationDailin" class="select" type="text"
+                                                     style="border: none;width: 30px"/>
+                </td>
+                <td width="13.63%" height="44">代领人身份证号码</td>
+                <td colspan="2" height="44"><input name="idDailin" class="select" type="text"
+                                                   style="border: none;width: 150px"/></td>
+            </tr>
+
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="44">代领人手机号码</td>
+                <td colspan="3" height="44"><input name="phoneDailin" class="select" type="text"
+                                                   style="border: none;width:60px"/></td>
+
+                <td width="13.63%" height="44">代领人住宅电话</td>
+                <td colspan="2" width="25.75%" height="44"><input class="select" style="border: none;width: 150px"
+                                                                  type="text"
+                                                                  name="homephoneDailin"></td>
+            </tr>
+
+
+            <tr valign="middle" align="center">
+                <td width="16.7%" height="90">备注</td>
+                <td colspan="6">
+                    <textarea name="remark" class="select" type="text"
+                              style="padding-top: 13px;resize:none;border: none;width:400px;"></textarea>
+
+                </td>
+
+
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <button class="layui-btn no_print" type="submit" id="btn_submit">完成</button>
+
+    </div>
+
+</form>
+
+<script>
+  layui.use(['form'], function () {
+    var form = layui.form;
+    form.render();
+  })
+</script>
+<script>
+    layui.use(['form', 'upload', 'laydate', 'formSelects'], function () {
+        var element = layui.element;
+        var form = layui.form;
+        var $ = layui.$;
+        form.render();
+        var laydate = layui.laydate;
+        var formSelects = layui.formSelects;
+        formSelects.render();
+        formSelects.config('xm_nativePlace', {
+            success: function (id, url, val, result) {
+                console.log("success回调: " + url);
+            },
+            error: function (id, url, val, err) {
+                console.log("err回调: " + url);
+            }
+        });
+
+        formSelects.data('xm_nativePlace', 'server', {
+            url: '/city/getCityToNativePlace',
+            linkage: true,
+            linkageWidth: 130
+        });
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            console.log(JSON.stringify(data.field));
+            return true;
+        });
+        // $('#next').click(function () {
+        //     $('.layui-body').load('pages/info_add/base_add2.html');
+        // });
+        var upload = layui.upload;
+
+        //时间选择器
+        laydate.render({
+            elem: '#timeDead',
+            type: 'date'
+        });
+
+        laydate.render({
+            elem: '#birth',
+            type: 'date'
+        });
+
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#uploadPhoto',
+            url: '/file/upload/',
+            field: 'file',
+            before: function (obj) {
+                console.log(obj);
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#uploadPhoto').attr('src', result); //图片链接（base64）
+                });
+            },
+            done: function (res) {
+                console.log(res);
+                //如果上传失败
+                if (res.code > 0) {
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            },
+            error: function () {
+                //演示失败状态，并实现重传
+                var upload_err = $('#upload_err');
+                upload_err.html(
+                    '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                upload_err.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+        $('#btn_printForm').click(function () {
+            $('#form_baseAdd').print({
+                noPrintSelector: '.no_print'
+            })
+        })
+    });
+</script>
+
+
+

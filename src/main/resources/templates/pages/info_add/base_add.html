@@ -2,7 +2,8 @@
 	<button style="" class="layui-btn" id="btn_printForm">打印空表</button>
 </div>
 <br>
-<form id="form_baseAdd" method="post" action="/baseInfo/set">
+<form id="form_baseAdd" lay-filter="filter_baseAdd" class="layui-form">
+	<input type="text" name="photoUrl" hidden id="photoUrl">
 	<div class="BiaoTou" align="center"><strong>江西理工大学离退休人员基本信息表</strong>
 	</div>
 	<br>
@@ -14,29 +15,30 @@
 			<tbody>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">姓名</td>
-				<td width="14%" height="44"><input name="name" class="select" type="text"
-				                                   style="border: none;width:60px"/></td>
+				<td width="14%" height="44">
+					<input  name="name" class="select" type="text" style="border: none;width:60px"/></td>
 				<td width="11.4%" height="44">性别</td>
 				<td width="14%" height="44">
-					<select name="sex" style="border: none;width: 25px;-moz-appearance: none;-webkit-appearance: none">
+					<select  lay-ignore  name="sex" style="border: none;width: 25px;-moz-appearance: none;-webkit-appearance: none">
 						<option value=""></option>
 						<option value="男">男</option>
 						<option value="女">女</option>
 					</select>
 				</td>
 				<td width="11.4%" height="44">出生日期</td>
-				<td colspan="2" width="11.4%" height="44"><input class="select" style="border: none;width: 150px"
+				<td colspan="2" width="11.4%" height="44"><input lay-ignore class="select" style="border: none;width: 150px"
 				                                                 type="text"
-				                                                 name="birth" id="birth"></td>
+				                                                 name="birth"
+				                                                 id="birth"></td>
 				<td rowspan="3" width="16%" height="44">
-					<img src="../../img/base_add/default_handsome.png" style="width: 100%" id="uploadPhoto">
+					<img src="../../img/default_handsome.png" style="width: 100%" id="uploadPhoto">
 					<div id="upload_err"></div>
 				</td>
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">政治面貌</td>
 				<td width="14%" height="44">
-					<select name="politicalOutlook">
+					<select lay-ignore name="politicalOutlook">
 						<option value=""></option>
 						<option value="中共党员">中共党员</option>
 						<option value="群众">群众</option>
@@ -47,16 +49,19 @@
 						<option value="无党派人士">无党派人士</option>
 					</select></td>
 				<td width="11.4%" height="44">民族</td>
-				<td width="14%" height="44"><input class="select" type="text" style="border: none;width: 30px"/>
+				<td width="14%" height="44"><textarea lay-ignore  class="select" type="text"
+				                                      style="padding-top: 13px;resize:none;border: none;width:80px;"></textarea>
+
 				</td>
 				<td width="11.4%" height="44">电话号码</td>
-				<td colspan="2" height="44"><input name="phone" class="select" type="text"
-				                                   style="border: none;width: 100px"/></td>
+				<td colspan="2" height="44"><input lay-ignore name="phone" class="select" type="text"
+				                                   style="border: none;width: 100px"/>
+				</td>
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">编制类型</td>
 				<td width="14%" height="44">
-					<select name="formationType ">
+					<select lay-ignore name="formationType ">
 						<option value=""></option>
 						<option value="干部">干部</option>
 						<option value="聘干">聘干</option>
@@ -64,11 +69,11 @@
 						<option value="合同制工人">合同制工人</option>
 					</select></td>
 				<td width="11.4%" height="44">职务</td>
-				<td width="14%" height="44"><textarea name="job" class="select" type="text"
+				<td width="14%" height="44"><textarea lay-ignore name="job" class="select" type="text"
 				                                      style="padding-top: 13px;resize:none;border: none;width:80px;"></textarea>
 				</td>
 				<td width="11.4%" height="44">职称</td>
-				<td colspan="2" height="44"><input name="jobLevel" class="select" type="text"
+				<td colspan="2" height="44"><input lay-ignore name="jobLevel" class="select" type="text"
 				                                   style="border: none;max-width: 130px"/>
 				</td>
 
@@ -76,55 +81,57 @@
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">籍贯</td>
 				<td colspan="3" height="44">
-					<select type="text" class="select no_print" style="border: none;width: 500px" name="nativePlace"
+					<select type="text" class="select" style="border: none;width: 500px" name="nativePlace"
 					        lay-verify=""
 					        lay-search xm-select-radio="" xm-select-skin="default" xm-select="xm_nativePlace">
 					</select>
 				</td>
 				<td width="11.4%" height="44">邮编</td>
-				<td colspan="3" height="44"><input name="zipCode" class="select" type="text"
+				<td colspan="3" height="44"><input lay-ignore name="zipCode" class="select" type="text"
 				                                   style="border: none;width:150px"/>
 				</td>
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">身份证号</td>
-				<td colspan="7" height="44"><input name="idCard" class="select" type="text"
-				                                   style="border: none;width: 500px"/></td>
+				<td colspan="7" height="44"><input lay-ignore name="idCard" class="select" type="text"
+				                                   style="border: none;width: 500px"/>
+				</td>
 
 			</tr>
 
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">现户口地址</td>
-				<td colspan="7" height="44"><input name="accountAddressCurrent" class="select" type="text"
+				<td colspan="7" height="44"><input lay-ignore name="accountAddressCurrent" class="select" type="text"
 				                                   style="border: none;width: 500px;text-align: left"/></td>
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">通讯地址</td>
-				<td colspan="7" height="44"><input name="addressCurrent" class="select" type="text"
+				<td colspan="7" height="44"><input lay-ignore name="addressCurrent" class="select" type="text"
 				                                   style="border: none;width: 500px;text-align: left"/></td>
 
 			</tr>
 
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">到校时间</td>
-				<td colspan="3" height="44"><input class="select" style="border: none;width: 150px" type="text"
-				                                   name="startWorkDate" id="laydate_to_school_date">
+				<td colspan="3" height="44"><input lay-ignore class="select" style="border: none;width: 150px" type="text"
+				                                   name="startWorkDate"
+				                                   id="laydate_to_school_date">
 				</td>
 				<td width="11.4%" height="44">开始工作时间</td>
 				<td colspan="3" height="44">
-					<input class="select" style="border: none;width: 150px" type="text" name="startWorkDate"
+					<input lay-ignore class="select" style="border: none;width: 150px" type="text" name="startWorkDate"
 					       id="laydate_start_work_date">
 
 
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">退休部门</td>
-				<td width="14%" height="44"><textarea name="retireInDepartment" class="select" type="text"
+				<td width="14%" height="44"><textarea lay-ignore name="retireInDepartment" class="select" type="text"
 				                                      style="padding-top: 13px;resize:none;border: none;width:80px;"></textarea>
 				</td>
 				<td width="11.4%" height="44">退休类型</td>
 				<td width="14%" height="44">
-					<select name="retireType"
+					<select lay-ignore name="retireType"
 					        style="border: none;width: 70px;-moz-appearance: none;-webkit-appearance: none">
 						<option value=""></option>
 						<option value="volvo">提前退休</option>
@@ -134,22 +141,23 @@
 				<td width="11.4%" height="44">退休时间</td>
 
 
-				<td colspan="3"><input class="select" style="border: none;width: 150px" type="text" name="startWorkDate"
+				<td colspan="3"><input lay-ignore class="select" style="border: none;width: 150px" type="text"
+				                       name="startWorkDate"
 				                       id="laydate_retire_date">
 				</td>
 
 
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">专业/工种</td>
-				<td width="14%" height="44"><textarea name="majorOrWork" class="select" type="text"
+				<td width="14%" height="44"><textarea lay-ignore name="majorOrWork" class="select" type="text"
 				                                      style="padding-top: 13px;resize:none;border: none;width:80px;"></textarea>
 				</td>
 				<td width="11.4%" height="44">工资号</td>
 				<td width="14%" height="44">
-					<input name="salaryNumber" type="text" class="select" style="border: none;width:70px"/>
+					<input lay-ignore name="salaryNumber" type="text" class="select" style="border: none;width:70px"/>
 				</td>
 				<td width="11.4%" height="44">现所属支部</td>
-				<td colspan="3" height="44"><textarea name="presentBranch" class="select" type="text"
+				<td colspan="3" height="44"><textarea lay-ignore name="presentBranch" class="select" type="text"
 				                                      style="padding-top: 13px;resize:none;border: none;width:170px;"></textarea>
 				</td>
 			</tr>
@@ -157,38 +165,38 @@
 
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">邮箱</td>
-				<td width="14%" height="44"><textarea class="select" type="text"
+				<td width="14%" height="44"><textarea lay-ignore class="select" type="text"
 				                                      style="background-color:transparent;padding-top: 9px;resize:none;border: none;width:80px;"></textarea>
 				</td>
 				<td width="11.4%" height="44">QQ</td>
 				<td width="14%" height="44">
-					<input name="qqNumber" type="text" style="border: none;width: 80px"/>
+					<input lay-ignore name="qqNumber" class="select" type="text" style="border: none;width: 80px"/>
 				</td>
 				<td width="11.4%" height="44">家庭电话</td>
-				<td colspan="3" height="44"><input name="homePhone" type="text" class="select"
+				<td colspan="3" height="44"><input lay-ignore name="homePhone" type="text" class="select"
 				                                   style="border: none;width: 150px"/></td>
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">是否本校双职工</td>
-				<td width="14%" height="44"><label> <input name="doubleWorker" type="radio" value="是"/>是 </label>
-					<label> <input name="doubleWorker" type="radio" value="否"/>否 </label></td>
+				<td width="14%" height="44"><label> <input lay-ignore name="doubleWorker" type="radio" value="是"/>是 </label>
+					<label> <input lay-ignore name="doubleWorker" type="radio" value="否"/>否 </label></td>
 				<td width="11.4%" height="44">是否为复转退军人</td>
 				<td width="14%" height="44">
-					<label> <input name="onceInArmy" type="radio" value="是"/>是 </label>
-					<label> <input name="onceInArmy" type="radio" value="否"/>否 </label>
+					<label> <input lay-ignore name="onceInArmy" type="radio" value="是"/>是 </label>
+					<label> <input lay-ignore name="onceInArmy" type="radio" value="否"/>否 </label>
 				</td>
 				<td width="11.4%" height="44">是否为军属/烈属</td>
-				<td width="14%" height="44"><label> <input name="armyFamily" type="radio" value="是"/>是 </label>
-					<label> <input name="armyFamily" type="radio" value="否"/>否 </label></td>
+				<td width="14%" height="44"><label> <input lay-ignore name="armyFamily" type="radio" value="是"/>是 </label>
+					<label> <input lay-ignore name="armyFamily" type="radio" value="否"/>否 </label></td>
 				<td width="11.4%" height="44">是否为劳模</td>
-				<td width="14%" height="44"><label> <input name="modelWorker" type="radio" value=""/>是 </label>
-					<label> <input name="modelWorker" type="radio" value=""/>否 </label></td>
+				<td width="14%" height="44"><label> <input lay-ignore name="modelWorker" type="radio" value=""/>是 </label>
+					<label> <input lay-ignore name="modelWorker" type="radio" value=""/>否 </label></td>
 			</tr>
 
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">目前健康状况</td>
 				<td width="14%" height="44">
-					<select name="healthCurrent">
+					<select lay-ignore name="healthCurrent">
 						<option value=""></option>
 						<option value="volvo">健康</option>
 						<option value="健康">一般</option>
@@ -196,41 +204,41 @@
 					</select></td>
 				<td width="11.4%" height="44">是否有慢性病</td>
 				<td width="14%" height="44">
-					<label> <input name="diseaseChronic" type="radio" value="是"/>是 </label>
-					<label> <input name="diseaseChronic" type="radio" value="否"/>否 </label>
+					<label> <input lay-ignore name="diseaseChronic" type="radio" value="是"/>是 </label>
+					<label> <input lay-ignore name="diseaseChronic" type="radio" value="否"/>否 </label>
 				</td>
 				<td width="11.4%" height="44">慢性病描述</td>
-				<td colspan="3" height="44"><textarea class="select" type="text"
+				<td colspan="3" height="44"><textarea lay-ignore class="select" type="text"
 				                                      style="background-color:transparent;padding-top: 13px;resize:none;border: none;width:240px;"></textarea>
 				</td>
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">是否伤残</td>
 				<td width="14%" height="44">
-					<label> <input name="disabled" type="radio" value="是"/>是 </label>
-					<label> <input name="disabled" type="radio" value="否"/>否 </label></td>
+					<label> <input lay-ignore name="disabled" type="radio" value="是"/>是 </label>
+					<label> <input lay-ignore name="disabled" type="radio" value="否"/>否 </label></td>
 				<td width="11.4%" height="44">伤残说明</td>
-				<td colspan="5" height="44"><textarea class="select" type="text"
+				<td colspan="5" height="44"><textarea lay-ignore class="select" type="text"
 				                                      style="padding-top: 13px;resize:none;border: none;width:400px;"></textarea>
 				</td>
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">是否享受政府津贴</td>
 				<td width="14%" height="44">
-					<label> <input name="governmentAllowance" type="radio" value="是"/>是 </label>
-					<label> <input name="governmentAllowance" type="radio" value="否"/>否 </label></td>
+					<label> <input lay-ignore name="governmentAllowance" type="radio" value="是"/>是 </label>
+					<label> <input lay-ignore name="governmentAllowance" type="radio" value="否"/>否 </label></td>
 				<td width="11.4%" height="44">津贴详情</td>
-				<td colspan="5" height="44"><textarea class="select" type="text"
+				<td colspan="5" height="44"><textarea lay-ignore class="select" type="text"
 				                                      style="padding-top: 13px;resize:none;border: none;width:400px;"></textarea>
 				</td>
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">是否立战功</td>
 				<td width="14%" height="44">
-					<label> <input name="exploit" type="radio" value="是"/>是 </label>
-					<label> <input name="exploit" type="radio" value="否"/>否 </label></td>
+					<label> <input lay-ignore name="exploit" type="radio" value="是"/>是 </label>
+					<label> <input lay-ignore name="exploit" type="radio" value="否"/>否 </label></td>
 				<td width="11.4%" height="44">战功描述</td>
-				<td colspan="5" height="44"><textarea class="select" type="text"
+				<td colspan="5" height="44"><textarea lay-ignore class="select" type="text"
 				                                      style="padding-top: 13px;resize:none;border: none;width:400px;"></textarea>
 				</td>
 			</tr>
@@ -244,32 +252,32 @@
 			<tbody>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">与子女共同生活</td>
-				<td width="14%" height="44"><label> <input name="liveWithChildren" type="radio" value=""/>是 </label>
-					<label> <input name="liveWithChildren" type="radio" value=""/>否 </label></td>
+				<td width="14%" height="44"><label> <input lay-ignore name="liveWithChildren" type="radio" value=""/>是 </label>
+					<label> <input lay-ignore name="liveWithChildren" type="radio" value=""/>否 </label></td>
 				<td width="11.4%" height="44">子女姓名</td>
 				<td width="14%" height="44">
-					<input class="select" type="text" style="border: none;width: 80px"/>
+					<input lay-ignore class="select" type="text" style="border: none;width: 80px"/>
 				</td>
 				<td width="11.4%" height="44">子女邮箱</td>
-				<td colspan="4" height="44"><input class="select" name="familyEmail" type="text"
+				<td colspan="4" height="44"><input lay-ignore class="select" name="familyEmail" type="text"
 				                                   style="border: none;width: 240px"/>
 				</td>
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">子女地址</td>
-				<td colspan="3" height="44"><textarea name="adressChildren" class="select" type="text"
+				<td colspan="3" height="44"><textarea lay-ignore name="adressChildren" class="select" type="text"
 				                                      style="padding-top: 13px;resize:none;border: none;width:190px;"></textarea>
 				</td>
 				<td width="11.4%" height="44">子女电话</td>
 				<td colspan="3" height="44">
-					<input type="text" style="border: none;width:  190px"/>
+					<input lay-ignore type="text" class="select" style="border: none;width:  190px"/>
 				</td>
 
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">婚姻状况</td>
 				<td width="14%" height="44">
-					<select name="maritalStatus" lay-verify=""
+					<select lay-ignore name="maritalStatus" lay-verify=""
 					        style="border: none;width: 70px;-moz-appearance: none;-webkit-appearance: none">
 						<option value=""></option>
 						<option value="已婚">已婚</option>
@@ -279,10 +287,10 @@
 					</select></td>
 				<td width="11.4%" height="44">配偶姓名</td>
 				<td width="14%" height="44">
-					<input name="nameMate" type="text" style="border: none;width: 80px"/>
+					<input lay-ignore name="nameMate" class= "select" type="text" style="border: none;width: 80px"/>
 				</td>
 				<td width="11.4%" height="44">配偶健康状况</td>
-				<td colspan="4" height="44"><select style="width: 80px">
+				<td colspan="4" height="44"><select lay-ignore style="width: 80px">
 					<option value=""></option>
 					<option value="volvo">健康</option>
 					<option value="saab">一般</option>
@@ -293,68 +301,67 @@
 
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">配偶电话</td>
-				<td colspan="3" height="44"><input name="phoneMate" class="select" type="text"
+				<td colspan="3" height="44"><input lay-ignore name="phoneMate" class="select" type="text"
 				                                   style="border: none;width: 190px"/></td>
 				<td width="11.4%" height="44">配偶邮箱</td>
 				<td colspan="3" height="44">
-					<input name="emailMate" type="text" style="border: none;width:190px"/>
+					<input lay-ignore name="emailMate" type="text"  class="select" style="border: none;width:190px"/>
 				</td>
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">是否有校内联系人</td>
-				<td width="14%" height="44"><label> <input name="Fruit" type="radio" value=""/>是 </label>
-					<label> <input name="Fruit" type="radio" value=""/>否 </label></td>
+				<td width="14%" height="44"><label> <input lay-ignore name="Fruit" type="radio" value=""/>是 </label>
+					<label> <input lay-ignore name="Fruit" type="radio" value=""/>否 </label></td>
 
 				<td width="11.4%" height="44">联系人姓名</td>
 				<td width="14%" height="44">
-					<input name="nameLinkMan" class="select" type="text" style="border: none;width: 80px"/>
+					<input lay-ignore name="nameLinkMan" class="select" type="text" style="border: none;width: 80px"/>
 				</td>
 				<td width="11.4%" height="44">联系人部门</td>
-				<td colspan="4" height="44"><textarea name="departmentLinkMan" class="select" type="text"
+				<td colspan="4" height="44"><textarea lay-ignore name="departmentLinkMan" class="select" type="text"
 				                                      style="padding-top: 13px;resize:none;border: none;width:190px;"></textarea>
 				</td>
 			</tr>
 
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">联系人地址</td>
-				<td colspan="3" height="44"><textarea name="addressLinkMan" class="select" type="text"
+				<td colspan="3" height="44"><textarea lay-ignore name="addressLinkMan" class="select" type="text"
 				                                      style="padding-top: 13px;resize:none;border: none;width:190px;"></textarea>
 				</td>
 				<td width="11.4%" height="44">联系人电话</td>
 				<td colspan="3" height="44">
-					<input name="phoneLinkMan" class="select" type="text" style="border: none;width:  190px"/>
+					<input lay-ignore name="phoneLinkMan" class="select" type="text" style="border: none;width:  190px"/>
 				</td>
 
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">爱好的文体项目</td>
-				<td colspan="3" height="44"><input name="favoriteHobby" class="select" type="text"
+				<td colspan="3" height="44"><input lay-ignore name="favoriteHobby" class="select" type="text"
 				                                   style="border: none;width:190px"/></td>
 				<td width="11.4%" height="44">目前体育健身项目</td>
 				<td colspan="3" height="44">
-					<input class="select" name="sport" type="text" style="border: none;width:190px"/>
+					<input lay-ignore class="select" name="sport" type="text" style="border: none;width:190px"/>
 				</td>
 
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="11.4%" height="44">是否参加老年体协活动组</td>
-				<td width="14%" height="44"><label> <input name="activityGroup" type="radio" value="是"/>是 </label>
-					<label> <input class="select" name="activityGroup" type="radio" value="否"/>否 </label></td>
+				<td width="14%" height="44"><label> <input lay-ignore name="activityGroup" type="radio" value="是"/>是 </label>
+					<label><input lay-ignore name="activityGroup" type="radio" value="否"/>否 </label></td>
 
 				<td width="11.4%" height="44">老年体协活动组中担任职务</td>
 				<td width="14%" height="44">
-                    <textarea name="dutyInSocialGroup" class="select" type="text"
-                              style="padding-top: 9px;resize:none;border: none;width:80px;"></textarea>
+					<textarea lay-ignore name="dutyInSocialGroup" class="select" type="text"
+					          style="padding-top: 9px;resize:none;border: none;width:80px;"></textarea>
 				</td>
 				<td width="11.4%" height="44">是否浏览网页</td>
-				<td colspan="4" height="44"><label> <input name="browseWebsite" type="radio" value="是"/>是 </label>
-					<label> <input name="browseWebsite" type="radio" value="否"/>否 </label></td>
+				<td colspan="4" height="44"><label> <input lay-ignore name="browseWebsite" type="radio" value="是"/>是 </label>
+					<label> <input lay-ignore name="browseWebsite" type="radio" value="否"/>否 </label></td>
 			</tr>
 			</tbody>
 		</table>
-
-		<button class="layui-btn no_print" type="submit" id="btn_submit">完成</button>
-
+		<button class="layui-btn no_print" lay-submit="" lay-filter="formDemo" type="button">完成</button>
+		<button class="layui-btn no_print" type="reset">重置</button>
 	</div>
 
 </form>
@@ -366,10 +373,12 @@
     var form = layui.form;
     var $ = layui.$;
     var upload = layui.upload;
-    form.render();
     var laydate = layui.laydate;
     var formSelects = layui.formSelects;
+
+    form.render();
     formSelects.render();
+
     formSelects.config('xm_nativePlace', {
       success: function (id, url, val, result) {
         console.log("success回调: " + url);
@@ -387,8 +396,20 @@
 
     //监听提交
     form.on('submit(formDemo)', function (data) {
+      console.log(data);
       console.log(JSON.stringify(data.field));
-      return true;
+      if (data.field.photoUrl == null || data.field.photoUrl === '') {
+        layer.msg('请上传照片');
+        return false;
+      }
+      $.post('/baseInfo/set', data.field, function (res) {
+        console.log(res);
+        if (res.code === 0) {
+          console.log("添加成功");
+          layer.alert("添加成功")
+        }
+      });
+      return false;
     });
 
 
@@ -429,6 +450,12 @@
         if (res.code > 0) {
           return layer.msg('上传失败');
         }
+        $('#upload_err').html('');
+        form.val('filter_baseAdd', {
+          'photoUrl': res.data
+        });
+        form.render();
+        console.log(res.data);
         //上传成功
       },
       error: function () {
@@ -584,5 +611,3 @@
 		font-size: 12pt;
 	}
 </style>
-
-

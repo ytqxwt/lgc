@@ -59,7 +59,9 @@
         layer.open({
           type: 1,
           title: '用户授权',
-          btn: ['确定', '关闭'],
+          btn: ['确定','重置', '关闭'],
+	        btnAlign:'c',
+          area: ['600px', '400px'],
           content: $('#layer_power'),//这里content是一个普通的String
           yes: function (index, layero) {
             console.log($('#right_select').html());

@@ -31,7 +31,7 @@ public class BaseInfoController {
     this.baseInfoRepos = baseInfoRepos;
   }
 
-  @RequestMapping(value = "/set")
+  @RequestMapping(value = "/set", produces = {"application/json"})
   public String set(BaseInfo baseInfo) {
     System.out.println(baseInfo.toString());
     baseInfoRepos.save(baseInfo);
