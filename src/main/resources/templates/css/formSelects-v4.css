@@ -21,6 +21,7 @@ select[xm-select]{display: none !important;}
 .xm-select-parent .xm-select-title {
     position: relative;
     min-height: 36px;
+
 }
 
 .xm-select-parent .xm-input {
@@ -95,9 +96,9 @@ select[xm-select]{display: none !important;}
 .xm-form-select dl dd.xm-dis-disabled span {color: #C2C2C2}
 .xm-form-select dl dd.xm-dis-disabled .xm-icon-yes {border-color: #C2C2C2}
 .xm-select-parent {position: relative;-moz-user-select: none;-ms-user-select: none;-webkit-user-select: none}
-.xm-select-parent .xm-select {line-height: normal;height: auto;padding: 4px 10px 1px 10px;overflow: hidden;min-height: 36px;left: 0;z-index: 99;position: absolute;background: 0 0;padding-right: 20px}
+.xm-select-parent .xm-select {width:800px;line-height: normal;height: auto;padding: 4px 10px 1px 10px;overflow: hidden;min-height: 36px;left: 0;z-index: 99;position: absolute;background: 0 0;padding-right: 20px}
 .xm-select-parent .xm-select:hover {border-color: #C0C4CC}
-.xm-select-parent .xm-select .xm-select-label {display: inline-block;margin: 0;vertical-align: middle}
+.xm-select-parent .xm-select .xm-select-label {display: inline-block;margin: 0;vertical-align: middle;width: 800px;}
 .xm-select-parent .xm-select-title div.xm-select-label>span {position: relative;padding: 2px 5px;background-color: #009688;border-radius: 2px;color: #FFF;display: inline-block;line-height: 18px;height: 18px;margin: 2px 5px 2px 0;cursor: initial;user-select: none;font-size: 14px;padding-right: 25px;-webkit-user-select: none;}
 .xm-select-parent .xm-select-title div.xm-select-label>span i {position: absolute; margin-left: 8px; font-size: 12px; cursor: pointer; line-height: 20px;}
 .xm-select-parent .xm-select .xm-select-input {border: none;height: 28px;background-color: transparent;padding: 0;vertical-align: middle;display: inline-block;width: 50px}

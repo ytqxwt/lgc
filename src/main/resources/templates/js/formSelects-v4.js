@@ -900,10 +900,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 					var val = {
 						name: vals.map(function (item) {
 							return item.name;
-						}).join('/'),
+						}).join(''),
 						value: vals.map(function (item) {
 							return item.value;
-						}).join('/')
+						}).join('')
 					};
 					_this11.handlerLabel(_id, null, isAdd, val);
 				} else {
