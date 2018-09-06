@@ -47,17 +47,16 @@
 					<a class="" href="javascript:;">信息管理</a>
 					<dl class="layui-nav-child">
 						<dd><a href="javascript:" id="base_info">人员信息</a></dd>
-						<dd><a href="javascript:">遗嘱信息</a></dd>
-						<dd><a href="javascript:">病例信息</a></dd>
-						<dd><a href="javascript:">数据统计</a></dd>
+						<dd><a href="javascript:" id="survivors_info">遗嘱信息</a></dd>
+						<dd><a href="javascript:" id="case_info">病例信息</a></dd>
 					</dl>
 				</li>
 				<li class="layui-nav-item">
 					<a href="javascript:">权限管理</a>
 					<dl class="layui-nav-child">
-						<dd><a href="javascript:" id="user_manage">用户管理</a></dd>
-						<dd><a href="javascript:" id="power_manage">修改权限</a></dd>
-						<dd><a href="javascript:">我的资料</a></dd>
+						<dd><a href="javascript:" id="user_manage">管理人员设置</a></dd>
+
+						<dd><a href="javascript:" >我的资料</a></dd>
 					</dl>
 				</li>
 				<li class="layui-nav-item">
@@ -115,6 +114,12 @@
     $('#base_info').click(function () {
       $('.layui-body').load('pages/info_manage/base_info.html');
     });
+      $('#survivors_info').click(function () {
+          $('.layui-body').load('pages/info_manage/survivors_info.html');
+      });
+      $('#case_info').click(function () {
+          $('.layui-body').load('pages/info_manage/case_info.html');
+      });
     $('#feefback').click(function () {
       $('.layui-body').load('pages/system_setting/feedback.html');
     });
