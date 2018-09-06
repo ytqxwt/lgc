@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>inport</title>
-	<style>
+
+
+<style>
 		.file {
 			position: relative;
 			display: inline-block;
@@ -36,14 +33,13 @@
 		input {
 		}
 	</style>
-</head>
-<body>
+
 <div style="padding: 10px 50px; ">
 	<form method="post">
 		<div style="width: 100%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;">
 			<span style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">
 				<span style="font-size: 20px">1</span>离退休人员基本信息表</span></div>
-		<div class="layui-upload-drag" align="center">
+		<div class="layui-upload-drag" align="center" id="baseinfo_upload">
 			<i class="layui-icon"></i>
 			<p>点击上传，或将文件拖拽到此处</p>
 		</div>
@@ -51,7 +47,7 @@
 		<div style="width: 100%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;">
 			<span style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">
 				<span style="font-size: 20px">2</span>遗嘱信息表</span></div>
-		<div class="layui-upload-drag" align="center">
+		<div class="layui-upload-drag" align="center" id="survivors_upload">
 			<i class="layui-icon"></i>
 			<p>点击上传，或将文件拖拽到此处</p>
 		</div>
@@ -60,25 +56,77 @@
 						style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;"><span
 						style="font-size: 20px">3</span>子女信息表</span></div>
 
-		<div class="layui-upload-drag" align="center">
+		<div class="layui-upload-drag" align="center" id="sondou_upload">
 			<i class="layui-icon"></i>
 			<p>点击上传，或将文件拖拽到此处</p>
 		</div>
 		<br><br><br>
 
-		<div align=center
-		     style="
-    color: #ffffff;
-    background-color: #000000;
-    border: solid 2px black;
-    width: 800px;
-    height: 310px;
-    overflow-y: scroll;
-    font-size: 20px;
-    ">
-			错误数据
+		<!--<div align=center-->
+		     <!--style="-->
+    <!--color: #ffffff;-->
+    <!--background-color: #000000;-->
+    <!--border: solid 2px black;-->
+    <!--width: 800px;-->
+    <!--height: 310px;-->
+    <!--overflow-y: scroll;-->
+    <!--font-size: 20px;-->
+    <!--">-->
+			<!--错误数据-->
+		<!--</div>-->
+
+		<div style="padding: 20px; background-color: #F2F2F2;">
+			<div class="layui-row layui-col-space15">
+				<div class="layui-col-md6">
+					<div class="layui-card">
+						<div class="layui-card-header">错误数据</div>
+						<div class="layui-card-body">
+							表格第35行插入错误<br>
+							错误数据为	362101194103150719	邱高岳	uploadfile/201082319274353221.jpg	男	江西南康	1962-6-1	干部	1971-12-1		2010-4-1	管理工程分院	教师		讲师		企业管理	00387	中共党员		无,	否	否,	否	否,	有	一般	有,支气管炎	13229376122	0797-8316183			是,邱烨	理工大学东苑54栋	341000	赣州市南外派出所			朱桂芳		理工大学东苑54栋		有,	已婚	钟胜英		健康		象棋				经常
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</form>
 </div>
-</body>
-</html>
+<script>
+    layui.use('upload', function(){
+        var $ = layui.jquery
+            ,upload = layui.upload;
+        //
+        // //设定文件大小限制
+        // upload.render({
+        //     elem: '#test7'
+        //     ,url: '/upload/'
+        //     ,size: 60 //限制文件大小，单位 KB
+        //     ,done: function(res){
+        //         console.log(res)
+        //     }
+        // });
+
+        //同时绑定多个元素，并将属性设定在元素上
+        upload.render({
+            elem: '.demoMore'
+            ,before: function(){
+                layer.tips('接口地址：'+ this.url, this.item, {tips: 1});
+            }
+            ,done: function(res, index, upload){
+                var item = this.item;
+                console.log(item); //获取当前触发上传的元素，layui 2.1.0 新增
+            }
+        })
+        //拖拽上传
+        upload.render({
+            elem: '#baseinfo_upload'
+            ,url: '/upload/'
+            ,accept: 'file' //普通文件
+            ,exts: 'csv|xlsx|' //只允许上传表格
+            ,done: function(res){
+                console.log(res)
+            }
+        });
+
+    });
+</script>
+</script>
