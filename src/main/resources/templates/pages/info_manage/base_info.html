@@ -636,16 +636,6 @@
           layer.close(index);
         });
       } else if (obj.event === 'edit') {
-
-          layui.use('element', function () {
-              var element = layui.element;
-              var $ = layui.$;
-
-              //左侧导航栏路由
-              $('#base_add').click(function () {
-                  $('.layui-body').load('pages/info_manage/detail_result_base.html');
-              });
-          }
         layer.alert('编辑行：<br>' + JSON.stringify(data))
         // obj.update({
         //     username: '123'
