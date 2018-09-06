@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/site.css">
 	<link rel="stylesheet" href="css/formSelects-v4.css">
 	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+
 </head>
 
 <body class="layui-layout-body">
@@ -56,13 +57,14 @@
 					<dl class="layui-nav-child">
 						<dd><a href="javascript:" id="user_manage">管理人员设置</a></dd>
 
-						<dd><a href="javascript:" >我的资料</a></dd>
+
 					</dl>
 				</li>
 				<li class="layui-nav-item">
 					<a href="javascript:">系统设置</a>
 					<dl class="layui-nav-child">
-						<dd><a href="javascript:">修改表单</a></dd>
+						<dd><a href="javascript:" id="update_form">修改表结构</a></dd>
+						<dd><a href="javascript:" id="my_info" >我的资料</a></dd>
 						<dd><a href="javascript:" id="feefback">意见反馈</a></dd>
 					</dl>
 				</li>
@@ -123,6 +125,13 @@
     $('#feefback').click(function () {
       $('.layui-body').load('pages/system_setting/feedback.html');
     });
+      $('#my_info').click(function () {
+          $('.layui-body').load('pages/system_setting/my_info.html');
+      });
+
+      $('#update_form').click(function () {
+          $('.layui-body').load('pages/system_setting/my_info.html');
+      });
 
   });
 </script>

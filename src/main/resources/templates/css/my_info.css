@@ -1,0 +1,78 @@
+    .container{
+        padding-top: 100px;
+    }
+
+    /*表单*/
+    .wrap{
+        height:238px;
+        width: 55%;
+        margin: 0 auto;
+    }
+    .wrap_content{
+        width: 34%;
+        height: 283px;
+        margin: 0 auto;
+        float: left;
+    }
+    .wrap_content .wrap_deep_content{
+        margin-left: 0;
+        margin-right: 0;
+        width: 286px;
+        height: 40px;
+    }
+    .col-sm-2{
+        padding-right: 0;
+    }
+    .col-sm-10{
+        width: 238px;
+        margin-bottom: 20px;
+    }
+    label{
+        margin-top: 8px;
+    }
+    .UpdateImg{
+        width: 140px;
+        height: 200px;
+        float: right;
+    }
+    .UpdateImg img{
+        width: 140px;
+        height:140px;
+        margin: 0 auto;
+        margin-top: -6px;
+    }
+    .UpdateImg button{
+        height: 30px;
+        line-height: 19px;
+        margin: 0 auto;
+        margin-top: 15px;
+        margin-left: 25px;
+        background: #0ca799;
+        color: white;
+        border: 1px solid #0ca799;
+    }
+
+    /*按钮*/
+    .btn{
+        width: 210px;
+        background: #0ca799;
+        border: 1px solid #0ca799;
+        color: white;
+        letter-spacing: 5px;
+        margin-top: 20px;
+    }
+    .btn:hover{
+        background: #009688;
+        color: white;
+    }
+
+
+
+
+
+
+
+
+
+
+
