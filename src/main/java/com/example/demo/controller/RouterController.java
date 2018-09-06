@@ -12,8 +12,8 @@ public class RouterController {
     return "index.html";
   }
 
-  @RequestMapping(value = "base_add", method = RequestMethod.GET)
-  public String base_add() {
-    return "base_add.html";
+  @RequestMapping(value = "/login", method = RequestMethod.GET)
+  public String login() {
+    return "login.html";
   }
 }
