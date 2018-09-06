@@ -8,6 +8,10 @@
 	<link rel="stylesheet" href="layui/css/layui.css">
 	<link rel="stylesheet" href="css/site.css">
 	<link rel="stylesheet" href="css/formSelects-v4.css">
+	<link rel="stylesheet" href="css/printstylesheet.css" media="print" />
+	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="css/my_info.css">
+
 	<script src="js/jquery-3.3.1.min.js"></script>
 </head>
 
@@ -54,9 +58,9 @@
 				<li class="layui-nav-item">
 					<a href="javascript:">权限管理</a>
 					<dl class="layui-nav-child">
-						<dd><a href="javascript:" id="user_manage">管理人员设置</a></dd>
-
-						<dd><a href="javascript:" >我的资料</a></dd>
+						<dd><a href="javascript:" id="user_manage">用户管理</a></dd>
+						<dd><a href="javascript:" id="power_manage">修改权限</a></dd>
+						<dd><a href="javascript:" id="my_Info">我的资料</a></dd>
 					</dl>
 				</li>
 				<li class="layui-nav-item">
@@ -123,7 +127,9 @@
     $('#feefback').click(function () {
       $('.layui-body').load('pages/system_setting/feedback.html');
     });
-
+    $('#my_Info').click(function () {
+      $('.layui-body').load('pages/power_manage/my_info.html');
+    });
   });
 </script>
 </body>
