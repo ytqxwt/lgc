@@ -85,11 +85,6 @@
     form.on('switch(switch_able)', function (obj) {
       layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
     });
-
-
-    function (){
-
-    }
     $.get("/power/findOtherByUser",
         {
           name: 123//用户名
