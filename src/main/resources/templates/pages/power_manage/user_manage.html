@@ -29,11 +29,12 @@
       , page: true //开启分页
       , cols: [[ //表头
         {type: 'checkbox', fixed: 'left'}
-        , {field: 'name', title: '用户名', width: 80, sort: true, fixed: 'left'}
-        , {field: 'type', title: '账号类型', width: 80}
-        , {field: 'createTime', title: '创建时间', width: 80, sort: true}
-        , {field: 'phone', title: '电话', width: 80}
-        , {field: 'sex', title: '禁用', width: 85, templet: '#switchTpl', unresize: true}
+        , {field: 'name', title: '用户名', width: 100, sort: true, fixed: 'left'}
+        , {field: 'type', title: '账号类型', width: 100},
+            {field: 'type', title: '已有权限', width: 200}
+        , {field: 'createTime', title: '创建时间', width: 200, sort: true}
+        , {field: 'phone', title: '电话', width:250}
+        , {field: 'sex', title: '禁用', width: 100, templet: '#switchTpl', unresize: true}
         , {fixed: 'right', width: 178, align: 'center', toolbar: '#barDemo'}
       ]],
       done: function (res, curr, count) {
