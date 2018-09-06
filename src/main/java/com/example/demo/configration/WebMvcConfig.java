@@ -24,6 +24,8 @@ class WebMvcConfig extends WebMvcConfigurationSupport {
         .addResourceLocations("classpath:/templates/css/");
     registry.addResourceHandler("/js/**")
         .addResourceLocations("classpath:/templates/js/");
+    registry.addResourceHandler("/bootstrap-3.3.7-dist/**")
+        .addResourceLocations("classpath:/templates/bootstrap-3.3.7-dist/");
     registry.addResourceHandler("/favicon.ico")
         .addResourceLocations("classpath:/templates/favicon.ico");
   }
