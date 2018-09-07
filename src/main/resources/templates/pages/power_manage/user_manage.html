@@ -15,7 +15,8 @@
 
 
 <script>
-  var left, right, btnLight_left, btnLight_right;
+
+
   layui.use(['table', 'form'], function () {
 
     var $ = layui.$;
@@ -31,9 +32,9 @@
         {type: 'checkbox', fixed: 'left'}
         , {field: 'name', title: '用户名', width: 100, sort: true, fixed: 'left'}
         , {field: 'type', title: '账号类型', width: 100},
-            {field: 'type', title: '已有权限', width: 200}
+        {field: 'type', title: '已有权限', width: 200}
         , {field: 'createTime', title: '创建时间', width: 200, sort: true}
-        , {field: 'phone', title: '电话', width:250}
+        , {field: 'phone', title: '电话', width: 250}
         , {field: 'sex', title: '禁用', width: 100, templet: '#switchTpl', unresize: true}
         , {fixed: 'right', width: 178, align: 'center', toolbar: '#barDemo'}
       ]],
@@ -42,11 +43,6 @@
         //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
         console.log(res);
 
-        //得到当前页码
-        console.log(curr);
-
-        //得到数据总量
-        console.log(count);
       }
     });
     //监听表格复选框选择
@@ -61,12 +57,24 @@
         layer.open({
           type: 1,
           title: '用户授权',
-          btn: ['确定', '重置', '关闭'],
+          // btn: ['确定', '重置', '关闭'],
+          btn: ['确定', '关闭'],
           btnAlign: 'c',
           area: ['600px', '400px'],
           content: $('#layer_power'),//这里content是一个普通的String
           yes: function (index, layero) {
-            console.log($('#right_select').html());
+            var selected = [];
+            for (var i = 0; i < $('#right_select')[0].length; i++) {
+              console.log($('#right_select')[0][i].value)
+            }
+            for (var j = 0; j < $('#left_select')[0].length; j++) {
+              console.log($('#left_select')[0][j].value);
+              selected.push($('#left_select')[0][j].value);
+            }
+            $.post('/power/update', {name:'123',selected: selected}, function (res) {
+              console.log(res)
+            })
+
           },
           btn2: function (index, layero) {
             layer.msg("关闭")
@@ -85,11 +93,7 @@
     form.on('switch(switch_able)', function (obj) {
       layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
     });
-    $.get("/power/findOtherByUser",
-        {
-          name: 123//用户名
-        },
-        function (res) {
+    $.get("/power/findOtherByUser", {name: 123}, function (res) {
           console.log(res);
           var html = '';
           res.forEach(function (power) {
@@ -98,71 +102,65 @@
           $("#left_select").html(html);
         }
     );
-    $.get(
-        "/power/findAllByUser",
-        {
-          name: 123//用户名
-        },
-        function (res) {
+    $.get("/power/findOwnByUser", {name: 123}, function (res) {
           console.log(res);
           var html = '';
           res.forEach(function (power) {
             html += '<option onclick="btnLight_left()" value="' + power.id + '">' + power.name + '</option> ';
           });
           $("#right_select").html(html);
-          // <option value="zhangsan">zhangsan</option>
-          //       <option value="lisi">lisi</option>
-          //       <option value="lisi">lisi</option>
-          //       <option value="wangwu">wangwu</option>
         }
     );
-    btnLight_left = function () {
-      $('#btn_left').css('background-color', '#5FB878');
-    };
-    btnLight_right = function () {
-      $('#btn_right').css('background-color', '#5FB878');
-    };
-    //isAll 是否全部移动
-    left = function (isAll) {
-      var os = [];
-      os = $("#right_select").find("option");
-      for (i = 0; i < os.length; i++) {
-        if (isAll) {
+
+  });
+
+  function btnLight_left() {
+    $('#btn_left').css('background-color', '#5FB878');
+  }
+
+  function btnLight_right() {
+    $('#btn_right').css('background-color', '#5FB878');
+  }
+
+  //isAll 是否全部移动
+  function left(isAll) {
+    var os = [];
+    os = $("#right_select").find("option");
+    for (i = 0; i < os.length; i++) {
+      if (isAll) {
+        // var o = new Option(os[i].text, os[i].value);
+        $("#left_select").append('<option onclick="btnLight_right()" value="' + os[i].value + '">' + os[i].text + '</option> ');
+        $("#right_select").find("option").remove();
+        // == $("#right_select").empty();
+      } else {
+        if (os[i].selected) {
           // var o = new Option(os[i].text, os[i].value);
           $("#left_select").append('<option onclick="btnLight_right()" value="' + os[i].value + '">' + os[i].text + '</option> ');
-          $("#right_select").find("option").remove();
-          // == $("#right_select").empty();
-        } else {
-          if (os[i].selected) {
-            // var o = new Option(os[i].text, os[i].value);
-            $("#left_select").append('<option onclick="btnLight_right()" value="' + os[i].value + '">' + os[i].text + '</option> ');
-            $("#right_select").find("option:selected").remove();
-          }
+          $("#right_select").find("option:selected").remove();
         }
       }
-      $('#btn_left').css('background-color', '#009688');
-    };
+    }
+    $('#btn_left').css('background-color', '#009688');
+  }
 
-    right = function (isAll) {
-      var os = [];
-      os = $("#left_select").find("option");
-      for (i = 0; i < os.length; i++) {
-        if (isAll) {
+  function right(isAll) {
+    var os = [];
+    os = $("#left_select").find("option");
+    for (i = 0; i < os.length; i++) {
+      if (isAll) {
+        // var o = new Option(os[i].text, os[i].value);
+        $("#right_select").append('<option onclick="btnLight_left()" value="' + os[i].value + '">' + os[i].text + '</option> ');
+        $("#left_select").find("option").remove();
+        // == $("#left_select").empty();
+      } else {
+        if (os[i].selected) {
           // var o = new Option(os[i].text, os[i].value);
           $("#right_select").append('<option onclick="btnLight_left()" value="' + os[i].value + '">' + os[i].text + '</option> ');
-          $("#left_select").find("option").remove();
-          // == $("#left_select").empty();
-        } else {
-          if (os[i].selected) {
-            // var o = new Option(os[i].text, os[i].value);
-            $("#right_select").append('<option onclick="btnLight_left()" value="' + os[i].value + '">' + os[i].text + '</option> ');
-            $("#left_select").find("option:selected").remove();
-          }
+          $("#left_select").find("option:selected").remove();
         }
       }
-      $('#btn_right').css('background-color', '#009688');
     }
-
-  })
+    $('#btn_right').css('background-color', '#009688');
+  }
 
 </script>

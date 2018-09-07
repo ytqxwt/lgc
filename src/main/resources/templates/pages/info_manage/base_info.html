@@ -106,7 +106,7 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">身份证号</label>
 				<div class="layui-input-inline">
-					<input type="text" name="idCard" lay-verify="identity" class="layui-input">
+					<input type="text" name="idCard" class="layui-input">
 				</div>
 			</div>
 
@@ -554,7 +554,6 @@
           console.log(count);
         }
       });
-      console.log("do me")
       return false;
     });
     laydate.render({
@@ -581,7 +580,7 @@
           width: 80,
           sort: true,
           fixed: 'left'
-          }, {
+        }, {
           field: 'name',
           title: '姓名',
           width: 80,
@@ -666,12 +665,13 @@
         $(".show-labelitem").show();
         $("#labelItem").hide();
       });
-
-      function label_add(that) {
-        var id = $(that).attr("data");
-        var text = $(that).children("span").html();
+      
+      var val = "";
+      $(".label-item").on("click", "li", function(){
+        var id = $(this).attr("data");
+        var text = $(this).children("span").html();
         var labelHTML = "<li data='" + id + "''>x " + text + "</li>";
-        if ($(that).hasClass("selected")) {
+        if ($(this).hasClass("selected")) {
           return false;
         }
         $(".label-selected").append(labelHTML);
@@ -680,17 +680,15 @@
           val += $(".label-selected").children("li").eq(i).attr("data") + ',';
         }
         $("input[name='label']").val(val);
-        $(that).addClass("selected");
+        $(this).addClass("selected");
         changeLabel();
-      }
+      });
 
-      $(".label-item").on("click", "li", label_add(this));
-      var val = "";
 
-      function label_remove(that) {
-        var id = $(that).attr("data");
+      $(".label-selected").on("click", "li", function () {
+        var id = $(this).attr("data");
         val = '';
-        $(that).remove();
+        $(this).remove();
         for (var i = 0; i < $(".label-selected").children("li").length; i++) {
           val += $(".label-selected").children("li").eq(i).attr("data") + ',';
         }
@@ -698,36 +696,8 @@
         $(".label-item").find("li[data='" + id + "']").removeClass("selected");
 
         changeLabel()
-      }
+      });
 
-      $(".label-selected").on("click", "li", label_remove(this));
-      // //点击更换标签
-      // var limit = 0;
-      // $(".replacelable").on("click", function () {
-      //   layer.load(1);
-      //   limit += 32;
-      //   $.ajax({
-      //     url: window.location.href,
-      //     type: "post",
-      //     datatype: "json",
-      //     data: {
-      //       labellimit: limit
-      //     },
-      //     success: function (data) {
-      //       layer.closeAll('loading');
-      //       $(".label-item").find("li").remove();//删除原先所有，本来想让数据表随机搜索的，想着有点mmp，就没搞，用的是limit
-      //       var html = '';
-      //       for (var i in data) {
-      //         html += "<li data=\"" + data[i].term_id + "\">x<span>" + data[i].name + "</span></li>";//拼接标签
-      //       }
-      //       $(".label-item").append(html);//追加至文档
-      //     },
-      //     error: function () {
-      //       layer.closeAll('loading');
-      //       layer.msg("错误~~~");
-      //     }
-      //   })
-      // })
       //获取标签
       function changeLabel() {
         if ($("input[name='label']").val() == "") {
