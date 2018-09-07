@@ -2,10 +2,10 @@ package com.example.demo.controller.baseController;
 
 import com.example.demo.domain.entity.Power;
 import com.example.demo.domain.entity.UserPower;
-import com.example.demo.domain.entity.UserPowerPK;
 import com.example.demo.domain.vo.JsonResult;
 import com.example.demo.repos.PowerRepos;
 import com.example.demo.repos.UserPowerRepos;
+import com.example.demo.repos.UserRepos;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,14 +22,16 @@ import java.util.List;
 public class PowerController {
   private final PowerRepos powerRepos;
   private final UserPowerRepos userPowerRepos;
+  private final UserRepos userRepos;
 
   @Autowired
-  public PowerController(PowerRepos powerRepos, UserPowerRepos userPowerRepos) {
+  public PowerController(PowerRepos powerRepos, UserPowerRepos userPowerRepos, UserRepos userRepos) {
     this.powerRepos = powerRepos;
     this.userPowerRepos = userPowerRepos;
+    this.userRepos = userRepos;
   }
 
-  @RequestMapping(value = "/findOwnByUser")
+  @RequestMapping(value = "/findOwnByUser", produces = {"application/json"})
   public String findOwnByUser(@RequestParam("name") String name) {
     List<Power> powerList = powerRepos.findAllByName(name);
     JSONArray jsonArray = new JSONArray();
@@ -66,20 +68,21 @@ public class PowerController {
 //    已选123
 //    原234
     //
-    List<Power> powers = powerRepos.findAll();
-    for (Power p : powers) {
+    int uId = userRepos.findByNameEquals(name).getId();
+    List<Integer> powers = powerRepos.findAllId();
+    for (int p : powers) {
       for (int i : selected) {
-        if (p.getId() != selected[i]) {
-          System.out.println(p.getId());
-          userPowerRepos.delete(new UserPower(p.getId(), name));
+        if (p != i) {
+          System.out.println(p);
+          userPowerRepos.save(new UserPower(uId, p));
         }
       }
     }
     for (int j : selected) {
-      for (Power p : powers) {
-        if (j != p.getId()) {
+      for (int p : powers) {
+        if (j != p) {
           System.out.println(j);
-          userPowerRepos.save(new UserPower(j, name));
+          userPowerRepos.delete(new UserPower(uId, j));
         }
       }
     }
