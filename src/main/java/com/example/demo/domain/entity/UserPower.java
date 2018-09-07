@@ -1,14 +1,29 @@
 package com.example.demo.domain.entity;
 
+import com.example.demo.repos.UserRepos;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@Component
 @Entity
 @Table(name = "user_power", schema = "Retirement_management_system", catalog = "")
 @IdClass(UserPowerPK.class)
 public class UserPower {
+  @Autowired
+  private UserRepos userRepos;
   private int uId;
   private int pId;
+
+  public UserPower() {
+  }
+
+  public UserPower(int pId, String name) {
+    this.pId = pId;
+    this.uId = userRepos.findByNameEquals(name).getId();
+  }
 
   @Id
   @Column(name = "u_id", nullable = false)
