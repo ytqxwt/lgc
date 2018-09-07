@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -39,6 +41,15 @@ public class PowerController {
       jsonArray.put(new JSONObject(p.toString()));
     }
     return jsonArray.toString();
+  }
+
+  public List<Integer> findPowerListByUser(String name) {
+    List<Power> powerList = powerRepos.findAllByName(name);
+    List<Integer> list = new ArrayList<>();
+    for (Power p : powerList) {
+      list.add(p.getId());
+    }
+    return list;
   }
 
   @RequestMapping(value = "/findAll", produces = {"application/json"})
