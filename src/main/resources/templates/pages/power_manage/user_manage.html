@@ -63,21 +63,26 @@
           area: ['600px', '400px'],
           content: $('#layer_power'),//这里content是一个普通的String
           yes: function (index, layero) {
-            var selected = [];
-            for (var i = 0; i < $('#right_select')[0].length; i++) {
-              console.log($('#right_select')[0][i].value)
-            }
-            for (var j = 0; j < $('#left_select')[0].length; j++) {
-              console.log($('#left_select')[0][j].value);
-              selected.push($('#left_select')[0][j].value);
-            }
-            $.post('/power/update', {name:'123',selected: selected}, function (res) {
-              console.log(res)
-            })
+            layer.confirm('确认授权', function (index) {
 
+              var selected = [];
+              for (var i = 0; i < $('#right_select')[0].length; i++) {
+                console.log($('#right_select')[0][i].value)
+              }
+              for (var j = 0; j < $('#left_select')[0].length; j++) {
+                console.log($('#left_select')[0][j].value);
+                selected.push($('#left_select')[0][j].value);
+              }
+              $.post('/power/update', {name: '123', selected: selected}, function (res) {
+                if (res.code === 0) {
+                  layer.alert("授权成功");
+                }
+              });
+              layer.close(index);
+            })
           },
           btn2: function (index, layero) {
-            layer.msg("关闭")
+            console.log("关闭")
           }
         });
 

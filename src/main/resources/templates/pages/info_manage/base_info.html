@@ -85,8 +85,8 @@
 					style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;"><span
 					style="font-size: 20px">2</span>&nbsp;填写信息</span></div>
 
-	<form id="form_search" style="display: none" class="layui-form between-content" method="post"
-	      action="/baseInfo/searchByMultipleRegex">
+	<form id="form_search"  lay-filter="form_search" style="display: none" class="layui-form between-content" >
+		<input hidden name="select" type="text">
 		<style>
 			#form_search > .layui-form-item {
 				display: none;
@@ -714,7 +714,7 @@
             console.log(label)
             $('input[name=' + label + ']').parents('.layui-form-item').css('display', 'block')
           }
-          form.val('formSearch', {
+          form.val('form_search', {
             'select': $("input[name='label']").val()
           });
           form.render();
