@@ -69,13 +69,11 @@
 					<li data="connPeiOuHuoZiNvEmail"><span>配偶或子女电子邮箱</span></li>
 					<li data="mateHunYinZhuangKuang"><span>婚姻装况</span></li>
 					<li data="matePeiOuName"><span>配偶姓名</span></li>
-					<li data="matePeiOuDianHua"><span>配偶电话</span></li>
+					<li data="matePeiOuPhone"><span>配偶电话</span></li>
 					<li data="matePeiOuJianKang"><span>配偶健康</span></li>
-					<li data="linkLianXiRenName"><span>校内联系人姓名</span></li>
-					<li data="linkLianXiRenGuanXi"><span>联系人关系</span></li>
-					<li data="linkLianXiRenPhone"><span>联系人电话</span></li>
-					<li data="linkLianXiRenBuMen"><span>校内联系人部门</span></li>
-					<li data="linkLianXiRenAddress"><span>联系人地址</span></li>
+					<li data="lianXiRenName"><span>联系人姓名</span></li>
+					<li data="lianXiRenGuanXi"><span>联系人关系</span></li>
+					<li data="lianXiRenPhone"><span>联系人电话</span></li>
 					<li data="hisShuangZhiGong"><span>是否本校双职工</span></li>
 					<li data="childrenZiNvName"><span>子女姓名</span></li>
 					<li data="childrenZiNvAddress"><span>子女地址</span></li>
@@ -83,6 +81,11 @@
 					<li data="childrenZiNvPhone"><span>子女电话</span></li>
 					<li data="nowAiHaoXiangMu"><span>文、体爱好项目</span></li>
 					<li data="nowJianChiJianShen"><span>现在坚持的体育健身项目</span></li>
+					<li data="xiaoNeiName"><span>校内联系人姓名</span></li>
+					<li data="xiaoNeiGuanXi"><span>联系人关系</span></li>
+					<li data="xiaoNeiPhone"><span>联系人电话</span></li>
+					<li data="xiaoNeiBuMen"><span>校内联系人部门</span></li>
+					<li data="xiaoNeiAddress"><span>联系人地址</span></li>
 					<li data="nowLaoNianTiXieZu"><span>参加老年体协活动小组</span></li>
 					<li data="nowLiuLanWebsite"><span>是否浏览本处网站</span></li>
 					<li data="nowXiaoWaiTuanTiZhiWu"><span>校外团体中担任的职务</span></li>
@@ -141,362 +144,464 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">身份证号</label>
-				<div class="layui-input-inline">
-					<input type="text" name="baseShenFenZheng" class="layui-input">
-				</div>
-			</div>
-			<div class="layui-form-item">
 				<label class="layui-form-label">出生日期</label>
 				<div class="layui-input-inline">
 					<input type="text" name="baseShengRi" id="laydate_baseShengRi" class="layui-input">
 				</div>
 			</div>
-
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">编制类型</label>
-				<div class="layui-input-inline">
-					<select name="formationType" lay-verify="" xm-select="formationType">
-
-						<option value="">可检索多个</option>
-						<option value="干部">干部</option>
-						<option value="聘干">聘干</option>
-						<option value="工人">工人</option>
-						<option value="合同制工人">合同制工人</option>
-					</select>
-
-				</div>
-			</div>
-
 			<div class="layui-form-item">
 				<label class="layui-form-label">到校时间</label>
 				<div class="layui-input-inline">
 					<input type="text" name="toSchoolDate" id="laydate_to_school_date" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">退休时间</label>
+				<label class="layui-form-label">身份证</label>
 				<div class="layui-input-inline">
-					<input type="text" name="retireDate" id="laydate_retire_date" class="layui-input">
+					<input type="text" name="baseShenFenZheng" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">退休类型</label>
+				<label class="layui-form-label">民族</label>
 				<div class="layui-input-inline">
-					<input type="text" name="retireType" class="layui-input">
+					<input type="text" name="baseMinZu" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">退休时部门</label>
+				<label class="layui-form-label">学历</label>
 				<div class="layui-input-inline">
-					<input type="text" name="retireInDepartment" class="layui-input">
+					<input type="text" name="baseXueLi" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">职务</label>
+				<label class="layui-form-label">学位</label>
 				<div class="layui-input-inline">
-					<input type="text" name="job" class="layui-input">
+					<input type="text" name="baseXueWei" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">职称</label>
+				<label class="layui-form-label">学位</label>
 				<div class="layui-input-inline">
-					<input type="text" name="jobLevel" class="layui-input">
+					<input type="text" name="baseXueWei" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">专业/工种</label>
+				<label class="layui-form-label">编制类型</label>
 				<div class="layui-input-inline">
-					<input type="text" name="majorOrWork" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">工资号</label>
-				<div class="layui-input-inline">
-					<input type="text" name="salaryNumber" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">政治面貌</label>
-				<div class="layui-input-inline">
-					<input type="text" name="politicalOutlook" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">现所属支部</label>
-				<div class="layui-input-inline">
-					<input type="text" name="presentBranch" class="layui-input">
-				</div>
-			</div>
-
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">政府特殊津贴</label>
-				<div class="layui-input-block">
-					<input type="radio" name="governmentAllowance" value="有" title="有" checked>
-					<input type="radio" name="governmentAllowance" value="无" title="无">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">复转退军人</label>
-				<div class="layui-input-block">
-					<input type="radio" name="onceInArmy" value="是" title="是" checked>
-					<input type="radio" name="onceInArmy" value="否" title="否">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">伤残</label>
-				<div class="layui-input-block">
-					<input type="radio" name="disabled" value="是" title="是" checked>
-					<input type="radio" name="disabled" value="否" title="否">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">是否军属/烈属</label>
-				<div class="layui-input-block">
-					<input type="radio" name="armyFamily" value="是" title="是" checked>
-					<input type="radio" name="armyFamily" value="否" title="否">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">立战功</label>
-				<div class="layui-input-inline">
-					<input type="text" name="exploit" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">是否为劳模</label>
-				<div class="layui-input-inline">
-
-					<input type="radio" name="modelWorker" value="是" title="是" checked>
-					<input type="radio" name="modelWorker" value="否" title="否">
-
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">目前身体健康状况</label>
-				<div class="layui-input-inline">
-					<select name="healthCurrent">
-						<option value=""></option>
-						<option value="健康">健康</option>
-						<option value="一般">一般</option>
-						<option value="较差">较差</option>
+					<select name="formationType" lay-verify="" xm-select="workBianZhiLeiXing">
+						<option value="">可检索多个</option>
+						<option value="干部">干部</option>
+						<option value="聘干">聘干</option>
+						<option value="工人">工人</option>
+						<option value="合同制工人">合同制工人</option>
 					</select>
 				</div>
 			</div>
-
+			<div class="layui-form-item">
+				<label class="layui-form-label">退休时职务</label>
+				<div class="layui-input-inline">
+					<input type="text" name="workZhiWu" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">职务级别</label>
+				<div class="layui-input-inline">
+					<input type="text" name="workZhiWuJiBie" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">职称</label>
+				<div class="layui-input-inline">
+					<input type="text" name="workZhiCheng" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">职称级别</label>
+				<div class="layui-input-inline">
+					<input type="text" name="workZhiChengJiBie" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">提前退休时间</label>
+				<div class="layui-input-inline">
+					<input type="text" name="workTiQianTuiXiu" id="laydate_retire_date" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">正式退休时间</label>
+				<div class="layui-input-inline">
+					<input type="text" name="workZhengShiTuiXiu" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">退休时部门</label>
+				<div class="layui-input-inline">
+					<input type="text" name="workTuiXiuBuMen" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">政治面貌</label>
+				<div class="layui-input-inline">
+					<input type="text" name="baseZhengZhiMianMao" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">专业/工种</label>
+				<div class="layui-input-inline">
+					<input type="text" name="workZhuanYeHeGongZhong" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">现所属支部</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nowSuoShuZhiBu" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">加入组织的年月日</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisJiaRuZuZhi" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">政府特殊津贴</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisZhengFuJinTie" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">享受哪级政府特殊津贴</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisZhengFuJinTieDengJi" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">复转退军人</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisFuZhuanTuiJunRen" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">伤残</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisShangCan" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">伤残等级</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisShangCanDengJi" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">立战功</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisLiZhanGong" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">立功等级</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisLaZhanGongDengJi" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">是否独生子女</label>
+				<div class="layui-input-inline">
+					<input type="text" name="baseDuShengZiNv" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">劳模</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisLaoMo" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">劳模等级</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisLaoMoDengJi" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">工资号</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nowGongZiHao" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">一卡通号</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nowYiKaTong" class="layui-input">
+				</div>
+			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">慢性疾病</label>
 				<div class="layui-input-inline">
-					<input type="text" name="diseaseChronic" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">手机号</label>
-				<div class="layui-input-inline">
-					<!--<input type="text" name="phone" lay-verify="phone"-->
-					<input type="text" name="phone" class="layui-input">
+					<input type="text" name="nowManXingJiBing" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">家庭电话</label>
+				<label class="layui-form-label">目前身体健康状况</label>
 				<div class="layui-input-inline">
-					<!--<input type="text" name="homePhone" lay-verify="phone"-->
-					<input type="text" name="homePhone" class="layui-input">
+					<input type="text" name="nowJianKangZhuangKuang" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">QQ</label>
+				<label class="layui-form-label">现户口地址</label>
 				<div class="layui-input-inline">
-					<input type="text" name="qqNumber" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">微信</label>
-				<div class="layui-input-inline">
-					<input type="text" name="wxNumber" class="layui-input">
+					<input type="text" name="connXianHuKouDiZhi" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">是否与子女生活</label>
-				<div class="layui-input-block">
-					<input type="radio" name="liveWithChildren" value="是" title="是" checked>
-					<input type="radio" name="liveWithChildren" value="否" title="否">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">通讯地址</label>
 				<div class="layui-input-inline">
-					<input type="text" name="addressCurrent" class="layui-input">
+					<input type="text" name="nowGongZiHao" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">邮编</label>
+				<label class="layui-form-label">和谁共同生活</label>
 				<div class="layui-input-inline">
-					<input type="text" name="zipCode" class="layui-input">
+					<input type="text" name="connYuShuiShengHuo" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">现户口地址</label>
+				<label class="layui-form-label">现居住地址</label>
 				<div class="layui-input-inline">
-					<input type="text" name="accountAddressCurrent" class="layui-input">
+					<input type="text" name="connXianJuZhuDiZhi" class="layui-input">
 				</div>
 			</div>
-
+			<div class="layui-form-item">
+				<label class="layui-form-label">住宅电话</label>
+				<div class="layui-input-inline">
+					<input type="text" name="connZhuZhaiDianHua" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">手机号码</label>
+				<div class="layui-input-inline">
+					<input type="text" name="connShouJiHaoMa" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">历史号码</label>
+				<div class="layui-input-inline">
+					<input type="text" name="connLiShiHaoMa" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">电子邮箱</label>
+				<div class="layui-input-inline">
+					<input type="text" name="connEmailOrQq" class="layui-input">
+				</div>
+			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">配偶或子女电子邮箱</label>
 				<div class="layui-input-inline">
-					<!--<input type="text" name="familyEmail" lay-verify="email"-->
-					<input type="text" name="familyEmail" class="layui-input">
+					<input type="text" name="connPeiOuHuoZiNvEmail" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">子女家庭地址</label>
+				<label class="layui-form-label">婚姻装况</label>
 				<div class="layui-input-inline">
-					<input type="text" name="addressChildren" class="layui-input">
+					<input type="text" name="mateHunYinZhuangKuang" class="layui-input">
 				</div>
 			</div>
-			<div class="layui-form-item">
-				<label class="layui-form-label">校内联系人姓名</label>
-				<div class="layui-input-inline">
-					<input type="text" name="nameLinkMan" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">校内联系人部门</label>
-				<div class="layui-input-inline">
-					<input type="text" name="departmentLinkMan" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">校内联系人地址</label>
-				<div class="layui-input-inline">
-					<input type="text" name="addressLinkMan" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">校内联系人电话</label>
-				<div class="layui-input-inline">
-					<!--<input type="text" name="phoneLinkMan" lay-verify="phone"-->
-					<input type="text" name="phoneLinkMan" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">参加老年体协活动小组</label>
-				<div class="layui-input-inline">
-					<input type="text" name="activityGroup" class="layui-input">
-				</div>
-			</div>
-
-			<div class="layui-form-item">
-				<label class="layui-form-label">婚姻状况</label>
-				<div class="layui-input-inline">
-					<select name="maritalStatus" lay-verify="">
-						<option value="已婚">已婚</option>
-						<option value="未婚">未婚</option>
-						<option value="再婚">再婚</option>
-						<option value="丧婚">丧婚</option>
-					</select>
-				</div>
-			</div>
-
 			<div class="layui-form-item">
 				<label class="layui-form-label">配偶姓名</label>
 				<div class="layui-input-inline">
-					<input type="text" name="nameMate" class="layui-input">
+					<input type="text" name="matePeiOuName" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">配偶电话</label>
 				<div class="layui-input-inline">
-					<!--<input type="text" name="phoneMate" lay-verify="phone"-->
-					<input type="text" name="phoneMate" class="layui-input">
+					<input type="text" name="matePeiOuPhone" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">配偶健康状况</label>
+				<label class="layui-form-label">配偶健康</label>
 				<div class="layui-input-inline">
-					<input type="text" name="healthMate" class="layui-input">
+					<input type="text" name="matePeiOuJianKang" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">配偶邮箱</label>
+				<label class="layui-form-label">联系人姓名</label>
 				<div class="layui-input-inline">
-					<!--<input type="text" name="emailMate" lay-verify="email"-->
-					<input type="text" name="emailMate" class="layui-input">
+					<input type="text" name="lianXiRenName" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">联系人关系</label>
+				<div class="layui-input-inline">
+					<input type="text" name="lianXiRenGuanXi" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">联系人电话</label>
+				<div class="layui-input-inline">
+					<input type="text" name="lianXiRenPhone" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">是否本校双职工</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisShuangZhiGong" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">子女姓名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="childrenZiNvName" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">子女地址</label>
+				<div class="layui-input-inline">
+					<input type="text" name="childrenZiNvAddress" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">子女单位</label>
+				<div class="layui-input-inline">
+					<input type="text" name="childrenZiNvDanWei" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">子女电话</label>
+				<div class="layui-input-inline">
+					<input type="text" name="childrenZiNvPhone" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">文、体爱好项目</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nowAiHaoXiangMu" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">现在坚持的体育健身项目</label>
 				<div class="layui-input-inline">
-					<input type="text" name="sport" class="layui-input">
+					<input type="text" name="nowJianChiJianShen" class="layui-input">
 				</div>
 			</div>
-
+			<div class="layui-form-item">
+				<label class="layui-form-label">校内联系人姓名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="xiaoNeiName" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">联系人关系</label>
+				<div class="layui-input-inline">
+					<input type="text" name="lianXiRenGuanXi" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">子女地址</label>
+				<div class="layui-input-inline">
+					<input type="text" name="childrenZiNvAddress" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">子女单位</label>
+				<div class="layui-input-inline">
+					<input type="text" name="childrenZiNvDanWei" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">子女电话</label>
+				<div class="layui-input-inline">
+					<input type="text" name="childrenZiNvPhone" class="layui-input">
+				</div>
+			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">文、体爱好项目</label>
 				<div class="layui-input-inline">
-					<input type="text" name="favoriteHobby" class="layui-input">
+					<input type="text" name="nowAiHaoXiangMu" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">是否本校双职工</label>
-				<div>
-					<input type="radio" name="doubleWorker" value="是" title="是" checked>
-					<input type="radio" name="doubleWorker" value="否" title="否">
+				<label class="layui-form-label">现在坚持的体育健身项目</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nowJianChiJianShen" class="layui-input">
 				</div>
 			</div>
-
+			<div class="layui-form-item">
+				<label class="layui-form-label">校内联系人姓名</label>
+				<div class="layui-input-inline">
+					<input type="text" name="xiaoNeiName" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">联系人关系</label>
+				<div class="layui-input-inline">
+					<input type="text" name="xiaoNeiGuanXi" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">联系人电话</label>
+				<div class="layui-input-inline">
+					<input type="text" name="xiaoNeiPhone" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">校内联系人部门</label>
+				<div class="layui-input-inline">
+					<input type="text" name="xiaoNeiBuMen" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">联系人地址</label>
+				<div class="layui-input-inline">
+					<input type="text" name="xiaoNeiAddress" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">参加老年体协活动小组</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nowLaoNianTiXieZu" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">是否浏览本处网站</label>
+				<div class="layui-input-inline">
+					<input type="text" name="nowLiuLanWebsite" class="layui-input">
+				</div>
+			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">校外团体中担任的职务</label>
 				<div class="layui-input-inline">
-					<input type="text" name="dutyInSocialGroup" class="layui-input">
+					<input type="text" name="nowXiaoWaiTuanTiZhiWu" class="layui-input">
 				</div>
 			</div>
-
 			<div class="layui-form-item">
-				<label class="layui-form-label">是否浏览网页</label>
+				<label class="layui-form-label">是否军属/烈属</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisJunShuJunLie" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">备注</label>
+				<div class="layui-input-inline">
+					<input type="text" name="remark" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">组别</label>
+				<div class="layui-input-inline">
+					<input type="text" name="hisUnionGroup" class="layui-input">
+				</div>
+			</div>
+			<br>
+			<br>
+			<div class="layui-form-item" id="btngup_search" style="margin-bottom: 30px;" align="center">
 				<div class="layui-input-block">
-					<input type="radio" name="browseWebsite" value="是" title="是" checked>
-					<input type="radio" name="browseWebsite" value="否" title="否">
+					<button class="layui-btn" lay-submit="" type="button" lay-filter="formSubmitSearch">查询</button>
+					<button type="reset" class="layui-btn layui-btn-primary">清空</button>
 				</div>
 			</div>
 		</div>
-		<br>
-		<br>
-		<div class="layui-form-item" id="btngup_search" style="margin-bottom: 30px;" align="center">
-			<div class="layui-input-block">
-				<button class="layui-btn" lay-submit="" type="button" lay-filter="formSubmitSearch">查询</button>
-				<button type="reset" class="layui-btn layui-btn-primary">清空</button>
-			</div>
-		</div>
-
 	</form>
 	<br>
 	<br>
@@ -537,22 +642,22 @@
               type: 'checkbox',
               fixed: 'left'
             }, {
-            field: 'name',
+            field: 'baseName',
             title: '姓名',
             width: 80,
             sort: true,
             fixed: 'left'
           }, {
-            field: 'idCard',
+            field: 'baseShenFenZheng',
             title: '身份证号',
             width: 80
           }, {
-            field: 'sex',
+            field: 'baseSex',
             title: '性别',
             width: 80,
             sort: true
           }, {
-            field: 'nativePlace',
+            field: 'baseJiGuan',
             title: '籍贯',
             width: 80
           }, {
@@ -596,30 +701,24 @@
             type: 'checkbox',
             fixed: 'left'
           }, {
-          field: 'name',
+          field: 'baseName',
           title: '姓名',
           width: 80,
           sort: true,
           fixed: 'left'
         }, {
-          field: 'name',
-          title: '姓名',
-          width: 80,
-          sort: true,
-          fixed: 'left'
-        }, {
-          field: 'idCard',
+          field: 'baseShenFenZheng',
           title: '身份证号',
-          width: 300
+          width: 80
         }, {
-          field: 'sex',
+          field: 'baseSex',
           title: '性别',
           width: 80,
           sort: true
         }, {
-          field: 'nativePlace',
+          field: 'baseJiGuan',
           title: '籍贯',
-          width: 300
+          width: 80
         }, {
           fixed: 'right',
           width: 178,

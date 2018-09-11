@@ -1,8 +1,5 @@
 package com.example.demo.domain.entity;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -58,13 +55,11 @@ public class InfoNew {
   private String connPeiOuHuoZiNvEmail;
   private String mateHunYinZhuangKuang;
   private String matePeiOuName;
-  private String matePeiOuDianHua;
+  private String matePeiOuPhone;
   private String matePeiOuJianKang;
-  private String linkLianXiRenName;
-  private String linkLianXiRenGuanXi;
-  private String linkLianXiRenPhone;
-  private String linkLianXiRenBuMen;
-  private String linkLianXiRenAddress;
+  private String lianXiRenName;
+  private String lianXiRenGuanXi;
+  private String lianXiRenPhone;
   private String hisShuangZhiGong;
   private String childrenZiNvName;
   private String childrenZiNvAddress;
@@ -72,21 +67,18 @@ public class InfoNew {
   private String childrenZiNvPhone;
   private String nowAiHaoXiangMu;
   private String nowJianChiJianShen;
+  private String xiaoNeiName;
+  private String xiaoNeiGuanXi;
+  private String xiaoNeiPhone;
+  private String xiaoNeiBuMen;
+  private String xiaoNeiAddress;
   private String nowLaoNianTiXieZu;
   private String nowLiuLanWebsite;
   private String nowXiaoWaiTuanTiZhiWu;
   private String hisJunShuJunLie;
   private String remark;
   private String hisUnionGroup;
-  @Override
-  public String toString() {
-    try {
-      return new ObjectMapper().writeValueAsString(this);
-    } catch (JsonProcessingException e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
+
   @Id
   @Column(name = "id", nullable = false)
   public int getId() {
@@ -578,13 +570,13 @@ public class InfoNew {
   }
 
   @Basic
-  @Column(name = "mate_pei_ou_dian_hua", nullable = true, length = 45)
-  public String getMatePeiOuDianHua() {
-    return matePeiOuDianHua;
+  @Column(name = "mate_pei_ou_phone", nullable = true, length = 45)
+  public String getMatePeiOuPhone() {
+    return matePeiOuPhone;
   }
 
-  public void setMatePeiOuDianHua(String matePeiOuDianHua) {
-    this.matePeiOuDianHua = matePeiOuDianHua;
+  public void setMatePeiOuPhone(String matePeiOuPhone) {
+    this.matePeiOuPhone = matePeiOuPhone;
   }
 
   @Basic
@@ -598,53 +590,33 @@ public class InfoNew {
   }
 
   @Basic
-  @Column(name = "link_lian_xi_ren_name", nullable = true, length = 255)
-  public String getLinkLianXiRenName() {
-    return linkLianXiRenName;
+  @Column(name = "lian_xi_ren_name", nullable = true, length = 45)
+  public String getLianXiRenName() {
+    return lianXiRenName;
   }
 
-  public void setLinkLianXiRenName(String linkLianXiRenName) {
-    this.linkLianXiRenName = linkLianXiRenName;
-  }
-
-  @Basic
-  @Column(name = "link_lian_xi_ren_guan_xi", nullable = true, length = 45)
-  public String getLinkLianXiRenGuanXi() {
-    return linkLianXiRenGuanXi;
-  }
-
-  public void setLinkLianXiRenGuanXi(String linkLianXiRenGuanXi) {
-    this.linkLianXiRenGuanXi = linkLianXiRenGuanXi;
+  public void setLianXiRenName(String lianXiRenName) {
+    this.lianXiRenName = lianXiRenName;
   }
 
   @Basic
-  @Column(name = "link_lian_xi_ren_phone", nullable = true, length = 45)
-  public String getLinkLianXiRenPhone() {
-    return linkLianXiRenPhone;
+  @Column(name = "lian_xi_ren_guan_xi", nullable = true, length = 45)
+  public String getLianXiRenGuanXi() {
+    return lianXiRenGuanXi;
   }
 
-  public void setLinkLianXiRenPhone(String linkLianXiRenPhone) {
-    this.linkLianXiRenPhone = linkLianXiRenPhone;
-  }
-
-  @Basic
-  @Column(name = "link_lian_xi_ren_bu_men", nullable = true, length = 45)
-  public String getLinkLianXiRenBuMen() {
-    return linkLianXiRenBuMen;
-  }
-
-  public void setLinkLianXiRenBuMen(String linkLianXiRenBuMen) {
-    this.linkLianXiRenBuMen = linkLianXiRenBuMen;
+  public void setLianXiRenGuanXi(String lianXiRenGuanXi) {
+    this.lianXiRenGuanXi = lianXiRenGuanXi;
   }
 
   @Basic
-  @Column(name = "link_lian_xi_ren_address", nullable = true, length = 45)
-  public String getLinkLianXiRenAddress() {
-    return linkLianXiRenAddress;
+  @Column(name = "lian_xi_ren_phone", nullable = true, length = 45)
+  public String getLianXiRenPhone() {
+    return lianXiRenPhone;
   }
 
-  public void setLinkLianXiRenAddress(String linkLianXiRenAddress) {
-    this.linkLianXiRenAddress = linkLianXiRenAddress;
+  public void setLianXiRenPhone(String lianXiRenPhone) {
+    this.lianXiRenPhone = lianXiRenPhone;
   }
 
   @Basic
@@ -715,6 +687,56 @@ public class InfoNew {
 
   public void setNowJianChiJianShen(String nowJianChiJianShen) {
     this.nowJianChiJianShen = nowJianChiJianShen;
+  }
+
+  @Basic
+  @Column(name = "xiao_nei_name", nullable = true, length = 255)
+  public String getXiaoNeiName() {
+    return xiaoNeiName;
+  }
+
+  public void setXiaoNeiName(String xiaoNeiName) {
+    this.xiaoNeiName = xiaoNeiName;
+  }
+
+  @Basic
+  @Column(name = "xiao_nei_guan_xi", nullable = true, length = 45)
+  public String getXiaoNeiGuanXi() {
+    return xiaoNeiGuanXi;
+  }
+
+  public void setXiaoNeiGuanXi(String xiaoNeiGuanXi) {
+    this.xiaoNeiGuanXi = xiaoNeiGuanXi;
+  }
+
+  @Basic
+  @Column(name = "xiao_nei_phone", nullable = true, length = 45)
+  public String getXiaoNeiPhone() {
+    return xiaoNeiPhone;
+  }
+
+  public void setXiaoNeiPhone(String xiaoNeiPhone) {
+    this.xiaoNeiPhone = xiaoNeiPhone;
+  }
+
+  @Basic
+  @Column(name = "xiao_nei_bu_men", nullable = true, length = 45)
+  public String getXiaoNeiBuMen() {
+    return xiaoNeiBuMen;
+  }
+
+  public void setXiaoNeiBuMen(String xiaoNeiBuMen) {
+    this.xiaoNeiBuMen = xiaoNeiBuMen;
+  }
+
+  @Basic
+  @Column(name = "xiao_nei_address", nullable = true, length = 45)
+  public String getXiaoNeiAddress() {
+    return xiaoNeiAddress;
+  }
+
+  public void setXiaoNeiAddress(String xiaoNeiAddress) {
+    this.xiaoNeiAddress = xiaoNeiAddress;
   }
 
   @Basic
@@ -831,13 +853,11 @@ public class InfoNew {
         Objects.equals(connPeiOuHuoZiNvEmail, infoNew.connPeiOuHuoZiNvEmail) &&
         Objects.equals(mateHunYinZhuangKuang, infoNew.mateHunYinZhuangKuang) &&
         Objects.equals(matePeiOuName, infoNew.matePeiOuName) &&
-        Objects.equals(matePeiOuDianHua, infoNew.matePeiOuDianHua) &&
+        Objects.equals(matePeiOuPhone, infoNew.matePeiOuPhone) &&
         Objects.equals(matePeiOuJianKang, infoNew.matePeiOuJianKang) &&
-        Objects.equals(linkLianXiRenName, infoNew.linkLianXiRenName) &&
-        Objects.equals(linkLianXiRenGuanXi, infoNew.linkLianXiRenGuanXi) &&
-        Objects.equals(linkLianXiRenPhone, infoNew.linkLianXiRenPhone) &&
-        Objects.equals(linkLianXiRenBuMen, infoNew.linkLianXiRenBuMen) &&
-        Objects.equals(linkLianXiRenAddress, infoNew.linkLianXiRenAddress) &&
+        Objects.equals(lianXiRenName, infoNew.lianXiRenName) &&
+        Objects.equals(lianXiRenGuanXi, infoNew.lianXiRenGuanXi) &&
+        Objects.equals(lianXiRenPhone, infoNew.lianXiRenPhone) &&
         Objects.equals(hisShuangZhiGong, infoNew.hisShuangZhiGong) &&
         Objects.equals(childrenZiNvName, infoNew.childrenZiNvName) &&
         Objects.equals(childrenZiNvAddress, infoNew.childrenZiNvAddress) &&
@@ -845,6 +865,11 @@ public class InfoNew {
         Objects.equals(childrenZiNvPhone, infoNew.childrenZiNvPhone) &&
         Objects.equals(nowAiHaoXiangMu, infoNew.nowAiHaoXiangMu) &&
         Objects.equals(nowJianChiJianShen, infoNew.nowJianChiJianShen) &&
+        Objects.equals(xiaoNeiName, infoNew.xiaoNeiName) &&
+        Objects.equals(xiaoNeiGuanXi, infoNew.xiaoNeiGuanXi) &&
+        Objects.equals(xiaoNeiPhone, infoNew.xiaoNeiPhone) &&
+        Objects.equals(xiaoNeiBuMen, infoNew.xiaoNeiBuMen) &&
+        Objects.equals(xiaoNeiAddress, infoNew.xiaoNeiAddress) &&
         Objects.equals(nowLaoNianTiXieZu, infoNew.nowLaoNianTiXieZu) &&
         Objects.equals(nowLiuLanWebsite, infoNew.nowLiuLanWebsite) &&
         Objects.equals(nowXiaoWaiTuanTiZhiWu, infoNew.nowXiaoWaiTuanTiZhiWu) &&
@@ -855,6 +880,6 @@ public class InfoNew {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, basePhotoUrl, baseName, baseSex, workKaiShiGongZuo, baseJiGuan, baseShengRi, workDaoXiaoShiJian, baseShenFenZheng, baseMinZu, baseXueLi, baseXueWei, workBianZhiLeiXing, workZhiWu, workZhiWuJiBie, workZhiCheng, workZhiChengJiBie, workTiQianTuiXiu, workZhengShiTuiXiu, workTuiXiuBuMen, baseZhengZhiMianMao, workZhuanYeHeGongZhong, nowSuoShuZhiBu, hisJiaRuZuZhi, hisZhengFuJinTie, hisZhengFuJinTieDengJi, hisFuZhuanTuiJunRen, hisShangCan, hisShangCanDengJi, hisLiZhanGong, hisLaZhanGongDengJi, baseDuShengZiNv, hisLaoMo, hisLaoMoDengJi, nowGongZiHao, nowYiKaTong, nowManXingJiBing, nowJianKangZhuangKuang, connXianHuKouDiZhi, connYuZiNvShengHuo, connYuShuiShengHuo, connXianJuZhuDiZhi, connZhuZhaiDianHua, connShouJiHaoMa, connLiShiHaoMa, connEmailOrQq, connPeiOuHuoZiNvEmail, mateHunYinZhuangKuang, matePeiOuName, matePeiOuDianHua, matePeiOuJianKang, linkLianXiRenName, linkLianXiRenGuanXi, linkLianXiRenPhone, linkLianXiRenBuMen, linkLianXiRenAddress, hisShuangZhiGong, childrenZiNvName, childrenZiNvAddress, childrenZiNvDanWei, childrenZiNvPhone, nowAiHaoXiangMu, nowJianChiJianShen, nowLaoNianTiXieZu, nowLiuLanWebsite, nowXiaoWaiTuanTiZhiWu, hisJunShuJunLie, remark, hisUnionGroup);
+    return Objects.hash(id, basePhotoUrl, baseName, baseSex, workKaiShiGongZuo, baseJiGuan, baseShengRi, workDaoXiaoShiJian, baseShenFenZheng, baseMinZu, baseXueLi, baseXueWei, workBianZhiLeiXing, workZhiWu, workZhiWuJiBie, workZhiCheng, workZhiChengJiBie, workTiQianTuiXiu, workZhengShiTuiXiu, workTuiXiuBuMen, baseZhengZhiMianMao, workZhuanYeHeGongZhong, nowSuoShuZhiBu, hisJiaRuZuZhi, hisZhengFuJinTie, hisZhengFuJinTieDengJi, hisFuZhuanTuiJunRen, hisShangCan, hisShangCanDengJi, hisLiZhanGong, hisLaZhanGongDengJi, baseDuShengZiNv, hisLaoMo, hisLaoMoDengJi, nowGongZiHao, nowYiKaTong, nowManXingJiBing, nowJianKangZhuangKuang, connXianHuKouDiZhi, connYuZiNvShengHuo, connYuShuiShengHuo, connXianJuZhuDiZhi, connZhuZhaiDianHua, connShouJiHaoMa, connLiShiHaoMa, connEmailOrQq, connPeiOuHuoZiNvEmail, mateHunYinZhuangKuang, matePeiOuName, matePeiOuPhone, matePeiOuJianKang, lianXiRenName, lianXiRenGuanXi, lianXiRenPhone, hisShuangZhiGong, childrenZiNvName, childrenZiNvAddress, childrenZiNvDanWei, childrenZiNvPhone, nowAiHaoXiangMu, nowJianChiJianShen, xiaoNeiName, xiaoNeiGuanXi, xiaoNeiPhone, xiaoNeiBuMen, xiaoNeiAddress, nowLaoNianTiXieZu, nowLiuLanWebsite, nowXiaoWaiTuanTiZhiWu, hisJunShuJunLie, remark, hisUnionGroup);
   }
 }
