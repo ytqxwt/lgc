@@ -1,6 +1,6 @@
 package com.example.demo.repos;
 
-import com.example.demo.domain.entity.BaseInfo;
+import com.example.demo.domain.entity.InfoNew;
 import com.example.demo.domain.vo.MultipleRegex;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -11,17 +11,17 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseInfoRegexSpecification implements Specification<BaseInfo> {
+public class InfoNewRegexSpecification implements Specification<InfoNew> {
   private String[] params;
   private MultipleRegex mr;
 
-  public BaseInfoRegexSpecification(String[] params, MultipleRegex mr) {
+  public InfoNewRegexSpecification(String[] params, MultipleRegex mr) {
     this.params = params;
     this.mr = mr;
   }
 
   @Override
-  public Predicate toPredicate(Root<BaseInfo> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+  public Predicate toPredicate(Root<InfoNew> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
     List<Predicate> predicates = new ArrayList<Predicate>();
     for (String param : params) {
       switch (param) {

@@ -10,6 +10,7 @@
       <mapping class="com.example.demo.domain.entity.User"/>
       <mapping class="com.example.demo.domain.entity.UserPower"/>
       <mapping class="com.example.demo.domain.entity.City"/>
+      <mapping class="com.example.demo.domain.entity.InfoNew"/>
       <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
