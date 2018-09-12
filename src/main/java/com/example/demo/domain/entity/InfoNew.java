@@ -34,12 +34,12 @@ public class InfoNew {
   private String hisZhengFuJinTieDengJi;
   private String hisFuZhuanTuiJunRen;
   private String hisShangCan;
-  private String hisShangCanDengJi;
+
   private String hisLiZhanGong;
-  private String hisLaZhanGongDengJi;
+//  private String hisLaZhanGongDengJi;
   private String baseDuShengZiNv;
   private String hisLaoMo;
-  private String hisLaoMoDengJi;
+//  private String hisLaoMoDengJi;
   private String nowGongZiHao;
   private String nowYiKaTong;
   private String nowManXingJiBing;
@@ -78,6 +78,7 @@ public class InfoNew {
   private String hisJunShuJunLie;
   private String remark;
   private String hisUnionGroup;
+  private String tianBiaoShiJian;
 
   @Id
   @Column(name = "id", nullable = false)
@@ -359,15 +360,15 @@ public class InfoNew {
     this.hisShangCan = hisShangCan;
   }
 
-  @Basic
-  @Column(name = "his_shang_can_deng_ji", nullable = true, length = 45)
-  public String getHisShangCanDengJi() {
-    return hisShangCanDengJi;
-  }
-
-  public void setHisShangCanDengJi(String hisShangCanDengJi) {
-    this.hisShangCanDengJi = hisShangCanDengJi;
-  }
+//  @Basic
+//  @Column(name = "his_shang_can_deng_ji", nullable = true, length = 45)
+//  public String getHisShangCanDengJi() {
+//    return hisShangCanDengJi;
+//  }
+//
+//  public void setHisShangCanDengJi(String hisShangCanDengJi) {
+//    this.hisShangCanDengJi = hisShangCanDengJi;
+//  }
 
   @Basic
   @Column(name = "his_li_zhan_gong", nullable = true, length = 45)
@@ -379,15 +380,15 @@ public class InfoNew {
     this.hisLiZhanGong = hisLiZhanGong;
   }
 
-  @Basic
-  @Column(name = "his_la_zhan_gong_deng_ji", nullable = true, length = 45)
-  public String getHisLaZhanGongDengJi() {
-    return hisLaZhanGongDengJi;
-  }
+//  @Basic
+//  @Column(name = "his_la_zhan_gong_deng_ji", nullable = true, length = 45)
+//  public String getHisLaZhanGongDengJi() {
+//    return hisLaZhanGongDengJi;
+//  }
 
-  public void setHisLaZhanGongDengJi(String hisLaZhanGongDengJi) {
-    this.hisLaZhanGongDengJi = hisLaZhanGongDengJi;
-  }
+//  public void setHisLaZhanGongDengJi(String hisLaZhanGongDengJi) {
+//    this.hisLaZhanGongDengJi = hisLaZhanGongDengJi;
+//  }
 
   @Basic
   @Column(name = "base_du_sheng_zi_nv", nullable = true, length = 45)
@@ -409,15 +410,15 @@ public class InfoNew {
     this.hisLaoMo = hisLaoMo;
   }
 
-  @Basic
-  @Column(name = "his_lao_mo_deng_ji", nullable = true, length = 225)
-  public String getHisLaoMoDengJi() {
-    return hisLaoMoDengJi;
-  }
-
-  public void setHisLaoMoDengJi(String hisLaoMoDengJi) {
-    this.hisLaoMoDengJi = hisLaoMoDengJi;
-  }
+//  @Basic
+//  @Column(name = "his_lao_mo_deng_ji", nullable = true, length = 225)
+//  public String getHisLaoMoDengJi() {
+//    return hisLaoMoDengJi;
+//  }
+//
+//  public void setHisLaoMoDengJi(String hisLaoMoDengJi) {
+//    this.hisLaoMoDengJi = hisLaoMoDengJi;
+//  }
 
   @Basic
   @Column(name = "now_gong_zi_hao", nullable = true, length = 45)
@@ -799,6 +800,15 @@ public class InfoNew {
     this.hisUnionGroup = hisUnionGroup;
   }
 
+  @Basic
+  @Column(name = "tian_biao_shi_jian", nullable = true, length = 45)
+  public String getTianBiaoShiJian() {
+    return tianBiaoShiJian;
+  }
+
+  public void setTianBiaoShiJian(String tianBiaoShiJian) {
+    this.tianBiaoShiJian = tianBiaoShiJian;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -832,12 +842,12 @@ public class InfoNew {
         Objects.equals(hisZhengFuJinTieDengJi, infoNew.hisZhengFuJinTieDengJi) &&
         Objects.equals(hisFuZhuanTuiJunRen, infoNew.hisFuZhuanTuiJunRen) &&
         Objects.equals(hisShangCan, infoNew.hisShangCan) &&
-        Objects.equals(hisShangCanDengJi, infoNew.hisShangCanDengJi) &&
+
         Objects.equals(hisLiZhanGong, infoNew.hisLiZhanGong) &&
-        Objects.equals(hisLaZhanGongDengJi, infoNew.hisLaZhanGongDengJi) &&
+//        Objects.equals(hisLaZhanGongDengJi, infoNew.hisLaZhanGongDengJi) &&
         Objects.equals(baseDuShengZiNv, infoNew.baseDuShengZiNv) &&
         Objects.equals(hisLaoMo, infoNew.hisLaoMo) &&
-        Objects.equals(hisLaoMoDengJi, infoNew.hisLaoMoDengJi) &&
+//        Objects.equals(hisLaoMoDengJi, infoNew.hisLaoMoDengJi) &&
         Objects.equals(nowGongZiHao, infoNew.nowGongZiHao) &&
         Objects.equals(nowYiKaTong, infoNew.nowYiKaTong) &&
         Objects.equals(nowManXingJiBing, infoNew.nowManXingJiBing) &&
@@ -875,11 +885,11 @@ public class InfoNew {
         Objects.equals(nowXiaoWaiTuanTiZhiWu, infoNew.nowXiaoWaiTuanTiZhiWu) &&
         Objects.equals(hisJunShuJunLie, infoNew.hisJunShuJunLie) &&
         Objects.equals(remark, infoNew.remark) &&
-        Objects.equals(hisUnionGroup, infoNew.hisUnionGroup);
+        Objects.equals(hisUnionGroup, infoNew.hisUnionGroup)&&Objects.equals(tianBiaoShiJian, infoNew.tianBiaoShiJian);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, basePhotoUrl, baseName, baseSex, workKaiShiGongZuo, baseJiGuan, baseShengRi, workDaoXiaoShiJian, baseShenFenZheng, baseMinZu, baseXueLi, baseXueWei, workBianZhiLeiXing, workZhiWu, workZhiWuJiBie, workZhiCheng, workZhiChengJiBie, workTiQianTuiXiu, workZhengShiTuiXiu, workTuiXiuBuMen, baseZhengZhiMianMao, workZhuanYeHeGongZhong, nowSuoShuZhiBu, hisJiaRuZuZhi, hisZhengFuJinTie, hisZhengFuJinTieDengJi, hisFuZhuanTuiJunRen, hisShangCan, hisShangCanDengJi, hisLiZhanGong, hisLaZhanGongDengJi, baseDuShengZiNv, hisLaoMo, hisLaoMoDengJi, nowGongZiHao, nowYiKaTong, nowManXingJiBing, nowJianKangZhuangKuang, connXianHuKouDiZhi, connYuZiNvShengHuo, connYuShuiShengHuo, connXianJuZhuDiZhi, connZhuZhaiDianHua, connShouJiHaoMa, connLiShiHaoMa, connEmailOrQq, connPeiOuHuoZiNvEmail, mateHunYinZhuangKuang, matePeiOuName, matePeiOuPhone, matePeiOuJianKang, lianXiRenName, lianXiRenGuanXi, lianXiRenPhone, hisShuangZhiGong, childrenZiNvName, childrenZiNvAddress, childrenZiNvDanWei, childrenZiNvPhone, nowAiHaoXiangMu, nowJianChiJianShen, xiaoNeiName, xiaoNeiGuanXi, xiaoNeiPhone, xiaoNeiBuMen, xiaoNeiAddress, nowLaoNianTiXieZu, nowLiuLanWebsite, nowXiaoWaiTuanTiZhiWu, hisJunShuJunLie, remark, hisUnionGroup);
+    return Objects.hash(id, basePhotoUrl, baseName, baseSex, workKaiShiGongZuo, baseJiGuan, baseShengRi, workDaoXiaoShiJian, baseShenFenZheng, baseMinZu, baseXueLi, baseXueWei, workBianZhiLeiXing, workZhiWu, workZhiWuJiBie, workZhiCheng, workZhiChengJiBie, workTiQianTuiXiu, workZhengShiTuiXiu, workTuiXiuBuMen, baseZhengZhiMianMao, workZhuanYeHeGongZhong, nowSuoShuZhiBu, hisJiaRuZuZhi, hisZhengFuJinTie, hisZhengFuJinTieDengJi, hisFuZhuanTuiJunRen, hisShangCan, hisLiZhanGong, baseDuShengZiNv, hisLaoMo, nowGongZiHao, nowYiKaTong, nowManXingJiBing, nowJianKangZhuangKuang, connXianHuKouDiZhi, connYuZiNvShengHuo, connYuShuiShengHuo, connXianJuZhuDiZhi, connZhuZhaiDianHua, connShouJiHaoMa, connLiShiHaoMa, connEmailOrQq, connPeiOuHuoZiNvEmail, mateHunYinZhuangKuang, matePeiOuName, matePeiOuPhone, matePeiOuJianKang, lianXiRenName, lianXiRenGuanXi, lianXiRenPhone, hisShuangZhiGong, childrenZiNvName, childrenZiNvAddress, childrenZiNvDanWei, childrenZiNvPhone, nowAiHaoXiangMu, nowJianChiJianShen, xiaoNeiName, xiaoNeiGuanXi, xiaoNeiPhone, xiaoNeiBuMen, xiaoNeiAddress, nowLaoNianTiXieZu, nowLiuLanWebsite, nowXiaoWaiTuanTiZhiWu, hisJunShuJunLie, remark, hisUnionGroup);
   }
 }

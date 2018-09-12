@@ -23,3 +23,162 @@
 .biaodan{
     float: left;
 }
+@media print {
+    .SongTX4 {
+        font-family: "宋体";
+        font-size: 10.5pt;
+    }
+
+    .FenBiaoTou {
+        font-family: "黑体";
+        font-size: 24px;
+        letter-spacing: 8px;
+        line-height: 40px;
+        width: 1024px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .fenbiaotwo {
+        margin: 0px;
+    }
+
+    .BiaoTou {
+        font-family: "华文中宋";
+        font-size: 22pt;
+        letter-spacing: 5px;
+        line-height: 45px;
+    }
+
+    .biaozhun {
+        font-family: "宋体";
+        font-size: 12pt;
+        line-height: 120%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
+        text-align: justify;
+    }
+
+    .yiju {
+        font-family: "宋体";
+        font-size: 11pt;
+        line-height: 120%;
+        padding-right: 0.5%;
+        padding-left: 0.5%;
+        text-align: justify;
+        text-align: center;
+    }
+
+    select {
+
+        text-align: center;
+        text-align-last: center;
+        border: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        font-family: "宋体";
+        font-size: 12pt;
+    }
+
+    .select {
+        text-align: center;
+        text-align-last: center;
+        border: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        font-family: "宋体";
+        font-size: 12pt;
+    }
+
+}
+
+.SongTX4 {
+    font-family: "宋体";
+    font-size: 12pt;
+}
+
+.FenBiaoTou {
+    font-family: "黑体";
+    font-size: 24px;
+    letter-spacing: 8px;
+    line-height: 40px;
+    width: 1024px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.fenbiaotwo {
+    margin: 0;
+}
+
+.BiaoTou {
+    font-family: "华文中宋";
+    font-size: 22pt;
+    letter-spacing: 5px;
+    line-height: 45px;
+}
+
+.biaozhun {
+    font-family: "宋体";
+    font-size: 12pt;
+    line-height: 120%;
+    padding-right: 0.5%;
+    padding-left: 0.5%;
+    text-align: justify;
+}
+
+.yiju {
+    font-family: "宋体";
+    font-size: 11pt;
+    line-height: 120%;
+    padding-right: 0.5%;
+    padding-left: 0.5%;
+    text-align: justify;
+    text-align: center;
+}
+
+select {
+    text-align: center;
+    text-align-last: center;
+    border: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    font-family: "宋体";
+    font-size: 12pt;
+}
+
+.select {
+    text-align: center;
+    text-align-last: center;
+    border: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    font-family: "宋体";
+    font-size: 12pt;
+}
+.erhang{
+    margin-top: 5px;
+    margin-left: 59%;
+    height: 30px;
+    width: 230px;
+    font-family: "宋体";
+    font-size: 12pt;
+}
+.erhang_ele1{
+    width: 80px;
+    float: left;
+}
+.erhang_ele2{
+    width: 150px;
+    float: right;
+}
+.erhang_ele2_input{
+    width: 25px;
+    text-align: right;
+    border:none;
+}
+.table_radio{
+    width: 100px;
+
+}
+
