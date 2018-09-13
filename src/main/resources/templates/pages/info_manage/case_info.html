@@ -159,7 +159,7 @@
         })
         table.render({
             elem: '#info_table',
-            height: 315,
+            height: 500,
             url: '/baseInfo/findByPage' //数据接口
             ,
             page: true //开启分页
@@ -189,7 +189,7 @@
                     width: 80,
                     sort: true
                 }, {
-                    field: 'nativePlace',
+                    field: 'baseJiGuan',
                     title: '籍贯',
                     width: 300
                 }, {
@@ -638,7 +638,34 @@
         })
     })
 </script>
+<div class="buttom"  align="center">
+<div style="width: 216px; margin: 0;">
+    <button class="layui-btn layui-btn-fluid" onclick="toDownload">导出为Excel</button>
+</div>
+</div>
+
+<script>
+    function toDownload(){
+        layer.confirm('确定导出数据?', {icon: 3, title:'提示'}, function(index){
+            $.ajax({
+                url : '/tCompanyChargeOrders/getExcelResource',
+                success : function(data) {
+                    if(data=='ok'){
+                        layer.msg("导出成功,请及时在桌面查看");
+                    }else{
+                        layer.msg("导出失败");
+                    }
+                }
+            });
+            layer.close(index);
+        });
+
+    }
+</script>
 <style>
+    .buttom{
+        width: 100%;
+    }
     .wrap {
         width: 100%;
         max-width: 1200px;
@@ -653,7 +680,6 @@
         background-color: #fff;
         position: relative;
     }
-
     .cell {
         display: block;
         width: 90px;

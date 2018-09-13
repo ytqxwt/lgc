@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MultipleRegex {
+  private int id;
   private String idCard;
   private String name;
   //  private String photoUrl;
@@ -58,6 +59,11 @@ public class MultipleRegex {
   private String dutyInSocialGroup;
   private String browseWebsite;
   private String select;
+
+  public MultipleRegex(String name, String sex) {
+    this.name = name;
+    this.sex = sex;
+  }
 
   @Override
   public String toString() {
@@ -483,5 +489,13 @@ public class MultipleRegex {
 
   public void setSelect(String select) {
     this.select = select;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 }
