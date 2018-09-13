@@ -126,33 +126,36 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">性别</label>
 				<div>
-					<input type="radio" name="baseSex" value="男" title="男" checked>
+					<input type="radio" name="baseSex" value="男" title="男">
 					<input type="radio" name="baseSex" value="女" title="女">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">开始工作时间</label>
 				<div class="layui-input-inline" style="margin-top: 5px">
-					<input type="text" name="workKaiShiGongZuo" class="layui-input" id="laydate_start_work_date">
+					<input type="text" name="workKaiShiGongZuo_start" class="layui-input" id="laydate_start_work_date_start">到
+					<input type="text" name="workKaiShiGongZuo_end" class="layui-input" id="laydate_start_work_date_end">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">籍贯</label>
-				<div class="layui-input-block">
-					<select lay-ignore="" name="baseJiGuan" lay-verify="" lay-search xm-select="xm_nativePlace">
-					</select>
+				<div class="layui-input-inline">
+					<input type="text" name="baseJiGuan_sheng" class="layui-input">
+					<input type="text" name="baseJiGuan_shi" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">出生日期</label>
 				<div class="layui-input-inline">
-					<input type="text" name="baseShengRi" id="laydate_baseShengRi" class="layui-input">
+					<input type="text" name="baseShengRi_start" id="laydate_baseShengRi_start" class="layui-input">
+					<input type="text" name="baseShengRi_end" id="laydate_baseShengRi_end" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">到校时间</label>
 				<div class="layui-input-inline">
-					<input type="text" name="toSchoolDate" id="laydate_to_school_date" class="layui-input">
+					<input type="text" name="workDaoXiaoShiJian_start" id="laydate_workDaoXiaoShiJian_start" class="layui-input">
+					<input type="text" name="workDaoXiaoShiJian_end" id="laydate_workDaoXiaoShiJian_end" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -188,12 +191,10 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">编制类型</label>
 				<div class="layui-input-inline">
-					<select name="formationType" lay-verify="" xm-select="workBianZhiLeiXing">
+					<select name="workBianZhiLeiXing" lay-verify="" xm-select="workBianZhiLeiXing">
 						<option value="">可检索多个</option>
 						<option value="干部">干部</option>
-						<option value="聘干">聘干</option>
 						<option value="工人">工人</option>
-						<option value="合同制工人">合同制工人</option>
 					</select>
 				</div>
 			</div>
@@ -206,7 +207,13 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">职务级别</label>
 				<div class="layui-input-inline">
-					<input type="text" name="workZhiWuJiBie" class="layui-input">
+					<select name="workZhiWuJiBie" xm-select="workZhiChengJiBie">
+						<option value="">可检索多个</option>
+						<option value="正厅">正高</option>
+						<option value="副厅">副高</option>
+						<option value="正处">中级</option>
+						<option value="副处">初级</option>
+					</select>
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -224,13 +231,15 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">提前退休时间</label>
 				<div class="layui-input-inline">
-					<input type="text" name="workTiQianTuiXiu" id="laydate_retire_date" class="layui-input">
+					<input type="text" name="workTiQianTuiXiu_start" id="laydate_retire_date_start" class="layui-input">
+					<input type="text" name="workTiQianTuiXiu_end" id="laydate_retire_date_end" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<label class="layui-form-label">正式退休时间</label>
 				<div class="layui-input-inline">
-					<input type="text" name="workZhengShiTuiXiu" class="layui-input">
+					<input type="text" name="workZhengShiTuiXiu_start" id="laydate_workZhengShiTuiXiu_start" class="layui-input">
+					<input type="text" name="workZhengShiTuiXiu_end" id="laydate_workZhengShiTuiXiu_end" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -242,7 +251,16 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">政治面貌</label>
 				<div class="layui-input-inline">
-					<input type="text" name="baseZhengZhiMianMao" class="layui-input">
+					<select type="text" name="baseZhengZhiMianMao" xm-select="">
+						<option value="">可检索多个</option>
+						<option value="中共党员">中共党员</option>
+						<option value="群众">群众</option>
+						<option value="中共预备党员">中共预备党员</option>
+						<option value="共青团员">共青团员</option>
+						<option value="民盟盟员">民盟盟员</option>
+						<option value="民革党员">民革党员</option>
+						<option value="无党派人士">无党派人士</option>
+					</select>
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -260,7 +278,8 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">加入组织的年月日</label>
 				<div class="layui-input-inline">
-					<input type="text" name="hisJiaRuZuZhi" class="layui-input">
+					<input type="text" name="hisJiaRuZuZhi_start" class="layui-input">
+					<input type="text" name="hisJiaRuZuZhi_end" class="layui-input">
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -344,7 +363,12 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">目前身体健康状况</label>
 				<div class="layui-input-inline">
-					<input type="text" name="nowJianKangZhuangKuang" class="layui-input">
+					<select name="nowJianKangZhuangKuang" xm-select="nowJianKangZhuangKuang">
+						<option value=""></option>
+						<option value="健康">健康</option>
+						<option value="一般">一般</option>
+						<option value="较差">较差</option>
+					</select>
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -402,9 +426,16 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label class="layui-form-label">婚姻装况</label>
+				<label class="layui-form-label">婚姻状况</label>
 				<div class="layui-input-inline">
-					<input type="text" name="mateHunYinZhuangKuang" class="layui-input">
+					<select name="mateHunYinZhuangKuang" xm-select="mateHunYinZhuangKuang">
+						<option value=""></option>
+						<option value="已婚">已婚</option>
+						<option value="未婚">未婚</option>
+						<option value="再婚">再婚</option>
+						<option value="再婚">丧偶</option>
+						<option value="再婚">离异</option>
+					</select>
 				</div>
 			</div>
 			<div class="layui-form-item">
@@ -566,7 +597,12 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">是否浏览本处网站</label>
 				<div class="layui-input-inline">
-					<input type="text" name="nowLiuLanWebsite" class="layui-input">
+					<select name="nowLiuLanWebsite" xm-select="nowLiuLanWebsite">
+						<option value=""></option>
+						<option value="没有">没有</option>
+						<option value="很少">很少</option>
+						<option value="经常">经常</option>
+					</select>
 				</div>
 			</div>
 			<div class="layui-form-item">

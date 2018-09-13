@@ -4,60 +4,85 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MultipleRegex {
-  private String idCard;
-  private String name;
-  //  private String photoUrl;
-  private String sex;
-  private String nativePlace;
-  private String startWorkDate;
-  //用,号隔开
-  private String formationType;
-  private String toSchoolDate;
-  private String retireDate;
-  private String retireType;
-  private String retireInDepartment;
-  private String job;
-  private String jobLevel;
-  private String title;
-  private String titleLevel;
-  private String majorOrWork;
-  private String salaryNumber;
-  private String politicalOutlook;
-  private String presentBranch;
-  private String governmentAllowance;
-  private String onceInArmy;
-  private String disabled;
-  private String armyFamily;
-  private String exploit;
-  private String modelWorker;
-  private String healthCurrent;
-  private String diseaseChronic;
-  private String phone;
-  private String homePhone;
-  private String qqNumber;
-  private String wxNumber;
-  private String liveWithChildren;
-  private String addressCurrent;
-  private String zipCode;
-  private String accountAddressCurrent;
-  private String familyEmail;
-  private String addressChildren;
-  private String nameLinkMan;
-  private String departmentLinkMan;
-  private String addressLinkMan;
-  private String phoneLinkMan;
-  private String activityGroup;
-  private String maritalStatus;
-  private String nameMate;
-  private String phoneMate;
-  private String healthMate;
-  private String emailMate;
-  private String sport;
-  private String favoriteHobby;
-  private String doubleWorker;
-  private String dutyInSocialGroup;
-  private String browseWebsite;
+  private String baseName;
+  private String baseSex;
+  private String workKaiShiGongZuo;
+  private String baseJiGuan;
+  private String baseShengRi;
+  private String workDaoXiaoShiJian;
+  private String baseShenFenZheng;
+  private String baseMinZu;
+  private String baseXueLi;
+  private String baseXueWei;
+  private String workBianZhiLeiXing;
+  private String workZhiWu;
+  private String workZhiWuJiBie;
+  private String workZhiCheng;
+  private String workZhiChengJiBie;
+  private String workTiQianTuiXiu;
+  private String workZhengShiTuiXiu;
+  private String workTuiXiuBuMen;
+  private String baseZhengZhiMianMao;
+  private String workZhuanYeHeGongZhong;
+  private String nowSuoShuZhiBu;
+  private String hisJiaRuZuZhi;
+  private String hisZhengFuJinTie;
+  private String hisZhengFuJinTieDengJi;
+  private String hisFuZhuanTuiJunRen;
+  private String hisShangCan;
+  private String hisShangCanDengJi;
+  private String hisLiZhanGong;
+  private String hisLaZhanGongDengJi;
+  private String baseDuShengZiNv;
+  private String hisLaoMo;
+  private String hisLaoMoDengJi;
+  private String nowGongZiHao;
+  private String nowYiKaTong;
+  private String nowManXingJiBing;
+  private String nowJianKangZhuangKuang;
+  private String connXianHuKouDiZhi;
+  private String connYuZiNvShengHuo;
+  private String connYuShuiShengHuo;
+  private String connXianJuZhuDiZhi;
+  private String connZhuZhaiDianHua;
+  private String connShouJiHaoMa;
+  private String connLiShiHaoMa;
+  private String connEmailOrQq;
+  private String connPeiOuHuoZiNvEmail;
+  private String mateHunYinZhuangKuang;
+  private String matePeiOuName;
+  private String matePeiOuPhone;
+  private String matePeiOuJianKang;
+  private String lianXiRenName;
+  private String lianXiRenGuanXi;
+  private String lianXiRenPhone;
+  private String hisShuangZhiGong;
+  private String childrenZiNvName;
+  private String childrenZiNvAddress;
+  private String childrenZiNvDanWei;
+  private String childrenZiNvPhone;
+  private String nowAiHaoXiangMu;
+  private String nowJianChiJianShen;
+  private String xiaoNeiName;
+  private String xiaoNeiGuanXi;
+  private String xiaoNeiPhone;
+  private String xiaoNeiBuMen;
+  private String xiaoNeiAddress;
+  private String nowLaoNianTiXieZu;
+  private String nowLiuLanWebsite;
+  private String nowXiaoWaiTuanTiZhiWu;
+  private String hisJunShuJunLie;
+  private String remark;
+  private String hisUnionGroup;
   private String select;
+
+  public String getSelect() {
+    return select;
+  }
+
+  public void setSelect(String select) {
+    this.select = select;
+  }
 
   @Override
   public String toString() {
@@ -69,419 +94,563 @@ public class MultipleRegex {
     return null;
   }
 
-  public String getIdCard() {
-    return idCard;
+  public String getBaseName() {
+    return baseName;
   }
 
-  public void setIdCard(String idCard) {
-    this.idCard = idCard;
+  public void setBaseName(String baseName) {
+    this.baseName = baseName;
   }
 
-  public String getName() {
-    return name;
+  public String getBaseSex() {
+    return baseSex;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setBaseSex(String baseSex) {
+    this.baseSex = baseSex;
   }
 
-  public String getSex() {
-    return sex;
+  public String getWorkKaiShiGongZuo() {
+    return workKaiShiGongZuo;
   }
 
-  public void setSex(String sex) {
-    this.sex = sex;
+  public void setWorkKaiShiGongZuo(String workKaiShiGongZuo) {
+    this.workKaiShiGongZuo = workKaiShiGongZuo;
   }
 
-  public String getNativePlace() {
-    return nativePlace;
+  public String getBaseJiGuan() {
+    return baseJiGuan;
   }
 
-  public void setNativePlace(String nativePlace) {
-    this.nativePlace = nativePlace;
+  public void setBaseJiGuan(String baseJiGuan) {
+    this.baseJiGuan = baseJiGuan;
   }
 
-  public String getStartWorkDate() {
-    return startWorkDate;
+  public String getBaseShengRi() {
+    return baseShengRi;
   }
 
-  public void setStartWorkDate(String startWorkDate) {
-    this.startWorkDate = startWorkDate;
+  public void setBaseShengRi(String baseShengRi) {
+    this.baseShengRi = baseShengRi;
   }
 
-  public String getFormationType() {
-    return formationType;
+  public String getWorkDaoXiaoShiJian() {
+    return workDaoXiaoShiJian;
   }
 
-  public void setFormationType(String formationType) {
-    this.formationType = formationType;
+  public void setWorkDaoXiaoShiJian(String workDaoXiaoShiJian) {
+    this.workDaoXiaoShiJian = workDaoXiaoShiJian;
   }
 
-  public String getToSchoolDate() {
-    return toSchoolDate;
+  public String getBaseShenFenZheng() {
+    return baseShenFenZheng;
   }
 
-  public void setToSchoolDate(String toSchoolDate) {
-    this.toSchoolDate = toSchoolDate;
+  public void setBaseShenFenZheng(String baseShenFenZheng) {
+    this.baseShenFenZheng = baseShenFenZheng;
   }
 
-  public String getRetireDate() {
-    return retireDate;
+  public String getBaseMinZu() {
+    return baseMinZu;
   }
 
-  public void setRetireDate(String retireDate) {
-    this.retireDate = retireDate;
+  public void setBaseMinZu(String baseMinZu) {
+    this.baseMinZu = baseMinZu;
   }
 
-  public String getRetireType() {
-    return retireType;
+  public String getBaseXueLi() {
+    return baseXueLi;
   }
 
-  public void setRetireType(String retireType) {
-    this.retireType = retireType;
+  public void setBaseXueLi(String baseXueLi) {
+    this.baseXueLi = baseXueLi;
   }
 
-  public String getRetireInDepartment() {
-    return retireInDepartment;
+  public String getBaseXueWei() {
+    return baseXueWei;
   }
 
-  public void setRetireInDepartment(String retireInDepartment) {
-    this.retireInDepartment = retireInDepartment;
+  public void setBaseXueWei(String baseXueWei) {
+    this.baseXueWei = baseXueWei;
   }
 
-  public String getJob() {
-    return job;
+  public String getWorkBianZhiLeiXing() {
+    return workBianZhiLeiXing;
   }
 
-  public void setJob(String job) {
-    this.job = job;
+  public void setWorkBianZhiLeiXing(String workBianZhiLeiXing) {
+    this.workBianZhiLeiXing = workBianZhiLeiXing;
   }
 
-  public String getJobLevel() {
-    return jobLevel;
+  public String getWorkZhiWu() {
+    return workZhiWu;
   }
 
-  public void setJobLevel(String jobLevel) {
-    this.jobLevel = jobLevel;
+  public void setWorkZhiWu(String workZhiWu) {
+    this.workZhiWu = workZhiWu;
   }
 
-  public String getTitle() {
-    return title;
+  public String getWorkZhiWuJiBie() {
+    return workZhiWuJiBie;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setWorkZhiWuJiBie(String workZhiWuJiBie) {
+    this.workZhiWuJiBie = workZhiWuJiBie;
   }
 
-  public String getTitleLevel() {
-    return titleLevel;
+  public String getWorkZhiCheng() {
+    return workZhiCheng;
   }
 
-  public void setTitleLevel(String titleLevel) {
-    this.titleLevel = titleLevel;
+  public void setWorkZhiCheng(String workZhiCheng) {
+    this.workZhiCheng = workZhiCheng;
   }
 
-  public String getMajorOrWork() {
-    return majorOrWork;
+  public String getWorkZhiChengJiBie() {
+    return workZhiChengJiBie;
   }
 
-  public void setMajorOrWork(String majorOrWork) {
-    this.majorOrWork = majorOrWork;
+  public void setWorkZhiChengJiBie(String workZhiChengJiBie) {
+    this.workZhiChengJiBie = workZhiChengJiBie;
   }
 
-  public String getSalaryNumber() {
-    return salaryNumber;
+  public String getWorkTiQianTuiXiu() {
+    return workTiQianTuiXiu;
   }
 
-  public void setSalaryNumber(String salaryNumber) {
-    this.salaryNumber = salaryNumber;
+  public void setWorkTiQianTuiXiu(String workTiQianTuiXiu) {
+    this.workTiQianTuiXiu = workTiQianTuiXiu;
   }
 
-  public String getPoliticalOutlook() {
-    return politicalOutlook;
+  public String getWorkZhengShiTuiXiu() {
+    return workZhengShiTuiXiu;
   }
 
-  public void setPoliticalOutlook(String politicalOutlook) {
-    this.politicalOutlook = politicalOutlook;
+  public void setWorkZhengShiTuiXiu(String workZhengShiTuiXiu) {
+    this.workZhengShiTuiXiu = workZhengShiTuiXiu;
   }
 
-  public String getPresentBranch() {
-    return presentBranch;
+  public String getWorkTuiXiuBuMen() {
+    return workTuiXiuBuMen;
   }
 
-  public void setPresentBranch(String presentBranch) {
-    this.presentBranch = presentBranch;
+  public void setWorkTuiXiuBuMen(String workTuiXiuBuMen) {
+    this.workTuiXiuBuMen = workTuiXiuBuMen;
   }
 
-  public String getGovernmentAllowance() {
-    return governmentAllowance;
+  public String getBaseZhengZhiMianMao() {
+    return baseZhengZhiMianMao;
   }
 
-  public void setGovernmentAllowance(String governmentAllowance) {
-    this.governmentAllowance = governmentAllowance;
+  public void setBaseZhengZhiMianMao(String baseZhengZhiMianMao) {
+    this.baseZhengZhiMianMao = baseZhengZhiMianMao;
   }
 
-  public String getOnceInArmy() {
-    return onceInArmy;
+  public String getWorkZhuanYeHeGongZhong() {
+    return workZhuanYeHeGongZhong;
   }
 
-  public void setOnceInArmy(String onceInArmy) {
-    this.onceInArmy = onceInArmy;
+  public void setWorkZhuanYeHeGongZhong(String workZhuanYeHeGongZhong) {
+    this.workZhuanYeHeGongZhong = workZhuanYeHeGongZhong;
   }
 
-  public String getDisabled() {
-    return disabled;
+  public String getNowSuoShuZhiBu() {
+    return nowSuoShuZhiBu;
   }
 
-  public void setDisabled(String disabled) {
-    this.disabled = disabled;
+  public void setNowSuoShuZhiBu(String nowSuoShuZhiBu) {
+    this.nowSuoShuZhiBu = nowSuoShuZhiBu;
   }
 
-  public String getArmyFamily() {
-    return armyFamily;
+  public String getHisJiaRuZuZhi() {
+    return hisJiaRuZuZhi;
   }
 
-  public void setArmyFamily(String armyFamily) {
-    this.armyFamily = armyFamily;
+  public void setHisJiaRuZuZhi(String hisJiaRuZuZhi) {
+    this.hisJiaRuZuZhi = hisJiaRuZuZhi;
   }
 
-  public String getExploit() {
-    return exploit;
+  public String getHisZhengFuJinTie() {
+    return hisZhengFuJinTie;
   }
 
-  public void setExploit(String exploit) {
-    this.exploit = exploit;
+  public void setHisZhengFuJinTie(String hisZhengFuJinTie) {
+    this.hisZhengFuJinTie = hisZhengFuJinTie;
   }
 
-  public String getModelWorker() {
-    return modelWorker;
+  public String getHisZhengFuJinTieDengJi() {
+    return hisZhengFuJinTieDengJi;
   }
 
-  public void setModelWorker(String modelWorker) {
-    this.modelWorker = modelWorker;
+  public void setHisZhengFuJinTieDengJi(String hisZhengFuJinTieDengJi) {
+    this.hisZhengFuJinTieDengJi = hisZhengFuJinTieDengJi;
   }
 
-  public String getHealthCurrent() {
-    return healthCurrent;
+  public String getHisFuZhuanTuiJunRen() {
+    return hisFuZhuanTuiJunRen;
   }
 
-  public void setHealthCurrent(String healthCurrent) {
-    this.healthCurrent = healthCurrent;
+  public void setHisFuZhuanTuiJunRen(String hisFuZhuanTuiJunRen) {
+    this.hisFuZhuanTuiJunRen = hisFuZhuanTuiJunRen;
   }
 
-  public String getDiseaseChronic() {
-    return diseaseChronic;
+  public String getHisShangCan() {
+    return hisShangCan;
   }
 
-  public void setDiseaseChronic(String diseaseChronic) {
-    this.diseaseChronic = diseaseChronic;
+  public void setHisShangCan(String hisShangCan) {
+    this.hisShangCan = hisShangCan;
   }
 
-  public String getPhone() {
-    return phone;
+  public String getHisShangCanDengJi() {
+    return hisShangCanDengJi;
   }
 
-  public void setPhone(String phone) {
-    this.phone = phone;
+  public void setHisShangCanDengJi(String hisShangCanDengJi) {
+    this.hisShangCanDengJi = hisShangCanDengJi;
   }
 
-  public String getHomePhone() {
-    return homePhone;
+  public String getHisLiZhanGong() {
+    return hisLiZhanGong;
   }
 
-  public void setHomePhone(String homePhone) {
-    this.homePhone = homePhone;
+  public void setHisLiZhanGong(String hisLiZhanGong) {
+    this.hisLiZhanGong = hisLiZhanGong;
   }
 
-  public String getQqNumber() {
-    return qqNumber;
+  public String getHisLaZhanGongDengJi() {
+    return hisLaZhanGongDengJi;
   }
 
-  public void setQqNumber(String qqNumber) {
-    this.qqNumber = qqNumber;
+  public void setHisLaZhanGongDengJi(String hisLaZhanGongDengJi) {
+    this.hisLaZhanGongDengJi = hisLaZhanGongDengJi;
   }
 
-  public String getWxNumber() {
-    return wxNumber;
+  public String getBaseDuShengZiNv() {
+    return baseDuShengZiNv;
   }
 
-  public void setWxNumber(String wxNumber) {
-    this.wxNumber = wxNumber;
+  public void setBaseDuShengZiNv(String baseDuShengZiNv) {
+    this.baseDuShengZiNv = baseDuShengZiNv;
   }
 
-  public String getLiveWithChildren() {
-    return liveWithChildren;
+  public String getHisLaoMo() {
+    return hisLaoMo;
   }
 
-  public void setLiveWithChildren(String liveWithChildren) {
-    this.liveWithChildren = liveWithChildren;
+  public void setHisLaoMo(String hisLaoMo) {
+    this.hisLaoMo = hisLaoMo;
   }
 
-  public String getAddressCurrent() {
-    return addressCurrent;
+  public String getHisLaoMoDengJi() {
+    return hisLaoMoDengJi;
   }
 
-  public void setAddressCurrent(String addressCurrent) {
-    this.addressCurrent = addressCurrent;
+  public void setHisLaoMoDengJi(String hisLaoMoDengJi) {
+    this.hisLaoMoDengJi = hisLaoMoDengJi;
   }
 
-  public String getZipCode() {
-    return zipCode;
+  public String getNowGongZiHao() {
+    return nowGongZiHao;
   }
 
-  public void setZipCode(String zipCode) {
-    this.zipCode = zipCode;
+  public void setNowGongZiHao(String nowGongZiHao) {
+    this.nowGongZiHao = nowGongZiHao;
   }
 
-  public String getAccountAddressCurrent() {
-    return accountAddressCurrent;
+  public String getNowYiKaTong() {
+    return nowYiKaTong;
   }
 
-  public void setAccountAddressCurrent(String accountAddressCurrent) {
-    this.accountAddressCurrent = accountAddressCurrent;
+  public void setNowYiKaTong(String nowYiKaTong) {
+    this.nowYiKaTong = nowYiKaTong;
   }
 
-  public String getFamilyEmail() {
-    return familyEmail;
+  public String getNowManXingJiBing() {
+    return nowManXingJiBing;
   }
 
-  public void setFamilyEmail(String familyEmail) {
-    this.familyEmail = familyEmail;
+  public void setNowManXingJiBing(String nowManXingJiBing) {
+    this.nowManXingJiBing = nowManXingJiBing;
   }
 
-  public String getAddressChildren() {
-    return addressChildren;
+  public String getNowJianKangZhuangKuang() {
+    return nowJianKangZhuangKuang;
   }
 
-  public void setAddressChildren(String addressChildren) {
-    this.addressChildren = addressChildren;
+  public void setNowJianKangZhuangKuang(String nowJianKangZhuangKuang) {
+    this.nowJianKangZhuangKuang = nowJianKangZhuangKuang;
   }
 
-  public String getNameLinkMan() {
-    return nameLinkMan;
+  public String getConnXianHuKouDiZhi() {
+    return connXianHuKouDiZhi;
   }
 
-  public void setNameLinkMan(String nameLinkMan) {
-    this.nameLinkMan = nameLinkMan;
+  public void setConnXianHuKouDiZhi(String connXianHuKouDiZhi) {
+    this.connXianHuKouDiZhi = connXianHuKouDiZhi;
   }
 
-  public String getDepartmentLinkMan() {
-    return departmentLinkMan;
+  public String getConnYuZiNvShengHuo() {
+    return connYuZiNvShengHuo;
   }
 
-  public void setDepartmentLinkMan(String departmentLinkMan) {
-    this.departmentLinkMan = departmentLinkMan;
+  public void setConnYuZiNvShengHuo(String connYuZiNvShengHuo) {
+    this.connYuZiNvShengHuo = connYuZiNvShengHuo;
   }
 
-  public String getAddressLinkMan() {
-    return addressLinkMan;
+  public String getConnYuShuiShengHuo() {
+    return connYuShuiShengHuo;
   }
 
-  public void setAddressLinkMan(String addressLinkMan) {
-    this.addressLinkMan = addressLinkMan;
+  public void setConnYuShuiShengHuo(String connYuShuiShengHuo) {
+    this.connYuShuiShengHuo = connYuShuiShengHuo;
   }
 
-  public String getPhoneLinkMan() {
-    return phoneLinkMan;
+  public String getConnXianJuZhuDiZhi() {
+    return connXianJuZhuDiZhi;
   }
 
-  public void setPhoneLinkMan(String phoneLinkMan) {
-    this.phoneLinkMan = phoneLinkMan;
+  public void setConnXianJuZhuDiZhi(String connXianJuZhuDiZhi) {
+    this.connXianJuZhuDiZhi = connXianJuZhuDiZhi;
   }
 
-  public String getActivityGroup() {
-    return activityGroup;
+  public String getConnZhuZhaiDianHua() {
+    return connZhuZhaiDianHua;
   }
 
-  public void setActivityGroup(String activityGroup) {
-    this.activityGroup = activityGroup;
+  public void setConnZhuZhaiDianHua(String connZhuZhaiDianHua) {
+    this.connZhuZhaiDianHua = connZhuZhaiDianHua;
   }
 
-  public String getMaritalStatus() {
-    return maritalStatus;
+  public String getConnShouJiHaoMa() {
+    return connShouJiHaoMa;
   }
 
-  public void setMaritalStatus(String maritalStatus) {
-    this.maritalStatus = maritalStatus;
+  public void setConnShouJiHaoMa(String connShouJiHaoMa) {
+    this.connShouJiHaoMa = connShouJiHaoMa;
   }
 
-  public String getNameMate() {
-    return nameMate;
+  public String getConnLiShiHaoMa() {
+    return connLiShiHaoMa;
   }
 
-  public void setNameMate(String nameMate) {
-    this.nameMate = nameMate;
+  public void setConnLiShiHaoMa(String connLiShiHaoMa) {
+    this.connLiShiHaoMa = connLiShiHaoMa;
   }
 
-  public String getPhoneMate() {
-    return phoneMate;
+  public String getConnEmailOrQq() {
+    return connEmailOrQq;
   }
 
-  public void setPhoneMate(String phoneMate) {
-    this.phoneMate = phoneMate;
+  public void setConnEmailOrQq(String connEmailOrQq) {
+    this.connEmailOrQq = connEmailOrQq;
   }
 
-  public String getHealthMate() {
-    return healthMate;
+  public String getConnPeiOuHuoZiNvEmail() {
+    return connPeiOuHuoZiNvEmail;
   }
 
-  public void setHealthMate(String healthMate) {
-    this.healthMate = healthMate;
+  public void setConnPeiOuHuoZiNvEmail(String connPeiOuHuoZiNvEmail) {
+    this.connPeiOuHuoZiNvEmail = connPeiOuHuoZiNvEmail;
   }
 
-  public String getEmailMate() {
-    return emailMate;
+  public String getMateHunYinZhuangKuang() {
+    return mateHunYinZhuangKuang;
   }
 
-  public void setEmailMate(String emailMate) {
-    this.emailMate = emailMate;
+  public void setMateHunYinZhuangKuang(String mateHunYinZhuangKuang) {
+    this.mateHunYinZhuangKuang = mateHunYinZhuangKuang;
   }
 
-  public String getSport() {
-    return sport;
+  public String getMatePeiOuName() {
+    return matePeiOuName;
   }
 
-  public void setSport(String sport) {
-    this.sport = sport;
+  public void setMatePeiOuName(String matePeiOuName) {
+    this.matePeiOuName = matePeiOuName;
   }
 
-  public String getFavoriteHobby() {
-    return favoriteHobby;
+  public String getMatePeiOuPhone() {
+    return matePeiOuPhone;
   }
 
-  public void setFavoriteHobby(String favoriteHobby) {
-    this.favoriteHobby = favoriteHobby;
+  public void setMatePeiOuPhone(String matePeiOuPhone) {
+    this.matePeiOuPhone = matePeiOuPhone;
   }
 
-  public String getDoubleWorker() {
-    return doubleWorker;
+  public String getMatePeiOuJianKang() {
+    return matePeiOuJianKang;
   }
 
-  public void setDoubleWorker(String doubleWorker) {
-    this.doubleWorker = doubleWorker;
+  public void setMatePeiOuJianKang(String matePeiOuJianKang) {
+    this.matePeiOuJianKang = matePeiOuJianKang;
   }
 
-  public String getDutyInSocialGroup() {
-    return dutyInSocialGroup;
+  public String getLianXiRenName() {
+    return lianXiRenName;
   }
 
-  public void setDutyInSocialGroup(String dutyInSocialGroup) {
-    this.dutyInSocialGroup = dutyInSocialGroup;
+  public void setLianXiRenName(String lianXiRenName) {
+    this.lianXiRenName = lianXiRenName;
   }
 
-  public String getBrowseWebsite() {
-    return browseWebsite;
+  public String getLianXiRenGuanXi() {
+    return lianXiRenGuanXi;
   }
 
-  public void setBrowseWebsite(String browseWebsite) {
-    this.browseWebsite = browseWebsite;
+  public void setLianXiRenGuanXi(String lianXiRenGuanXi) {
+    this.lianXiRenGuanXi = lianXiRenGuanXi;
   }
 
-  public String getSelect() {
-    return select;
+  public String getLianXiRenPhone() {
+    return lianXiRenPhone;
   }
 
-  public void setSelect(String select) {
-    this.select = select;
+  public void setLianXiRenPhone(String lianXiRenPhone) {
+    this.lianXiRenPhone = lianXiRenPhone;
+  }
+
+  public String getHisShuangZhiGong() {
+    return hisShuangZhiGong;
+  }
+
+  public void setHisShuangZhiGong(String hisShuangZhiGong) {
+    this.hisShuangZhiGong = hisShuangZhiGong;
+  }
+
+  public String getChildrenZiNvName() {
+    return childrenZiNvName;
+  }
+
+  public void setChildrenZiNvName(String childrenZiNvName) {
+    this.childrenZiNvName = childrenZiNvName;
+  }
+
+  public String getChildrenZiNvAddress() {
+    return childrenZiNvAddress;
+  }
+
+  public void setChildrenZiNvAddress(String childrenZiNvAddress) {
+    this.childrenZiNvAddress = childrenZiNvAddress;
+  }
+
+  public String getChildrenZiNvDanWei() {
+    return childrenZiNvDanWei;
+  }
+
+  public void setChildrenZiNvDanWei(String childrenZiNvDanWei) {
+    this.childrenZiNvDanWei = childrenZiNvDanWei;
+  }
+
+  public String getChildrenZiNvPhone() {
+    return childrenZiNvPhone;
+  }
+
+  public void setChildrenZiNvPhone(String childrenZiNvPhone) {
+    this.childrenZiNvPhone = childrenZiNvPhone;
+  }
+
+  public String getNowAiHaoXiangMu() {
+    return nowAiHaoXiangMu;
+  }
+
+  public void setNowAiHaoXiangMu(String nowAiHaoXiangMu) {
+    this.nowAiHaoXiangMu = nowAiHaoXiangMu;
+  }
+
+  public String getNowJianChiJianShen() {
+    return nowJianChiJianShen;
+  }
+
+  public void setNowJianChiJianShen(String nowJianChiJianShen) {
+    this.nowJianChiJianShen = nowJianChiJianShen;
+  }
+
+  public String getXiaoNeiName() {
+    return xiaoNeiName;
+  }
+
+  public void setXiaoNeiName(String xiaoNeiName) {
+    this.xiaoNeiName = xiaoNeiName;
+  }
+
+  public String getXiaoNeiGuanXi() {
+    return xiaoNeiGuanXi;
+  }
+
+  public void setXiaoNeiGuanXi(String xiaoNeiGuanXi) {
+    this.xiaoNeiGuanXi = xiaoNeiGuanXi;
+  }
+
+  public String getXiaoNeiPhone() {
+    return xiaoNeiPhone;
+  }
+
+  public void setXiaoNeiPhone(String xiaoNeiPhone) {
+    this.xiaoNeiPhone = xiaoNeiPhone;
+  }
+
+  public String getXiaoNeiBuMen() {
+    return xiaoNeiBuMen;
+  }
+
+  public void setXiaoNeiBuMen(String xiaoNeiBuMen) {
+    this.xiaoNeiBuMen = xiaoNeiBuMen;
+  }
+
+  public String getXiaoNeiAddress() {
+    return xiaoNeiAddress;
+  }
+
+  public void setXiaoNeiAddress(String xiaoNeiAddress) {
+    this.xiaoNeiAddress = xiaoNeiAddress;
+  }
+
+  public String getNowLaoNianTiXieZu() {
+    return nowLaoNianTiXieZu;
+  }
+
+  public void setNowLaoNianTiXieZu(String nowLaoNianTiXieZu) {
+    this.nowLaoNianTiXieZu = nowLaoNianTiXieZu;
+  }
+
+  public String getNowLiuLanWebsite() {
+    return nowLiuLanWebsite;
+  }
+
+  public void setNowLiuLanWebsite(String nowLiuLanWebsite) {
+    this.nowLiuLanWebsite = nowLiuLanWebsite;
+  }
+
+  public String getNowXiaoWaiTuanTiZhiWu() {
+    return nowXiaoWaiTuanTiZhiWu;
+  }
+
+  public void setNowXiaoWaiTuanTiZhiWu(String nowXiaoWaiTuanTiZhiWu) {
+    this.nowXiaoWaiTuanTiZhiWu = nowXiaoWaiTuanTiZhiWu;
+  }
+
+  public String getHisJunShuJunLie() {
+    return hisJunShuJunLie;
+  }
+
+  public void setHisJunShuJunLie(String hisJunShuJunLie) {
+    this.hisJunShuJunLie = hisJunShuJunLie;
+  }
+
+  public String getRemark() {
+    return remark;
+  }
+
+  public void setRemark(String remark) {
+    this.remark = remark;
+  }
+
+  public String getHisUnionGroup() {
+    return hisUnionGroup;
+  }
+
+  public void setHisUnionGroup(String hisUnionGroup) {
+    this.hisUnionGroup = hisUnionGroup;
   }
 }
