@@ -245,17 +245,21 @@
       ,
       cols: [
         [ //表头
-          {
-            type: 'checkbox',
+
+			, {
+            field: 'id',
+            title: '编号',
+            width: 80,
+            sort: true,
             fixed: 'left'
-          }, {
-          field: 'name',
+        },{
+          field: 'baseName',
           title: '姓名',
           width: 80,
           sort: true,
           fixed: 'left'
         }, {
-          field: 'idCard',
+          field: 'baseShenFenZheng',
           title: '身份证号',
           width: 300
         }, {
@@ -264,7 +268,7 @@
           width: 80,
           sort: true
         }, {
-          field: 'nativePlace',
+          field: 'baseJiGuan',
           title: '籍贯',
           width: 300
         }, {

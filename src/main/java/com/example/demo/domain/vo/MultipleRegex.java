@@ -653,4 +653,5 @@ public class MultipleRegex {
   public void setHisUnionGroup(String hisUnionGroup) {
     this.hisUnionGroup = hisUnionGroup;
   }
+
 }
