@@ -85,6 +85,9 @@ public class InfoNew {
     this.baseName = baseName;
     this.baseSex = baseSex;
   }
+  public InfoNew() {
+
+  }
 
   @Id
   @Column(name = "id", nullable = false)
