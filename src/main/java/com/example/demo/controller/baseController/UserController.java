@@ -2,23 +2,13 @@ package com.example.demo.controller.baseController;
 
 import com.example.demo.domain.entity.User;
 import com.example.demo.domain.vo.JsonResult;
-import com.example.demo.domain.vo.MultipleRegex;
 import com.example.demo.repos.UserRepos;
-import com.example.demo.util.MD5Utils;
-import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.util.CellRangeAddress;
+import com.example.demo.util.DESUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.swing.filechooser.FileSystemView;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -34,8 +24,8 @@ public class UserController {
   @RequestMapping(value = "/set", produces = {"application/json"})
   public String set(@RequestParam("name") String name,
                     @RequestParam("password") String password) throws Exception {
-    MD5Utils.encrypt(password, "12345678");
-    System.out.println(MD5Utils.encrypt(password, "12345678"));
+    DESUtil.decrypt(password, "12345678");
+    System.out.println(DESUtil.ENCRYPTMethod(password, "12345678"));
     return new JsonResult(1, "").toString();
   }
 
@@ -49,7 +39,7 @@ public class UserController {
     if (u.getAble().equals("否")) {
       return new JsonResult(3, "用户被禁止").toString();
     }
-    if (!password.equals(MD5Utils.decrypt(u.getPassword(), "12345678"))) {
+    if (!password.equals(DESUtil.ENCRYPTMethod(u.getPassword(), "12345678"))) {
       return new JsonResult(1, "密码错误").toString();
     }
     return new JsonResult(0, "").toString();

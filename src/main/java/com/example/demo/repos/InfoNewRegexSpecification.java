@@ -25,158 +25,225 @@ public class InfoNewRegexSpecification implements Specification<InfoNew> {
     List<Predicate> predicates = new ArrayList<Predicate>();
     for (String param : params) {
       switch (param) {
-        case "name":
-          predicates.add(cb.like(root.get("name").as(String.class), "%" + mr.getName() + "%"));
+        case "baseName":
+          predicates.add(cb.like(root.get("baseName").as(String.class), "%" + mr.getBaseName() + "%"));
           break;
-        case "idCard":
-          predicates.add(cb.like(root.get("idCard").as(String.class), "%" + mr.getIdCard() + "%"));
+        case "baseSex":
+          predicates.add(cb.like(root.get("baseSex").as(String.class), "%" + mr.getBaseSex() + "%"));
           break;
-        case "sex":
-          predicates.add(cb.like(root.get("sex").as(String.class), "%" + mr.getSex() + "%"));
+        case "workKaiShiGongZuo":
+          predicates.add(cb.greaterThanOrEqualTo(root.get("workKaiShiGongZuo").as(String.class), mr.getWorkKaiShiGongZuoStart()));
+          predicates.add(cb.lessThanOrEqualTo(root.get("workKaiShiGongZuo").as(String.class), mr.getWorkKaiShiGongZuoEnd()));
           break;
-        case "nativePlace":
-          predicates.add(cb.like(root.get("nativePlace").as(String.class), "%" + mr.getNativePlace() + "%"));
+        case "baseJiGuan":
+          predicates.add(cb.like(root.get("baseJiGuan").as(String.class), "%" + mr.getBaseJiGuan() + "%"));
           break;
-        case "startWorkDate":
-          String startWorkDate[] = mr.getStartWorkDate().split("~");
-          predicates.add(cb.greaterThanOrEqualTo(root.get("startWorkDate").as(String.class), startWorkDate[0]));
-          predicates.add(cb.lessThanOrEqualTo(root.get("startWorkDate").as(String.class), startWorkDate[1]));
+        case "baseShengRi":
+          predicates.add(cb.greaterThanOrEqualTo(root.get("baseShengRi").as(String.class), mr.getBaseShengRiStart()));
+          predicates.add(cb.lessThanOrEqualTo(root.get("baseShengRi").as(String.class), mr.getBaseShengRiEnd()));
           break;
-        case "formationType":
-          predicates.add(cb.like(root.get("formationType").as(String.class), "%" + mr.getFormationType() + "%"));
+        case "workDaoXiaoShiJian":
+          predicates.add(cb.greaterThanOrEqualTo(root.get("workDaoXiaoShiJian").as(String.class), mr.getWorkDaoXiaoShiJianStart()));
+          predicates.add(cb.lessThanOrEqualTo(root.get("workDaoXiaoShiJian").as(String.class), mr.getWorkDaoXiaoShiJianEnd()));
           break;
-        case "toSchoolDate":
-          String toSchoolDate[] = mr.getToSchoolDate().split(",");
-          predicates.add(cb.greaterThanOrEqualTo(root.get("toSchoolDate").as(String.class), toSchoolDate[1]));
-          predicates.add(cb.lessThanOrEqualTo(root.get("toSchoolDate").as(String.class), toSchoolDate[2]));
+        case "baseShenFenZheng":
+          predicates.add(cb.like(root.get("baseShenFenZheng").as(String.class), "%" + mr.getBaseShenFenZheng() + "%"));
           break;
-        case "retireDate":
-          String retireDate[] = mr.getStartWorkDate().split(",");
-          predicates.add(cb.greaterThanOrEqualTo(root.get("retireDate").as(String.class), retireDate[1]));
-          predicates.add(cb.lessThanOrEqualTo(root.get("retireDate").as(String.class), retireDate[2]));
+        case "baseMinZu":
+          predicates.add(cb.like(root.get("baseMinZu").as(String.class), "%" + mr.getBaseMinZu() + "%"));
           break;
-        case "retireType":
-          predicates.add(cb.like(root.get("retireType").as(String.class), "%" + mr.getRetireType() + "%"));
+        case "baseXueLi":
+          predicates.add(cb.like(root.get("baseXueLi").as(String.class), "%" + mr.getBaseXueLi() + "%"));
           break;
-        case "retireInDepartment":
-          predicates.add(cb.like(root.get("retireInDepartment").as(String.class), "%" + mr.getRetireInDepartment() + "%"));
+        case "baseXueWei":
+          predicates.add(cb.like(root.get("baseXueWei").as(String.class), "%" + mr.getBaseXueWei() + "%"));
           break;
-        case "job":
-          predicates.add(cb.like(root.get("job").as(String.class), "%" + mr.getJob() + "%"));
+        case "workBianZhiLeiXing":
+          predicates.add(cb.like(root.get("workBianZhiLeiXing").as(String.class), "%" + mr.getWorkBianZhiLeiXing() + "%"));
           break;
-        case "jobLevel":
-          predicates.add(cb.like(root.get("jobLevel").as(String.class), "%" + mr.getJobLevel() + "%"));
+        case "workZhiWu":
+          predicates.add(cb.like(root.get("workZhiWu").as(String.class), "%" + mr.getWorkZhiWu() + "%"));
           break;
-        case "majorOrWork":
-          predicates.add(cb.like(root.get("majorOrWork").as(String.class), "%" + mr.getMajorOrWork() + "%"));
+        case "workZhiWuJiBie":
+          predicates.add(cb.like(root.get("workZhiWuJiBie").as(String.class), "%" + mr.getWorkZhiWuJiBie() + "%"));
           break;
-        case "salaryNumber":
-          predicates.add(cb.like(root.get("salaryNumber").as(String.class), "%" + mr.getSalaryNumber() + "%"));
+        case "workZhiCheng":
+          predicates.add(cb.like(root.get("workZhiCheng").as(String.class), "%" + mr.getWorkZhiCheng() + "%"));
           break;
-        case "politicalOutlook":
-          predicates.add(cb.like(root.get("politicalOutlook").as(String.class), "%" + mr.getPoliticalOutlook() + "%"));
+        case "workZhiChengJiBie":
+          predicates.add(cb.like(root.get("workZhiChengJiBie").as(String.class), "%" + mr.getWorkZhiChengJiBie() + "%"));
           break;
-        case "presentBranch":
-          predicates.add(cb.like(root.get("presentBranch").as(String.class), "%" + mr.getPresentBranch() + "%"));
+        case "workTiQianTuiXiu":
+          predicates.add(cb.greaterThanOrEqualTo(root.get("workDaoXiaoShiJian").as(String.class), mr.getWorkTiQianTuiXiuStart()));
+          predicates.add(cb.lessThanOrEqualTo(root.get("workDaoXiaoShiJian").as(String.class), mr.getWorkTiQianTuiXiuEnd()));
           break;
-        case "governmentAllowance":
-          predicates.add(cb.like(root.get("governmentAllowance").as(String.class), "%" + mr.getGovernmentAllowance() + "%"));
+        case "workZhengShiTuiXiu":
+          predicates.add(cb.greaterThanOrEqualTo(root.get("workDaoXiaoShiJian").as(String.class), mr.getWorkZhengShiTuiXiuStart()));
+          predicates.add(cb.lessThanOrEqualTo(root.get("workDaoXiaoShiJian").as(String.class), mr.getWorkZhengShiTuiXiuEnd()));
           break;
-        case "onceInArmy":
-          predicates.add(cb.like(root.get("onceInArmy").as(String.class), "%" + mr.getOnceInArmy() + "%"));
+        case "workTuiXiuBuMen":
+          predicates.add(cb.like(root.get("workTuiXiuBuMen").as(String.class), "%" + mr.getWorkTuiXiuBuMen() + "%"));
           break;
-        case "disabled":
-          predicates.add(cb.like(root.get("disabled").as(String.class), "%" + mr.getDisabled() + "%"));
+        case "baseZhengZhiMianMao":
+          predicates.add(cb.like(root.get("baseZhengZhiMianMao").as(String.class), "%" + mr.getBaseZhengZhiMianMao() + "%"));
           break;
-        case "armyFamily":
-          predicates.add(cb.like(root.get("armyFamily").as(String.class), "%" + mr.getArmyFamily() + "%"));
+        case "workZhuanYeHeGongZhong":
+          predicates.add(cb.like(root.get("workZhuanYeHeGongZhong").as(String.class), "%" + mr.getWorkZhuanYeHeGongZhong() + "%"));
           break;
-        case "exploit":
-          predicates.add(cb.like(root.get("exploit").as(String.class), "%" + mr.getExploit() + "%"));
+        case "nowSuoShuZhiBu":
+          predicates.add(cb.like(root.get("nowSuoShuZhiBu").as(String.class), "%" + mr.getNowSuoShuZhiBu() + "%"));
           break;
-        case "modelWorker":
-          predicates.add(cb.like(root.get("modelWorker").as(String.class), "%" + mr.getModelWorker() + "%"));
+        case "hisJiaRuZuZhi":
+          predicates.add(cb.greaterThanOrEqualTo(root.get("workDaoXiaoShiJian").as(String.class), mr.getHisJiaRuZuZhiStart()));
+          predicates.add(cb.lessThanOrEqualTo(root.get("workDaoXiaoShiJian").as(String.class), mr.getHisJiaRuZuZhiEnd()));
           break;
-        case "healthCurrent":
-          predicates.add(cb.like(root.get("healthCurrent").as(String.class), "%" + mr.getHealthCurrent() + "%"));
+        case "hisZhengFuJinTie":
+          predicates.add(cb.like(root.get("hisZhengFuJinTie").as(String.class), "%" + mr.getHisZhengFuJinTie() + "%"));
           break;
-        case "diseaseChronic":
-          predicates.add(cb.like(root.get("diseaseChronic").as(String.class), "%" + mr.getDiseaseChronic() + "%"));
+        case "hisZhengFuJinTieDengJi":
+          predicates.add(cb.like(root.get("hisZhengFuJinTieDengJi").as(String.class), "%" + mr.getHisZhengFuJinTieDengJi() + "%"));
           break;
-        case "phone":
-          predicates.add(cb.like(root.get("phone").as(String.class), "%" + mr.getPhone() + "%"));
+        case "hisFuZhuanTuiJunRen":
+          predicates.add(cb.like(root.get("hisFuZhuanTuiJunRen").as(String.class), "%" + mr.getHisFuZhuanTuiJunRen() + "%"));
           break;
-        case "homePhone":
-          predicates.add(cb.like(root.get("homePhone").as(String.class), "%" + mr.getHomePhone() + "%"));
+        case "hisShangCan":
+          predicates.add(cb.like(root.get("hisShangCan").as(String.class), "%" + mr.getHisShangCan() + "%"));
           break;
-        case "qqNumber":
-          predicates.add(cb.like(root.get("qqNumber").as(String.class), "%" + mr.getQqNumber() + "%"));
+        case "hisShangCanDengJi":
+          predicates.add(cb.like(root.get("hisShangCanDengJi").as(String.class), "%" + mr.getHisShangCanDengJi() + "%"));
           break;
-        case "wxNumber":
-          predicates.add(cb.like(root.get("wxNumber").as(String.class), "%" + mr.getWxNumber() + "%"));
+        case "hisLiZhanGong":
+          predicates.add(cb.like(root.get("hisLiZhanGong").as(String.class), "%" + mr.getHisLiZhanGong() + "%"));
           break;
-        case "liveWithChildren":
-          predicates.add(cb.like(root.get("liveWithChildren").as(String.class), "%" + mr.getLiveWithChildren() + "%"));
+        case "hisLaZhanGongDengJi":
+          predicates.add(cb.like(root.get("hisLaZhanGongDengJi").as(String.class), "%" + mr.getHisLaZhanGongDengJi() + "%"));
           break;
-        case "addressCurrent":
-          predicates.add(cb.like(root.get("addressCurrent").as(String.class), "%" + mr.getAddressCurrent() + "%"));
+        case "baseDuShengZiNv":
+          predicates.add(cb.like(root.get("baseDuShengZiNv").as(String.class), "%" + mr.getBaseDuShengZiNv() + "%"));
           break;
-        case "zipCode":
-          predicates.add(cb.like(root.get("zipCode").as(String.class), "%" + mr.getZipCode() + "%"));
+        case "hisLaoMo":
+          predicates.add(cb.like(root.get("hisLaoMo").as(String.class), "%" + mr.getHisLaoMo() + "%"));
           break;
-        case "accountAddressCurrent":
-          predicates.add(cb.like(root.get("accountAddressCurrent").as(String.class), "%" + mr.getAccountAddressCurrent() + "%"));
+        case "hisLaoMoDengJi":
+          predicates.add(cb.like(root.get("hisLaoMoDengJi").as(String.class), "%" + mr.getHisLaoMoDengJi() + "%"));
           break;
-        case "familyEmail":
-          predicates.add(cb.like(root.get("familyEmail").as(String.class), "%" + mr.getFamilyEmail() + "%"));
+        case "nowGongZiHao":
+          predicates.add(cb.like(root.get("nowGongZiHao").as(String.class), "%" + mr.getNowGongZiHao() + "%"));
           break;
-        case "addressChildren":
-          predicates.add(cb.like(root.get("addressChildren").as(String.class), "%" + mr.getAddressChildren() + "%"));
+        case "nowYiKaTong":
+          predicates.add(cb.like(root.get("nowYiKaTong").as(String.class), "%" + mr.getNowYiKaTong() + "%"));
           break;
-        case "nameLinkMan":
-          predicates.add(cb.like(root.get("nameLinkMan").as(String.class), "%" + mr.getNameLinkMan() + "%"));
+        case "nowManXingJiBing":
+          predicates.add(cb.like(root.get("nowManXingJiBing").as(String.class), "%" + mr.getNowManXingJiBing() + "%"));
           break;
-        case "departmentLinkMan":
-          predicates.add(cb.like(root.get("departmentLinkMan").as(String.class), "%" + mr.getDepartmentLinkMan() + "%"));
+        case "nowJianKangZhuangKuang":
+          predicates.add(cb.like(root.get("nowJianKangZhuangKuang").as(String.class), "%" + mr.getNowJianKangZhuangKuang() + "%"));
           break;
-        case "addressLinkMan":
-          predicates.add(cb.like(root.get("addressLinkMan").as(String.class), "%" + mr.getAddressLinkMan() + "%"));
+        case "connXianHuKouDiZhi":
+          predicates.add(cb.like(root.get("connXianHuKouDiZhi").as(String.class), "%" + mr.getConnXianHuKouDiZhi() + "%"));
           break;
-        case "phoneLinkMan":
-          predicates.add(cb.like(root.get("phoneLinkMan").as(String.class), "%" + mr.getPhoneLinkMan() + "%"));
+        case "connYuZiNvShengHuo":
+          predicates.add(cb.like(root.get("connYuZiNvShengHuo").as(String.class), "%" + mr.getConnYuZiNvShengHuo() + "%"));
           break;
-        case "activityGroup":
-          predicates.add(cb.like(root.get("activityGroup").as(String.class), "%" + mr.getActivityGroup() + "%"));
+        case "connYuShuiShengHuo":
+          predicates.add(cb.like(root.get("connYuShuiShengHuo").as(String.class), "%" + mr.getConnYuShuiShengHuo() + "%"));
           break;
-        case "maritalStatus":
-          predicates.add(cb.like(root.get("maritalStatus").as(String.class), "%" + mr.getMaritalStatus() + "%"));
+        case "connXianJuZhuDiZhi":
+          predicates.add(cb.like(root.get("connXianJuZhuDiZhi").as(String.class), "%" + mr.getConnXianJuZhuDiZhi() + "%"));
           break;
-        case "nameMate":
-          predicates.add(cb.like(root.get("nameMate").as(String.class), "%" + mr.getNameMate() + "%"));
+        case "connZhuZhaiDianHua":
+          predicates.add(cb.like(root.get("connZhuZhaiDianHua").as(String.class), "%" + mr.getConnZhuZhaiDianHua() + "%"));
           break;
-        case "phoneMate":
-          predicates.add(cb.like(root.get("phoneMate").as(String.class), "%" + mr.getPhoneMate() + "%"));
+        case "connShouJiHaoMa":
+          predicates.add(cb.like(root.get("connShouJiHaoMa").as(String.class), "%" + mr.getConnShouJiHaoMa() + "%"));
           break;
-        case "healthMate":
-          predicates.add(cb.like(root.get("healthMate").as(String.class), "%" + mr.getHealthMate() + "%"));
+        case "connLiShiHaoMa":
+          predicates.add(cb.like(root.get("connLiShiHaoMa").as(String.class), "%" + mr.getConnLiShiHaoMa() + "%"));
           break;
-        case "emailMate":
-          predicates.add(cb.like(root.get("emailMate").as(String.class), "%" + mr.getEmailMate() + "%"));
+        case "connEmailOrQq":
+          predicates.add(cb.like(root.get("connEmailOrQq").as(String.class), "%" + mr.getConnEmailOrQq() + "%"));
           break;
-        case "sport":
-          predicates.add(cb.like(root.get("sport").as(String.class), "%" + mr.getSport() + "%"));
+        case "connPeiOuHuoZiNvEmail":
+          predicates.add(cb.like(root.get("connPeiOuHuoZiNvEmail").as(String.class), "%" + mr.getConnPeiOuHuoZiNvEmail() + "%"));
           break;
-        case "favoriteHobby":
-          predicates.add(cb.like(root.get("favoriteHobby").as(String.class), "%" + mr.getFavoriteHobby() + "%"));
+        case "mateHunYinZhuangKuang":
+          predicates.add(cb.like(root.get("mateHunYinZhuangKuang").as(String.class), "%" + mr.getMateHunYinZhuangKuang() + "%"));
           break;
-        case "doubleWorker":
-          predicates.add(cb.like(root.get("doubleWorker").as(String.class), "%" + mr.getDoubleWorker() + "%"));
+        case "matePeiOuName":
+          predicates.add(cb.like(root.get("matePeiOuName").as(String.class), "%" + mr.getMatePeiOuName() + "%"));
           break;
-        case "dutyInSocialGroup":
-          predicates.add(cb.like(root.get("dutyInSocialGroup").as(String.class), "%" + mr.getDutyInSocialGroup() + "%"));
+        case "matePeiOuPhone":
+          predicates.add(cb.like(root.get("matePeiOuPhone").as(String.class), "%" + mr.getMatePeiOuPhone() + "%"));
           break;
-        case "browseWebsite":
-          predicates.add(cb.like(root.get("browseWebsite").as(String.class), "%" + mr.getBrowseWebsite() + "%"));
+        case "matePeiOuJianKang":
+          predicates.add(cb.like(root.get("matePeiOuJianKang").as(String.class), "%" + mr.getMatePeiOuJianKang() + "%"));
+          break;
+        case "lianXiRenName":
+          predicates.add(cb.like(root.get("lianXiRenName").as(String.class), "%" + mr.getLianXiRenName() + "%"));
+          break;
+        case "lianXiRenGuanXi":
+          predicates.add(cb.like(root.get("lianXiRenGuanXi").as(String.class), "%" + mr.getLianXiRenGuanXi() + "%"));
+          break;
+        case "lianXiRenPhone":
+          predicates.add(cb.like(root.get("lianXiRenPhone").as(String.class), "%" + mr.getLianXiRenPhone() + "%"));
+          break;
+        case "hisShuangZhiGong":
+          predicates.add(cb.like(root.get("hisShuangZhiGong").as(String.class), "%" + mr.getHisShuangZhiGong() + "%"));
+          break;
+        case "childrenZiNvName":
+          predicates.add(cb.like(root.get("childrenZiNvName").as(String.class), "%" + mr.getChildrenZiNvName() + "%"));
+          break;
+        case "childrenZiNvAddress":
+          predicates.add(cb.like(root.get("childrenZiNvAddress").as(String.class), "%" + mr.getChildrenZiNvAddress() + "%"));
+          break;
+        case "childrenZiNvDanWei":
+          predicates.add(cb.like(root.get("childrenZiNvDanWei").as(String.class), "%" + mr.getChildrenZiNvDanWei() + "%"));
+          break;
+        case "childrenZiNvPhone":
+          predicates.add(cb.like(root.get("childrenZiNvPhone").as(String.class), "%" + mr.getChildrenZiNvPhone() + "%"));
+          break;
+        case "nowAiHaoXiangMu":
+          predicates.add(cb.like(root.get("nowAiHaoXiangMu").as(String.class), "%" + mr.getNowAiHaoXiangMu() + "%"));
+          break;
+        case "nowJianChiJianShen":
+          predicates.add(cb.like(root.get("nowJianChiJianShen").as(String.class), "%" + mr.getNowJianChiJianShen() + "%"));
+          break;
+        case "xiaoNeiName":
+          predicates.add(cb.like(root.get("xiaoNeiName").as(String.class), "%" + mr.getXiaoNeiName() + "%"));
+          break;
+        case "xiaoNeiGuanXi":
+          predicates.add(cb.like(root.get("xiaoNeiGuanXi").as(String.class), "%" + mr.getXiaoNeiGuanXi() + "%"));
+          break;
+        case "xiaoNeiPhone":
+          predicates.add(cb.like(root.get("xiaoNeiPhone").as(String.class), "%" + mr.getXiaoNeiPhone() + "%"));
+          break;
+        case "xiaoNeiBuMen":
+          predicates.add(cb.like(root.get("xiaoNeiBuMen").as(String.class), "%" + mr.getXiaoNeiBuMen() + "%"));
+          break;
+        case "xiaoNeiAddress":
+          predicates.add(cb.like(root.get("xiaoNeiAddress").as(String.class), "%" + mr.getXiaoNeiAddress() + "%"));
+          break;
+        case "nowLaoNianTiXieZu":
+          predicates.add(cb.like(root.get("nowLaoNianTiXieZu").as(String.class), "%" + mr.getNowLaoNianTiXieZu() + "%"));
+          break;
+        case "nowLiuLanWebsite":
+          predicates.add(cb.like(root.get("nowLiuLanWebsite").as(String.class), "%" + mr.getNowLiuLanWebsite() + "%"));
+          break;
+        case "nowXiaoWaiTuanTiZhiWu":
+          predicates.add(cb.like(root.get("nowXiaoWaiTuanTiZhiWu").as(String.class), "%" + mr.getNowXiaoWaiTuanTiZhiWu() + "%"));
+          break;
+        case "hisJunShuJunLie":
+          predicates.add(cb.like(root.get("hisJunShuJunLie").as(String.class), "%" + mr.getHisJunShuJunLie() + "%"));
+          break;
+        case "remark":
+          predicates.add(cb.like(root.get("remark").as(String.class), "%" + mr.getRemark() + "%"));
+          break;
+        case "hisUnionGroup":
+          predicates.add(cb.like(root.get("hisUnionGroup").as(String.class), "%" + mr.getHisUnionGroup() + "%"));
+          break;
+        case "tianBiaoShiJian":
+          predicates.add(cb.greaterThanOrEqualTo(root.get("tianBiaoShiJian").as(String.class), mr.getTianBiaoShiJianStart()));
+          predicates.add(cb.lessThanOrEqualTo(root.get("tianBiaoShiJian").as(String.class), mr.getTianBiaoShiJianEnd()));
           break;
         case "":
           break;

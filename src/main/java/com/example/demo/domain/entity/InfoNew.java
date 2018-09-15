@@ -1,11 +1,23 @@
 package com.example.demo.domain.entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "info_new", schema = "Retirement_management_system", catalog = "")
 public class InfoNew {
+  @Override
+  public String toString() {
+    try {
+      return new ObjectMapper().writeValueAsString(this);
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
   private int id;
   private String basePhotoUrl;
   private String baseName;
@@ -34,12 +46,12 @@ public class InfoNew {
   private String hisZhengFuJinTieDengJi;
   private String hisFuZhuanTuiJunRen;
   private String hisShangCan;
-
+  private String hisShangCanDengJi;
   private String hisLiZhanGong;
-//  private String hisLaZhanGongDengJi;
+  private String hisLaZhanGongDengJi;
   private String baseDuShengZiNv;
   private String hisLaoMo;
-//  private String hisLaoMoDengJi;
+  private String hisLaoMoDengJi;
   private String nowGongZiHao;
   private String nowYiKaTong;
   private String nowManXingJiBing;
@@ -80,6 +92,7 @@ public class InfoNew {
   private String hisUnionGroup;
   private String tianBiaoShiJian;
 
+<<<<<<< HEAD
   public InfoNew(int id, String baseName, String baseSex) {
     this.id = id;
     this.baseName = baseName;
@@ -89,6 +102,8 @@ public class InfoNew {
 
   }
 
+=======
+>>>>>>> 818a795db47b8a060f3f2a63b5041f59110f7b24
   @Id
   @Column(name = "id", nullable = false)
   public int getId() {
@@ -369,15 +384,15 @@ public class InfoNew {
     this.hisShangCan = hisShangCan;
   }
 
-//  @Basic
-//  @Column(name = "his_shang_can_deng_ji", nullable = true, length = 45)
-//  public String getHisShangCanDengJi() {
-//    return hisShangCanDengJi;
-//  }
-//
-//  public void setHisShangCanDengJi(String hisShangCanDengJi) {
-//    this.hisShangCanDengJi = hisShangCanDengJi;
-//  }
+  @Basic
+  @Column(name = "his_shang_can_deng_ji", nullable = true, length = 45)
+  public String getHisShangCanDengJi() {
+    return hisShangCanDengJi;
+  }
+
+  public void setHisShangCanDengJi(String hisShangCanDengJi) {
+    this.hisShangCanDengJi = hisShangCanDengJi;
+  }
 
   @Basic
   @Column(name = "his_li_zhan_gong", nullable = true, length = 45)
@@ -389,15 +404,15 @@ public class InfoNew {
     this.hisLiZhanGong = hisLiZhanGong;
   }
 
-//  @Basic
-//  @Column(name = "his_la_zhan_gong_deng_ji", nullable = true, length = 45)
-//  public String getHisLaZhanGongDengJi() {
-//    return hisLaZhanGongDengJi;
-//  }
+  @Basic
+  @Column(name = "his_la_zhan_gong_deng_ji", nullable = true, length = 45)
+  public String getHisLaZhanGongDengJi() {
+    return hisLaZhanGongDengJi;
+  }
 
-//  public void setHisLaZhanGongDengJi(String hisLaZhanGongDengJi) {
-//    this.hisLaZhanGongDengJi = hisLaZhanGongDengJi;
-//  }
+  public void setHisLaZhanGongDengJi(String hisLaZhanGongDengJi) {
+    this.hisLaZhanGongDengJi = hisLaZhanGongDengJi;
+  }
 
   @Basic
   @Column(name = "base_du_sheng_zi_nv", nullable = true, length = 45)
@@ -410,7 +425,7 @@ public class InfoNew {
   }
 
   @Basic
-  @Column(name = "his_lao_mo", nullable = true, length = 45)
+  @Column(name = "his_lao_mo", nullable = true, length = 225)
   public String getHisLaoMo() {
     return hisLaoMo;
   }
@@ -419,15 +434,15 @@ public class InfoNew {
     this.hisLaoMo = hisLaoMo;
   }
 
-//  @Basic
-//  @Column(name = "his_lao_mo_deng_ji", nullable = true, length = 225)
-//  public String getHisLaoMoDengJi() {
-//    return hisLaoMoDengJi;
-//  }
-//
-//  public void setHisLaoMoDengJi(String hisLaoMoDengJi) {
-//    this.hisLaoMoDengJi = hisLaoMoDengJi;
-//  }
+  @Basic
+  @Column(name = "his_lao_mo_deng_ji", nullable = true, length = 225)
+  public String getHisLaoMoDengJi() {
+    return hisLaoMoDengJi;
+  }
+
+  public void setHisLaoMoDengJi(String hisLaoMoDengJi) {
+    this.hisLaoMoDengJi = hisLaoMoDengJi;
+  }
 
   @Basic
   @Column(name = "now_gong_zi_hao", nullable = true, length = 45)
@@ -818,87 +833,220 @@ public class InfoNew {
   public void setTianBiaoShiJian(String tianBiaoShiJian) {
     this.tianBiaoShiJian = tianBiaoShiJian;
   }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    InfoNew infoNew = (InfoNew) o;
-    return id == infoNew.id &&
-        Objects.equals(basePhotoUrl, infoNew.basePhotoUrl) &&
-        Objects.equals(baseName, infoNew.baseName) &&
-        Objects.equals(baseSex, infoNew.baseSex) &&
-        Objects.equals(workKaiShiGongZuo, infoNew.workKaiShiGongZuo) &&
-        Objects.equals(baseJiGuan, infoNew.baseJiGuan) &&
-        Objects.equals(baseShengRi, infoNew.baseShengRi) &&
-        Objects.equals(workDaoXiaoShiJian, infoNew.workDaoXiaoShiJian) &&
-        Objects.equals(baseShenFenZheng, infoNew.baseShenFenZheng) &&
-        Objects.equals(baseMinZu, infoNew.baseMinZu) &&
-        Objects.equals(baseXueLi, infoNew.baseXueLi) &&
-        Objects.equals(baseXueWei, infoNew.baseXueWei) &&
-        Objects.equals(workBianZhiLeiXing, infoNew.workBianZhiLeiXing) &&
-        Objects.equals(workZhiWu, infoNew.workZhiWu) &&
-        Objects.equals(workZhiWuJiBie, infoNew.workZhiWuJiBie) &&
-        Objects.equals(workZhiCheng, infoNew.workZhiCheng) &&
-        Objects.equals(workZhiChengJiBie, infoNew.workZhiChengJiBie) &&
-        Objects.equals(workTiQianTuiXiu, infoNew.workTiQianTuiXiu) &&
-        Objects.equals(workZhengShiTuiXiu, infoNew.workZhengShiTuiXiu) &&
-        Objects.equals(workTuiXiuBuMen, infoNew.workTuiXiuBuMen) &&
-        Objects.equals(baseZhengZhiMianMao, infoNew.baseZhengZhiMianMao) &&
-        Objects.equals(workZhuanYeHeGongZhong, infoNew.workZhuanYeHeGongZhong) &&
-        Objects.equals(nowSuoShuZhiBu, infoNew.nowSuoShuZhiBu) &&
-        Objects.equals(hisJiaRuZuZhi, infoNew.hisJiaRuZuZhi) &&
-        Objects.equals(hisZhengFuJinTie, infoNew.hisZhengFuJinTie) &&
-        Objects.equals(hisZhengFuJinTieDengJi, infoNew.hisZhengFuJinTieDengJi) &&
-        Objects.equals(hisFuZhuanTuiJunRen, infoNew.hisFuZhuanTuiJunRen) &&
-        Objects.equals(hisShangCan, infoNew.hisShangCan) &&
 
-        Objects.equals(hisLiZhanGong, infoNew.hisLiZhanGong) &&
-//        Objects.equals(hisLaZhanGongDengJi, infoNew.hisLaZhanGongDengJi) &&
-        Objects.equals(baseDuShengZiNv, infoNew.baseDuShengZiNv) &&
-        Objects.equals(hisLaoMo, infoNew.hisLaoMo) &&
-//        Objects.equals(hisLaoMoDengJi, infoNew.hisLaoMoDengJi) &&
-        Objects.equals(nowGongZiHao, infoNew.nowGongZiHao) &&
-        Objects.equals(nowYiKaTong, infoNew.nowYiKaTong) &&
-        Objects.equals(nowManXingJiBing, infoNew.nowManXingJiBing) &&
-        Objects.equals(nowJianKangZhuangKuang, infoNew.nowJianKangZhuangKuang) &&
-        Objects.equals(connXianHuKouDiZhi, infoNew.connXianHuKouDiZhi) &&
-        Objects.equals(connYuZiNvShengHuo, infoNew.connYuZiNvShengHuo) &&
-        Objects.equals(connYuShuiShengHuo, infoNew.connYuShuiShengHuo) &&
-        Objects.equals(connXianJuZhuDiZhi, infoNew.connXianJuZhuDiZhi) &&
-        Objects.equals(connZhuZhaiDianHua, infoNew.connZhuZhaiDianHua) &&
-        Objects.equals(connShouJiHaoMa, infoNew.connShouJiHaoMa) &&
-        Objects.equals(connLiShiHaoMa, infoNew.connLiShiHaoMa) &&
-        Objects.equals(connEmailOrQq, infoNew.connEmailOrQq) &&
-        Objects.equals(connPeiOuHuoZiNvEmail, infoNew.connPeiOuHuoZiNvEmail) &&
-        Objects.equals(mateHunYinZhuangKuang, infoNew.mateHunYinZhuangKuang) &&
-        Objects.equals(matePeiOuName, infoNew.matePeiOuName) &&
-        Objects.equals(matePeiOuPhone, infoNew.matePeiOuPhone) &&
-        Objects.equals(matePeiOuJianKang, infoNew.matePeiOuJianKang) &&
-        Objects.equals(lianXiRenName, infoNew.lianXiRenName) &&
-        Objects.equals(lianXiRenGuanXi, infoNew.lianXiRenGuanXi) &&
-        Objects.equals(lianXiRenPhone, infoNew.lianXiRenPhone) &&
-        Objects.equals(hisShuangZhiGong, infoNew.hisShuangZhiGong) &&
-        Objects.equals(childrenZiNvName, infoNew.childrenZiNvName) &&
-        Objects.equals(childrenZiNvAddress, infoNew.childrenZiNvAddress) &&
-        Objects.equals(childrenZiNvDanWei, infoNew.childrenZiNvDanWei) &&
-        Objects.equals(childrenZiNvPhone, infoNew.childrenZiNvPhone) &&
-        Objects.equals(nowAiHaoXiangMu, infoNew.nowAiHaoXiangMu) &&
-        Objects.equals(nowJianChiJianShen, infoNew.nowJianChiJianShen) &&
-        Objects.equals(xiaoNeiName, infoNew.xiaoNeiName) &&
-        Objects.equals(xiaoNeiGuanXi, infoNew.xiaoNeiGuanXi) &&
-        Objects.equals(xiaoNeiPhone, infoNew.xiaoNeiPhone) &&
-        Objects.equals(xiaoNeiBuMen, infoNew.xiaoNeiBuMen) &&
-        Objects.equals(xiaoNeiAddress, infoNew.xiaoNeiAddress) &&
-        Objects.equals(nowLaoNianTiXieZu, infoNew.nowLaoNianTiXieZu) &&
-        Objects.equals(nowLiuLanWebsite, infoNew.nowLiuLanWebsite) &&
-        Objects.equals(nowXiaoWaiTuanTiZhiWu, infoNew.nowXiaoWaiTuanTiZhiWu) &&
-        Objects.equals(hisJunShuJunLie, infoNew.hisJunShuJunLie) &&
-        Objects.equals(remark, infoNew.remark) &&
-        Objects.equals(hisUnionGroup, infoNew.hisUnionGroup)&&Objects.equals(tianBiaoShiJian, infoNew.tianBiaoShiJian);
+    InfoNew infoNew = (InfoNew) o;
+
+    if (id != infoNew.id) return false;
+    if (basePhotoUrl != null ? !basePhotoUrl.equals(infoNew.basePhotoUrl) : infoNew.basePhotoUrl != null) return false;
+    if (baseName != null ? !baseName.equals(infoNew.baseName) : infoNew.baseName != null) return false;
+    if (baseSex != null ? !baseSex.equals(infoNew.baseSex) : infoNew.baseSex != null) return false;
+    if (workKaiShiGongZuo != null ? !workKaiShiGongZuo.equals(infoNew.workKaiShiGongZuo) : infoNew.workKaiShiGongZuo != null)
+      return false;
+    if (baseJiGuan != null ? !baseJiGuan.equals(infoNew.baseJiGuan) : infoNew.baseJiGuan != null) return false;
+    if (baseShengRi != null ? !baseShengRi.equals(infoNew.baseShengRi) : infoNew.baseShengRi != null) return false;
+    if (workDaoXiaoShiJian != null ? !workDaoXiaoShiJian.equals(infoNew.workDaoXiaoShiJian) : infoNew.workDaoXiaoShiJian != null)
+      return false;
+    if (baseShenFenZheng != null ? !baseShenFenZheng.equals(infoNew.baseShenFenZheng) : infoNew.baseShenFenZheng != null)
+      return false;
+    if (baseMinZu != null ? !baseMinZu.equals(infoNew.baseMinZu) : infoNew.baseMinZu != null) return false;
+    if (baseXueLi != null ? !baseXueLi.equals(infoNew.baseXueLi) : infoNew.baseXueLi != null) return false;
+    if (baseXueWei != null ? !baseXueWei.equals(infoNew.baseXueWei) : infoNew.baseXueWei != null) return false;
+    if (workBianZhiLeiXing != null ? !workBianZhiLeiXing.equals(infoNew.workBianZhiLeiXing) : infoNew.workBianZhiLeiXing != null)
+      return false;
+    if (workZhiWu != null ? !workZhiWu.equals(infoNew.workZhiWu) : infoNew.workZhiWu != null) return false;
+    if (workZhiWuJiBie != null ? !workZhiWuJiBie.equals(infoNew.workZhiWuJiBie) : infoNew.workZhiWuJiBie != null)
+      return false;
+    if (workZhiCheng != null ? !workZhiCheng.equals(infoNew.workZhiCheng) : infoNew.workZhiCheng != null) return false;
+    if (workZhiChengJiBie != null ? !workZhiChengJiBie.equals(infoNew.workZhiChengJiBie) : infoNew.workZhiChengJiBie != null)
+      return false;
+    if (workTiQianTuiXiu != null ? !workTiQianTuiXiu.equals(infoNew.workTiQianTuiXiu) : infoNew.workTiQianTuiXiu != null)
+      return false;
+    if (workZhengShiTuiXiu != null ? !workZhengShiTuiXiu.equals(infoNew.workZhengShiTuiXiu) : infoNew.workZhengShiTuiXiu != null)
+      return false;
+    if (workTuiXiuBuMen != null ? !workTuiXiuBuMen.equals(infoNew.workTuiXiuBuMen) : infoNew.workTuiXiuBuMen != null)
+      return false;
+    if (baseZhengZhiMianMao != null ? !baseZhengZhiMianMao.equals(infoNew.baseZhengZhiMianMao) : infoNew.baseZhengZhiMianMao != null)
+      return false;
+    if (workZhuanYeHeGongZhong != null ? !workZhuanYeHeGongZhong.equals(infoNew.workZhuanYeHeGongZhong) : infoNew.workZhuanYeHeGongZhong != null)
+      return false;
+    if (nowSuoShuZhiBu != null ? !nowSuoShuZhiBu.equals(infoNew.nowSuoShuZhiBu) : infoNew.nowSuoShuZhiBu != null)
+      return false;
+    if (hisJiaRuZuZhi != null ? !hisJiaRuZuZhi.equals(infoNew.hisJiaRuZuZhi) : infoNew.hisJiaRuZuZhi != null)
+      return false;
+    if (hisZhengFuJinTie != null ? !hisZhengFuJinTie.equals(infoNew.hisZhengFuJinTie) : infoNew.hisZhengFuJinTie != null)
+      return false;
+    if (hisZhengFuJinTieDengJi != null ? !hisZhengFuJinTieDengJi.equals(infoNew.hisZhengFuJinTieDengJi) : infoNew.hisZhengFuJinTieDengJi != null)
+      return false;
+    if (hisFuZhuanTuiJunRen != null ? !hisFuZhuanTuiJunRen.equals(infoNew.hisFuZhuanTuiJunRen) : infoNew.hisFuZhuanTuiJunRen != null)
+      return false;
+    if (hisShangCan != null ? !hisShangCan.equals(infoNew.hisShangCan) : infoNew.hisShangCan != null) return false;
+    if (hisShangCanDengJi != null ? !hisShangCanDengJi.equals(infoNew.hisShangCanDengJi) : infoNew.hisShangCanDengJi != null)
+      return false;
+    if (hisLiZhanGong != null ? !hisLiZhanGong.equals(infoNew.hisLiZhanGong) : infoNew.hisLiZhanGong != null)
+      return false;
+    if (hisLaZhanGongDengJi != null ? !hisLaZhanGongDengJi.equals(infoNew.hisLaZhanGongDengJi) : infoNew.hisLaZhanGongDengJi != null)
+      return false;
+    if (baseDuShengZiNv != null ? !baseDuShengZiNv.equals(infoNew.baseDuShengZiNv) : infoNew.baseDuShengZiNv != null)
+      return false;
+    if (hisLaoMo != null ? !hisLaoMo.equals(infoNew.hisLaoMo) : infoNew.hisLaoMo != null) return false;
+    if (hisLaoMoDengJi != null ? !hisLaoMoDengJi.equals(infoNew.hisLaoMoDengJi) : infoNew.hisLaoMoDengJi != null)
+      return false;
+    if (nowGongZiHao != null ? !nowGongZiHao.equals(infoNew.nowGongZiHao) : infoNew.nowGongZiHao != null) return false;
+    if (nowYiKaTong != null ? !nowYiKaTong.equals(infoNew.nowYiKaTong) : infoNew.nowYiKaTong != null) return false;
+    if (nowManXingJiBing != null ? !nowManXingJiBing.equals(infoNew.nowManXingJiBing) : infoNew.nowManXingJiBing != null)
+      return false;
+    if (nowJianKangZhuangKuang != null ? !nowJianKangZhuangKuang.equals(infoNew.nowJianKangZhuangKuang) : infoNew.nowJianKangZhuangKuang != null)
+      return false;
+    if (connXianHuKouDiZhi != null ? !connXianHuKouDiZhi.equals(infoNew.connXianHuKouDiZhi) : infoNew.connXianHuKouDiZhi != null)
+      return false;
+    if (connYuZiNvShengHuo != null ? !connYuZiNvShengHuo.equals(infoNew.connYuZiNvShengHuo) : infoNew.connYuZiNvShengHuo != null)
+      return false;
+    if (connYuShuiShengHuo != null ? !connYuShuiShengHuo.equals(infoNew.connYuShuiShengHuo) : infoNew.connYuShuiShengHuo != null)
+      return false;
+    if (connXianJuZhuDiZhi != null ? !connXianJuZhuDiZhi.equals(infoNew.connXianJuZhuDiZhi) : infoNew.connXianJuZhuDiZhi != null)
+      return false;
+    if (connZhuZhaiDianHua != null ? !connZhuZhaiDianHua.equals(infoNew.connZhuZhaiDianHua) : infoNew.connZhuZhaiDianHua != null)
+      return false;
+    if (connShouJiHaoMa != null ? !connShouJiHaoMa.equals(infoNew.connShouJiHaoMa) : infoNew.connShouJiHaoMa != null)
+      return false;
+    if (connLiShiHaoMa != null ? !connLiShiHaoMa.equals(infoNew.connLiShiHaoMa) : infoNew.connLiShiHaoMa != null)
+      return false;
+    if (connEmailOrQq != null ? !connEmailOrQq.equals(infoNew.connEmailOrQq) : infoNew.connEmailOrQq != null)
+      return false;
+    if (connPeiOuHuoZiNvEmail != null ? !connPeiOuHuoZiNvEmail.equals(infoNew.connPeiOuHuoZiNvEmail) : infoNew.connPeiOuHuoZiNvEmail != null)
+      return false;
+    if (mateHunYinZhuangKuang != null ? !mateHunYinZhuangKuang.equals(infoNew.mateHunYinZhuangKuang) : infoNew.mateHunYinZhuangKuang != null)
+      return false;
+    if (matePeiOuName != null ? !matePeiOuName.equals(infoNew.matePeiOuName) : infoNew.matePeiOuName != null)
+      return false;
+    if (matePeiOuPhone != null ? !matePeiOuPhone.equals(infoNew.matePeiOuPhone) : infoNew.matePeiOuPhone != null)
+      return false;
+    if (matePeiOuJianKang != null ? !matePeiOuJianKang.equals(infoNew.matePeiOuJianKang) : infoNew.matePeiOuJianKang != null)
+      return false;
+    if (lianXiRenName != null ? !lianXiRenName.equals(infoNew.lianXiRenName) : infoNew.lianXiRenName != null)
+      return false;
+    if (lianXiRenGuanXi != null ? !lianXiRenGuanXi.equals(infoNew.lianXiRenGuanXi) : infoNew.lianXiRenGuanXi != null)
+      return false;
+    if (lianXiRenPhone != null ? !lianXiRenPhone.equals(infoNew.lianXiRenPhone) : infoNew.lianXiRenPhone != null)
+      return false;
+    if (hisShuangZhiGong != null ? !hisShuangZhiGong.equals(infoNew.hisShuangZhiGong) : infoNew.hisShuangZhiGong != null)
+      return false;
+    if (childrenZiNvName != null ? !childrenZiNvName.equals(infoNew.childrenZiNvName) : infoNew.childrenZiNvName != null)
+      return false;
+    if (childrenZiNvAddress != null ? !childrenZiNvAddress.equals(infoNew.childrenZiNvAddress) : infoNew.childrenZiNvAddress != null)
+      return false;
+    if (childrenZiNvDanWei != null ? !childrenZiNvDanWei.equals(infoNew.childrenZiNvDanWei) : infoNew.childrenZiNvDanWei != null)
+      return false;
+    if (childrenZiNvPhone != null ? !childrenZiNvPhone.equals(infoNew.childrenZiNvPhone) : infoNew.childrenZiNvPhone != null)
+      return false;
+    if (nowAiHaoXiangMu != null ? !nowAiHaoXiangMu.equals(infoNew.nowAiHaoXiangMu) : infoNew.nowAiHaoXiangMu != null)
+      return false;
+    if (nowJianChiJianShen != null ? !nowJianChiJianShen.equals(infoNew.nowJianChiJianShen) : infoNew.nowJianChiJianShen != null)
+      return false;
+    if (xiaoNeiName != null ? !xiaoNeiName.equals(infoNew.xiaoNeiName) : infoNew.xiaoNeiName != null) return false;
+    if (xiaoNeiGuanXi != null ? !xiaoNeiGuanXi.equals(infoNew.xiaoNeiGuanXi) : infoNew.xiaoNeiGuanXi != null)
+      return false;
+    if (xiaoNeiPhone != null ? !xiaoNeiPhone.equals(infoNew.xiaoNeiPhone) : infoNew.xiaoNeiPhone != null) return false;
+    if (xiaoNeiBuMen != null ? !xiaoNeiBuMen.equals(infoNew.xiaoNeiBuMen) : infoNew.xiaoNeiBuMen != null) return false;
+    if (xiaoNeiAddress != null ? !xiaoNeiAddress.equals(infoNew.xiaoNeiAddress) : infoNew.xiaoNeiAddress != null)
+      return false;
+    if (nowLaoNianTiXieZu != null ? !nowLaoNianTiXieZu.equals(infoNew.nowLaoNianTiXieZu) : infoNew.nowLaoNianTiXieZu != null)
+      return false;
+    if (nowLiuLanWebsite != null ? !nowLiuLanWebsite.equals(infoNew.nowLiuLanWebsite) : infoNew.nowLiuLanWebsite != null)
+      return false;
+    if (nowXiaoWaiTuanTiZhiWu != null ? !nowXiaoWaiTuanTiZhiWu.equals(infoNew.nowXiaoWaiTuanTiZhiWu) : infoNew.nowXiaoWaiTuanTiZhiWu != null)
+      return false;
+    if (hisJunShuJunLie != null ? !hisJunShuJunLie.equals(infoNew.hisJunShuJunLie) : infoNew.hisJunShuJunLie != null)
+      return false;
+    if (remark != null ? !remark.equals(infoNew.remark) : infoNew.remark != null) return false;
+    if (hisUnionGroup != null ? !hisUnionGroup.equals(infoNew.hisUnionGroup) : infoNew.hisUnionGroup != null)
+      return false;
+    if (tianBiaoShiJian != null ? !tianBiaoShiJian.equals(infoNew.tianBiaoShiJian) : infoNew.tianBiaoShiJian != null)
+      return false;
+
+    return true;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, basePhotoUrl, baseName, baseSex, workKaiShiGongZuo, baseJiGuan, baseShengRi, workDaoXiaoShiJian, baseShenFenZheng, baseMinZu, baseXueLi, baseXueWei, workBianZhiLeiXing, workZhiWu, workZhiWuJiBie, workZhiCheng, workZhiChengJiBie, workTiQianTuiXiu, workZhengShiTuiXiu, workTuiXiuBuMen, baseZhengZhiMianMao, workZhuanYeHeGongZhong, nowSuoShuZhiBu, hisJiaRuZuZhi, hisZhengFuJinTie, hisZhengFuJinTieDengJi, hisFuZhuanTuiJunRen, hisShangCan, hisLiZhanGong, baseDuShengZiNv, hisLaoMo, nowGongZiHao, nowYiKaTong, nowManXingJiBing, nowJianKangZhuangKuang, connXianHuKouDiZhi, connYuZiNvShengHuo, connYuShuiShengHuo, connXianJuZhuDiZhi, connZhuZhaiDianHua, connShouJiHaoMa, connLiShiHaoMa, connEmailOrQq, connPeiOuHuoZiNvEmail, mateHunYinZhuangKuang, matePeiOuName, matePeiOuPhone, matePeiOuJianKang, lianXiRenName, lianXiRenGuanXi, lianXiRenPhone, hisShuangZhiGong, childrenZiNvName, childrenZiNvAddress, childrenZiNvDanWei, childrenZiNvPhone, nowAiHaoXiangMu, nowJianChiJianShen, xiaoNeiName, xiaoNeiGuanXi, xiaoNeiPhone, xiaoNeiBuMen, xiaoNeiAddress, nowLaoNianTiXieZu, nowLiuLanWebsite, nowXiaoWaiTuanTiZhiWu, hisJunShuJunLie, remark, hisUnionGroup);
+    int result = id;
+    result = 31 * result + (basePhotoUrl != null ? basePhotoUrl.hashCode() : 0);
+    result = 31 * result + (baseName != null ? baseName.hashCode() : 0);
+    result = 31 * result + (baseSex != null ? baseSex.hashCode() : 0);
+    result = 31 * result + (workKaiShiGongZuo != null ? workKaiShiGongZuo.hashCode() : 0);
+    result = 31 * result + (baseJiGuan != null ? baseJiGuan.hashCode() : 0);
+    result = 31 * result + (baseShengRi != null ? baseShengRi.hashCode() : 0);
+    result = 31 * result + (workDaoXiaoShiJian != null ? workDaoXiaoShiJian.hashCode() : 0);
+    result = 31 * result + (baseShenFenZheng != null ? baseShenFenZheng.hashCode() : 0);
+    result = 31 * result + (baseMinZu != null ? baseMinZu.hashCode() : 0);
+    result = 31 * result + (baseXueLi != null ? baseXueLi.hashCode() : 0);
+    result = 31 * result + (baseXueWei != null ? baseXueWei.hashCode() : 0);
+    result = 31 * result + (workBianZhiLeiXing != null ? workBianZhiLeiXing.hashCode() : 0);
+    result = 31 * result + (workZhiWu != null ? workZhiWu.hashCode() : 0);
+    result = 31 * result + (workZhiWuJiBie != null ? workZhiWuJiBie.hashCode() : 0);
+    result = 31 * result + (workZhiCheng != null ? workZhiCheng.hashCode() : 0);
+    result = 31 * result + (workZhiChengJiBie != null ? workZhiChengJiBie.hashCode() : 0);
+    result = 31 * result + (workTiQianTuiXiu != null ? workTiQianTuiXiu.hashCode() : 0);
+    result = 31 * result + (workZhengShiTuiXiu != null ? workZhengShiTuiXiu.hashCode() : 0);
+    result = 31 * result + (workTuiXiuBuMen != null ? workTuiXiuBuMen.hashCode() : 0);
+    result = 31 * result + (baseZhengZhiMianMao != null ? baseZhengZhiMianMao.hashCode() : 0);
+    result = 31 * result + (workZhuanYeHeGongZhong != null ? workZhuanYeHeGongZhong.hashCode() : 0);
+    result = 31 * result + (nowSuoShuZhiBu != null ? nowSuoShuZhiBu.hashCode() : 0);
+    result = 31 * result + (hisJiaRuZuZhi != null ? hisJiaRuZuZhi.hashCode() : 0);
+    result = 31 * result + (hisZhengFuJinTie != null ? hisZhengFuJinTie.hashCode() : 0);
+    result = 31 * result + (hisZhengFuJinTieDengJi != null ? hisZhengFuJinTieDengJi.hashCode() : 0);
+    result = 31 * result + (hisFuZhuanTuiJunRen != null ? hisFuZhuanTuiJunRen.hashCode() : 0);
+    result = 31 * result + (hisShangCan != null ? hisShangCan.hashCode() : 0);
+    result = 31 * result + (hisShangCanDengJi != null ? hisShangCanDengJi.hashCode() : 0);
+    result = 31 * result + (hisLiZhanGong != null ? hisLiZhanGong.hashCode() : 0);
+    result = 31 * result + (hisLaZhanGongDengJi != null ? hisLaZhanGongDengJi.hashCode() : 0);
+    result = 31 * result + (baseDuShengZiNv != null ? baseDuShengZiNv.hashCode() : 0);
+    result = 31 * result + (hisLaoMo != null ? hisLaoMo.hashCode() : 0);
+    result = 31 * result + (hisLaoMoDengJi != null ? hisLaoMoDengJi.hashCode() : 0);
+    result = 31 * result + (nowGongZiHao != null ? nowGongZiHao.hashCode() : 0);
+    result = 31 * result + (nowYiKaTong != null ? nowYiKaTong.hashCode() : 0);
+    result = 31 * result + (nowManXingJiBing != null ? nowManXingJiBing.hashCode() : 0);
+    result = 31 * result + (nowJianKangZhuangKuang != null ? nowJianKangZhuangKuang.hashCode() : 0);
+    result = 31 * result + (connXianHuKouDiZhi != null ? connXianHuKouDiZhi.hashCode() : 0);
+    result = 31 * result + (connYuZiNvShengHuo != null ? connYuZiNvShengHuo.hashCode() : 0);
+    result = 31 * result + (connYuShuiShengHuo != null ? connYuShuiShengHuo.hashCode() : 0);
+    result = 31 * result + (connXianJuZhuDiZhi != null ? connXianJuZhuDiZhi.hashCode() : 0);
+    result = 31 * result + (connZhuZhaiDianHua != null ? connZhuZhaiDianHua.hashCode() : 0);
+    result = 31 * result + (connShouJiHaoMa != null ? connShouJiHaoMa.hashCode() : 0);
+    result = 31 * result + (connLiShiHaoMa != null ? connLiShiHaoMa.hashCode() : 0);
+    result = 31 * result + (connEmailOrQq != null ? connEmailOrQq.hashCode() : 0);
+    result = 31 * result + (connPeiOuHuoZiNvEmail != null ? connPeiOuHuoZiNvEmail.hashCode() : 0);
+    result = 31 * result + (mateHunYinZhuangKuang != null ? mateHunYinZhuangKuang.hashCode() : 0);
+    result = 31 * result + (matePeiOuName != null ? matePeiOuName.hashCode() : 0);
+    result = 31 * result + (matePeiOuPhone != null ? matePeiOuPhone.hashCode() : 0);
+    result = 31 * result + (matePeiOuJianKang != null ? matePeiOuJianKang.hashCode() : 0);
+    result = 31 * result + (lianXiRenName != null ? lianXiRenName.hashCode() : 0);
+    result = 31 * result + (lianXiRenGuanXi != null ? lianXiRenGuanXi.hashCode() : 0);
+    result = 31 * result + (lianXiRenPhone != null ? lianXiRenPhone.hashCode() : 0);
+    result = 31 * result + (hisShuangZhiGong != null ? hisShuangZhiGong.hashCode() : 0);
+    result = 31 * result + (childrenZiNvName != null ? childrenZiNvName.hashCode() : 0);
+    result = 31 * result + (childrenZiNvAddress != null ? childrenZiNvAddress.hashCode() : 0);
+    result = 31 * result + (childrenZiNvDanWei != null ? childrenZiNvDanWei.hashCode() : 0);
+    result = 31 * result + (childrenZiNvPhone != null ? childrenZiNvPhone.hashCode() : 0);
+    result = 31 * result + (nowAiHaoXiangMu != null ? nowAiHaoXiangMu.hashCode() : 0);
+    result = 31 * result + (nowJianChiJianShen != null ? nowJianChiJianShen.hashCode() : 0);
+    result = 31 * result + (xiaoNeiName != null ? xiaoNeiName.hashCode() : 0);
+    result = 31 * result + (xiaoNeiGuanXi != null ? xiaoNeiGuanXi.hashCode() : 0);
+    result = 31 * result + (xiaoNeiPhone != null ? xiaoNeiPhone.hashCode() : 0);
+    result = 31 * result + (xiaoNeiBuMen != null ? xiaoNeiBuMen.hashCode() : 0);
+    result = 31 * result + (xiaoNeiAddress != null ? xiaoNeiAddress.hashCode() : 0);
+    result = 31 * result + (nowLaoNianTiXieZu != null ? nowLaoNianTiXieZu.hashCode() : 0);
+    result = 31 * result + (nowLiuLanWebsite != null ? nowLiuLanWebsite.hashCode() : 0);
+    result = 31 * result + (nowXiaoWaiTuanTiZhiWu != null ? nowXiaoWaiTuanTiZhiWu.hashCode() : 0);
+    result = 31 * result + (hisJunShuJunLie != null ? hisJunShuJunLie.hashCode() : 0);
+    result = 31 * result + (remark != null ? remark.hashCode() : 0);
+    result = 31 * result + (hisUnionGroup != null ? hisUnionGroup.hashCode() : 0);
+    result = 31 * result + (tianBiaoShiJian != null ? tianBiaoShiJian.hashCode() : 0);
+    return result;
   }
 }
