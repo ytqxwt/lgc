@@ -92,6 +92,16 @@ public class InfoNew {
   private String hisUnionGroup;
   private String tianBiaoShiJian;
 
+  public InfoNew(int id, String baseName, String baseSex) {
+    this.id = id;
+    this.baseName = baseName;
+    this.baseSex = baseSex;
+  }
+  public InfoNew() {
+
+  }
+
+
   @Id
   @Column(name = "id", nullable = false)
   public int getId() {

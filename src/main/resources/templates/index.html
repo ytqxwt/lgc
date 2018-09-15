@@ -1,194 +1,203 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>江西理工大学离退休人员信息管理系统</title>
-	<link rel="stylesheet" href="layui/css/layui.css">
-	<link rel="stylesheet" href="css/site.css">
-	<link rel="stylesheet" href="css/base_add.css">
-	<link rel="stylesheet" href="css/formSelects-v4.css">
-	<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
-	<link rel="stylesheet" href="css/my_info.css">
-	<link rel="stylesheet" href="css/data_statics.css">
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="layui/layui.js"></script>
-	<script src="js/jQuery.print.min.js"></script>
-	<script src="js/echarts.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>江西理工大学离退休人员信息管理系统</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="css/base_add.css">
+    <link rel="stylesheet" href="css/formSelects-v4.css">
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/my_info.css">
+    <link rel="stylesheet" href="css/photo_manage.css">
+    <link rel="stylesheet" href="css/data_statics.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="layui/layui.js"></script>
+    <script src="js/jQuery.print.min.js"></script>
+    <script src="js/echarts.min.js"></script>
 
 </head>
 
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
-	<div class="layui-header">
-		<div class="layui-logo" style="width: 500px;">
-				<img href="javascript:" id="data_statics" src="img/logo_school2.png" style="width: 151px;margin-top: -7px;margin-left: -98px;margin-right: 5px;"><span style="margin-left: 10px;font-weight: bold;font-size: 22px;letter-spacing: 4px;">离退休人员管理系统</span>
-		</div>
-		<ul class="layui-nav layui-layout-right">
-			<li class="layui-nav-item">
-				<a href="javascript:;">
-					<img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-					用户名
-				</a>
-				<dl class="layui-nav-child">
-					<dd><a href="javascript:" id="my_Info2">我的资料</a></dd>
-				</dl>
-			</li>
-			<li class="layui-nav-item"><a href="">退出</a></li>
-		</ul>
-	</div>
+    <div class="layui-header">
+        <div class="layui-logo" style="width: 500px;">
+            <img href="javascript:" id="data_statics" src="img/logo_school2.png"
+                 style="width: 151px;margin-top: -7px;margin-left: -98px;margin-right: 5px;"><span
+                style="margin-left: 10px;font-weight: bold;font-size: 22px;letter-spacing: 4px;">离退休人员管理系统</span>
+        </div>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    用户名
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:" id="my_Info2">我的资料</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
+        </ul>
+    </div>
 
-	<div class="layui-side layui-bg-black">
-		<div class="layui-side-scroll">
-			<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-			<ul class="layui-nav layui-nav-tree">
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;" id="data_statics2">数据统计</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">信息添加</a>
+                    <dl class="layui-nav-child">
 
-				<li class="layui-nav-item">
-					<a class="" href="javascript:;" id="data_statics2">数据统计</a>
+                        <dd><a href="javascript:" id="base_add">人员添加</a></dd>
+                        <dd><a href="javascript:" id="survivors_add">遗嘱添加</a></dd>
+                        <dd><a href="javascript:" id="case_add">病例添加</a></dd>
+                        <dd><a href="javascript:" id="import_batch">批量导入</a></dd>
 
-				</li>
-				<li class="layui-nav-item">
-					<a class="" href="javascript:;">信息添加</a>
-					<dl class="layui-nav-child">
-						<dd><a href="javascript:" id="base_add">人员添加</a></dd>
-						<dd><a href="javascript:" id="survivors_add">遗嘱添加</a></dd>
-						<dd><a href="javascript:" id="case_add">病例添加</a></dd>
-						<dd><a href="javascript:" id="import_batch">批量导入</a></dd>
-					</dl>
-				</li>
-				<li class="layui-nav-item">
-					<a class="" href="javascript:;">信息管理</a>
-					<dl class="layui-nav-child">
-						<dd><a href="javascript:" id="base_info">人员信息</a></dd>
-						<dd><a href="javascript:" id="survivors_info">遗嘱信息</a></dd>
-						<dd><a href="javascript:" id="case_info">病例信息</a></dd>
-					</dl>
-				</li>
-				<li class="layui-nav-item">
-					<a href="javascript:">用户管理</a>
-					<dl class="layui-nav-child">
-						<dd><a href="javascript:" id="user_manage">修改权限</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">信息管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:" id="base_info">人员信息</a></dd>
+                        <dd><a href="javascript:" id="photo_manage">照片管理</a></dd>
+                        <dd><a href="javascript:" id="survivors_info">遗嘱信息</a></dd>
+                        <dd><a href="javascript:" id="case_info">病例信息</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:">用户管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:" id="user_manage">修改权限</a></dd>
 
-					</dl>
-				</li>
-				<li class="layui-nav-item">
-					<a href="javascript:">设置</a>
-					<dl class="layui-nav-child">
-						<dd><a href="javascript:" id="my_Info">我的资料</a></dd>
-						<dd><a href="javascript:" id="feefback">意见反馈</a></dd>
-					</dl>
-				</li>
-			</ul>
-		</div>
-	</div>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:">设置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:" id="my_Info">我的资料</a></dd>
+                        <dd><a href="javascript:" id="feefback">意见反馈</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-	<div class="layui-body" id="main_content">
+    <div class="layui-body" id="main_content">
 
-		<script type="text/javascript">
+        <script type="text/javascript">
             $(document).ready(function () {
                 $('#main_content').load('pages/data_statics.html');
             });
 
-		</script>
-	</div>
+        </script>
+    </div>
 
-	<div class="layui-footer" align="center">
-		Copyright © .版权所有：江西理工大学—离退休工作处 2009 - 2017 All Rights Reserved.
-		地址：江西省赣州市章贡区红旗大道86号——离退休工作处
-	</div>
+    <div class="layui-footer" align="center">
+        Copyright © .版权所有：江西理工大学—离退休工作处 2009 - 2017 All Rights Reserved.
+        地址：江西省赣州市章贡区红旗大道86号——离退休工作处
+    </div>
 </div>
 
 <script>
-  layui.config({
-    base: '/js/'
-  }).extend({
-    formSelects: 'formSelects-v4'
-  });
-  layui.use('element', function () {
-    var element = layui.element;
-    var $ = layui.$;
+    layui.config({
+        base: '/js/'
+    }).extend({
+        formSelects: 'formSelects-v4'
+    });
+    layui.use('element', function () {
+        var element = layui.element;
+        var $ = layui.$;
 
-    //左侧导航栏路由
-      $('#data_statics2').click(function () {
-          $('.layui-body').load('pages/data_statics.html');
-      });
-      $('#data_statics').click(function () {
-          $('.layui-body').load('pages/data_statics.html');
-      });
-    $('#base_add').click(function () {
-      $('.layui-body').load('pages/info_add/base_add.html');
+        //左侧导航栏路由
+        $('#data_statics2').click(function () {
+            $('.layui-body').load('pages/data_statics.html');
+        });
+        $('#data_statics').click(function () {
+            $('.layui-body').load('pages/data_statics.html');
+        });
+        $('#base_add').click(function () {
+            $('.layui-body').load('pages/info_add/base_add.html');
+        });
+        $('#survivors_add').click(function () {
+            $('.layui-body').load('pages/info_add/survivors_add1.html');
+        });
+        $('#case_add').click(function () {
+            $('.layui-body').load('pages/info_add/case_add.html');
+        });
+        $('#import_batch').click(function () {
+            $('.layui-body').load('pages/info_add/import_batch.html');
+        });
+        $('#user_manage').click(function () {
+            $('.layui-body').load('pages/power_manage/user_manage.html');
+        });
+        $('#base_info').click(function () {
+            $('.layui-body').load('pages/info_manage/base_info.html');
+        });
+        $('#photo_manage').click(function () {
+            $('.layui-body').load('pages/info_manage/photo_manage.html');
+        });
+        $('#survivors_info').click(function () {
+            $('.layui-body').load('pages/info_manage/survivors_info.html');
+        });
+        $('#case_info').click(function () {
+            $('.layui-body').load('pages/info_manage/case_info.html');
+        });
+        $('#feefback').click(function () {
+            $('.layui-body').load('pages/system_setting/feedback.html');
+        });
+        $('#my_Info').click(function () {
+            $('.layui-body').load('pages/power_manage/my_info.html');
+        });
     });
-    $('#survivors_add').click(function () {
-      $('.layui-body').load('pages/info_add/survivors_add1.html');
-    });
-    $('#case_add').click(function () {
-      $('.layui-body').load('pages/info_add/case_add.html');
-    });
-    $('#import_batch').click(function () {
-      $('.layui-body').load('pages/info_add/import_batch.html');
-    });
-    $('#user_manage').click(function () {
-      $('.layui-body').load('pages/power_manage/user_manage.html');
-    });
-    $('#base_info').click(function () {
-      $('.layui-body').load('pages/info_manage/base_info.html');
-    });
-      $('#survivors_info').click(function () {
-          $('.layui-body').load('pages/info_manage/survivors_info.html');
-      });
-      $('#case_info').click(function () {
-          $('.layui-body').load('pages/info_manage/case_info.html');
-      });
-    $('#feefback').click(function () {
-      $('.layui-body').load('pages/system_setting/feedback.html');
-    });
-    $('#my_Info').click(function () {
-      $('.layui-body').load('pages/power_manage/my_info.html');
-    });
-  });
 </script>
 </body>
 <div id="layer_power" class="layui-table-box" style="display: none;">
-	<table cellspacing="1" align="center">
-		<tr>
-			<td>
-				<table style="background-color:white" width="100%">
-					<tr>
-						<td>
-							<fieldset>
-								<legend>可选授权名称</legend>
-								<select name="left_select" multiple="multiple" size="10" id="left_select" style="width : 152px">
+    <table cellspacing="1" align="center">
+        <tr>
+            <td>
+                <table style="background-color:white" width="100%">
+                    <tr>
+                        <td>
+                            <fieldset>
+                                <legend>可选授权名称</legend>
+                                <select name="left_select" multiple="multiple" size="10" id="left_select"
+                                        style="width : 152px">
 
-								</select>
-							</fieldset>
-						</td>
-						<td>
-							<button class="layui-btn" id="btn_left" onclick="left()">
-								<
-							</button>
-							<br>
-							<!--<button class="layui-btn-sm" onclick="left(true)">-->
-							<!--<<-->
-							<!--</button>-->
-							<br>
-							<button class="layui-btn" id="btn_right" onclick="right()">></button>
-							<br>
-							<!--<button class="layui-btn-sm" onclick="right(true)">>></button>-->
-							<!--<br>-->
-						</td>
-						<td>
-							<fieldset>
-								<legend>已选授权名称</legend>
-								<select name="right_select" multiple="multiple" style="width : 152px" size="10" id="right_select">
-								</select>
-							</fieldset>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-	</table>
+                                </select>
+                            </fieldset>
+                        </td>
+                        <td>
+                            <button class="layui-btn" id="btn_left" onclick="left()">
+                                <
+                            </button>
+                            <br>
+                            <!--<button class="layui-btn-sm" onclick="left(true)">-->
+                            <!--<<-->
+                            <!--</button>-->
+                            <br>
+                            <button class="layui-btn" id="btn_right" onclick="right()">></button>
+                            <br>
+                            <!--<button class="layui-btn-sm" onclick="right(true)">>></button>-->
+                            <!--<br>-->
+                        </td>
+                        <td>
+                            <fieldset>
+                                <legend>已选授权名称</legend>
+                                <select name="right_select" multiple="multiple" style="width : 152px" size="10"
+                                        id="right_select">
+                                </select>
+                            </fieldset>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </div>
 
 <!--<div id="layer_power2" class="layui-table-box" style="display: none">-->
