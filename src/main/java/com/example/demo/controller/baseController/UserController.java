@@ -22,7 +22,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping(" ")
+@RequestMapping("/user")
 @ResponseBody
 public class UserController {
   private final UserRepos userRepos;
@@ -35,8 +35,9 @@ public class UserController {
   @RequestMapping(value = "/set", produces = {"application/json"})
   public String set(@RequestParam("name") String name,
                     @RequestParam("password") String password,@RequestParam("phone") String phone,@RequestParam("id") int id) throws Exception {
-    DESUtil.decrypt(password, "12345678");
 
+    System.out.println("进啦");
+    DESUtil.decrypt(password, "12345678");
     String pswdCode=DESUtil.ENCRYPTMethod(password, "12345678");
     System.out.println(pswdCode);
     User user=new User();

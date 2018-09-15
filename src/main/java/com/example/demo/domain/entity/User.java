@@ -1,12 +1,11 @@
 package com.example.demo.domain.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+
+@Table(name = "user", schema = "Retirement_management_system", catalog = "")
 public class User {
   private int id;
   private String name;

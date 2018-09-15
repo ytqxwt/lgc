@@ -42,25 +42,25 @@
             '            <div class="wrap_deep_content">\n' +
             '                <label for="inputEmail3" class="col-sm-2 control-label">姓名:</label>\n' +
             '                <div class="col-sm-10">\n' +
-            '                    <input type="userName" class="form-control" id="inputEmail3">\n' +
+            '                    <input type="text" class="form-control" id="name" name="name">\n' +
             '                </div>\n' +
             '            </div>\n' +
             '            <div class="wrap_deep_content">\n' +
             '                <label for="inputEmail3" class="col-sm-2 control-label">账号:</label>\n' +
             '                <div class="col-sm-10">\n' +
-            '                    <input placeholder="请输入6位账号" id="id" type="text" class="form-control">\n' +
+            '                    <input placeholder="请输入6位账号" name="id" id="id" type="text" class="form-control">\n' +
             '                </div>\n' +
             '            </div>\n' +
             '            <div class="wrap_deep_content">\n' +
             '                <label for="inputEmail3" class="col-sm-2 control-label">电话:</label>\n' +
             '                <div class="col-sm-10">\n' +
-            '                    <input type="phone" class="form-control">\n' +
+            '                    <input id="phone" name="phone" type="phone" class="form-control">\n' +
             '                </div>\n' +
             '            </div>\n' +
             '            <div class="wrap_deep_content">\n' +
             '                <label id="passWord" for="inputPassword3" class="col-sm-2 control-label">密码:</label>\n' +
             '                <div class="col-sm-10">\n' +
-            '                    <input type="password" class="form-control" id="inputPassword3">\n' +
+            '                    <input type="password" class="form-control" id="password" name="password">\n' +
             '                </div>\n' +
             '            </div>\n' +
             '            <div class="wrap_deep_content">\n' +
@@ -187,6 +187,8 @@
     //关于右上角添加管理员的点击事件
     function addUser() {
         console.log("进行到这里");
+        var temp= $('#form_userInfo').serialize();
+        console.log(temp);
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
