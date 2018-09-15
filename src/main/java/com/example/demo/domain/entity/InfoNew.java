@@ -92,7 +92,6 @@ public class InfoNew {
   private String hisUnionGroup;
   private String tianBiaoShiJian;
 
-<<<<<<< HEAD
   public InfoNew(int id, String baseName, String baseSex) {
     this.id = id;
     this.baseName = baseName;
@@ -102,8 +101,7 @@ public class InfoNew {
 
   }
 
-=======
->>>>>>> 818a795db47b8a060f3f2a63b5041f59110f7b24
+
   @Id
   @Column(name = "id", nullable = false)
   public int getId() {

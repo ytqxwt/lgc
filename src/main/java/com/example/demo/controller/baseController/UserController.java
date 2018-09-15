@@ -1,17 +1,28 @@
 package com.example.demo.controller.baseController;
 
+
+
+import com.example.demo.domain.entity.InfoNew;
 import com.example.demo.domain.entity.User;
 import com.example.demo.domain.vo.JsonResult;
 import com.example.demo.repos.UserRepos;
 import com.example.demo.util.DESUtil;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 @Controller
-@RequestMapping("/user")
+@RequestMapping(" ")
 @ResponseBody
 public class UserController {
   private final UserRepos userRepos;
@@ -23,15 +34,26 @@ public class UserController {
 
   @RequestMapping(value = "/set", produces = {"application/json"})
   public String set(@RequestParam("name") String name,
-                    @RequestParam("password") String password) throws Exception {
+                    @RequestParam("password") String password,@RequestParam("phone") String phone,@RequestParam("id") int id) throws Exception {
     DESUtil.decrypt(password, "12345678");
-    System.out.println(DESUtil.ENCRYPTMethod(password, "12345678"));
-    return new JsonResult(1, "").toString();
+
+    String pswdCode=DESUtil.ENCRYPTMethod(password, "12345678");
+    System.out.println(pswdCode);
+    User user=new User();
+    user.setId(id);
+    user.setName(name);
+    user.setPassword(pswdCode);
+    user.setPhone(phone);
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
+    String currentDate=df.format(new Date());// new Date()为获取当前系统时间
+    user.setCreateTime(currentDate);
+    userRepos.save(user);
+    return new JsonResult(1, "true").toString();
   }
 
   @RequestMapping(value = "/login", produces = {"application/json"})
-  public String login(@RequestParam("name") String name,
-                      @RequestParam("password") String password) throws Exception {
+  public String login(@RequestParam("userName") String name,
+                      @RequestParam("passWord") String password) throws Exception {
     User u = userRepos.findByNameEquals(name);
     if (u == null) {
       return new JsonResult(2, "用户不存在").toString();
@@ -44,6 +66,27 @@ public class UserController {
     }
     return new JsonResult(0, "").toString();
   }
+  @RequestMapping(value = "/findAllUser", produces = {"application/json"})
+  public String findAllUser(@RequestParam("page") int page,
+                           @RequestParam("limit") int limit) {
+    System.out.println(page + "," + limit);
+    Page<User> p = userRepos.findAll(new PageRequest(page - 1, limit));
+    List<User> usersList = p.getContent();
+    System.out.println("size:" + usersList.size());
+    JSONArray jsonArray = new JSONArray();
+    for (User user : usersList) {
+      jsonArray.put(new JSONObject(user));
+    }
+    JSONObject jsonObject = new JSONObject();
+    jsonObject.put("code", 0);
+    jsonObject.put("msg", "");
+    jsonObject.put("count", p.getTotalElements());
+    jsonObject.put("data", jsonArray);
+    return jsonObject.toString();
+  }
+
+
+
 }
 
 //

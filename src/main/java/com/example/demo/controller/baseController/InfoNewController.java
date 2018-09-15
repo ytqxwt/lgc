@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-<<<<<<< HEAD
+
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
-=======
->>>>>>> 818a795db47b8a060f3f2a63b5041f59110f7b24
 import java.util.List;
 import java.util.Set;
 
@@ -42,8 +40,7 @@ public class InfoNewController {
     public String set(InfoNew baseInfo) {
         System.out.println(baseInfo.toString());
         infoNewRepos.save(baseInfo);
-
-        return new JsonResult(0, "").toString();
+        return new JsonResult(0, "true").toString();
     }
 
     @RequestMapping(value = "/findByPage", produces = {"application/json"})
