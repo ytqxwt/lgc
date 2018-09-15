@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponents;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URI;
+import java.net.URLEncoder;
 
 @Controller
 @RequestMapping("/file")
@@ -30,16 +33,18 @@ public class FileController {
   }
 
   @RequestMapping("/downloadFile")
-  public void downLoad(HttpServletResponse response, @RequestParam(name = "uri") String uri) {
+  public void downLoad(HttpServletResponse response, @RequestParam(name = "uri") String uri) throws UnsupportedEncodingException {
+    System.out.println(uri);
     File file = new File(uri);
     if (file.exists()) {
       response.setContentType("application/force-download");
-//      response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(uri.substring(uri.lastIndexOf("/") + 1), "utf-8"));
-      response.setHeader("content-disposition", "attachment;filename=" + uri.substring(uri.lastIndexOf("/") + 1));
+      response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(uri.substring(uri.lastIndexOf("/") + 1), "gbk"));
+//      response.setHeader("content-disposition", "attachment;filename=" + uri.substring(uri.lastIndexOf("/") + 1));
       //根据后缀设置返回类型
       String suffix = uri.substring(uri.lastIndexOf('.') + 1);
       switch (suffix) {
         case "jpg":
+        case "JPG":
         case "jpeg":
           response.setContentType("image/jpeg");
           break;
@@ -84,7 +89,7 @@ public class FileController {
         e.printStackTrace();
       }
     } else {
-      response.setStatus(400);
+      response.setStatus(500);
     }
   }
 }
