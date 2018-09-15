@@ -6,10 +6,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class MultipleRegex {
   private String baseName;
   private String baseSex;
-  private String workKaiShiGongZuo;
+  private String workKaiShiGongZuoStart;
+  private String workKaiShiGongZuoEnd;
   private String baseJiGuan;
-  private String baseShengRi;
-  private String workDaoXiaoShiJian;
+  private String baseShengRiStart;
+  private String baseShengRiEnd;
+  private String workDaoXiaoShiJianStart;
+  private String workDaoXiaoShiJianEnd;
   private String baseShenFenZheng;
   private String baseMinZu;
   private String baseXueLi;
@@ -19,13 +22,16 @@ public class MultipleRegex {
   private String workZhiWuJiBie;
   private String workZhiCheng;
   private String workZhiChengJiBie;
-  private String workTiQianTuiXiu;
-  private String workZhengShiTuiXiu;
+  private String workTiQianTuiXiuStart;
+  private String workTiQianTuiXiuEnd;
+  private String workZhengShiTuiXiuStart;
+  private String workZhengShiTuiXiuEnd;
   private String workTuiXiuBuMen;
   private String baseZhengZhiMianMao;
   private String workZhuanYeHeGongZhong;
   private String nowSuoShuZhiBu;
-  private String hisJiaRuZuZhi;
+  private String hisJiaRuZuZhiStart;
+  private String hisJiaRuZuZhiEnd;
   private String hisZhengFuJinTie;
   private String hisZhengFuJinTieDengJi;
   private String hisFuZhuanTuiJunRen;
@@ -75,14 +81,8 @@ public class MultipleRegex {
   private String remark;
   private String hisUnionGroup;
   private String select;
-
-  public String getSelect() {
-    return select;
-  }
-
-  public void setSelect(String select) {
-    this.select = select;
-  }
+  private String tianBiaoShiJianStart;
+  private String tianBiaoShiJianEnd;
 
   @Override
   public String toString() {
@@ -92,6 +92,38 @@ public class MultipleRegex {
       e.printStackTrace();
     }
     return null;
+  }
+
+  public String getTianBiaoShiJianStart() {
+    return tianBiaoShiJianStart;
+  }
+
+  public void setTianBiaoShiJianStart(String tianBiaoShiJianStart) {
+    this.tianBiaoShiJianStart = tianBiaoShiJianStart;
+  }
+
+  public String getTianBiaoShiJianEnd() {
+    return tianBiaoShiJianEnd;
+  }
+
+  public void setTianBiaoShiJianEnd(String tianBiaoShiJianEnd) {
+    this.tianBiaoShiJianEnd = tianBiaoShiJianEnd;
+  }
+
+  public String getWorkZhengShiTuiXiuStart() {
+    return workZhengShiTuiXiuStart;
+  }
+
+  public void setWorkZhengShiTuiXiuStart(String workZhengShiTuiXiuStart) {
+    this.workZhengShiTuiXiuStart = workZhengShiTuiXiuStart;
+  }
+
+  public String getWorkZhengShiTuiXiuEnd() {
+    return workZhengShiTuiXiuEnd;
+  }
+
+  public void setWorkZhengShiTuiXiuEnd(String workZhengShiTuiXiuEnd) {
+    this.workZhengShiTuiXiuEnd = workZhengShiTuiXiuEnd;
   }
 
   public String getBaseName() {
@@ -110,12 +142,20 @@ public class MultipleRegex {
     this.baseSex = baseSex;
   }
 
-  public String getWorkKaiShiGongZuo() {
-    return workKaiShiGongZuo;
+  public String getWorkKaiShiGongZuoStart() {
+    return workKaiShiGongZuoStart;
   }
 
-  public void setWorkKaiShiGongZuo(String workKaiShiGongZuo) {
-    this.workKaiShiGongZuo = workKaiShiGongZuo;
+  public void setWorkKaiShiGongZuoStart(String workKaiShiGongZuoStart) {
+    this.workKaiShiGongZuoStart = workKaiShiGongZuoStart;
+  }
+
+  public String getWorkKaiShiGongZuoEnd() {
+    return workKaiShiGongZuoEnd;
+  }
+
+  public void setWorkKaiShiGongZuoEnd(String workKaiShiGongZuoEnd) {
+    this.workKaiShiGongZuoEnd = workKaiShiGongZuoEnd;
   }
 
   public String getBaseJiGuan() {
@@ -126,20 +166,36 @@ public class MultipleRegex {
     this.baseJiGuan = baseJiGuan;
   }
 
-  public String getBaseShengRi() {
-    return baseShengRi;
+  public String getBaseShengRiStart() {
+    return baseShengRiStart;
   }
 
-  public void setBaseShengRi(String baseShengRi) {
-    this.baseShengRi = baseShengRi;
+  public void setBaseShengRiStart(String baseShengRiStart) {
+    this.baseShengRiStart = baseShengRiStart;
   }
 
-  public String getWorkDaoXiaoShiJian() {
-    return workDaoXiaoShiJian;
+  public String getBaseShengRiEnd() {
+    return baseShengRiEnd;
   }
 
-  public void setWorkDaoXiaoShiJian(String workDaoXiaoShiJian) {
-    this.workDaoXiaoShiJian = workDaoXiaoShiJian;
+  public void setBaseShengRiEnd(String baseShengRiEnd) {
+    this.baseShengRiEnd = baseShengRiEnd;
+  }
+
+  public String getWorkDaoXiaoShiJianStart() {
+    return workDaoXiaoShiJianStart;
+  }
+
+  public void setWorkDaoXiaoShiJianStart(String workDaoXiaoShiJianStart) {
+    this.workDaoXiaoShiJianStart = workDaoXiaoShiJianStart;
+  }
+
+  public String getWorkDaoXiaoShiJianEnd() {
+    return workDaoXiaoShiJianEnd;
+  }
+
+  public void setWorkDaoXiaoShiJianEnd(String workDaoXiaoShiJianEnd) {
+    this.workDaoXiaoShiJianEnd = workDaoXiaoShiJianEnd;
   }
 
   public String getBaseShenFenZheng() {
@@ -214,21 +270,22 @@ public class MultipleRegex {
     this.workZhiChengJiBie = workZhiChengJiBie;
   }
 
-  public String getWorkTiQianTuiXiu() {
-    return workTiQianTuiXiu;
+  public String getWorkTiQianTuiXiuStart() {
+    return workTiQianTuiXiuStart;
   }
 
-  public void setWorkTiQianTuiXiu(String workTiQianTuiXiu) {
-    this.workTiQianTuiXiu = workTiQianTuiXiu;
+  public void setWorkTiQianTuiXiuStart(String workTiQianTuiXiuStart) {
+    this.workTiQianTuiXiuStart = workTiQianTuiXiuStart;
   }
 
-  public String getWorkZhengShiTuiXiu() {
-    return workZhengShiTuiXiu;
+  public String getWorkTiQianTuiXiuEnd() {
+    return workTiQianTuiXiuEnd;
   }
 
-  public void setWorkZhengShiTuiXiu(String workZhengShiTuiXiu) {
-    this.workZhengShiTuiXiu = workZhengShiTuiXiu;
+  public void setWorkTiQianTuiXiuEnd(String workTiQianTuiXiuEnd) {
+    this.workTiQianTuiXiuEnd = workTiQianTuiXiuEnd;
   }
+
 
   public String getWorkTuiXiuBuMen() {
     return workTuiXiuBuMen;
@@ -262,12 +319,20 @@ public class MultipleRegex {
     this.nowSuoShuZhiBu = nowSuoShuZhiBu;
   }
 
-  public String getHisJiaRuZuZhi() {
-    return hisJiaRuZuZhi;
+  public String getHisJiaRuZuZhiStart() {
+    return hisJiaRuZuZhiStart;
   }
 
-  public void setHisJiaRuZuZhi(String hisJiaRuZuZhi) {
-    this.hisJiaRuZuZhi = hisJiaRuZuZhi;
+  public void setHisJiaRuZuZhiStart(String hisJiaRuZuZhiStart) {
+    this.hisJiaRuZuZhiStart = hisJiaRuZuZhiStart;
+  }
+
+  public String getHisJiaRuZuZhiEnd() {
+    return hisJiaRuZuZhiEnd;
+  }
+
+  public void setHisJiaRuZuZhiEnd(String hisJiaRuZuZhiEnd) {
+    this.hisJiaRuZuZhiEnd = hisJiaRuZuZhiEnd;
   }
 
   public String getHisZhengFuJinTie() {
@@ -654,4 +719,11 @@ public class MultipleRegex {
     this.hisUnionGroup = hisUnionGroup;
   }
 
+  public String getSelect() {
+    return select;
+  }
+
+  public void setSelect(String select) {
+    this.select = select;
+  }
 }
