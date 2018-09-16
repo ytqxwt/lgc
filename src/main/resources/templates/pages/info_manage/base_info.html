@@ -20,8 +20,6 @@
 			<div class="layui-col-md12" id="labelItem" style="float: none;">
 				<!--标签库-->
 				<div class="label-item" style="margin-bottom: 20px;">
-					<!--<a href="javascript:;" class="replacelable" style="position: absolute;right:1rem;bottom:.75rem;color: #1994dc"-->
-					<!--onselectstart="return false">换一批</a>-->
 					<li data="baseName"><span>姓名</span></li>
 					<li data="baseSex"><span>性别</span></li>
 					<li data="workKaiShiGongZuo"><span>开始工作时间</span></li>
@@ -112,10 +110,7 @@
 				display: none;
 			}
 		</style>
-
 		<div class="chosen" style="margin-left: 20%;width: 800px;border:1px solid lightgray;">
-
-
 			<div class="layui-form-item" id="baseName" style="padding-top: 10px;">
 				<label class="layui-form-label">姓名</label>
 				<div class="layui-input-inline">
@@ -604,6 +599,10 @@
 	<div style="width:94%;margin:0 auto">
 		<table id="info_table" lay-filter="info_table"></table>
 	</div>
+	<div style="width: 216px; margin: 0;" align="center">
+		<!-- layui 2.2.5 新增 -->
+		<button class="layui-btn layui-btn-fluid" onclick="export2Excel();">导出到Excel</button>
+	</div>
 </div>
 <script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
@@ -611,6 +610,7 @@
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
+    var postData;
   layui.use(['table', 'form', 'layer', 'laydate', 'laypage'], function () {
     var table = layui.table;
     var form = layui.form;
@@ -618,14 +618,14 @@
     var laypage = layui.laypage;
     form.render();
     //监听提交
+
     form.on('submit(formSubmitSearch)', function (data) {
-      console.log(data)
-      var postData = data.field;
+        console.log(data);
+        postData= data.field;
       var info_tableIns = table.render({
         elem: '#info_table',
-        // height: 315,
         method: 'post',
-        where: data.field,
+        where: postData,
         url: '/baseInfo/searchByMultipleRegex',
         page: true,
         cols: [
@@ -1027,7 +1027,199 @@
         // });
       }
     });
-  })
+  });
+  //导出到Excel
+  function  export2Excel(){
+      layui.use(['table', 'form', 'layer', 'laydate', 'laypage','formSelects'], function () {
+          var form3 = layui.form;
+          var formSelects3 = layui.formSelects;
+          form3.render();
+          layer.open({
+              type: 1 //Page层类型
+              , area: ['800px', '600px']
+              , title: '请选择标签作为Excel表表头'
+              , shade: 0.6 //遮罩透明度
+              , maxmin: false //允许全屏最小化
+              , anim: 1 //0-6的动画形式，-1不开启
+              , content: '<form  class="layui-form2"  lay-filter="form_search2" >\n' +
+              '\t\t<div class="wrap">\n' +
+              '\t\t\t<div class="label-selected2">\n' +
+              '\n' +
+              '\t\t\t\t<a href="javascript:;" class="layui-btn layui-btn-sm show-labelitem2"\n' +
+              '\t\t\t\t   style="float: right; margin: 4px; display: block;line-height: 30px;">收起标签库\n' +
+              '\t\t\t\t</a>\n' +
+              '\t\t\t\t<a href="javascript:;" class="layui-btn layui-btn-sm hide-labelitem2"\n' +
+              '\t\t\t\t   style="float: right; margin: 4px; display: none;line-height: 30px;">展开标签库\n' +
+              '\t\t\t\t</a>\n' +
+              '\t\t\t\t<input type="hidden" name="label2">\n' +
+              '\t\t\t</div>\n' +
+              '\t\t\t<div class="layui-col-md12" id="labelItem2" style="float: none;">\n' +
+              '\t\t\t\t<!--标签库-->\n' +
+              '\t\t\t\t<div class="label-item2" style="margin-bottom: 20px;">\n' +
+              '\t\t\t\t\t<li data="baseName"><span>姓名</span></li>\n' +
+              '\t\t\t\t\t<li data="baseSex"><span>性别</span></li>\n' +
+              '\t\t\t\t\t<li data="workKaiShiGongZuo"><span>开始工作时间</span></li>\n' +
+              '\t\t\t\t\t<li data="baseJiGuan"><span>籍贯</span></li>\n' +
+              '\t\t\t\t\t<li data="baseShengRi"><span>出生日期</span></li>\n' +
+              '\t\t\t\t\t<li data="workDaoXiaoShiJian"><span>到校时间</span></li>\n' +
+              '\t\t\t\t\t<li data="baseShenFenZheng"><span>身份证</span></li>\n' +
+              '\t\t\t\t\t<li data="baseMinZu"><span>民族</span></li>\n' +
+              '\t\t\t\t\t<li data="baseXueLi"><span>学历</span></li>\n' +
+              '\t\t\t\t\t<li data="baseXueWei"><span>学位</span></li>\n' +
+              '\t\t\t\t\t<li data="workBianZhiLeiXing"><span>编制类型</span></li>\n' +
+              '\t\t\t\t\t<li data="workZhiWu"><span>退休时职务</span></li>\n' +
+              '\t\t\t\t\t<li data="workZhiWuJiBie"><span>职务级别</span></li>\n' +
+              '\t\t\t\t\t<li data="workZhiCheng"><span>职称</span></li>\n' +
+              '\t\t\t\t\t<li data="workZhiChengJiBie"><span>职称级别</span></li>\n' +
+              '\t\t\t\t\t<li data="workTiQianTuiXiu"><span>提前退休时间</span></li>\n' +
+              '\t\t\t\t\t<li data="workZhengShiTuiXiu"><span>正式退休时间</span></li>\n' +
+              '\t\t\t\t\t<li data="workTuiXiuBuMen"><span>退休时部门</span></li>\n' +
+              '\t\t\t\t\t<li data="baseZhengZhiMianMao"><span>政治面貌</span></li>\n' +
+              '\t\t\t\t\t<li data="workZhuanYeHeGongZhong"><span>专业或工种</span></li>\n' +
+              '\t\t\t\t\t<li data="nowSuoShuZhiBu"><span>现所属支部</span></li>\n' +
+              '\t\t\t\t\t<li data="hisJiaRuZuZhi"><span>加入组织的年月日</span></li>\n' +
+              '\t\t\t\t\t<li data="hisZhengFuJinTie"><span>政府特殊津贴</span></li>\n' +
+              '\t\t\t\t\t<li data="hisZhengFuJinTieDengJi"><span>享受哪级政府特殊津贴</span></li>\n' +
+              '\t\t\t\t\t<li data="hisFuZhuanTuiJunRen"><span>复转退军人</span></li>\n' +
+              '\t\t\t\t\t<li data="hisShangCan"><span>伤残</span></li>\n' +
+              '\t\t\t\t\t<li data="hisShangCanDengJi"><span>伤残等级</span></li>\n' +
+              '\t\t\t\t\t<li data="hisLiZhanGong"><span>立战功</span></li>\n' +
+              '\t\t\t\t\t<li data="hisLaZhanGongDengJi"><span>立功等级</span></li>\n' +
+              '\t\t\t\t\t<li data="baseDuShengZiNv"><span>是否独生子女</span></li>\n' +
+              '\t\t\t\t\t<li data="hisLaoMo"><span>劳模</span></li>\n' +
+              '\t\t\t\t\t<li data="hisLaoMoDengJi"><span>劳模等级</span></li>\n' +
+              '\t\t\t\t\t<li data="nowGongZiHao"><span>工资号</span></li>\n' +
+              '\t\t\t\t\t<li data="nowYiKaTong"><span>一卡通号</span></li>\n' +
+              '\t\t\t\t\t<li data="nowManXingJiBing"><span>慢性疾病</span></li>\n' +
+              '\t\t\t\t\t<li data="nowJianKangZhuangKuang"><span>目前身体健康状况</span></li>\n' +
+              '\t\t\t\t\t<li data="connXianHuKouDiZhi"><span>现户口地址</span></li>\n' +
+              '\t\t\t\t\t<li data="connYuZiNvShengHuo"><span>是否与子女生活</span></li>\n' +
+              '\t\t\t\t\t<li data="connYuShuiShengHuo"><span>和谁共同生活</span></li>\n' +
+              '\t\t\t\t\t<li data="connXianJuZhuDiZhi"><span>现居住地址</span></li>\n' +
+              '\t\t\t\t\t<li data="connZhuZhaiDianHua"><span>住宅电话</span></li>\n' +
+              '\t\t\t\t\t<li data="connShouJiHaoMa"><span>手机号码</span></li>\n' +
+              '\t\t\t\t\t<li data="connLiShiHaoMa"><span>历史号码</span></li>\n' +
+              '\t\t\t\t\t<li data="connEmailOrQq"><span>电子邮箱</span></li>\n' +
+              '\t\t\t\t\t<li data="connPeiOuHuoZiNvEmail"><span>配偶或子女电子邮箱</span></li>\n' +
+              '\t\t\t\t\t<li data="mateHunYinZhuangKuang"><span>婚姻装况</span></li>\n' +
+              '\t\t\t\t\t<li data="matePeiOuName"><span>配偶姓名</span></li>\n' +
+              '\t\t\t\t\t<li data="matePeiOuPhone"><span>配偶电话</span></li>\n' +
+              '\t\t\t\t\t<li data="matePeiOuJianKang"><span>配偶健康</span></li>\n' +
+              '\t\t\t\t\t<li data="lianXiRenName"><span>联系人姓名</span></li>\n' +
+              '\t\t\t\t\t<li data="lianXiRenGuanXi"><span>联系人关系</span></li>\n' +
+              '\t\t\t\t\t<li data="lianXiRenPhone"><span>联系人电话</span></li>\n' +
+              '\t\t\t\t\t<li data="hisShuangZhiGong"><span>是否本校双职工</span></li>\n' +
+              '\t\t\t\t\t<li data="childrenZiNvName"><span>子女姓名</span></li>\n' +
+              '\t\t\t\t\t<li data="childrenZiNvAddress"><span>子女地址</span></li>\n' +
+              '\t\t\t\t\t<li data="childrenZiNvDanWei"><span>子女单位</span></li>\n' +
+              '\t\t\t\t\t<li data="childrenZiNvPhone"><span>子女电话</span></li>\n' +
+              '\t\t\t\t\t<li data="nowAiHaoXiangMu"><span>文、体爱好项目</span></li>\n' +
+              '\t\t\t\t\t<li data="nowJianChiJianShen"><span>现在坚持的体育健身项目</span></li>\n' +
+              '\t\t\t\t\t<li data="xiaoNeiName"><span>校内联系人姓名</span></li>\n' +
+              '\t\t\t\t\t<li data="xiaoNeiGuanXi"><span>联系人关系</span></li>\n' +
+              '\t\t\t\t\t<li data="xiaoNeiPhone"><span>联系人电话</span></li>\n' +
+              '\t\t\t\t\t<li data="xiaoNeiBuMen"><span>校内联系人部门</span></li>\n' +
+              '\t\t\t\t\t<li data="xiaoNeiAddress"><span>联系人地址</span></li>\n' +
+              '\t\t\t\t\t<li data="nowLaoNianTiXieZu"><span>参加老年体协活动小组</span></li>\n' +
+              '\t\t\t\t\t<li data="nowLiuLanWebsite"><span>是否浏览本处网站</span></li>\n' +
+              '\t\t\t\t\t<li data="nowXiaoWaiTuanTiZhiWu"><span>校外团体中担任的职务</span></li>\n' +
+              '\t\t\t\t\t<li data="hisJunShuJunLie"><span>是否军属/烈属</span></li>\n' +
+              '\t\t\t\t\t<li data="remark"><span>备注</span></li>\n' +
+              '\t\t\t\t\t<li data="hisUnionGroup"><span>组别</span></li>\n' +
+              '\t\t\t\t</div>\n' +
+              '\t\t\t</div>\n' +
+              '\t\t</div>\n' +
+			  '<div class="layui-form-item2" style=" margin-top: 210px;" align="center" >\n' +
+              '\t\t\t\t<div class="layui-input-block" align="center" style="margin-left: 0px">\n' +
+              '\t\t\t\t\t<button class="layui-btn"  lay-submit=""   type="button"  lay-filter="export2">确定</button>\n' +
+              '\t\t\t\t\t<button type="reset" class="layui-btn layui-btn-primary">清空</button>\n' +
+              '\t\t\t\t</div>\n' +
+              '\t\t\t</div>'+
+              '\t</form>'
+          });
+
+          $(function () {
+              $(".show-labelitem2").on("click", function () {
+                  $(this).hide();
+                  $(".hide-labelitem2").show();
+                  $("#labelItem2").show();
+              });
+              $(".hide-labelitem2").on("click", function () {
+                  $(this).hide();
+                  $(".show-labelitem2").show();
+                  $("#labelItem2").hide();
+              });
+
+              var val = "";
+              $(".label-item2").on("click", "li", function () {
+                  var id = $(this).attr("data");
+                  var text = $(this).children("span").html();
+                  var labelHTML = "<li data='" + id + "''>x " + text + "</li>";
+                  if ($(this).hasClass("selected")) {
+                      return false;
+                  }
+                  $(".label-selected2").append(labelHTML);
+                  val = '';
+                  for (var i = 0; i < $(".label-selected2").children("li").length; i++) {
+                      val += $(".label-selected2").children("li").eq(i).attr("data") + ',';
+                  }
+                  $("input[name='label2']").val(val);
+                  $(this).addClass("selected");
+
+              });
+
+
+              $(".label-selected2").on("click", "li", function () {
+                  var id = $(this).attr("data");
+                  val = '';
+                  $(this).remove();
+                  for (var i = 0; i < $(".label-selected2").children("li").length; i++) {
+                      val += $(".label-selected2").children("li").eq(i).attr("data") + ',';
+                  }
+                  $("input[name='label2']").val(val);
+                  $(".label-item2").find("li[data='" + id + "']").removeClass("selected");
+
+
+              });
+          });
+          form3.on('submit(export2)', function (data) {
+              console.log(data);
+              console.log(postData);
+              postData.titles=$("input[name='label2']").val();
+              console.log(postData)
+              $.ajax({
+                  type: "POST",//方法类型
+                  dataType: "json",//预期服务器返回的数据类型
+                  url: "/baseInfo/export2excel",//url
+                  data: postData,
+                  success: function (result) {
+                      console.log(result);//打印服务端返回的数据(调试用)
+                      if (result.code === 200 && result.data.length !== 0) {
+                          console.log("sucess");
+                          headtext.innerHTML = "<br>已查询到" + result.data.length + "条记录";
+                          photo.style.display = "block";
+                          var informationstext = document.getElementById("informations");
+                          informationstext.innerHTML = "" + result.data[0].baseName + "<br>" + result.data[0].baseSex + "<br>" + result.data[0].baseJiGuan + "<br>" + result.data[0].baseShenFenZheng + "<br>" + result.data[0].connShouJiHaoMa;
+                          if (result.data[0].basePhotoUrl != null) {
+                              temptext.innerHTML = "已有照片"
+                              // photo.src=
+                          } else {
+                              temptext = document.getElementById("upload_err");
+                              temptext.innerHTML = "暂无照片"
+                          }
+                      } else {
+                          headtext.innerHTML = "<br>抱歉！未查询到相关记录";
+                      }
+                  },
+                  error: function () {
+                      alert("异常！");
+                  }
+              });
+          })
+	  });
+
+  }
+
 </script>
 <script>
   layui.use(['table', 'form', 'formSelects'], function () {
@@ -1179,4 +1371,76 @@
 	.label-item .selected {
 		color: #ccc;
 	}
+</style>
+<style>
+    .wrap {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .label-selected2 {
+        width: 100%;
+        min-height: 38px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        position: relative;
+    }
+
+    .cell {
+        display: block;
+        width: 90px;
+        height: 28px;
+        line-height: 28px;
+        border: 3px;
+        background: #009688;
+        color: #fff;
+        text-align: center;
+    }
+
+    .label-selected2 li {
+        display: inline-block;
+        height: 27px;
+        line-height: 27px;
+        font-size: .8rem;
+        padding: 0 1rem;
+        border: 1px solid #e6e6e6;
+        border-radius: 2px;
+        cursor: pointer;
+        margin: 4px 2px;
+        color: #666;
+    }
+
+    #labelItem2 {
+        margin-bottom: 10px;
+        /*display: none;*/
+    }
+
+    .label-item2 {
+        border: 1px solid #e6e6e6;
+        padding: 10px;
+        border-radius: 0 2px 2px 0;
+        position: relative;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    .label-item2 li {
+        display: inline-block;
+        height: 27px;
+        line-height: 27px;
+        font-size: .8rem;
+        padding: 0 1rem;
+        border: 1px solid #e6e6e6;
+        border-radius: 2px;
+        cursor: pointer;
+        margin-bottom: 5px;
+        margin-left: 2px;
+        color: #666;
+    }
+
+    .label-item2 .selected {
+        color: #ccc;
+    }
 </style>
