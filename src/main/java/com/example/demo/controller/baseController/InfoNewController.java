@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -150,12 +151,18 @@ public class InfoNewController {
         System.out.println(mr.getSelect());
         String[] params = mr.getSelect().split(",");
         //表格样式初始化
-        FileOutputStream out = new FileOutputStream("h:\\aaa.xls");//要输出的文件名字
+        File desktopDir = FileSystemView.getFileSystemView().getHomeDirectory();
+       String desktopPath = desktopDir.getAbsolutePath();
+        FileOutputStream out = new FileOutputStream(desktopPath+"/离退休管理系统导出数据.xls");//要输出的文件名字
         HSSFWorkbook workBook = new HSSFWorkbook();
         HSSFSheet mySheet = workBook.createSheet();//创建一个工作薄
         workBook.setSheetName(0, "我的工作簿1");//设置名字（以及编码）
         HSSFRow myRow = mySheet.createRow(0);//创建 并设置第一行
         HSSFCellStyle style = workBook.createCellStyle();
+
+
+
+
         style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//对齐方式
         style.setBorderBottom(HSSFCellStyle.BORDER_THIN);//上下左右边框
         style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
@@ -401,11 +408,6 @@ public class InfoNewController {
         }
         //封装数据
         List<InfoNew> infors = infoNewRepos.findAll(new InfoNewRegexSpecification(params, mr));
-//        InfoNew in1 = new InfoNew(1, "谭敏", "女");
-//        InfoNew in2 = new InfoNew(2, "晨曦", "女");
-//        List<InfoNew> infors = new ArrayList<InfoNew>();
-//        infors.add(in1);
-//        infors.add(in2);
         String labels[] = titles.split(",");
         for (int i = 1; i <= infors.size(); i++) {
             myRow = mySheet.createRow(i);
@@ -427,7 +429,7 @@ public class InfoNewController {
         }
         workBook.write(out);//写出文件
         out.close();
-        return "ok";
+        return  new JsonResult(0,"").toString();
     }
 
 
