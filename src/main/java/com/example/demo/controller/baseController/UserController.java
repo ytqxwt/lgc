@@ -1,12 +1,11 @@
 package com.example.demo.controller.baseController;
 
 
-
-import com.example.demo.domain.entity.InfoNew;
 import com.example.demo.domain.entity.User;
 import com.example.demo.domain.vo.JsonResult;
 import com.example.demo.repos.UserRepos;
 import com.example.demo.util.DESUtil;
+import com.example.demo.util.PowerUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,56 +19,60 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
 @ResponseBody
 public class UserController {
   private final UserRepos userRepos;
+  private PowerUtil powerUtil;
 
   @Autowired
-  public UserController(UserRepos userRepos) {
+  public UserController(UserRepos userRepos, PowerUtil powerUtil) {
     this.userRepos = userRepos;
+    this.powerUtil = powerUtil;
   }
 
   @RequestMapping(value = "/set", produces = {"application/json"})
-  public String set(@RequestParam("name") String name,
-                    @RequestParam("password") String password,@RequestParam("phone") String phone,@RequestParam("id") int id) throws Exception {
-
-    System.out.println("进啦");
-    DESUtil.decrypt(password, "12345678");
-    String pswdCode=DESUtil.ENCRYPTMethod(password, "12345678");
-    System.out.println(pswdCode);
-    User user=new User();
-    user.setId(id);
-    user.setName(name);
-    user.setPassword(pswdCode);
-    user.setPhone(phone);
-    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");//设置日期格式
-    String currentDate=df.format(new Date());// new Date()为获取当前系统时间
-    user.setCreateTime(currentDate);
-    userRepos.save(user);
-    return new JsonResult(1, "true").toString();
+  public String set(@RequestParam("id") int id,
+                    @RequestParam("name") String name,
+                    @RequestParam("password") String password,
+                    @RequestParam("phone") String phone,
+                    @RequestParam("token") String token
+  ) {
+    if (powerUtil.checkSuperAdmin(Integer.valueOf(token))) {
+      String pwd = DESUtil.encrypt(password, "12345678");
+      userRepos.save(new User(id, name, pwd, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()),
+          phone, "true", "user", ""));
+      return new JsonResult(0, "true").toString();
+    } else {
+      return new JsonResult(1, "权限不足").toString();
+    }
   }
 
   @RequestMapping(value = "/login", produces = {"application/json"})
-  public String login(@RequestParam("userName") String name,
-                      @RequestParam("passWord") String password) throws Exception {
-    User u = userRepos.findByNameEquals(name);
-    if (u == null) {
+  public String login(@RequestParam("name") String name,
+                      @RequestParam("password") String password
+  ) throws Exception {
+    Optional<User> o = userRepos.findById(Integer.valueOf(name));
+    if (!o.isPresent()) {
       return new JsonResult(2, "用户不存在").toString();
-    }
-    if (u.getAble().equals("否")) {
-      return new JsonResult(3, "用户被禁止").toString();
-    }
-    if (!password.equals(DESUtil.ENCRYPTMethod(u.getPassword(), "12345678"))) {
-      return new JsonResult(1, "密码错误").toString();
+    } else {
+      User u = o.get();
+      if (u.getAble().equals("false")) {
+        return new JsonResult(3, "用户被禁止").toString();
+      }
+      if (!password.equals(DESUtil.decrypt(u.getPassword(), "12345678"))) {
+        return new JsonResult(1, "密码错误").toString();
+      }
     }
     return new JsonResult(0, "").toString();
   }
+
   @RequestMapping(value = "/findAllUser", produces = {"application/json"})
   public String findAllUser(@RequestParam("page") int page,
-                           @RequestParam("limit") int limit) {
+                            @RequestParam("limit") int limit) {
     System.out.println(page + "," + limit);
     Page<User> p = userRepos.findAll(new PageRequest(page - 1, limit));
     List<User> usersList = p.getContent();
@@ -85,7 +88,6 @@ public class UserController {
     jsonObject.put("data", jsonArray);
     return jsonObject.toString();
   }
-
 
 
 }

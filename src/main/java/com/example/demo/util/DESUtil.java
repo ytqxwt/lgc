@@ -8,10 +8,10 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 
 public class DESUtil {
   /**
@@ -53,8 +53,8 @@ public class DESUtil {
    * @param HexString 字符串（16位16进制字符串）
    * @param keyStr    密钥16个1
    */
-  public static String ENCRYPTMethod(String HexString, String keyStr) {
-    String jmstr = "";
+  public static String encrypt(String HexString, String keyStr) {
+    String jmstr;
     try {
       byte[] theKey = null;
       String jqstr = getstrByte(keyStr).substring(0, 8).toUpperCase();
@@ -75,7 +75,7 @@ public class DESUtil {
     return jmstr;
   }
 
-  public static String getstrByte(String str) {
+  private static String getstrByte(String str) {
     if (null == str) {
       throw new IllegalArgumentException(
           "str is null!");
@@ -86,7 +86,7 @@ public class DESUtil {
     return new String(Hex.encodeHex(digest));
   }
 
-  protected static final MessageDigest getMessageDigest() {
+  private static MessageDigest getMessageDigest() {
     String algorithm = "MD5";
     try {
       return MessageDigest.getInstance(algorithm);
@@ -128,7 +128,7 @@ public class DESUtil {
     return jmstr;
   }
 
-  public static String toHexString(byte b[]) {
+  private static String toHexString(byte b[]) {
     StringBuilder hexString = new StringBuilder();
     for (byte aB : b) {
       String plainText = Integer.toHexString(0xff & aB);
@@ -209,12 +209,11 @@ public class DESUtil {
   }
 
   public static void main(String[] args) throws Exception {
-    String key = "27650099-564A-4869-99B3-363F8129C0CD";
-    String value = "张三内部购房百分点办法对你表白";
-    String jiami = value;
+    String key = "12345678";
+    String jiami = "123456";
 
     System.out.println("加密数据:" + jiami);
-    String a = ENCRYPTMethod(jiami, key).toUpperCase();
+    String a = Objects.requireNonNull(encrypt(jiami, key)).toUpperCase();
 
     System.out.println("加密后的数据为:" + a);
     String b = decrypt(a, key);
