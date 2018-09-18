@@ -10,16 +10,18 @@ import java.util.List;
 
 public interface PowerRepos extends JpaRepository<Power, String> {
   @Query(value = "select * from Retirement_management_system.power where id in " +
-      "(select p_id from Retirement_management_system.user_power where u_id =" +
-      "(select id from Retirement_management_system.user where name=?1))", nativeQuery = true)
-  List<Power> findAllByName(String name);
+      "(select p_id from Retirement_management_system.user_power where u_id =?1)", nativeQuery = true)
+  List<Power> findAllByUserId(String uid);
 
   @Query(value = "select * from Retirement_management_system.power where id not in " +
-      "(select p_id from Retirement_management_system.user_power where u_id =" +
-      "(select id from Retirement_management_system.user where name=?1))", nativeQuery = true)
-  List<Power> findOtherByName(String name);
+      "(select p_id from Retirement_management_system.user_power where u_id =?1)", nativeQuery = true)
+  List<Power> findOtherByUserId(String uid);
 
   @Query(value = "select id from Retirement_management_system.power", nativeQuery = true)
   List<Integer> findAllId();
+
+  @Query(value = "select * from Retirement_management_system.power where id in " +
+      "(select p_id from Retirement_management_system.user_power where u_id =?1)", nativeQuery = true)
+  Power findByUserId(String uid);
 
 }

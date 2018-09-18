@@ -16,6 +16,20 @@ public class User {
   private String type;
   private String remark;
 
+  public User() {
+  }
+
+  public User(int id, String name, String password, String createTime, String phone, String able, String type, String remark) {
+    this.id = id;
+    this.name = name;
+    this.password = password;
+    this.createTime = createTime;
+    this.phone = phone;
+    this.able = able;
+    this.type = type;
+    this.remark = remark;
+  }
+
   @Id
   @Column(name = "id", nullable = false)
   public int getId() {
