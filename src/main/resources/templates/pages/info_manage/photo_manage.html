@@ -70,7 +70,6 @@
         var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
         form.render();
         //触发事件
-
         var active = {
             tabChange: function () {
                 //切换到指定Tab项
@@ -81,8 +80,6 @@
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
-
-
         //普通图片上传
         var uploadInst = upload.render({
             elem: '#uploadPhoto',
@@ -120,7 +117,6 @@
             }
         });
     });
-
     function query() {
         $.ajax({
             //几个参数需要注意一下
@@ -131,7 +127,6 @@
             success: function (result) {
                 var headtext = document.getElementById("head");
                 var temptext = document.getElementById("upload_err");
-
                 var photo = document.getElementById("uploadPhoto");
                 console.log(result);//打印服务端返回的数据(调试用)
                 if (result.code === 200 && result.data.length !== 0) {
@@ -141,9 +136,11 @@
                     var informationstext = document.getElementById("informations");
                     informationstext.innerHTML = "" + result.data[0].baseName + "<br>" + result.data[0].baseSex + "<br>" + result.data[0].baseJiGuan + "<br>" + result.data[0].baseShenFenZheng + "<br>" + result.data[0].connShouJiHaoMa;
                     if (result.data[0].basePhotoUrl != null) {
-                        temptext.innerHTML = "已有照片"
-                        // photo.src=
+                        temptext.innerHTML = "已有照片";
+                        photo.src="http://geek-team.xin/lgc/file/downloadFile?uri=/usr/springbootPro/lgc/"+result.data[0].basePhotoUrl;
                     } else {
+                        photo.src="../../img/default_handsome.png";
+
                         temptext = document.getElementById("upload_err");
                         temptext.innerHTML = "暂无照片"
                     }

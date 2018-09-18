@@ -44,7 +44,12 @@ public class InfoNewController {
         infoNewRepos.save(baseInfo);
         return new JsonResult(0, "true").toString();
     }
-
+    @RequestMapping(value = "/del", produces = {"application/json"})
+    public String del(@RequestParam("id")int id) {
+        System.out.println(id);
+        infoNewRepos.deleteById(id);
+        return new JsonResult(0, "true").toString();
+    }
     @RequestMapping(value = "/findByPage", produces = {"application/json"})
     public String findByPage(@RequestParam("page") int page,
                              @RequestParam("limit") int limit) {
@@ -159,10 +164,6 @@ public class InfoNewController {
         workBook.setSheetName(0, "我的工作簿1");//设置名字（以及编码）
         HSSFRow myRow = mySheet.createRow(0);//创建 并设置第一行
         HSSFCellStyle style = workBook.createCellStyle();
-
-
-
-
         style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//对齐方式
         style.setBorderBottom(HSSFCellStyle.BORDER_THIN);//上下左右边框
         style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
