@@ -34,8 +34,8 @@ public class PowerController {
   }
 
   @RequestMapping(value = "/findOwnByUser", produces = {"application/json"})
-  public String findOwnByUser(@RequestParam("name") String name) {
-    List<Power> powerList = powerRepos.findAllByName(name);
+  public String findOwnByUser(@RequestParam("id") String id) {
+    List<Power> powerList = powerRepos.findAllByUserId(id);
     JSONArray jsonArray = new JSONArray();
     for (Power p : powerList) {
       jsonArray.put(new JSONObject(p.toString()));
@@ -44,7 +44,7 @@ public class PowerController {
   }
 
   public List<Integer> findPowerListByUser(String name) {
-    List<Power> powerList = powerRepos.findAllByName(name);
+    List<Power> powerList = powerRepos.findAllByUserId(name);
     List<Integer> list = new ArrayList<>();
     for (Power p : powerList) {
       list.add(p.getId());
@@ -63,8 +63,8 @@ public class PowerController {
   }
 
   @RequestMapping(value = "/findOtherByUser", produces = {"application/json"})
-  public String findOtherByUser(@RequestParam("name") String name) {
-    List<Power> powerList = powerRepos.findOtherByName(name);
+  public String findOtherByUser(@RequestParam("id") String id) {
+    List<Power> powerList = powerRepos.findOtherByUserId(id);
     JSONArray jsonArray = new JSONArray();
     for (Power p : powerList) {
       jsonArray.put(new JSONObject(p.toString()));
