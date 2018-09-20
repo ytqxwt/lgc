@@ -29,6 +29,7 @@ public class FileController {
   @RequestMapping(value = "/upload", produces = {"application/json"}, method = RequestMethod.POST)
   @ResponseBody
   public String fileUpload(@RequestParam("file") MultipartFile file) {
+    System.out.println("图片");
     return fileUtil.uploadPhoto(file);
   }
 
