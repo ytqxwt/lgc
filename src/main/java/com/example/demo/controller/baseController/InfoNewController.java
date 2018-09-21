@@ -111,6 +111,7 @@ public class InfoNewController {
             List<InfoNew> list = new ArrayList<InfoNew>();
             while (rs1.next()) {
                 InfoNew infoNew = new InfoNew();
+                infoNew.setId(Integer.valueOf(rs1.getString("id")));
                 infoNew.setBaseName(rs1.getString("base_name"));
                 infoNew.setBaseSex(rs1.getString("base_sex"));
                 infoNew.setBaseJiGuan(rs1.getString("base_ji_guan"));
@@ -147,7 +148,6 @@ public class InfoNewController {
         }
         return "error";
     }
-
 
     @RequestMapping(value = "/export2excel", produces = {"application/json"})
     public String export2excel(MultipleRegex mr, @RequestParam("titles") String titles) throws IOException {

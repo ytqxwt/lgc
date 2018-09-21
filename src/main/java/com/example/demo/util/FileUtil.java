@@ -18,10 +18,11 @@ public class FileUtil {
     return String.format("%.2f", (double) size / (1024 * 1024)) + "mb";
   }
 
-  public String uploadPhoto(MultipartFile file) {
+  public String uploadPhoto(MultipartFile file,String id) {
     JsonResult result = new JsonResult();
     DateFormat simpleFormatter = new SimpleDateFormat("yyyyMMdd");
     String fileName = file.getOriginalFilename();
+
     if (!file.isEmpty()) {
       File path = new File("/lgc/photo/" + simpleFormatter.format(new Date()) + "/");
       if (!path.exists()) path.mkdirs();
@@ -30,7 +31,9 @@ public class FileUtil {
         out.write(file.getBytes());
         out.flush();
         result.setCode(0);
-        result.setData(path + "/" + fileName);
+        String pathname=path.getPath().replaceAll("\\\\","/");//java的 正则匹配\是四个，其他语言通常是两个
+        System.out.println(pathname);
+        result.setData(pathname+ "/" + fileName);
       } catch (IOException e) {
         e.printStackTrace();
         result.setCode(1);
