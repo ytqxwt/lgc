@@ -24,7 +24,7 @@ public class FileUtil {
     String fileName = file.getOriginalFilename();
 
     if (!file.isEmpty()) {
-      File path = new File("/lgc/photo/" + simpleFormatter.format(new Date()) + "/");
+      File path = new File("/usr/springbootPro/lgc/uploadfile/");
       if (!path.exists()) path.mkdirs();
       try (BufferedOutputStream out = new BufferedOutputStream(
           new FileOutputStream(new File(path, fileName)))) {
