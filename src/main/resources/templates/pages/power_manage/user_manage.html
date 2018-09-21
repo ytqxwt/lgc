@@ -31,8 +31,8 @@
       , url: '/user/findAllUser' //数据接口
       , page: true //开启分页
       , cols: [[ //表头
-        {type: 'checkbox', fixed: 'left'}
-        , {field: 'name', title: '管理员姓名', width: 100, sort: true, fixed: 'left'}
+        // {type: 'checkbox', fixed: 'left'}
+        {field: 'name', title: '管理员姓名', width: 200, sort: true, fixed: 'left'}
         , {field: 'type', title: '账号类型', width: 100},
         {field: 'type', title: '已有权限', width: 200}
         , {field: 'createTime', title: '创建时间', width: 200, sort: true}
@@ -68,9 +68,6 @@
             layer.confirm('确认授权', function (index) {
 
               var selected = [];
-              for (var i = 0; i < $('#right_select')[0].length; i++) {
-                console.log($('#right_select')[0][i].value)
-              }
               for (var j = 0; j < $('#left_select')[0].length; j++) {
                 console.log($('#left_select')[0][j].value);
                 selected.push($('#left_select')[0][j].value);
