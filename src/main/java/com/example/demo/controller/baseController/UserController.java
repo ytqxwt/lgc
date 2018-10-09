@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/user")
@@ -51,23 +53,39 @@ public class UserController {
     }
   }
 
-  @RequestMapping(value = "/login", produces = {"application/json"})
-  public String login(@RequestParam("name") String name,
-                      @RequestParam("password") String password
-  ) throws Exception {
-    Optional<User> o = userRepos.findById(Integer.valueOf(name));
-    if (!o.isPresent()) {
-      return new JsonResult(2, "用户不存在").toString();
+  @RequestMapping(value = "/del", produces = {"application/json"})
+  public String del(@RequestParam("token") String token, @RequestParam("id") Integer id) {
+    if (powerUtil.checkSuperAdmin(Integer.valueOf(token))) {
+      userRepos.deleteById(id);
+      return new JsonResult(0, "true").toString();
     } else {
-      User u = o.get();
+      return new JsonResult(1, "权限不足").toString();
+    }
+
+  }
+
+  @RequestMapping(value = "/login", produces = {"application/json"})
+  public void login(@RequestParam("name") String name,
+                    @RequestParam("password") String password,
+                    HttpServletResponse httpServletResponse,
+                    HttpSession session
+  ) throws Exception {
+    User u = userRepos.findByNameEquals(name);
+    if (u == null) {
+      httpServletResponse.sendRedirect("/login?code=2&msg=user not find");
+      return;
+    } else {
       if (u.getAble().equals("false")) {
-        return new JsonResult(3, "用户被禁止").toString();
-      }
-      if (!password.equals(DESUtil.decrypt(u.getPassword(), "12345678"))) {
-        return new JsonResult(1, "密码错误").toString();
+        httpServletResponse.sendRedirect("/login?code=3&msg=user is unable");
+        return;
+      } else if (!password.equals(DESUtil.decrypt(u.getPassword(), "12345678"))) {
+        httpServletResponse.sendRedirect("/login?code=1&msg=password or username is wrong");
+        return;
       }
     }
-    return new JsonResult(0, "").toString();
+    Integer random = new Random().nextInt();
+    session.setAttribute("random", random);
+    httpServletResponse.sendRedirect("/manage?token=" + name + "&random=" + random);
   }
 
   @RequestMapping(value = "/findAllUser", produces = {"application/json"})

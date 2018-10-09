@@ -1,694 +1,696 @@
 <div align="right">
-    <button style="" class="layui-btn" id="btn_printForm">打印表格</button>
+	<button style="" class="layui-btn" id="btn_printForm">打印表格</button>
 </div>
 <br>
 <form id="form_baseAdd" lay-filter="filter_baseAdd" class="layui-form">
-    <input type="text" name="photoUrl" hidden id="photoUrl">
-    <div class="BiaoTou" align="center"><strong>离退休人员基本信息采集表</strong>
-    </div>
+	<input type="text" name="photoUrl" hidden id="photoUrl">
+	<div class="BiaoTou" align="center"><strong>离退休人员基本信息采集表</strong>
+	</div>
 
-    <div class="erhang" align="right">
-        <div class="erhang_ele1">填表时间：</div>
-        <div class="erhang_ele2">
-            <div id="tianBiaoShiJian">
-                <select lay-ignore id="tianBiaoShiJianYear" name="tianBiaoShiJianYear" data=""></select>年 <select
-                    lay-ignore id="tianBiaoShiJianMonth" name="tianBiaoShiJianMonth" data=""></select>月 <select
-                    lay-ignore
-                    id="tianBiaoShiJianDay"
-                    name="tianBiaoShiJianDay"
-                    data=" "></select>日
-            </div>
-        </div>
-    </div>
-    <div class="SongTX4" align="center">
+	<div class="erhang" align="right">
+		<div class="erhang_ele1">填表时间：</div>
+		<div class="erhang_ele2">
+			<div id="tianBiaoShiJian">
+				<select lay-ignore id="tianBiaoShiJianYear" name="tianBiaoShiJianYear" data=""></select>年 <select
+					lay-ignore id="tianBiaoShiJianMonth" name="tianBiaoShiJianMonth" data=""></select>月 <select
+					lay-ignore
+					id="tianBiaoShiJianDay"
+					name="tianBiaoShiJianDay"
+					data=" "></select>日
+			</div>
+		</div>
+	</div>
+	<div class="SongTX4" align="center">
 
-        <table style="border-collapse:collapse " width="660" cellspacing="0" cellpadding="2" border="1">
-            <tbody>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*姓&nbsp;名</td>
-                <td colspan="2" width="28.8%" height="40">
-                    <input name="baseName" class="select" type="text" style="border: none;width:180px"/></td>
-                <td width="9.54%" height="40">*性别</td>
-                <td width="7.57%" height="40">
+		<table style="border-collapse:collapse " width="660" cellspacing="0" cellpadding="2" border="1">
+			<tbody>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*姓&nbsp;名</td>
+				<td colspan="2" width="28.8%" height="40">
+					<input name="baseName" class="select" type="text" style="border: none;width:180px"/></td>
+				<td width="9.54%" height="40">*性别</td>
+				<td width="7.57%" height="40">
 
-                    <select lay-ignore name="baseSex"
-                            style="border: none;width: 25px;-moz-appearance: none;-webkit-appearance: none">
-                        <option value=""></option>
-                        <option value="男">男</option>
-                        <option value="女">女</option>
-                    </select>
-                </td>
-                <td width="18.48%" height="40">*参加工作时间</td>
-                <td colspan="2" width="11.4%" height="44">
-                    <div class="erhang_ele2">
-                        <div id="canJiaGongZuo">
-                            <select lay-ignore id="canJiaGongZuoYear" name="canJiaGongZuoYear" data=" "></select>年
-                            <select lay-ignore id="canJiaGongZuoMonth" name="canJiaGongZuoMonth" data=" "></select>月
-                            <select lay-ignore id="canJiaGongZuoDay" name="canJiaGongZuoDay" data=" "></select>日
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*籍&nbsp;贯</td>
-                <td width="28.8%" colspan="2" height="40">
-                    <input name="jiGuanSheng" class="erhang_ele2_input" style="width: 40px"
-                           type="text">省
-                    <input name="jiGuanXian" class="erhang_ele2_input" style="width: 50px" type="text">市（县）
-                <td colspan="2" height="40">*身份证号码</td>
-                <td colspan="2" height="40">
-                    <input lay-ignore name="baseShenFenZheng" class="select" type="text"
-                           style="border: none;width: 160px"/>
-                </td>
-            </tr>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*民&nbsp;族</td>
-                <td height="40"><input lay-ignore name="baseMinZu" class="select" type="text"
-                                       style="border: none;width: 100px"/></td>
-                <td height="40" width="14.40%">*学&nbsp;历</td>
-                <td colspan="2" width="16.67%" height="40">
-                    <input lay-ignore name="baseXueLi" class="select" type="text"
-                           style="border: none;width: 100px"/>
-                </td>
-                <td width="18.48%" height="40">*到校时间</td>
-                <td colspan="2" width="11.4%" height="44">
-                    <div class="erhang_ele2">
-                        <div id="daoXiaoShiJian">
-                            <select lay-ignore id="daoXiaoShiJianYear" name="daoXiaoShiJianYear" data=" "></select>年
-                            <select lay-ignore id="daoXiaoShiJianMonth" name="daoXiaoShiJianMonth" data=" "></select>月
-                            <select lay-ignore id="daoXiaoShiJianDay" name="daoXiaoShiJianDay" data=" "></select>日
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*学&nbsp;位</td>
-                <td height="40"><input lay-ignore name="baseXueWei" class="select" type="text"
-                                       style="border: none;width: 100px"/></td>
-                <td height="40" width="14.40%">*职&nbsp;务</td>
-                <td colspan="2" height="40">
-                    <input lay-ignore name="workZhiWu" class="select" type="text"
-                           style="border: none;width: 100px"/>
-                </td>
-                <td width="18.48%" height="40">*职&nbsp;称</td>
-                <td colspan="2" width="11.4%" height="44">
-                    <input lay-ignore name="workZhiCheng" class="select" type="text"
-                           style="border: none;width: 100px"/>
-                </td>
-            </tr>
+					<select lay-ignore name="baseSex"
+					        style="border: none;width: 25px;-moz-appearance: none;-webkit-appearance: none">
+						<option value=""></option>
+						<option value="男">男</option>
+						<option value="女">女</option>
+					</select>
+				</td>
+				<td width="18.48%" height="40">*参加工作时间</td>
+				<td colspan="2" width="11.4%" height="44">
+					<div class="erhang_ele2">
+						<div id="canJiaGongZuo">
+							<select lay-ignore id="canJiaGongZuoYear" name="canJiaGongZuoYear" data=" "></select>年
+							<select lay-ignore id="canJiaGongZuoMonth" name="canJiaGongZuoMonth" data=" "></select>月
+							<select lay-ignore id="canJiaGongZuoDay" name="canJiaGongZuoDay" data=" "></select>日
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*籍&nbsp;贯</td>
+				<td width="28.8%" colspan="2" height="40">
+					<input name="jiGuanSheng" class="erhang_ele2_input" style="width: 40px"
+					       type="text">省
+					<input name="jiGuanXian" class="erhang_ele2_input" style="width: 50px" type="text">市（县）
+				<td colspan="2" height="40">*身份证号码</td>
+				<td colspan="2" height="40">
+					<input lay-ignore name="baseShenFenZheng" class="select" type="text"
+					       style="border: none;width: 160px"/>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*民&nbsp;族</td>
+				<td height="40"><input lay-ignore name="baseMinZu" class="select" type="text"
+				                       style="border: none;width: 100px"/></td>
+				<td height="40" width="14.40%">*学&nbsp;历</td>
+				<td colspan="2" width="16.67%" height="40">
+					<input lay-ignore name="baseXueLi" class="select" type="text"
+					       style="border: none;width: 100px"/>
+				</td>
+				<td width="18.48%" height="40">*到校时间</td>
+				<td colspan="2" width="11.4%" height="44">
+					<div class="erhang_ele2">
+						<div id="daoXiaoShiJian">
+							<select lay-ignore id="daoXiaoShiJianYear" name="daoXiaoShiJianYear" data=" "></select>年
+							<select lay-ignore id="daoXiaoShiJianMonth" name="daoXiaoShiJianMonth" data=" "></select>月
+							<select lay-ignore id="daoXiaoShiJianDay" name="daoXiaoShiJianDay" data=" "></select>日
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*学&nbsp;位</td>
+				<td height="40"><input lay-ignore name="baseXueWei" class="select" type="text"
+				                       style="border: none;width: 100px"/></td>
+				<td height="40" width="14.40%">*职&nbsp;务</td>
+				<td colspan="2" height="40">
+					<input lay-ignore name="workZhiWu" class="select" type="text"
+					       style="border: none;width: 100px"/>
+				</td>
+				<td width="18.48%" height="40">*职&nbsp;称</td>
+				<td colspan="2" width="11.4%" height="44">
+					<input lay-ignore name="workZhiCheng" class="select" type="text"
+					       style="border: none;width: 100px"/>
+				</td>
+			</tr>
 
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*专业或工种</td>
-                <td height="40"><input lay-ignore name="workZhuanYeHeGongZhong" class="select" type="text"
-                                       style="border: none;width: 100px"/></td>
-                <td height="40" width="14.40%">职务级别</td>
-                <td colspan="2" height="40">
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*专业或工种</td>
+				<td height="40"><input lay-ignore name="workZhuanYeHeGongZhong" class="select" type="text"
+				                       style="border: none;width: 100px"/></td>
+				<td height="40" width="14.40%">职务级别</td>
+				<td colspan="2" height="40">
 
-                    <select lay-ignore name="workZhiWuJiBie" class="select" style="border: none;width: 100px">
-                        <option value=""></option>
-                        <option value="正厅">正厅</option>
-                        <option value="副厅">副厅</option>
-                        <option value="正处">正处</option>
-                        <option value="副处">副处</option>
-                        <option value="正科">正科</option>
-                        <option value="科员">科员</option>
-                    </select>
-                </td>
-                <td width="18.48%" height="40">职称级别</td>
-                <td colspan="2" width="11.4%" height="44">
-                    <select lay-ignore name="workZhiChengJiBie" class="select" style="border: none;width: 100px">
-                        <option value=""></option>
-                        <option value="正厅">正高</option>
-                        <option value="副厅">副高</option>
-                        <option value="正处">中级</option>
-                        <option value="副处">初级</option>
-                    </select>
-                </td>
-            </tr>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*退休时部门</td>
-                <td colspan="2" width="14.40%" height="40">
-                    <input name="workTuiXiuBuMen" class="select" type="text" style="border: none;width:160px"/></td>
-                <td width="9.54%" colspan="2" height="40">*退休时间</td>
-                <td colspan="2" height="40">
-                    <div id="tuiXiuShiJian">
-                        <select lay-ignore id="tuiXiuShiJianYear" name="tuiXiuShiJianYear" data=" "></select>年
-                        <select lay-ignore id="tuiXiuShiJianMonth" name="tuiXiuShiJianMonth" data=" "></select>月
-                        <select lay-ignore id="tuiXiuShiJianDay" name="tuiXiuShiJianDay" data=" "></select>日
-                    </div>
-                    退休
-                </td>
-            </tr>
+					<select lay-ignore name="workZhiWuJiBie" class="select" style="border: none;width: 100px">
+						<option value=""></option>
+						<option value="正厅">正厅</option>
+						<option value="副厅">副厅</option>
+						<option value="正处">正处</option>
+						<option value="副处">副处</option>
+						<option value="正科">正科</option>
+						<option value="科员">科员</option>
+					</select>
+				</td>
+				<td width="18.48%" height="40">职称级别</td>
+				<td colspan="2" width="11.4%" height="44">
+					<select lay-ignore name="workZhiChengJiBie" class="select" style="border: none;width: 100px">
+						<option value=""></option>
+						<option value="正厅">正高</option>
+						<option value="副厅">副高</option>
+						<option value="正处">中级</option>
+						<option value="副处">初级</option>
+					</select>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*退休时部门</td>
+				<td colspan="2" width="14.40%" height="40">
+					<input name="workTuiXiuBuMen" class="select" type="text" style="border: none;width:160px"/></td>
+				<td width="9.54%" colspan="2" height="40">*退休时间</td>
+				<td colspan="2" height="40">
+					<div id="tuiXiuShiJian">
+						<select lay-ignore id="tuiXiuShiJianYear" name="tuiXiuShiJianYear" data=" "></select>年
+						<select lay-ignore id="tuiXiuShiJianMonth" name="tuiXiuShiJianMonth" data=" "></select>月
+						<select lay-ignore id="tuiXiuShiJianDay" name="tuiXiuShiJianDay" data=" "></select>日
+					</div>
+					退休
+				</td>
+			</tr>
 
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*政治面貌</td>
-                <td height="40">
-                    <select lay-ignore name="baseZhengZhiMianMao">
-                        <option value=""></option>
-                        <option value="中共党员">中共党员</option>
-                        <option value="群众">群众</option>
-                        <option value="中共预备党员">中共预备党员</option>
-                        <option value="共青团员">共青团员</option>
-                        <option value="民盟盟员">民盟盟员</option>
-                        <option value="民革党员">民革党员</option>
-                        <option value="无党派人士">无党派人士</option>
-                    </select>
-                </td>
-                <td height="40" width="14.40%">*加入组织的年月</td>
-                <td colspan="2" height="40">
-                    <div id="jiaRuZuZhi">
-                        <select lay-ignore id="jiaRuZuZhiYear" name="jiaRuZuZhiYear" data=" "></select>年
-                        <select lay-ignore id="jiaRuZuZhiMonth" name="jiaRuZuZhiMonth" data=" "></select>月
-                    </div>
-                </td>
-                <td width="18.48%" height="40">*现所属支部</td>
-                <td colspan="2" width="11.4%" height="44">
-                    <input lay-ignore name="nowSuoShuZhiBu" class="select" type="text"
-                           style="border: none;width: 110px"/>
-                </td>
-            </tr>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*复转退军人</td>
-                <td height="40">
-                    <div class="table_radio">
-                        <input lay-ignore name="hisFuZhuanTuiJunRen" type="radio" value="是"/>是
-                        <input lay-ignore checked="checked" name="hisFuZhuanTuiJunRen" type="radio" value=""/>否
-                    </div>
-                </td>
-                <td height="40" width="14.40%">*伤残</td>
-                <td colspan="2" height="40">
-                    <div class="table_radio">
-                        <input lay-ignore checked="checked" name="hisShangCan" type="radio" value=""/>否
-                        <input lay-ignore name="hisShangCan" type="radio" value="是"/>是，
-                    </div>
-                    <input lay-ignore name="shangCanDeng" class="erhang_ele2_input" type="text"
-                           style="border: none;width: 18px"/>
-                    等<input lay-ignore name="shangCanJi" class="erhang_ele2_input" type="text"
-                            style="border: none;width: 20px"/>级伤残
-                </td>
-                <td width="18.48%" height="40">*是否荣立战功</td>
-                <td colspan="2" width="11.4%" height="44">
-                    <div class="table_radio">
-                        <input lay-ignore checked="checked" name="hisLiZhanGong" type="radio" value=""/>否
-                        <input lay-ignore name="hisLiZhanGong" type="radio" value="是"/>是，
-                    </div>
-                    战时
-                    <input lay-ignore name="liZhanGongDengJi" class="erhang_ele2_input" type="text"
-                           style="border: none;width: 20px"/>
-                    等功。
-                </td>
-            </tr>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">是否独生子女</td>
-                <td height="40">
-                    <div class="table_radio">
-                        <input lay-ignore name="baseDuShengZiNv" type="radio" value="是"/>是
-                        <input lay-ignore checked="checked" name="baseDuShengZiNv" type="radio" value=""/>否
-                    </div>
-                </td>
-                <td height="40" width="14.40%">*一卡通号</td>
-                <td colspan="2" height="40">
-                    <input lay-ignore name="nowYiKaTong" class="select" type="text"
-                           style="border: none;width:85px"/>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*政治面貌</td>
+				<td height="40">
+					<select lay-ignore name="baseZhengZhiMianMao">
+						<option value=""></option>
+						<option value="中共党员">中共党员</option>
+						<option value="群众">群众</option>
+						<option value="中共预备党员">中共预备党员</option>
+						<option value="共青团员">共青团员</option>
+						<option value="民盟盟员">民盟盟员</option>
+						<option value="民革党员">民革党员</option>
+						<option value="无党派人士">无党派人士</option>
+					</select>
+				</td>
+				<td height="40" width="14.40%">*加入组织的年月</td>
+				<td colspan="2" height="40">
+					<div id="jiaRuZuZhi">
+						<select lay-ignore id="jiaRuZuZhiYear" name="jiaRuZuZhiYear" data=" "></select>年
+						<select lay-ignore id="jiaRuZuZhiMonth" name="jiaRuZuZhiMonth" data=" "></select>月
+					</div>
+				</td>
+				<td width="18.48%" height="40">*现所属支部</td>
+				<td colspan="2" width="11.4%" height="44">
+					<input lay-ignore name="nowSuoShuZhiBu" class="select" type="text"
+					       style="border: none;width: 110px"/>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*复转退军人</td>
+				<td height="40">
+					<div class="table_radio">
+						<input lay-ignore name="hisFuZhuanTuiJunRen" type="radio" value="是"/>是
+						<input lay-ignore checked="checked" name="hisFuZhuanTuiJunRen" type="radio" value=""/>否
+					</div>
+				</td>
+				<td height="40" width="14.40%">*伤残</td>
+				<td colspan="2" height="40">
+					<div class="table_radio">
+						<input lay-ignore checked="checked" name="hisShangCan" type="radio" value=""/>否
+						<input lay-ignore name="hisShangCan" type="radio" value="是"/>是，
+					</div>
+					<input lay-ignore name="shangCanDeng" class="erhang_ele2_input" type="text"
+					       style="border: none;width: 18px"/>
+					等<input lay-ignore name="shangCanJi" class="erhang_ele2_input" type="text"
+					        style="border: none;width: 20px"/>级伤残
+				</td>
+				<td width="18.48%" height="40">*是否荣立战功</td>
+				<td colspan="2" width="11.4%" height="44">
+					<div class="table_radio">
+						<input lay-ignore checked="checked" name="hisLiZhanGong" type="radio" value=""/>否
+						<input lay-ignore name="hisLiZhanGong" type="radio" value="是"/>是，
+					</div>
+					战时
+					<input lay-ignore name="liZhanGongDengJi" class="erhang_ele2_input" type="text"
+					       style="border: none;width: 20px"/>
+					等功。
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">是否独生子女</td>
+				<td height="40">
+					<div class="table_radio">
+						<input lay-ignore name="baseDuShengZiNv" type="radio" value="是"/>是
+						<input lay-ignore checked="checked" name="baseDuShengZiNv" type="radio" value=""/>否
+					</div>
+				</td>
+				<td height="40" width="14.40%">*一卡通号</td>
+				<td colspan="2" height="40">
+					<input lay-ignore name="nowYiKaTong" class="select" type="text"
+					       style="border: none;width:85px"/>
 
-                </td>
-                <td width="18.48%" height="40">*享受哪级政府特殊津贴</td>
-                <td colspan="2" width="11.4%" height="44">
+				</td>
+				<td width="18.48%" height="40">*享受哪级政府特殊津贴</td>
+				<td colspan="2" width="11.4%" height="44">
 
-                    <div class="table_radio">
-                        <input lay-ignore checked="checked" name="haveZhengFuJinTie" type="radio" value=""/>无
-                        <input lay-ignore name="haveZhengFuJinTie" type="radio" value="是"/>有，
-                    </div>
-                    等级：
-                    <input lay-ignore name="ZhengFuJinTie" type="text"
-                           style="border: none;width: 80px"/>
-                </td>
-            </tr>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">何时何级劳模</td>
-                <td height="40" colspan="4">
-                    <div style="width: 300px">
-                        <input lay-ignore checked="checked" name="hisLaoMo" type="radio" value=""/>无
-                        <input lay-ignore name="hisLaoMo" type="radio" value="有"/>有：
-                        <input lay-ignore name="laoMoNian" class="erhang_ele2_input" type="text"
-                               style="border: none;width: 60px"/>
-                        年<input lay-ignore name="laoMoDengJi" class="erhang_ele2_input" type="text"
-                                style="border: none;width: 60px"/>级劳模
-                    </div>
-                </td>
-                <td height="40" width="14.40%">*编制类型</td>
-                <td  height="40" colspan="2" >
-                    <select lay-ignore name="workBianZhiLeiXing">
-                        <option value=""></option>
-                        <option value="干部">干部</option>
-                        <option value="工人">工人</option>
-                    </select>
-                </td>
-            </tr>
+					<div class="table_radio">
+						<input lay-ignore checked="checked" name="haveZhengFuJinTie" type="radio" value=""/>无
+						<input lay-ignore name="haveZhengFuJinTie" type="radio" value="是"/>有，
+					</div>
+					等级：
+					<input lay-ignore name="ZhengFuJinTie" type="text"
+					       style="border: none;width: 80px"/>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">何时何级劳模</td>
+				<td height="40" colspan="4">
+					<div style="width: 300px">
+						<input lay-ignore checked="checked" name="hisLaoMo" type="radio" value=""/>无
+						<input lay-ignore name="hisLaoMo" type="radio" value="有"/>有：
+						<input lay-ignore name="laoMoNian" class="erhang_ele2_input" type="text"
+						       style="border: none;width: 60px"/>
+						年<input lay-ignore name="laoMoDengJi" class="erhang_ele2_input" type="text"
+						        style="border: none;width: 60px"/>级劳模
+					</div>
+				</td>
+				<td height="40" width="14.40%">*编制类型</td>
+				<td height="40" colspan="2">
+					<select lay-ignore name="workBianZhiLeiXing">
+						<option value=""></option>
+						<option value="干部">干部</option>
+						<option value="工人">工人</option>
+					</select>
+				</td>
+			</tr>
 
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">慢性疾病</td>
-                <td height="40" colspan="4">
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">慢性疾病</td>
+				<td height="40" colspan="4">
 
-                    <input lay-ignore checked="checked" name="nowManXingJiBing" type="radio" value=""/>无
-                    <input lay-ignore name="nowManXingJiBing" type="radio" value="有"/>有：
-                    <input lay-ignore name="manXingJiBingMiaoShu" class="select" type="text"
-                           style="border: none;width: 170px;text-align: left;text-align-last: left;"/>
+					<input lay-ignore checked="checked" name="nowManXingJiBing" type="radio" value=""/>无
+					<input lay-ignore name="nowManXingJiBing" type="radio" value="有"/>有：
+					<input lay-ignore name="manXingJiBingMiaoShu" class="select" type="text"
+					       style="border: none;width: 170px;text-align: left;text-align-last: left;"/>
 
-                </td>
-                <td height="40" width="14.40%">*目前身体健康状况</td>
-                <td colspan="2" height="40">
-                    <select lay-ignore name="nowJianKangZhuangKuang">
-                        <option value=""></option>
-                        <option value="健康">健康</option>
-                        <option value="一般">一般</option>
-                        <option value="较差">较差</option>
-                    </select></td>
-            </tr>
+				</td>
+				<td height="40" width="14.40%">*目前身体健康状况</td>
+				<td colspan="2" height="40">
+					<select lay-ignore name="nowJianKangZhuangKuang">
+						<option value=""></option>
+						<option value="健康">健康</option>
+						<option value="一般">一般</option>
+						<option value="较差">较差</option>
+					</select></td>
+			</tr>
 
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*现户口地址</td>
-                <td height="40" colspan="4">
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*现户口地址</td>
+				<td height="40" colspan="4">
                                              <textarea name="connXianHuKouDiZhi" lay-ignore class="select" type="text"
                                                        style="background-color:transparent;padding-top: 13px;resize:none;border: none;width:300px;"></textarea>
-                </td>
-                <td height="40" width="14.40%">*是否与子女共同生活</td>
-                <td colspan="2" height="40">
-                    <input lay-ignore checked="checked" name="connYuZiNvShengHuo" type="radio" value=""/>否
-                    <input lay-ignore name="connYuZiNvShengHuo" type="radio" value="是"/>是：与
-                    <input lay-ignore name="connYuShuiShengHuo" class="erhang_ele2_input" type="text"
-                           style="border: none;width: 75px"/>
-                    共同生活
-            </tr>
+				</td>
+				<td height="40" width="14.40%">*是否与子女共同生活</td>
+				<td colspan="2" height="40">
+					<input lay-ignore checked="checked" name="connYuZiNvShengHuo" type="radio" value=""/>否
+					<input lay-ignore name="connYuZiNvShengHuo" type="radio" value="是"/>是：与
+					<input lay-ignore name="connYuShuiShengHuo" class="erhang_ele2_input" type="text"
+					       style="border: none;width: 75px"/>
+					共同生活
+			</tr>
 
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*现居住地址、通信地址、邮编</td>
-                <td height="40" colspan="6">
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*现居住地址、通信地址、邮编</td>
+				<td height="40" colspan="6">
                                             <textarea name="connXianJuZhuDiZhi" lay-ignore class="select" type="text"
                                                       style="background-color:transparent;padding-top: 13px;resize:none;border: none;width:500px;"></textarea>
-                </td>
-            </tr>
+				</td>
+			</tr>
 
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*住宅电话</td>
-                <td colspan="2" width="14.40%" height="40">
-                    <input name="connZhuZhaiDianHua" class="select" type="text" style="border: none;width:160px"/></td>
-                <td width="9.54%" colspan="2" height="40">*手机号码</td>
-                <td colspan="2" height="40">
-                    <input name="connShouJiHaoMa" class="select" type="text" style="border: none;width:199px"/></td>
-            </tr>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">电子邮箱</td>
-                <td colspan="2" width="14.40%" height="40">
-                    <input name="connEmailOrQq" class="select" type="text" style="border: none;width:199px"/></td>
-                <td width="9.54%" colspan="2" height="40">文、体爱好项目</td>
-                <td colspan="2" height="40">
-                    <input name="nowAiHaoXiangMu" class="select" type="text" style="border: none;width:199px"/></td>
-            </tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*住宅电话</td>
+				<td colspan="2" width="14.40%" height="40">
+					<input name="connZhuZhaiDianHua" class="select" type="text" style="border: none;width:160px"/></td>
+				<td width="9.54%" colspan="2" height="40">*手机号码</td>
+				<td colspan="2" height="40">
+					<input name="connShouJiHaoMa" class="select" type="text" style="border: none;width:199px"/></td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">电子邮箱</td>
+				<td colspan="2" width="14.40%" height="40">
+					<input name="connEmailOrQq" class="select" type="text" style="border: none;width:199px"/></td>
+				<td width="9.54%" colspan="2" height="40">文、体爱好项目</td>
+				<td colspan="2" height="40">
+					<input name="nowAiHaoXiangMu" class="select" type="text" style="border: none;width:199px"/></td>
+			</tr>
 
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*婚姻状况</td>
-                <td colspan="2" width="14.40%" height="40">
-                    <select lay-ignore name="mateHunYinZhuangKuang">
-                        <option value=""></option>
-                        <option value="已婚">已婚</option>
-                        <option value="未婚">未婚</option>
-                        <option value="再婚">再婚</option>
-                        <option value="再婚">丧偶</option>
-                        <option value="再婚">离异</option>
-                    </select></td>
-                <td width="9.54%" colspan="2" height="40">*联系人姓名、关系、电话
-                </td>
-                <td colspan="2" height="40">
-                    联系人姓名：<input lay-ignore name="lianXiRenName" type="text"
-                                 style="border: none;width: 140px"/>
-                    联系人关系：<input lay-ignore name="lianXiRenGuanXi" type="text"
-                                 style="border: none;width: 140px"/>
-                    联系人电话：<input lay-ignore name="lianXiRenPhone" type="text"
-                                 style="border: none;width: 140px"/>
-            </tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*婚姻状况</td>
+				<td colspan="2" width="14.40%" height="40">
+					<select lay-ignore name="mateHunYinZhuangKuang">
+						<option value=""></option>
+						<option value="已婚">已婚</option>
+						<option value="未婚">未婚</option>
+						<option value="再婚">再婚</option>
+						<option value="再婚">丧偶</option>
+						<option value="再婚">离异</option>
+					</select></td>
+				<td width="9.54%" colspan="2" height="40">*联系人姓名、关系、电话
+				</td>
+				<td colspan="2" height="40">
+					联系人姓名：<input lay-ignore name="lianXiRenName" type="text"
+					             style="border: none;width: 140px"/>
+					联系人关系：<input lay-ignore name="lianXiRenGuanXi" type="text"
+					             style="border: none;width: 140px"/>
+					联系人电话：<input lay-ignore name="lianXiRenPhone" type="text"
+					             style="border: none;width: 140px"/>
+			</tr>
 
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">是否本校双职工</td>
-                <td colspan="2" width="14.40%" height="40">
-                    <div align="left" style="margin-left: 8px"><input lay-ignore checked="checked"
-                                                                      name="hisShuangZhiGong" type="radio"
-                                                                      value=""/>否<br></div>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">是否本校双职工</td>
+				<td colspan="2" width="14.40%" height="40">
+					<div align="left" style="margin-left: 8px"><input lay-ignore checked="checked"
+					                                                  name="hisShuangZhiGong" type="radio"
+					                                                  value=""/>否<br></div>
 
-                    <input lay-ignore name="hisShuangZhiGong" type="radio" value="是"/>是：配偶是：
-                    <input lay-ignore name="matePeiOuName" type="text"
-                           style="border: none;width: 60px"/>
+					<input lay-ignore name="hisShuangZhiGong" type="radio" value="是"/>是：配偶是：
+					<input lay-ignore name="matePeiOuName" type="text"
+					       style="border: none;width: 60px"/>
 
-                <td width="9.54%" colspan="2" height="40">*子女姓名、住址、单位、电话
-                </td>
-                <td colspan="2" height="40">
-                    子女姓名：<input lay-ignore name="childrenZiNvName" type="text"
-                                style="border: none;width: 160px"/>
-                    子女住址：<input lay-ignore name="childrenZiNvAddress" type="text"
-                                style="border: none;width: 160px"/>
-                    子女单位：<input lay-ignore name="childrenZiNvDanWei" type="text"
-                                style="border: none;width: 160px"/>
-                    子女电话：<input lay-ignore name="childrenZiNvPhone" type="text"
-                                style="border: none;width: 160px"/>
+				<td width="9.54%" colspan="2" height="40">*子女姓名、住址、单位、电话
+				</td>
+				<td colspan="2" height="40">
+					子女姓名：<input lay-ignore name="childrenZiNvName" type="text"
+					            style="border: none;width: 160px"/>
+					子女住址：<input lay-ignore name="childrenZiNvAddress" type="text"
+					            style="border: none;width: 160px"/>
+					子女单位：<input lay-ignore name="childrenZiNvDanWei" type="text"
+					            style="border: none;width: 160px"/>
+					子女电话：<input lay-ignore name="childrenZiNvPhone" type="text"
+					            style="border: none;width: 160px"/>
 
-            </tr>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">*长住或暂住外地时，校内的联系人姓名、住址、部门、电话</td>
-                <td height="40" colspan="6">
-                    校内联系人姓名：<input lay-ignore name="xiaoNeiName" type="text"
-                                   style="border: none;width: 415px"/>
-                    校内联系人住址：<input lay-ignore name="xiaoNeiAddress" type="text"
-                                   style="border: none;width: 415px"/>
-                    校内联系人部门：<input lay-ignore name="xiaoNeiBuMen" type="text"
-                                   style="border: none;width:415px"/>
-                    校内联系人电话：<input lay-ignore name="xiaoNeiPhone" type="text"
-                                   style="border: none;width: 415px"/>
-                </td>
-            </tr>
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">现在坚持的体育健身项目</td>
-                <td height="40" colspan="2">1、<input lay-ignore name="jianChiJianSheng1" type="text"
-                                                     style="border: none;width: 145px"/>
-                    2、<input lay-ignore name="jianChiJianSheng2" type="text"
-                             style="border: none;width: 145px"/>
-                    3、<input lay-ignore name="jianChiJianSheng3" type="text"
-                             style="border: none;width:145px"/>
-                </td>
-                <td height="40" width="14.40%" colspan="2">参加老年体协活动小组</td>
-                <td colspan="2" height="40">
-                    <input lay-ignore name="nowLaoNianTiXieZu" checked="checked" type="radio" value=""/>无
-                    <input lay-ignore name="nowLaoNianTiXieZu" type="radio" value="是"/>有：
-                    <input lay-ignore name="laoNianHuoDongZu1" type="text"
-                           style="border: none;width: 70px"/>
-                    组、<input lay-ignore name="laoNianHuoDongZu2" type="text"
-                             style="border: none;width: 70px"/>组、
-                    <input lay-ignore name="laoNianHuoDongZu3" type="text"
-                           style="border: none;width: 70px"/>组。
-                </td>
-            </tr>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">*长住或暂住外地时，校内的联系人姓名、住址、部门、电话</td>
+				<td height="40" colspan="6">
+					校内联系人姓名：<input lay-ignore name="xiaoNeiName" type="text"
+					               style="border: none;width: 415px"/>
+					校内联系人住址：<input lay-ignore name="xiaoNeiAddress" type="text"
+					               style="border: none;width: 415px"/>
+					校内联系人部门：<input lay-ignore name="xiaoNeiBuMen" type="text"
+					               style="border: none;width:415px"/>
+					校内联系人电话：<input lay-ignore name="xiaoNeiPhone" type="text"
+					               style="border: none;width: 415px"/>
+				</td>
+			</tr>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">现在坚持的体育健身项目</td>
+				<td height="40" colspan="2">1、<input lay-ignore name="jianChiJianSheng1" type="text"
+				                                     style="border: none;width: 145px"/>
+					2、<input lay-ignore name="jianChiJianSheng2" type="text"
+					         style="border: none;width: 145px"/>
+					3、<input lay-ignore name="jianChiJianSheng3" type="text"
+					         style="border: none;width:145px"/>
+				</td>
+				<td height="40" width="14.40%" colspan="2">参加老年体协活动小组</td>
+				<td colspan="2" height="40">
+					<input lay-ignore name="nowLaoNianTiXieZu" checked="checked" type="radio" value=""/>无
+					<input lay-ignore name="nowLaoNianTiXieZu" type="radio" value="是"/>有：
+					<input lay-ignore name="laoNianHuoDongZu1" type="text"
+					       style="border: none;width: 70px"/>
+					组、<input lay-ignore name="laoNianHuoDongZu2" type="text"
+					         style="border: none;width: 70px"/>组、
+					<input lay-ignore name="laoNianHuoDongZu3" type="text"
+					       style="border: none;width: 70px"/>组。
+				</td>
+			</tr>
 
-            <tr valign="middle" align="center">
-                <td width="17.42%" height="40">是否浏览过离退休处网站</td>
-                <td height="40"><select lay-ignore name="nowLiuLanWebsite">
-                    <option value=""></option>
-                    <option value="没有">没有</option>
-                    <option value="很少">很少</option>
-                    <option value="经常">经常</option>
-                </select></td>
-                <td height="40" width="14.40%">校外社会团体中担任职务</td>
-                <td colspan="2" height="40">
-                    <div class="table_radio">
-                        <input lay-ignore checked="checked" name="nowXiaoWaiTuanTiZhiWu" type="radio" value=""/>无
-                        <input lay-ignore name="nowXiaoWaiTuanTiZhiWu" type="radio" value="有"/>有
-                    </div>
-                    职务：
-                    <input lay-ignore name="xiaoWaiTuanTiZhiWu" type="text"
-                           style="border: none;width: 100px"/>
-                </td>
-                <td width="18.48%" height="40">*是否军属、烈属</td>
-                <td colspan="2" width="11.4%" height="44">
-                    <div class="table_radio">
-                        <input lay-ignore checked="checked" name="hisJunShuJunLie" type="radio" value=""/>无
-                        <input lay-ignore name="hisJunShuJunLie" type="radio" value="是"/>有
-                    </div>
-                    请选择：
-                    <select lay-ignore name="junShuHuoJunLie"
-                            style="border: none;width: 70px;-moz-appearance: none;-webkit-appearance: none">
-                        <option value="">军属/烈属</option>
-                        <option value="军属">军属</option>
-                        <option value="烈属">烈属</option>
-                    </select>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <br>
-        <br>
-        <button class="layui-btn no_print" lay-submit="" lay-filter="formDemo" type="button">完成</button>
-        <button class="layui-btn no_print" type="reset">重置</button>
-    </div>
+			<tr valign="middle" align="center">
+				<td width="17.42%" height="40">是否浏览过离退休处网站</td>
+				<td height="40"><select lay-ignore name="nowLiuLanWebsite">
+					<option value=""></option>
+					<option value="没有">没有</option>
+					<option value="很少">很少</option>
+					<option value="经常">经常</option>
+				</select></td>
+				<td height="40" width="14.40%">校外社会团体中担任职务</td>
+				<td colspan="2" height="40">
+					<div class="table_radio">
+						<input lay-ignore checked="checked" name="nowXiaoWaiTuanTiZhiWu" type="radio" value=""/>无
+						<input lay-ignore name="nowXiaoWaiTuanTiZhiWu" type="radio" value="有"/>有
+					</div>
+					职务：
+					<input lay-ignore name="xiaoWaiTuanTiZhiWu" type="text"
+					       style="border: none;width: 100px"/>
+				</td>
+				<td width="18.48%" height="40">*是否军属、烈属</td>
+				<td colspan="2" width="11.4%" height="44">
+					<div class="table_radio">
+						<input lay-ignore checked="checked" name="hisJunShuJunLie" type="radio" value=""/>无
+						<input lay-ignore name="hisJunShuJunLie" type="radio" value="是"/>有
+					</div>
+					请选择：
+					<select lay-ignore name="junShuHuoJunLie"
+					        style="border: none;width: 70px;-moz-appearance: none;-webkit-appearance: none">
+						<option value="">军属/烈属</option>
+						<option value="军属">军属</option>
+						<option value="烈属">烈属</option>
+					</select>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<br>
+		<br>
+		<button class="layui-btn no_print" lay-submit="" lay-filter="formDemo" type="button">完成</button>
+		<button class="layui-btn no_print" type="reset">重置</button>
+	</div>
 
 </form>
 <script>
-    $(document).ready(function () {
-        var tianBiaoShiJianDate = new Date();
-        var canJiaGongZuoDate = new Date();
-        var daoXiaoShiJianDate = new Date();
-        var tuiXiuShiJianDate = new Date();
-        var jiaRuZuZhiDate = new Date();
-        $("#tianBiaoShiJian").DateSelector({
-            ctlYearId: 'tianBiaoShiJianYear',
-            ctlMonthId: 'tianBiaoShiJianMonth',
-            ctlDayId: 'tianBiaoShiJianDay',
-            defYear: tianBiaoShiJianDate.getFullYear(),
-            defMonth: (tianBiaoShiJianDate.getMonth() + 1),
-            defDay: tianBiaoShiJianDate.getDate(),
-            minYear: 1910,
-            maxYear: (tianBiaoShiJianDate.getFullYear() + 1)
-        });
-        $("#canJiaGongZuo").DateSelector({
-            ctlYearId: 'canJiaGongZuoYear',
-            ctlMonthId: 'canJiaGongZuoMonth',
-            ctlDayId: 'canJiaGongZuoDay',
-            defYear: canJiaGongZuoDate.getFullYear(),
-            defMonth: (canJiaGongZuoDate.getMonth() + 1),
-            defDay: canJiaGongZuoDate.getDate(),
-            minYear: 1910,
-            maxYear: (canJiaGongZuoDate.getFullYear() + 1)
-        });
-        $("#daoXiaoShiJian").DateSelector({
-            ctlYearId: 'daoXiaoShiJianYear',
-            ctlMonthId: 'daoXiaoShiJianMonth',
-            ctlDayId: 'daoXiaoShiJianDay',
-            defYear: daoXiaoShiJianDate.getFullYear(),
-            defMonth: (daoXiaoShiJianDate.getMonth() + 1),
-            defDay: daoXiaoShiJianDate.getDate(),
-            minYear: 1910,
-            maxYear: (daoXiaoShiJianDate.getFullYear() + 1)
-        });
-        $("#tuiXiuShiJian").DateSelector({
-            ctlYearId: 'tuiXiuShiJianYear',
-            ctlMonthId: 'tuiXiuShiJianMonth',
-            ctlDayId: 'tuiXiuShiJianDay',
-            defYear: tuiXiuShiJianDate.getFullYear(),
-            defMonth: (tuiXiuShiJianDate.getMonth() + 1),
-            defDay: tuiXiuShiJianDate.getDate(),
-            minYear: 1910,
-            maxYear: (tuiXiuShiJianDate.getFullYear() + 1)
-        });
-        $("#jiaRuZuZhi").DateSelector({
-            ctlYearId: 'jiaRuZuZhiYear',
-            ctlMonthId: 'jiaRuZuZhiMonth',
-            defYear: jiaRuZuZhiDate.getFullYear(),
-            defMonth: (jiaRuZuZhiDate.getMonth() + 1),
-            minYear: 1910,
-            maxYear: (jiaRuZuZhiDate.getFullYear() + 1)
-        });
+  $(document).ready(function () {
+    var tianBiaoShiJianDate = new Date();
+    var canJiaGongZuoDate = new Date();
+    var daoXiaoShiJianDate = new Date();
+    var tuiXiuShiJianDate = new Date();
+    var jiaRuZuZhiDate = new Date();
+    $("#tianBiaoShiJian").DateSelector({
+      ctlYearId: 'tianBiaoShiJianYear',
+      ctlMonthId: 'tianBiaoShiJianMonth',
+      ctlDayId: 'tianBiaoShiJianDay',
+      defYear: tianBiaoShiJianDate.getFullYear(),
+      defMonth: (tianBiaoShiJianDate.getMonth() + 1),
+      defDay: tianBiaoShiJianDate.getDate(),
+      minYear: 1910,
+      maxYear: (tianBiaoShiJianDate.getFullYear() + 1)
     });
+    $("#canJiaGongZuo").DateSelector({
+      ctlYearId: 'canJiaGongZuoYear',
+      ctlMonthId: 'canJiaGongZuoMonth',
+      ctlDayId: 'canJiaGongZuoDay',
+      defYear: canJiaGongZuoDate.getFullYear(),
+      defMonth: (canJiaGongZuoDate.getMonth() + 1),
+      defDay: canJiaGongZuoDate.getDate(),
+      minYear: 1910,
+      maxYear: (canJiaGongZuoDate.getFullYear() + 1)
+    });
+    $("#daoXiaoShiJian").DateSelector({
+      ctlYearId: 'daoXiaoShiJianYear',
+      ctlMonthId: 'daoXiaoShiJianMonth',
+      ctlDayId: 'daoXiaoShiJianDay',
+      defYear: daoXiaoShiJianDate.getFullYear(),
+      defMonth: (daoXiaoShiJianDate.getMonth() + 1),
+      defDay: daoXiaoShiJianDate.getDate(),
+      minYear: 1910,
+      maxYear: (daoXiaoShiJianDate.getFullYear() + 1)
+    });
+    $("#tuiXiuShiJian").DateSelector({
+      ctlYearId: 'tuiXiuShiJianYear',
+      ctlMonthId: 'tuiXiuShiJianMonth',
+      ctlDayId: 'tuiXiuShiJianDay',
+      defYear: tuiXiuShiJianDate.getFullYear(),
+      defMonth: (tuiXiuShiJianDate.getMonth() + 1),
+      defDay: tuiXiuShiJianDate.getDate(),
+      minYear: 1910,
+      maxYear: (tuiXiuShiJianDate.getFullYear() + 1)
+    });
+    $("#jiaRuZuZhi").DateSelector({
+      ctlYearId: 'jiaRuZuZhiYear',
+      ctlMonthId: 'jiaRuZuZhiMonth',
+      defYear: jiaRuZuZhiDate.getFullYear(),
+      defMonth: (jiaRuZuZhiDate.getMonth() + 1),
+      minYear: 1910,
+      maxYear: (jiaRuZuZhiDate.getFullYear() + 1)
+    });
+  });
 </script>
 <script src="../../js/date.js"></script>
 <script>
-    layui.use(['form', 'upload', 'laydate', 'formSelects'], function () {
-        var element = layui.element;
-        var form = layui.form;
-        var $ = layui.$;
-        var upload = layui.upload;
-        var laydate = layui.laydate;
-        var formSelects = layui.formSelects;
-        form.render();
-        formSelects.render();
-        formSelects.config('xm_nativePlace', {
-            success: function (id, url, val, result) {
-                console.log("success回调: " + url);
-            },
-            error: function (id, url, val, err) {
-                console.log("err回调: " + url);
-            }
-        });
-
-        formSelects.data('xm_nativePlace', 'server', {
-            url: '/city/getCityToNativePlace',
-            linkage: true,
-            linkageWidth: 130
-        });
-
-        //监听提交
-        form.on('submit(formDemo)', function (data) {
-            console.log(data);
-            console.log(JSON.stringify(data.field));
-            // if (data.field.photoUrl == null || data.field.photoUrl === '') {
-            //     layer.msg('请上传照片');
-            //     return false;
-            // }
-            var postData = data.field;
-            // 关于时间的判断
-            if ((parseInt(postData.tianBiaoShiJianMonth)) <= 9) {
-                postData.tianBiaoShiJianMonth = "0" + postData.tianBiaoShiJianMonth
-            }
-            if ((parseInt(postData.tianBiaoShiJianDay)) <= 9) {
-                postData.tianBiaoShiJianDay = "0" + postData.tianBiaoShiJianDay
-            }
-
-            if ((parseInt(postData.canJiaGongZuoMonth)) <= 9) {
-                postData.canJiaGongZuoMonth = "0" + postData.canJiaGongZuoMonth
-            }
-            if ((parseInt(postData.canJiaGongZuoDay)) <= 9) {
-                postData.canJiaGongZuoDay = "0" + postData.canJiaGongZuoDay
-            }
-
-            if ((parseInt(postData.tuiXiuShiJianMonth)) <= 9) {
-                postData.tuiXiuShiJianMonth = "0" + postData.tuiXiuShiJianMonth
-            }
-            if ((parseInt(postData.tuiXiuShiJianZuoDay)) <= 9) {
-                postData.tuiXiuShiJianDay = "0" + postData.tuiXiuShiJianDay
-            }
-
-            if ((parseInt(postData.daoXiaoShiJianMonth)) <= 9) {
-                postData.daoXiaoShiJianMonth = "0" + postData.daoXiaoShiJianMonth
-            }
-            if ((parseInt(postData.tuiXiuShiJianZuoDay)) <= 9) {
-                postData.tuiXiuShiJianDay = "0" + postData.tuiXiuShiJianDay
-            }
-
-            if ((parseInt(postData.jiaRuZuZhiMonth)) <= 9) {
-                postData.jiaRuZuZhiMonth = "0" + postData.jiaRuZuZhiMonth
-            }
-
-            console.log(postData);
-            //生日用身份证算
-            var idCard = postData.baseShenFenZheng
-            console.log(idCard.length);
-            if (idCard.length == 18) {
-                var year = idCard.substring(6, 10);
-                var mouth = idCard.substring(10, 12);
-                var date = idCard.substring(12, 14);
-                postData.baseShengRi = year + "-" + mouth + "-" + date;
-            } else if (idCard.length == 18) {
-                var year = idCard.substring(6, 8);
-                var mouth = idCard.substring(8, 10);
-                var date = idCard.substring(10, 12);
-                postData.idCard = "19" + year + "-" + mouth + "-" + date;
-            }
-            else {
-                layer.msg('身份证格式错误！');
-                return false;
-            }
-            // 关于时间的组合
-            postData.tianBiaoShiJian = postData.tianBiaoShiJianYear + "-" + postData.tianBiaoShiJianMonth + "-" + postData.tianBiaoShiJianDay
-            postData.workKaiShiGongZuo = postData.canJiaGongZuoYear + "-" + postData.canJiaGongZuoMonth;
-            postData.workZhengShiTuiXiu = postData.tuiXiuShiJianYear + "-" + postData.tuiXiuShiJianMonth;
-            postData.workDaoXiaoShiJian = postData.daoXiaoShiJianYear + "-" + postData.daoXiaoShiJianMonth;
-            postData.hisJiaRuZuZhi = postData.jiaRuZuZhiYear + "-" + postData.jiaRuZuZhiMonth;
-            //关于籍贯的组合
-            postData.baseJiGuan = postData.jiGuanSheng + postData.jiGuanXian;
-            //坚持的健身项目1,2,3的组合
-            postData.nowJianChiJianShen = postData.jianChiJianSheng1 + "、" + postData.jianChiJianSheng2 + "、" + postData.jianChiJianSheng3
-            //军属或军烈
-            if (postData.hisJunShuJunLie != "") {
-                postData.hisJunShuJunLie = postData.hisJunShuJunLie + postData.junShuHuoJunLie
-            }
-            //劳模
-            if (postData.hisLaoMo === "有") {
-                postData.hisLaoMo = postData.hisLaoMo + postData.laoMoNian + "年" + postData.laoMoDengJi + "级劳模"
-            }
-            //伤残
-            if (postData.hisShangCan === "是") {
-                postData.hisShangCan = postData.hisShangCan + postData.shangCanDeng + "等" + postData.laoMoDengJi + "级伤残"
-            }
-            //立战功
-            if (postData.hisLiZhanGong === "是") {
-                postData.hisLiZhanGong = postData.hisLiZhanGong + postData.liZhanGongDengJi + "等功"
-            }
-            //政府津贴
-            if (postData.ZhengFuJinTie != "") {
-                postData.hisZhengFuJinTie = postData.haveZhengFuJinTie + postData.ZhengFuJinTie
-            }
-            //慢性病
-            if (postData.manXingJiBingMiaoShu != "") {
-                postData.nowManXingJiBing = postData.nowManXingJiBing + postData.manXingJiBingMiaoShu
-            }
-            //校外
-            if (postData.xiaoWaiTuanTiZhiWu != "") {
-                postData.xiaoWaiTuanTi = postData.xiaoWaiTuanTi + postData.xiaoWaiTuanTiZhiWu
-            }
-            if (postData.nowLaoNianTiXieZu === "是") {
-                postData.nowLaoNianTiXieZu = postData.nowLaoNianTiXieZu + postData.laoNianHuoDongZu1 + " 组、" + postData.laoNianHuoDongZu2 + " 组、" + postData.laoNianHuoDongZu3 + "组";
-            }
-
-            if (postData.nowXiaoWaiTuanTiZhiWu === "有") {
-                postData.nowXiaoWaiTuanTiZhiWu = postData.nowXiaoWaiTuanTiZhiWu + postData.xiaoWaiTuanTiZhiWu;
-            }
-            console.log(postData);
-            $.post('/baseInfo/set', postData, function (res) {
-                console.log(res);
-                if (res.code === 0) {
-                    console.log("添加成功");
-                    layer.alert("添加成功")
-                }
-            });
-            return false;
-        });
-
-
-        //时间选择器
-        laydate.render({
-            elem: '#laydate_start_work_date',
-            type: 'date'
-        });
-        laydate.render({
-            elem: '#laydate_to_school_date',
-            type: 'date'
-        });
-        laydate.render({
-            elem: '#laydate_retire_date',
-            type: 'date'
-        });
-        laydate.render({
-            elem: '#birth',
-            type: 'date'
-        });
-
-
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#uploadPhoto',
-            url: '/file/upload/',
-            field: 'file',
-            before: function (obj) {
-                console.log(obj);
-                //预读本地文件示例，不支持ie8
-                obj.preview(function (index, file, result) {
-                    $('#uploadPhoto').attr('src', result); //图片链接（base64）
-                });
-            },
-            done: function (res) {
-                console.log(res);
-                //如果上传失败
-                if (res.code > 0) {
-                    return layer.msg('上传失败');
-                }
-                $('#upload_err').html('');
-                form.val('filter_baseAdd', {
-                    'photoUrl': res.data
-                });
-                form.render();
-                console.log(res.data);
-                //上传成功
-            },
-            error: function () {
-                //演示失败状态，并实现重传
-                var upload_err = $('#upload_err');
-                upload_err.html(
-                    '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                upload_err.find('.demo-reload').on('click', function () {
-                    uploadInst.upload();
-                });
-            }
-        });
-        $('#btn_printForm').click(function () {
-            $('#form_baseAdd').print({
-                noPrintSelector: '.no_print'
-            })
-        })
+  layui.use(['form', 'upload', 'laydate', 'formSelects'], function () {
+    var element = layui.element;
+    var form = layui.form;
+    var $ = layui.$;
+    var upload = layui.upload;
+    var laydate = layui.laydate;
+    var formSelects = layui.formSelects;
+    form.render();
+    formSelects.render();
+    formSelects.config('xm_nativePlace', {
+      success: function (id, url, val, result) {
+        console.log("success回调: " + url);
+      },
+      error: function (id, url, val, err) {
+        console.log("err回调: " + url);
+      }
     });
+
+    formSelects.data('xm_nativePlace', 'server', {
+      url: '/city/getCityToNativePlace',
+      linkage: true,
+      linkageWidth: 130
+    });
+
+    //监听提交
+    form.on('submit(formDemo)', function (data) {
+      console.log(data);
+      console.log(JSON.stringify(data.field));
+      // if (data.field.photoUrl == null || data.field.photoUrl === '') {
+      //     layer.msg('请上传照片');
+      //     return false;
+      // }
+      var postData = data.field;
+      // 关于时间的判断
+      if ((parseInt(postData.tianBiaoShiJianMonth)) <= 9) {
+        postData.tianBiaoShiJianMonth = "0" + postData.tianBiaoShiJianMonth
+      }
+      if ((parseInt(postData.tianBiaoShiJianDay)) <= 9) {
+        postData.tianBiaoShiJianDay = "0" + postData.tianBiaoShiJianDay
+      }
+
+      if ((parseInt(postData.canJiaGongZuoMonth)) <= 9) {
+        postData.canJiaGongZuoMonth = "0" + postData.canJiaGongZuoMonth
+      }
+      if ((parseInt(postData.canJiaGongZuoDay)) <= 9) {
+        postData.canJiaGongZuoDay = "0" + postData.canJiaGongZuoDay
+      }
+
+      if ((parseInt(postData.tuiXiuShiJianMonth)) <= 9) {
+        postData.tuiXiuShiJianMonth = "0" + postData.tuiXiuShiJianMonth
+      }
+      if ((parseInt(postData.tuiXiuShiJianZuoDay)) <= 9) {
+        postData.tuiXiuShiJianDay = "0" + postData.tuiXiuShiJianDay
+      }
+
+      if ((parseInt(postData.daoXiaoShiJianMonth)) <= 9) {
+        postData.daoXiaoShiJianMonth = "0" + postData.daoXiaoShiJianMonth
+      }
+      if ((parseInt(postData.tuiXiuShiJianZuoDay)) <= 9) {
+        postData.tuiXiuShiJianDay = "0" + postData.tuiXiuShiJianDay
+      }
+
+      if ((parseInt(postData.jiaRuZuZhiMonth)) <= 9) {
+        postData.jiaRuZuZhiMonth = "0" + postData.jiaRuZuZhiMonth
+      }
+
+      console.log(postData);
+      //生日用身份证算
+      var idCard = postData.baseShenFenZheng
+      console.log(idCard.length);
+      if (idCard.length === 18) {
+        var year = idCard.substring(6, 10);
+        var mouth = idCard.substring(10, 12);
+        var date = idCard.substring(12, 14);
+        postData.baseShengRi = year + "-" + mouth + "-" + date;
+      } else if (idCard.length === 18) {
+        var year = idCard.substring(6, 8);
+        var mouth = idCard.substring(8, 10);
+        var date = idCard.substring(10, 12);
+        postData.idCard = "19" + year + "-" + mouth + "-" + date;
+      }
+      else {
+        layer.msg('身份证格式错误！');
+        return false;
+      }
+      // 关于时间的组合
+      postData.tianBiaoShiJian = postData.tianBiaoShiJianYear + "-" + postData.tianBiaoShiJianMonth + "-" + postData.tianBiaoShiJianDay
+      postData.workKaiShiGongZuo = postData.canJiaGongZuoYear + "-" + postData.canJiaGongZuoMonth;
+      postData.workZhengShiTuiXiu = postData.tuiXiuShiJianYear + "-" + postData.tuiXiuShiJianMonth;
+      postData.workDaoXiaoShiJian = postData.daoXiaoShiJianYear + "-" + postData.daoXiaoShiJianMonth;
+      postData.hisJiaRuZuZhi = postData.jiaRuZuZhiYear + "-" + postData.jiaRuZuZhiMonth;
+      //关于籍贯的组合
+      postData.baseJiGuan = postData.jiGuanSheng + postData.jiGuanXian;
+      //坚持的健身项目1,2,3的组合
+      postData.nowJianChiJianShen = postData.jianChiJianSheng1 + "、" + postData.jianChiJianSheng2 + "、" + postData.jianChiJianSheng3
+      //军属或军烈
+      if (postData.hisJunShuJunLie != "") {
+        postData.hisJunShuJunLie = postData.hisJunShuJunLie + postData.junShuHuoJunLie
+      }
+      //劳模
+      if (postData.hisLaoMo === "有") {
+        postData.hisLaoMo = postData.hisLaoMo + postData.laoMoNian + "年" + postData.laoMoDengJi + "级劳模"
+      }
+      //伤残
+      if (postData.hisShangCan === "是") {
+        postData.hisShangCan = postData.hisShangCan + postData.shangCanDeng + "等" + postData.laoMoDengJi + "级伤残"
+      }
+      //立战功
+      if (postData.hisLiZhanGong === "是") {
+        postData.hisLiZhanGong = postData.hisLiZhanGong + postData.liZhanGongDengJi + "等功"
+      }
+      //政府津贴
+      if (postData.ZhengFuJinTie != "") {
+        postData.hisZhengFuJinTie = postData.haveZhengFuJinTie + postData.ZhengFuJinTie
+      }
+      //慢性病
+      if (postData.manXingJiBingMiaoShu != "") {
+        postData.nowManXingJiBing = postData.nowManXingJiBing + postData.manXingJiBingMiaoShu
+      }
+      //校外
+      if (postData.xiaoWaiTuanTiZhiWu != "") {
+        postData.xiaoWaiTuanTi = postData.xiaoWaiTuanTi + postData.xiaoWaiTuanTiZhiWu
+      }
+      if (postData.nowLaoNianTiXieZu === "是") {
+        postData.nowLaoNianTiXieZu = postData.nowLaoNianTiXieZu + postData.laoNianHuoDongZu1 + " 组、" + postData.laoNianHuoDongZu2 + " 组、" + postData.laoNianHuoDongZu3 + "组";
+      }
+
+      if (postData.nowXiaoWaiTuanTiZhiWu === "有") {
+        postData.nowXiaoWaiTuanTiZhiWu = postData.nowXiaoWaiTuanTiZhiWu + postData.xiaoWaiTuanTiZhiWu;
+      }
+      postData.token = getQueryString("token");
+      console.log(postData);
+      $.post('/baseInfo/set', postData, function (res) {
+        console.log(res);
+        if (res.code === 0) {
+          layer.alert("添加成功", {icon: 1})
+        } else if (res.code === 1) {
+          layer.alert("权限不足", {icon: 2})
+        }
+      });
+      return false;
+    });
+
+
+    //时间选择器
+    laydate.render({
+      elem: '#laydate_start_work_date',
+      type: 'date'
+    });
+    laydate.render({
+      elem: '#laydate_to_school_date',
+      type: 'date'
+    });
+    laydate.render({
+      elem: '#laydate_retire_date',
+      type: 'date'
+    });
+    laydate.render({
+      elem: '#birth',
+      type: 'date'
+    });
+
+
+    //普通图片上传
+    var uploadInst = upload.render({
+      elem: '#uploadPhoto',
+      url: '/file/upload/',
+      field: 'file',
+      before: function (obj) {
+        console.log(obj);
+        //预读本地文件示例，不支持ie8
+        obj.preview(function (index, file, result) {
+          $('#uploadPhoto').attr('src', result); //图片链接（base64）
+        });
+      },
+      done: function (res) {
+        console.log(res);
+        //如果上传失败
+        if (res.code > 0) {
+          return layer.msg('上传失败');
+        }
+        $('#upload_err').html('');
+        form.val('filter_baseAdd', {
+          'photoUrl': res.data
+        });
+        form.render();
+        console.log(res.data);
+        //上传成功
+      },
+      error: function () {
+        //演示失败状态，并实现重传
+        var upload_err = $('#upload_err');
+        upload_err.html(
+            '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+        upload_err.find('.demo-reload').on('click', function () {
+          uploadInst.upload();
+        });
+      }
+    });
+    $('#btn_printForm').click(function () {
+      $('#form_baseAdd').print({
+        noPrintSelector: '.no_print'
+      })
+    })
+  });
 </script>

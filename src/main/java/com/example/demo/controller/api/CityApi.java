@@ -15,8 +15,12 @@ import java.util.List;
 @RequestMapping("/city")
 @ResponseBody
 public class CityApi {
+  private final CityRepos cityRepos;
+
   @Autowired
-  private CityRepos cityRepos;
+  public CityApi(CityRepos cityRepos) {
+    this.cityRepos = cityRepos;
+  }
 
   @RequestMapping(value = "/getCityToNativePlace", produces = {"application/json"})
   public String getCityToNativePlace() {
