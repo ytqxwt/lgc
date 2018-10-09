@@ -115,71 +115,72 @@ public class InfoNewController {
       if (!id.equals("")) {
         rs1 = conn.createStatement().executeQuery("SELECT * FROM Retirement_management_system.info_new WHERE base_shen_fen_zheng='" + id + "'");
 
-      } else {
-        rs1 = conn.createStatement().executeQuery("SELECT * FROM Retirement_management_system.info_new WHERE base_name='" + name + "'");
-      }
-      JSONArray jsonArray = new JSONArray();
-      List<InfoNew> list = new ArrayList<InfoNew>();
-      while (rs1.next()) {
-        InfoNew infoNew = new InfoNew();
-        infoNew.setBaseName(rs1.getString("base_name"));
-        infoNew.setBaseSex(rs1.getString("base_sex"));
-        infoNew.setBaseJiGuan(rs1.getString("base_ji_guan"));
-        infoNew.setBaseShenFenZheng(rs1.getString("base_shen_fen_zheng"));
-        infoNew.setConnShouJiHaoMa(rs1.getString("conn_shou_ji_hao_ma"));
-        infoNew.setBasePhotoUrl(rs1.getString("base_photo_url"));
-        list.add(infoNew);
-      }
-      for (InfoNew infoNews : list) {
-        JSONObject infor = new JSONObject(infoNews);
-        jsonArray.put(infor);
-      }
-      JSONObject jsonObject = new JSONObject();
-      jsonObject.put("code", 0);
-      jsonObject.put("msg", "");
-      jsonObject.put("count", rs1.getRow());
-      jsonObject.put("data", jsonArray);
-      return jsonObject.toString();
-    } catch (ClassNotFoundException | SQLException e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        if (stmt != null)
-          stmt.close();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-      try {
-        if (conn != null)
-          conn.close();
-      } catch (SQLException se) {
-        se.printStackTrace();
-      }
-    }
-    return "error";
+            } else {
+                rs1 = conn.createStatement().executeQuery("SELECT * FROM Retirement_management_system.info_new WHERE base_name='" + name + "'");
+            }
+            JSONArray jsonArray = new JSONArray();
+            List<InfoNew> list = new ArrayList<InfoNew>();
+            while (rs1.next()) {
+                InfoNew infoNew = new InfoNew();
+                infoNew.setId(Integer.valueOf(rs1.getString("id")));
+                infoNew.setBaseName(rs1.getString("base_name"));
+                infoNew.setBaseSex(rs1.getString("base_sex"));
+                infoNew.setBaseJiGuan(rs1.getString("base_ji_guan"));
+                infoNew.setBaseShenFenZheng(rs1.getString("base_shen_fen_zheng"));
+                infoNew.setConnShouJiHaoMa(rs1.getString("conn_shou_ji_hao_ma"));
+                infoNew.setBasePhotoUrl(rs1.getString("base_photo_url"));
+                list.add(infoNew);
+            }
+            for (InfoNew infoNews : list) {
+                JSONObject infor = new JSONObject(infoNews);
+                jsonArray.put(infor);
+            }
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("code", 200);
+            jsonObject.put("msg", "sucess");
+            jsonObject.put("count", rs1.getRow());
+            jsonObject.put("data", jsonArray);
+            return jsonObject.toString();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }
+        }
+        return "error";
+ 
   }
 
-
-  @RequestMapping(value = "/export2excel", produces = {"application/json"})
-  public String export2excel(MultipleRegex mr, @RequestParam("titles") String titles) throws IOException {
-    //传入标签当表头
-    System.out.println(mr);
-    System.out.println(mr.getSelect());
-    String[] params = mr.getSelect().split(",");
-    //表格样式初始化
-    File desktopDir = FileSystemView.getFileSystemView().getHomeDirectory();
-    String desktopPath = desktopDir.getAbsolutePath();
-    FileOutputStream out = new FileOutputStream(desktopPath + "/离退休管理系统导出数据.xls");//要输出的文件名字
-    HSSFWorkbook workBook = new HSSFWorkbook();
-    HSSFSheet mySheet = workBook.createSheet();//创建一个工作薄
-    workBook.setSheetName(0, "我的工作簿1");//设置名字（以及编码）
-    HSSFRow myRow = mySheet.createRow(0);//创建 并设置第一行
-    HSSFCellStyle style = workBook.createCellStyle();
-    style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//对齐方式
-    style.setBorderBottom(HSSFCellStyle.BORDER_THIN);//上下左右边框
-    style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-    style.setBorderRight(HSSFCellStyle.BORDER_THIN);
-    style.setBorderTop(HSSFCellStyle.BORDER_THIN);
+    @RequestMapping(value = "/export2excel", produces = {"application/json"})
+    public String export2excel(MultipleRegex mr, @RequestParam("titles") String titles) throws IOException {
+        //传入标签当表头
+        System.out.println(mr);
+        System.out.println(mr.getSelect());
+        String[] params = mr.getSelect().split(",");
+        //表格样式初始化
+        File desktopDir = FileSystemView.getFileSystemView().getHomeDirectory();
+       String desktopPath = desktopDir.getAbsolutePath();
+        FileOutputStream out = new FileOutputStream(desktopPath+"/离退休管理系统导出数据.xls");//要输出的文件名字
+        HSSFWorkbook workBook = new HSSFWorkbook();
+        HSSFSheet mySheet = workBook.createSheet();//创建一个工作薄
+        workBook.setSheetName(0, "我的工作簿1");//设置名字（以及编码）
+        HSSFRow myRow = mySheet.createRow(0);//创建 并设置第一行
+        HSSFCellStyle style = workBook.createCellStyle();
+        style.setAlignment(HSSFCellStyle.ALIGN_CENTER);//对齐方式
+        style.setBorderBottom(HSSFCellStyle.BORDER_THIN);//上下左右边框
+        style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+        style.setBorderRight(HSSFCellStyle.BORDER_THIN);
+        style.setBorderTop(HSSFCellStyle.BORDER_THIN);
 
     HSSFFont font = workBook.createFont();//设置字体样式
     font.setFontName("宋体");

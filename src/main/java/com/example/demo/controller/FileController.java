@@ -1,6 +1,11 @@
 package com.example.demo.controller;
 
+import com.example.demo.domain.entity.InfoNew;
+import com.example.demo.domain.vo.JsonResult;
 import com.example.demo.util.FileUtil;
+import org.hibernate.boot.jaxb.SourceType;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,9 +16,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponents;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Soundbank;
 import java.io.*;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/file")
@@ -28,9 +37,12 @@ public class FileController {
 
   @RequestMapping(value = "/upload", produces = {"application/json"}, method = RequestMethod.POST)
   @ResponseBody
-  public String fileUpload(@RequestParam("file") MultipartFile file) {
+  public String fileUpload(@RequestParam("file") MultipartFile file ,@RequestParam("id") String id ) {
+
+    System.out.println(file);
+    System.out.println(id);
     System.out.println("图片");
-    return fileUtil.uploadPhoto(file);
+    return fileUtil.uploadPhoto(file,id);
   }
 
   @RequestMapping("/downloadFile")
@@ -92,6 +104,43 @@ public class FileController {
     } else {
       response.setStatus(500);
     }
+  }
+
+  @RequestMapping(value = "/savePhotoURL", produces = {"application/json"})
+  public String set(@RequestParam("id") String id,@RequestParam("photoURL") String url) {
+    System.out.println("::"+id+"::"+url);
+    System.out.println(url);
+    Connection conn = null;
+    Statement stmt = null;
+    ResultSet rs1 = null;
+    try {
+      Class.forName("com.mysql.jdbc.Driver");
+      conn = DriverManager.getConnection("jdbc:mysql://120.79.68.208:3306/Retirement_management_system", "root", "dyz13125219151YT");
+      if (!id.equals("")) {
+        conn.createStatement().execute("UPDATE Retirement_management_system.info_new SET base_photo_url='"+url+"' WHERE  id ='"+id+"';");
+        System.out.println("插入成功");
+      } else {
+        System.out.println("插入失败");
+        return new JsonResult(1, "").toString();
+      }
+      return new JsonResult(0, "").toString();
+    } catch (ClassNotFoundException | SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (stmt != null)
+          stmt.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      try {
+        if (conn != null)
+          conn.close();
+      } catch (SQLException se) {
+        se.printStackTrace();
+      }
+    }
+    return new JsonResult(1, "").toString();
   }
 }
     /*
