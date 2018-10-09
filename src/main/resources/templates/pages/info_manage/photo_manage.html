@@ -145,12 +145,12 @@
                                     console.log(obj);
                                     //预读本地文件示例，不支持ie8
                                     obj.preview(function (index, file, result) {
-                                        obj.resetFile(index, file, '' + indexs[0] + '.jpg')
+                                        obj.resetFile(index, file, '' + indexs[0] + '.jpg');
                                         $('#uploadPhoto0').attr('src', result); //图片链接（base64）
                                     });
                                 },
                                 done: function (res) {
-                                    console.log("已进5")
+                                    console.log("已进5");
                                     console.log(res);
                                     //如果上传失败
                                     if (res.code > 0) {
@@ -167,7 +167,7 @@
                                             photoURL: res.data
                                         },
                                         success: function (res) {
-                                            console.log(res)
+                                            console.log(res);
                                             return layer.msg('上传成功！');
                                         },
                                         error: function () {
@@ -194,13 +194,13 @@
                                     //预读本地文件示例，不支持ie8
                                     obj.preview(function (index, file, result) {
                                         console.log(result);
-                                        obj.resetFile(index, file, '' + indexs[1] + '.jpg')
+                                        obj.resetFile(index, file, '' + indexs[1] + '.jpg');
                                         $('#uploadPhoto1').attr('src', result); //图片链接（base64）
                                     });
                                 },
 
                                 done: function (res) {
-                                    console.log("已进5")
+                                    console.log("已进5");
                                     console.log(res);
                                     //如果上传失败
                                     if (res.code > 0) {
@@ -223,7 +223,7 @@
                                             photoURL: res.data
                                         },
                                         success: function (res) {
-                                            console.log(res)
+                                            console.log(res);
                                             layer.msg('上传成功！');
                                         },
                                         error: function () {
@@ -255,7 +255,7 @@
                                     console.log(obj);
                                     obj.preview(function (index, file, result) {
                                         console.log(result);
-                                        obj.resetFile(index, file, '' + indexs[2] + '.jpg')
+                                        obj.resetFile(index, file, '' + indexs[2] + '.jpg');
                                         $('#uploadPhoto2').attr('src', result); //图片链接（base64）
                                     });
                                 },
@@ -275,7 +275,7 @@
                                             photoURL: res.data
                                         },
                                         success: function (res) {
-                                            console.log(res)
+                                            console.log(res);
                                            layer.msg('上传成功！');
                                         },
                                         error: function () {
@@ -375,8 +375,8 @@
       error: function () {
         alert("异常！");
       }
-    });
-  }
+    })
+    }
 
   function uploadPhoto(i) {
     console.log(index[i]);
@@ -400,7 +400,7 @@
           });
         },
         done: function (res) {
-          console.log("已进5")
+          console.log("已进5");
           console.log(res);
           //如果上传失败
           if (res.code > 0) {

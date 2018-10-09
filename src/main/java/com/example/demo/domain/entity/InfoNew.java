@@ -964,10 +964,7 @@ public class InfoNew {
     if (remark != null ? !remark.equals(infoNew.remark) : infoNew.remark != null) return false;
     if (hisUnionGroup != null ? !hisUnionGroup.equals(infoNew.hisUnionGroup) : infoNew.hisUnionGroup != null)
       return false;
-    if (tianBiaoShiJian != null ? !tianBiaoShiJian.equals(infoNew.tianBiaoShiJian) : infoNew.tianBiaoShiJian != null)
-      return false;
-
-    return true;
+    return tianBiaoShiJian != null ? tianBiaoShiJian.equals(infoNew.tianBiaoShiJian) : infoNew.tianBiaoShiJian == null;
   }
 
   @Override

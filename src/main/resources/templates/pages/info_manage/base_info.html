@@ -10,10 +10,10 @@
 		<div class="wrap">
 			<div class="label-selected">
 
-				<a href="javascript:;" class="layui-btn layui-btn-sm show-labelitem"
+				<a href="javascript:" class="layui-btn layui-btn-sm show-labelitem"
 				   style="float: right; margin: 4px; display: block;line-height: 30px;">收起标签库
 				</a>
-				<a href="javascript:;" class="layui-btn layui-btn-sm hide-labelitem"
+				<a href="javascript:" class="layui-btn layui-btn-sm hide-labelitem"
 				   style="float: right; margin: 4px; display: none;line-height: 30px;">展开标签库
 				</a>
 				<input type="hidden" name="label">
@@ -1509,7 +1509,7 @@
           // 关于时间的判断
           console.log(postData);
           //生日用身份证算
-          var idCard = postData.baseShenFenZheng
+          var idCard = postData.baseShenFenZheng;
           console.log(idCard.length);
           if (idCard.length === 18) {
             var year = idCard.substring(6, 10);
@@ -1528,7 +1528,7 @@
           }
           //关于籍贯的组合
           postData.baseJiGuan = postData.baseJiGuan1 + postData.baseJiGuan2;
-          postData.token=getQueryString("token")
+          postData.token=getQueryString("token");
           console.log(postData);
           $.post('/baseInfo/set', postData, function (res) {
             console.log(res);
@@ -1701,7 +1701,7 @@
         console.log(data);
         console.log(postData);
         postData.titles = $("input[name='label2']").val();
-        console.log(postData)
+        console.log(postData);
         $.ajax({
           type: "POST",//方法类型
           dataType: "json",//预期服务器返回的数据类型
@@ -1786,9 +1786,9 @@
         } else {
           // layer.msg("标签内容为：" + $("input[name='label']").val());
           var labelList = $("input[name='label']").val().split(",");
-          $('#form_search').css('display', 'block')
-          $('.layui-form-item').css('display', 'none')
-          $('#btngup_search').css('display', 'block')
+          $('#form_search').css('display', 'block');
+          $('.layui-form-item').css('display', 'none');
+          $('#btngup_search').css('display', 'block');
           for (var i = 0; i < labelList.length - 1; i++) {
             var label = labelList[i];
             $('#' + label).css('display', 'block');

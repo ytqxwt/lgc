@@ -24,10 +24,10 @@
 		<div class="wrap">
 			<div class="label-selected">
 
-				<a href="javascript:;" class="layui-btn layui-btn-sm hide-labelitem"
+				<a href="javascript:" class="layui-btn layui-btn-sm hide-labelitem"
 				   style="float: right; margin: 4px; display: block;line-height: 30px;">收起标签库
 				</a>
-				<a href="javascript:;" class="layui-btn layui-btn-sm show-labelitem"
+				<a href="javascript:" class="layui-btn layui-btn-sm show-labelitem"
 				   style="float: right; margin: 4px; display: none;line-height: 30px;">展开标签库
 				</a>
 				<input type="hidden" name="label">
@@ -621,17 +621,17 @@
       //获取标签
       function changeLabel() {
         if ($("input[name='label']").val() == "") {
-          $('#form_search').css('display', 'none')
+          $('#form_search').css('display', 'none');
           return false;
         } else {
           // layer.msg("标签内容为：" + $("input[name='label']").val());
           var labelList = $("input[name='label']").val().split(",");
-          $('#form_search').css('display', 'block')
-          $('.layui-form-item').css('display', 'none')
-          $('#btngup_search').css('display', 'block')
+          $('#form_search').css('display', 'block');
+          $('.layui-form-item').css('display', 'none');
+          $('#btngup_search').css('display', 'block');
           for (var i = 0; i < labelList.length - 1; i++) {
-            var label = labelList[i]
-            console.log(label)
+            var label = labelList[i];
+            console.log(label);
             $('input[name=' + label + ']').parents('.layui-form-item').css('display', 'block')
           }
           form.render();

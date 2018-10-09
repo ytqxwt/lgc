@@ -556,7 +556,7 @@
 
       console.log(postData);
       //生日用身份证算
-      var idCard = postData.baseShenFenZheng
+      var idCard = postData.baseShenFenZheng;
       console.log(idCard.length);
       if (idCard.length === 18) {
         var year = idCard.substring(6, 10);
@@ -574,7 +574,7 @@
         return false;
       }
       // 关于时间的组合
-      postData.tianBiaoShiJian = postData.tianBiaoShiJianYear + "-" + postData.tianBiaoShiJianMonth + "-" + postData.tianBiaoShiJianDay
+      postData.tianBiaoShiJian = postData.tianBiaoShiJianYear + "-" + postData.tianBiaoShiJianMonth + "-" + postData.tianBiaoShiJianDay;
       postData.workKaiShiGongZuo = postData.canJiaGongZuoYear + "-" + postData.canJiaGongZuoMonth;
       postData.workZhengShiTuiXiu = postData.tuiXiuShiJianYear + "-" + postData.tuiXiuShiJianMonth;
       postData.workDaoXiaoShiJian = postData.daoXiaoShiJianYear + "-" + postData.daoXiaoShiJianMonth;
@@ -582,7 +582,7 @@
       //关于籍贯的组合
       postData.baseJiGuan = postData.jiGuanSheng + postData.jiGuanXian;
       //坚持的健身项目1,2,3的组合
-      postData.nowJianChiJianShen = postData.jianChiJianSheng1 + "、" + postData.jianChiJianSheng2 + "、" + postData.jianChiJianSheng3
+      postData.nowJianChiJianShen = postData.jianChiJianSheng1 + "、" + postData.jianChiJianSheng2 + "、" + postData.jianChiJianSheng3;
       //军属或军烈
       if (postData.hisJunShuJunLie != "") {
         postData.hisJunShuJunLie = postData.hisJunShuJunLie + postData.junShuHuoJunLie

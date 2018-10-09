@@ -197,8 +197,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }c++;
         }return a;
       };
-    };
-
+    }
     //拓展Array foreach方法
     if (!Array.prototype.forEach) {
       Array.prototype.forEach = function forEach(g, b) {
@@ -214,8 +213,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }c++;
         }
       };
-    };
-
+    }
     //拓展Array filter方法
     if (!Array.prototype.filter) {
       Array.prototype.filter = function (b) {
@@ -231,7 +229,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           }
         }return e;
       };
-    };
+    }
   };
 
   Common.prototype.init = function (target) {
@@ -1705,7 +1703,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
     if (!btns || !common.isArray(btns)) {
       return this;
-    };
+    }
     var target = {};
     id ? common.check(id) && (target[id] = data[id]) : target = data;
 

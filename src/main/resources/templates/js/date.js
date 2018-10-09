@@ -169,7 +169,7 @@
             defDay: 0,
             minYear: 1882,
             maxYear: new Date().getFullYear()
-        }
+        };
 
         for (var property in options) {
             this._options[property] = options[property];
@@ -198,8 +198,10 @@
         setSelectControl(this.monthValueId, 1, 12, this.Month);
         //设置日
         var daysInMonth = new Date(this.Year, this.Month, 0).getDate(); //获取指定年月的当月天数[new Date(year, month, 0).getDate()]
-        if (this.Day > daysInMonth) { this.Day = daysInMonth; };
-        setSelectControl(this.dayValueId, 1, daysInMonth, this.Day);
+      if (this.Day > daysInMonth) {
+        this.Day = daysInMonth;
+      }
+      setSelectControl(this.dayValueId, 1, daysInMonth, this.Day);
 
         var oThis = this;
         //绑定控件事件
@@ -211,8 +213,10 @@
         this.monthValueId.change(function () {
             oThis.Month = $(this).val();
             var daysInMonth = new Date(oThis.Year, oThis.Month, 0).getDate();
-            if (oThis.Day > daysInMonth) { oThis.Day = daysInMonth; };
-            setSelectControl(oThis.dayValueId, 1, daysInMonth, oThis.Day);
+          if (oThis.Day > daysInMonth) {
+            oThis.Day = daysInMonth;
+          }
+          setSelectControl(oThis.dayValueId, 1, daysInMonth, oThis.Day);
         });
         this.dayValueId.change(function () {
             oThis.Day = $(this).val();
