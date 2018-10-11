@@ -30,35 +30,26 @@ import java.util.List;
 @ResponseBody
 public class InfoNewController {
   private final InfoNewRepos infoNewRepos;
-  @Autowired
-  PowerUtil powerUtil;
+  private final PowerUtil powerUtil;
 
   @Autowired
-  public InfoNewController(InfoNewRepos infoNewRepos) {
+  public InfoNewController(InfoNewRepos infoNewRepos, PowerUtil powerUtil) {
     this.infoNewRepos = infoNewRepos;
+    this.powerUtil = powerUtil;
   }
 
 
   @RequestMapping(value = "/set", produces = {"application/json"})
-  public String set(InfoNew baseInfo, @RequestParam("token") String token) {
+  public String set(InfoNew baseInfo) {
     System.out.println(baseInfo.toString());
-    if (powerUtil.checkAdmin(Integer.valueOf(token))) {
-      infoNewRepos.save(baseInfo);
-      return new JsonResult(0, "true").toString();
-    } else {
-      return new JsonResult(1, "权限不足").toString();
-    }
+    infoNewRepos.save(baseInfo);
+    return new JsonResult(0, "true").toString();
   }
-
   @RequestMapping(value = "/del", produces = {"application/json"})
-  public String del(@RequestParam("id") int id, @RequestParam("token") String token) {
+  public String del(@RequestParam("id")int id) {
     System.out.println(id);
-    if (powerUtil.checkAdmin(Integer.valueOf(token))) {
-      infoNewRepos.deleteById(id);
-      return new JsonResult(0, "true").toString();
-    } else {
-      return new JsonResult(1, "权限不足").toString();
-    }
+    infoNewRepos.deleteById(id);
+    return new JsonResult(0, "true").toString();
   }
 
   @RequestMapping(value = "/findByPage", produces = {"application/json"})

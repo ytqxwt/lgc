@@ -1,5 +1,5 @@
 server:
-  port: 8553
+  port: 80
 spring:
   datasource:
     username: root
@@ -26,14 +26,14 @@ spring:
       max-file-size: 100Mb
       max-request-size: 200Mb
   http:
-   encoding:
-     force: true
-     charset: UTF-8
+    encoding:
+      force: true
+      charset: UTF-8
   thymeleaf:
-   mode: HTML5
-   encoding: UTF-8
-   cache: false
-   suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    cache: false
+    suffix: .html
   redis:
     host: 120.79.68.208
     port: 6379
