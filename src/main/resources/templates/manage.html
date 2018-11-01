@@ -63,6 +63,7 @@
 					<a class="" href="javascript:">信息管理</a>
 					<dl class="layui-nav-child">
 						<dd><a href="javascript:" id="base_info">人员信息</a></dd>
+						<dd><a href="javascript:" id="died_info">去世人员信息</a></dd>
 						<dd><a href="javascript:" id="photo_manage">照片管理</a></dd>
 						<dd><a href="javascript:" id="survivors_info">遗嘱信息</a></dd>
 						<dd><a href="javascript:" id="case_info">病例信息</a></dd>
@@ -137,6 +138,10 @@
     });
     $('#base_info').click(function () {
       $('.layui-body').load('pages/info_manage/base_info.html');
+    });
+
+    $('#died_info').click(function () {
+      $('.layui-body').load('pages/info_manage/died_info.html');
     });
     $('#photo_manage').click(function () {
       $('.layui-body').load('pages/info_manage/photo_manage.html');
