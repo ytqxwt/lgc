@@ -1,18 +1,19 @@
-package com.example.demo.domain.vo;
+package com.example.demo.domain.entity;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.persistence.*;
+import java.util.Objects;
 
-public class MultipleRegex {
+@Entity
+@Table(name = "info_dead", schema = "Retirement_management_system", catalog = "")
+public class InfoDead {
+  private int id;
+  private String basePhotoUrl;
   private String baseName;
   private String baseSex;
-  private String workKaiShiGongZuoStart;
-  private String workKaiShiGongZuoEnd;
+  private String workKaiShiGongZuo;
   private String baseJiGuan;
-  private String baseShengRiStart;
-  private String baseShengRiEnd;
-  private String workDaoXiaoShiJianStart;
-  private String workDaoXiaoShiJianEnd;
+  private String baseShengRi;
+  private String workDaoXiaoShiJian;
   private String baseShenFenZheng;
   private String baseMinZu;
   private String baseXueLi;
@@ -22,16 +23,13 @@ public class MultipleRegex {
   private String workZhiWuJiBie;
   private String workZhiCheng;
   private String workZhiChengJiBie;
-  private String workTiQianTuiXiuStart;
-  private String workTiQianTuiXiuEnd;
-  private String workZhengShiTuiXiuStart;
-  private String workZhengShiTuiXiuEnd;
+  private String workTiQianTuiXiu;
+  private String workZhengShiTuiXiu;
   private String workTuiXiuBuMen;
   private String baseZhengZhiMianMao;
   private String workZhuanYeHeGongZhong;
   private String nowSuoShuZhiBu;
-  private String hisJiaRuZuZhiStart;
-  private String hisJiaRuZuZhiEnd;
+  private String hisJiaRuZuZhi;
   private String hisZhengFuJinTie;
   private String hisZhengFuJinTieDengJi;
   private String hisFuZhuanTuiJunRen;
@@ -80,55 +78,31 @@ public class MultipleRegex {
   private String hisJunShuJunLie;
   private String remark;
   private String hisUnionGroup;
-  private String select;
-  private String tianBiaoShiJianStart;
-  private String tianBiaoShiJianEnd;
+  private String tianBiaoShiJian;
+  private String deadTime;
 
-  private String diedDateStart;
-  private String diedDateEnd;
-
-  @Override
-  public String toString() {
-    try {
-      return new ObjectMapper().writeValueAsString(this);
-    } catch (JsonProcessingException e) {
-      e.printStackTrace();
-    }
-    return null;
+  @Id
+  @Column(name = "id")
+  public int getId() {
+    return id;
   }
 
-  public String getTianBiaoShiJianStart() {
-    return tianBiaoShiJianStart;
+  public void setId(int id) {
+    this.id = id;
   }
 
-  public void setTianBiaoShiJianStart(String tianBiaoShiJianStart) {
-    this.tianBiaoShiJianStart = tianBiaoShiJianStart;
+  @Basic
+  @Column(name = "base_photo_url")
+  public String getBasePhotoUrl() {
+    return basePhotoUrl;
   }
 
-  public String getTianBiaoShiJianEnd() {
-    return tianBiaoShiJianEnd;
+  public void setBasePhotoUrl(String basePhotoUrl) {
+    this.basePhotoUrl = basePhotoUrl;
   }
 
-  public void setTianBiaoShiJianEnd(String tianBiaoShiJianEnd) {
-    this.tianBiaoShiJianEnd = tianBiaoShiJianEnd;
-  }
-
-  public String getWorkZhengShiTuiXiuStart() {
-    return workZhengShiTuiXiuStart;
-  }
-
-  public void setWorkZhengShiTuiXiuStart(String workZhengShiTuiXiuStart) {
-    this.workZhengShiTuiXiuStart = workZhengShiTuiXiuStart;
-  }
-
-  public String getWorkZhengShiTuiXiuEnd() {
-    return workZhengShiTuiXiuEnd;
-  }
-
-  public void setWorkZhengShiTuiXiuEnd(String workZhengShiTuiXiuEnd) {
-    this.workZhengShiTuiXiuEnd = workZhengShiTuiXiuEnd;
-  }
-
+  @Basic
+  @Column(name = "base_name")
   public String getBaseName() {
     return baseName;
   }
@@ -137,6 +111,8 @@ public class MultipleRegex {
     this.baseName = baseName;
   }
 
+  @Basic
+  @Column(name = "base_sex")
   public String getBaseSex() {
     return baseSex;
   }
@@ -145,22 +121,18 @@ public class MultipleRegex {
     this.baseSex = baseSex;
   }
 
-  public String getWorkKaiShiGongZuoStart() {
-    return workKaiShiGongZuoStart;
+  @Basic
+  @Column(name = "work_kai_shi_gong_zuo")
+  public String getWorkKaiShiGongZuo() {
+    return workKaiShiGongZuo;
   }
 
-  public void setWorkKaiShiGongZuoStart(String workKaiShiGongZuoStart) {
-    this.workKaiShiGongZuoStart = workKaiShiGongZuoStart;
+  public void setWorkKaiShiGongZuo(String workKaiShiGongZuo) {
+    this.workKaiShiGongZuo = workKaiShiGongZuo;
   }
 
-  public String getWorkKaiShiGongZuoEnd() {
-    return workKaiShiGongZuoEnd;
-  }
-
-  public void setWorkKaiShiGongZuoEnd(String workKaiShiGongZuoEnd) {
-    this.workKaiShiGongZuoEnd = workKaiShiGongZuoEnd;
-  }
-
+  @Basic
+  @Column(name = "base_ji_guan")
   public String getBaseJiGuan() {
     return baseJiGuan;
   }
@@ -169,38 +141,28 @@ public class MultipleRegex {
     this.baseJiGuan = baseJiGuan;
   }
 
-  public String getBaseShengRiStart() {
-    return baseShengRiStart;
+  @Basic
+  @Column(name = "base_sheng_ri")
+  public String getBaseShengRi() {
+    return baseShengRi;
   }
 
-  public void setBaseShengRiStart(String baseShengRiStart) {
-    this.baseShengRiStart = baseShengRiStart;
+  public void setBaseShengRi(String baseShengRi) {
+    this.baseShengRi = baseShengRi;
   }
 
-  public String getBaseShengRiEnd() {
-    return baseShengRiEnd;
+  @Basic
+  @Column(name = "work_dao_xiao_shi_jian")
+  public String getWorkDaoXiaoShiJian() {
+    return workDaoXiaoShiJian;
   }
 
-  public void setBaseShengRiEnd(String baseShengRiEnd) {
-    this.baseShengRiEnd = baseShengRiEnd;
+  public void setWorkDaoXiaoShiJian(String workDaoXiaoShiJian) {
+    this.workDaoXiaoShiJian = workDaoXiaoShiJian;
   }
 
-  public String getWorkDaoXiaoShiJianStart() {
-    return workDaoXiaoShiJianStart;
-  }
-
-  public void setWorkDaoXiaoShiJianStart(String workDaoXiaoShiJianStart) {
-    this.workDaoXiaoShiJianStart = workDaoXiaoShiJianStart;
-  }
-
-  public String getWorkDaoXiaoShiJianEnd() {
-    return workDaoXiaoShiJianEnd;
-  }
-
-  public void setWorkDaoXiaoShiJianEnd(String workDaoXiaoShiJianEnd) {
-    this.workDaoXiaoShiJianEnd = workDaoXiaoShiJianEnd;
-  }
-
+  @Basic
+  @Column(name = "base_shen_fen_zheng")
   public String getBaseShenFenZheng() {
     return baseShenFenZheng;
   }
@@ -209,6 +171,8 @@ public class MultipleRegex {
     this.baseShenFenZheng = baseShenFenZheng;
   }
 
+  @Basic
+  @Column(name = "base_min_zu")
   public String getBaseMinZu() {
     return baseMinZu;
   }
@@ -217,6 +181,8 @@ public class MultipleRegex {
     this.baseMinZu = baseMinZu;
   }
 
+  @Basic
+  @Column(name = "base_xue_li")
   public String getBaseXueLi() {
     return baseXueLi;
   }
@@ -225,6 +191,8 @@ public class MultipleRegex {
     this.baseXueLi = baseXueLi;
   }
 
+  @Basic
+  @Column(name = "base_xue_wei")
   public String getBaseXueWei() {
     return baseXueWei;
   }
@@ -233,6 +201,8 @@ public class MultipleRegex {
     this.baseXueWei = baseXueWei;
   }
 
+  @Basic
+  @Column(name = "work_bian_zhi_lei_xing")
   public String getWorkBianZhiLeiXing() {
     return workBianZhiLeiXing;
   }
@@ -241,6 +211,8 @@ public class MultipleRegex {
     this.workBianZhiLeiXing = workBianZhiLeiXing;
   }
 
+  @Basic
+  @Column(name = "work_zhi_wu")
   public String getWorkZhiWu() {
     return workZhiWu;
   }
@@ -249,6 +221,8 @@ public class MultipleRegex {
     this.workZhiWu = workZhiWu;
   }
 
+  @Basic
+  @Column(name = "work_zhi_wu_ji_bie")
   public String getWorkZhiWuJiBie() {
     return workZhiWuJiBie;
   }
@@ -257,6 +231,8 @@ public class MultipleRegex {
     this.workZhiWuJiBie = workZhiWuJiBie;
   }
 
+  @Basic
+  @Column(name = "work_zhi_cheng")
   public String getWorkZhiCheng() {
     return workZhiCheng;
   }
@@ -265,6 +241,8 @@ public class MultipleRegex {
     this.workZhiCheng = workZhiCheng;
   }
 
+  @Basic
+  @Column(name = "work_zhi_cheng_ji_bie")
   public String getWorkZhiChengJiBie() {
     return workZhiChengJiBie;
   }
@@ -273,23 +251,28 @@ public class MultipleRegex {
     this.workZhiChengJiBie = workZhiChengJiBie;
   }
 
-  public String getWorkTiQianTuiXiuStart() {
-    return workTiQianTuiXiuStart;
+  @Basic
+  @Column(name = "work_ti_qian_tui_xiu")
+  public String getWorkTiQianTuiXiu() {
+    return workTiQianTuiXiu;
   }
 
-  public void setWorkTiQianTuiXiuStart(String workTiQianTuiXiuStart) {
-    this.workTiQianTuiXiuStart = workTiQianTuiXiuStart;
+  public void setWorkTiQianTuiXiu(String workTiQianTuiXiu) {
+    this.workTiQianTuiXiu = workTiQianTuiXiu;
   }
 
-  public String getWorkTiQianTuiXiuEnd() {
-    return workTiQianTuiXiuEnd;
+  @Basic
+  @Column(name = "work_zheng_shi_tui_xiu")
+  public String getWorkZhengShiTuiXiu() {
+    return workZhengShiTuiXiu;
   }
 
-  public void setWorkTiQianTuiXiuEnd(String workTiQianTuiXiuEnd) {
-    this.workTiQianTuiXiuEnd = workTiQianTuiXiuEnd;
+  public void setWorkZhengShiTuiXiu(String workZhengShiTuiXiu) {
+    this.workZhengShiTuiXiu = workZhengShiTuiXiu;
   }
 
-
+  @Basic
+  @Column(name = "work_tui_xiu_bu_men")
   public String getWorkTuiXiuBuMen() {
     return workTuiXiuBuMen;
   }
@@ -298,6 +281,8 @@ public class MultipleRegex {
     this.workTuiXiuBuMen = workTuiXiuBuMen;
   }
 
+  @Basic
+  @Column(name = "base_zheng_zhi_mian_mao")
   public String getBaseZhengZhiMianMao() {
     return baseZhengZhiMianMao;
   }
@@ -306,6 +291,8 @@ public class MultipleRegex {
     this.baseZhengZhiMianMao = baseZhengZhiMianMao;
   }
 
+  @Basic
+  @Column(name = "work_zhuan_ye_he_gong_zhong")
   public String getWorkZhuanYeHeGongZhong() {
     return workZhuanYeHeGongZhong;
   }
@@ -314,6 +301,8 @@ public class MultipleRegex {
     this.workZhuanYeHeGongZhong = workZhuanYeHeGongZhong;
   }
 
+  @Basic
+  @Column(name = "now_suo_shu_zhi_bu")
   public String getNowSuoShuZhiBu() {
     return nowSuoShuZhiBu;
   }
@@ -322,22 +311,18 @@ public class MultipleRegex {
     this.nowSuoShuZhiBu = nowSuoShuZhiBu;
   }
 
-  public String getHisJiaRuZuZhiStart() {
-    return hisJiaRuZuZhiStart;
+  @Basic
+  @Column(name = "his_jia_ru_zu_zhi")
+  public String getHisJiaRuZuZhi() {
+    return hisJiaRuZuZhi;
   }
 
-  public void setHisJiaRuZuZhiStart(String hisJiaRuZuZhiStart) {
-    this.hisJiaRuZuZhiStart = hisJiaRuZuZhiStart;
+  public void setHisJiaRuZuZhi(String hisJiaRuZuZhi) {
+    this.hisJiaRuZuZhi = hisJiaRuZuZhi;
   }
 
-  public String getHisJiaRuZuZhiEnd() {
-    return hisJiaRuZuZhiEnd;
-  }
-
-  public void setHisJiaRuZuZhiEnd(String hisJiaRuZuZhiEnd) {
-    this.hisJiaRuZuZhiEnd = hisJiaRuZuZhiEnd;
-  }
-
+  @Basic
+  @Column(name = "his_zheng_fu_jin_tie")
   public String getHisZhengFuJinTie() {
     return hisZhengFuJinTie;
   }
@@ -346,6 +331,8 @@ public class MultipleRegex {
     this.hisZhengFuJinTie = hisZhengFuJinTie;
   }
 
+  @Basic
+  @Column(name = "his_zheng_fu_jin_tie_deng_ji")
   public String getHisZhengFuJinTieDengJi() {
     return hisZhengFuJinTieDengJi;
   }
@@ -354,6 +341,8 @@ public class MultipleRegex {
     this.hisZhengFuJinTieDengJi = hisZhengFuJinTieDengJi;
   }
 
+  @Basic
+  @Column(name = "his_fu_zhuan_tui_jun_ren")
   public String getHisFuZhuanTuiJunRen() {
     return hisFuZhuanTuiJunRen;
   }
@@ -362,6 +351,8 @@ public class MultipleRegex {
     this.hisFuZhuanTuiJunRen = hisFuZhuanTuiJunRen;
   }
 
+  @Basic
+  @Column(name = "his_shang_can")
   public String getHisShangCan() {
     return hisShangCan;
   }
@@ -370,6 +361,8 @@ public class MultipleRegex {
     this.hisShangCan = hisShangCan;
   }
 
+  @Basic
+  @Column(name = "his_shang_can_deng_ji")
   public String getHisShangCanDengJi() {
     return hisShangCanDengJi;
   }
@@ -378,6 +371,8 @@ public class MultipleRegex {
     this.hisShangCanDengJi = hisShangCanDengJi;
   }
 
+  @Basic
+  @Column(name = "his_li_zhan_gong")
   public String getHisLiZhanGong() {
     return hisLiZhanGong;
   }
@@ -386,6 +381,8 @@ public class MultipleRegex {
     this.hisLiZhanGong = hisLiZhanGong;
   }
 
+  @Basic
+  @Column(name = "his_la_zhan_gong_deng_ji")
   public String getHisLaZhanGongDengJi() {
     return hisLaZhanGongDengJi;
   }
@@ -394,6 +391,8 @@ public class MultipleRegex {
     this.hisLaZhanGongDengJi = hisLaZhanGongDengJi;
   }
 
+  @Basic
+  @Column(name = "base_du_sheng_zi_nv")
   public String getBaseDuShengZiNv() {
     return baseDuShengZiNv;
   }
@@ -402,6 +401,8 @@ public class MultipleRegex {
     this.baseDuShengZiNv = baseDuShengZiNv;
   }
 
+  @Basic
+  @Column(name = "his_lao_mo")
   public String getHisLaoMo() {
     return hisLaoMo;
   }
@@ -410,6 +411,8 @@ public class MultipleRegex {
     this.hisLaoMo = hisLaoMo;
   }
 
+  @Basic
+  @Column(name = "his_lao_mo_deng_ji")
   public String getHisLaoMoDengJi() {
     return hisLaoMoDengJi;
   }
@@ -418,6 +421,8 @@ public class MultipleRegex {
     this.hisLaoMoDengJi = hisLaoMoDengJi;
   }
 
+  @Basic
+  @Column(name = "now_gong_zi_hao")
   public String getNowGongZiHao() {
     return nowGongZiHao;
   }
@@ -426,6 +431,8 @@ public class MultipleRegex {
     this.nowGongZiHao = nowGongZiHao;
   }
 
+  @Basic
+  @Column(name = "now_yi_ka_tong")
   public String getNowYiKaTong() {
     return nowYiKaTong;
   }
@@ -434,6 +441,8 @@ public class MultipleRegex {
     this.nowYiKaTong = nowYiKaTong;
   }
 
+  @Basic
+  @Column(name = "now_man_xing_ji_bing")
   public String getNowManXingJiBing() {
     return nowManXingJiBing;
   }
@@ -442,6 +451,8 @@ public class MultipleRegex {
     this.nowManXingJiBing = nowManXingJiBing;
   }
 
+  @Basic
+  @Column(name = "now_jian_kang_zhuang_kuang")
   public String getNowJianKangZhuangKuang() {
     return nowJianKangZhuangKuang;
   }
@@ -450,6 +461,8 @@ public class MultipleRegex {
     this.nowJianKangZhuangKuang = nowJianKangZhuangKuang;
   }
 
+  @Basic
+  @Column(name = "conn_xian_hu_kou_di_zhi")
   public String getConnXianHuKouDiZhi() {
     return connXianHuKouDiZhi;
   }
@@ -458,6 +471,8 @@ public class MultipleRegex {
     this.connXianHuKouDiZhi = connXianHuKouDiZhi;
   }
 
+  @Basic
+  @Column(name = "conn_yu_zi_nv_sheng_huo")
   public String getConnYuZiNvShengHuo() {
     return connYuZiNvShengHuo;
   }
@@ -466,6 +481,8 @@ public class MultipleRegex {
     this.connYuZiNvShengHuo = connYuZiNvShengHuo;
   }
 
+  @Basic
+  @Column(name = "conn_yu_shui_sheng_huo")
   public String getConnYuShuiShengHuo() {
     return connYuShuiShengHuo;
   }
@@ -474,6 +491,8 @@ public class MultipleRegex {
     this.connYuShuiShengHuo = connYuShuiShengHuo;
   }
 
+  @Basic
+  @Column(name = "conn_xian_ju_zhu_di_zhi")
   public String getConnXianJuZhuDiZhi() {
     return connXianJuZhuDiZhi;
   }
@@ -482,6 +501,8 @@ public class MultipleRegex {
     this.connXianJuZhuDiZhi = connXianJuZhuDiZhi;
   }
 
+  @Basic
+  @Column(name = "conn_zhu_zhai_dian_hua")
   public String getConnZhuZhaiDianHua() {
     return connZhuZhaiDianHua;
   }
@@ -490,6 +511,8 @@ public class MultipleRegex {
     this.connZhuZhaiDianHua = connZhuZhaiDianHua;
   }
 
+  @Basic
+  @Column(name = "conn_shou_ji_hao_ma")
   public String getConnShouJiHaoMa() {
     return connShouJiHaoMa;
   }
@@ -498,6 +521,8 @@ public class MultipleRegex {
     this.connShouJiHaoMa = connShouJiHaoMa;
   }
 
+  @Basic
+  @Column(name = "conn_li_shi_hao_ma")
   public String getConnLiShiHaoMa() {
     return connLiShiHaoMa;
   }
@@ -506,6 +531,8 @@ public class MultipleRegex {
     this.connLiShiHaoMa = connLiShiHaoMa;
   }
 
+  @Basic
+  @Column(name = "conn_email_or_qq")
   public String getConnEmailOrQq() {
     return connEmailOrQq;
   }
@@ -514,6 +541,8 @@ public class MultipleRegex {
     this.connEmailOrQq = connEmailOrQq;
   }
 
+  @Basic
+  @Column(name = "conn_pei_ou_huo_zi_nv_email")
   public String getConnPeiOuHuoZiNvEmail() {
     return connPeiOuHuoZiNvEmail;
   }
@@ -522,6 +551,8 @@ public class MultipleRegex {
     this.connPeiOuHuoZiNvEmail = connPeiOuHuoZiNvEmail;
   }
 
+  @Basic
+  @Column(name = "mate_hun_yin_zhuang_kuang")
   public String getMateHunYinZhuangKuang() {
     return mateHunYinZhuangKuang;
   }
@@ -530,6 +561,8 @@ public class MultipleRegex {
     this.mateHunYinZhuangKuang = mateHunYinZhuangKuang;
   }
 
+  @Basic
+  @Column(name = "mate_pei_ou_name")
   public String getMatePeiOuName() {
     return matePeiOuName;
   }
@@ -538,6 +571,8 @@ public class MultipleRegex {
     this.matePeiOuName = matePeiOuName;
   }
 
+  @Basic
+  @Column(name = "mate_pei_ou_phone")
   public String getMatePeiOuPhone() {
     return matePeiOuPhone;
   }
@@ -546,6 +581,8 @@ public class MultipleRegex {
     this.matePeiOuPhone = matePeiOuPhone;
   }
 
+  @Basic
+  @Column(name = "mate_pei_ou_jian_kang")
   public String getMatePeiOuJianKang() {
     return matePeiOuJianKang;
   }
@@ -554,6 +591,8 @@ public class MultipleRegex {
     this.matePeiOuJianKang = matePeiOuJianKang;
   }
 
+  @Basic
+  @Column(name = "lian_xi_ren_name")
   public String getLianXiRenName() {
     return lianXiRenName;
   }
@@ -562,6 +601,8 @@ public class MultipleRegex {
     this.lianXiRenName = lianXiRenName;
   }
 
+  @Basic
+  @Column(name = "lian_xi_ren_guan_xi")
   public String getLianXiRenGuanXi() {
     return lianXiRenGuanXi;
   }
@@ -570,6 +611,8 @@ public class MultipleRegex {
     this.lianXiRenGuanXi = lianXiRenGuanXi;
   }
 
+  @Basic
+  @Column(name = "lian_xi_ren_phone")
   public String getLianXiRenPhone() {
     return lianXiRenPhone;
   }
@@ -578,6 +621,8 @@ public class MultipleRegex {
     this.lianXiRenPhone = lianXiRenPhone;
   }
 
+  @Basic
+  @Column(name = "his_shuang_zhi_gong")
   public String getHisShuangZhiGong() {
     return hisShuangZhiGong;
   }
@@ -586,6 +631,8 @@ public class MultipleRegex {
     this.hisShuangZhiGong = hisShuangZhiGong;
   }
 
+  @Basic
+  @Column(name = "children_zi_nv_name")
   public String getChildrenZiNvName() {
     return childrenZiNvName;
   }
@@ -594,6 +641,8 @@ public class MultipleRegex {
     this.childrenZiNvName = childrenZiNvName;
   }
 
+  @Basic
+  @Column(name = "children_zi_nv_address")
   public String getChildrenZiNvAddress() {
     return childrenZiNvAddress;
   }
@@ -602,6 +651,8 @@ public class MultipleRegex {
     this.childrenZiNvAddress = childrenZiNvAddress;
   }
 
+  @Basic
+  @Column(name = "children_zi_nv_dan_wei")
   public String getChildrenZiNvDanWei() {
     return childrenZiNvDanWei;
   }
@@ -610,6 +661,8 @@ public class MultipleRegex {
     this.childrenZiNvDanWei = childrenZiNvDanWei;
   }
 
+  @Basic
+  @Column(name = "children_zi_nv_phone")
   public String getChildrenZiNvPhone() {
     return childrenZiNvPhone;
   }
@@ -618,6 +671,8 @@ public class MultipleRegex {
     this.childrenZiNvPhone = childrenZiNvPhone;
   }
 
+  @Basic
+  @Column(name = "now_ai_hao_xiang_mu")
   public String getNowAiHaoXiangMu() {
     return nowAiHaoXiangMu;
   }
@@ -626,6 +681,8 @@ public class MultipleRegex {
     this.nowAiHaoXiangMu = nowAiHaoXiangMu;
   }
 
+  @Basic
+  @Column(name = "now_jian_chi_jian_shen")
   public String getNowJianChiJianShen() {
     return nowJianChiJianShen;
   }
@@ -634,6 +691,8 @@ public class MultipleRegex {
     this.nowJianChiJianShen = nowJianChiJianShen;
   }
 
+  @Basic
+  @Column(name = "xiao_nei_name")
   public String getXiaoNeiName() {
     return xiaoNeiName;
   }
@@ -642,6 +701,8 @@ public class MultipleRegex {
     this.xiaoNeiName = xiaoNeiName;
   }
 
+  @Basic
+  @Column(name = "xiao_nei_guan_xi")
   public String getXiaoNeiGuanXi() {
     return xiaoNeiGuanXi;
   }
@@ -650,6 +711,8 @@ public class MultipleRegex {
     this.xiaoNeiGuanXi = xiaoNeiGuanXi;
   }
 
+  @Basic
+  @Column(name = "xiao_nei_phone")
   public String getXiaoNeiPhone() {
     return xiaoNeiPhone;
   }
@@ -658,6 +721,8 @@ public class MultipleRegex {
     this.xiaoNeiPhone = xiaoNeiPhone;
   }
 
+  @Basic
+  @Column(name = "xiao_nei_bu_men")
   public String getXiaoNeiBuMen() {
     return xiaoNeiBuMen;
   }
@@ -666,6 +731,8 @@ public class MultipleRegex {
     this.xiaoNeiBuMen = xiaoNeiBuMen;
   }
 
+  @Basic
+  @Column(name = "xiao_nei_address")
   public String getXiaoNeiAddress() {
     return xiaoNeiAddress;
   }
@@ -674,6 +741,8 @@ public class MultipleRegex {
     this.xiaoNeiAddress = xiaoNeiAddress;
   }
 
+  @Basic
+  @Column(name = "now_lao_nian_ti_xie_zu")
   public String getNowLaoNianTiXieZu() {
     return nowLaoNianTiXieZu;
   }
@@ -682,6 +751,8 @@ public class MultipleRegex {
     this.nowLaoNianTiXieZu = nowLaoNianTiXieZu;
   }
 
+  @Basic
+  @Column(name = "now_liu_lan_website")
   public String getNowLiuLanWebsite() {
     return nowLiuLanWebsite;
   }
@@ -690,6 +761,8 @@ public class MultipleRegex {
     this.nowLiuLanWebsite = nowLiuLanWebsite;
   }
 
+  @Basic
+  @Column(name = "now_xiao_wai_tuan_ti_zhi_wu")
   public String getNowXiaoWaiTuanTiZhiWu() {
     return nowXiaoWaiTuanTiZhiWu;
   }
@@ -698,6 +771,8 @@ public class MultipleRegex {
     this.nowXiaoWaiTuanTiZhiWu = nowXiaoWaiTuanTiZhiWu;
   }
 
+  @Basic
+  @Column(name = "his_jun_shu_jun_lie")
   public String getHisJunShuJunLie() {
     return hisJunShuJunLie;
   }
@@ -706,6 +781,8 @@ public class MultipleRegex {
     this.hisJunShuJunLie = hisJunShuJunLie;
   }
 
+  @Basic
+  @Column(name = "remark")
   public String getRemark() {
     return remark;
   }
@@ -714,6 +791,8 @@ public class MultipleRegex {
     this.remark = remark;
   }
 
+  @Basic
+  @Column(name = "his_union_group")
   public String getHisUnionGroup() {
     return hisUnionGroup;
   }
@@ -722,27 +801,110 @@ public class MultipleRegex {
     this.hisUnionGroup = hisUnionGroup;
   }
 
-  public String getSelect() {
-    return select;
+  @Basic
+  @Column(name = "tian_biao_shi_jian")
+  public String getTianBiaoShiJian() {
+    return tianBiaoShiJian;
   }
 
-  public void setSelect(String select) {
-    this.select = select;
+  public void setTianBiaoShiJian(String tianBiaoShiJian) {
+    this.tianBiaoShiJian = tianBiaoShiJian;
   }
 
-  public String getDiedDateEnd() {
-    return diedDateEnd;
+  @Basic
+  @Column(name = "dead_time")
+  public String getDeadTime() {
+    return deadTime;
   }
 
-  public void setDiedDateEnd(String diedDateEnd) {
-    this.diedDateEnd = diedDateEnd;
+  public void setDeadTime(String deadTime) {
+    this.deadTime = deadTime;
   }
 
-  public String getDiedDateStart() {
-    return diedDateStart;
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    InfoDead infoDead = (InfoDead) o;
+    return id == infoDead.id &&
+        Objects.equals(basePhotoUrl, infoDead.basePhotoUrl) &&
+        Objects.equals(baseName, infoDead.baseName) &&
+        Objects.equals(baseSex, infoDead.baseSex) &&
+        Objects.equals(workKaiShiGongZuo, infoDead.workKaiShiGongZuo) &&
+        Objects.equals(baseJiGuan, infoDead.baseJiGuan) &&
+        Objects.equals(baseShengRi, infoDead.baseShengRi) &&
+        Objects.equals(workDaoXiaoShiJian, infoDead.workDaoXiaoShiJian) &&
+        Objects.equals(baseShenFenZheng, infoDead.baseShenFenZheng) &&
+        Objects.equals(baseMinZu, infoDead.baseMinZu) &&
+        Objects.equals(baseXueLi, infoDead.baseXueLi) &&
+        Objects.equals(baseXueWei, infoDead.baseXueWei) &&
+        Objects.equals(workBianZhiLeiXing, infoDead.workBianZhiLeiXing) &&
+        Objects.equals(workZhiWu, infoDead.workZhiWu) &&
+        Objects.equals(workZhiWuJiBie, infoDead.workZhiWuJiBie) &&
+        Objects.equals(workZhiCheng, infoDead.workZhiCheng) &&
+        Objects.equals(workZhiChengJiBie, infoDead.workZhiChengJiBie) &&
+        Objects.equals(workTiQianTuiXiu, infoDead.workTiQianTuiXiu) &&
+        Objects.equals(workZhengShiTuiXiu, infoDead.workZhengShiTuiXiu) &&
+        Objects.equals(workTuiXiuBuMen, infoDead.workTuiXiuBuMen) &&
+        Objects.equals(baseZhengZhiMianMao, infoDead.baseZhengZhiMianMao) &&
+        Objects.equals(workZhuanYeHeGongZhong, infoDead.workZhuanYeHeGongZhong) &&
+        Objects.equals(nowSuoShuZhiBu, infoDead.nowSuoShuZhiBu) &&
+        Objects.equals(hisJiaRuZuZhi, infoDead.hisJiaRuZuZhi) &&
+        Objects.equals(hisZhengFuJinTie, infoDead.hisZhengFuJinTie) &&
+        Objects.equals(hisZhengFuJinTieDengJi, infoDead.hisZhengFuJinTieDengJi) &&
+        Objects.equals(hisFuZhuanTuiJunRen, infoDead.hisFuZhuanTuiJunRen) &&
+        Objects.equals(hisShangCan, infoDead.hisShangCan) &&
+        Objects.equals(hisShangCanDengJi, infoDead.hisShangCanDengJi) &&
+        Objects.equals(hisLiZhanGong, infoDead.hisLiZhanGong) &&
+        Objects.equals(hisLaZhanGongDengJi, infoDead.hisLaZhanGongDengJi) &&
+        Objects.equals(baseDuShengZiNv, infoDead.baseDuShengZiNv) &&
+        Objects.equals(hisLaoMo, infoDead.hisLaoMo) &&
+        Objects.equals(hisLaoMoDengJi, infoDead.hisLaoMoDengJi) &&
+        Objects.equals(nowGongZiHao, infoDead.nowGongZiHao) &&
+        Objects.equals(nowYiKaTong, infoDead.nowYiKaTong) &&
+        Objects.equals(nowManXingJiBing, infoDead.nowManXingJiBing) &&
+        Objects.equals(nowJianKangZhuangKuang, infoDead.nowJianKangZhuangKuang) &&
+        Objects.equals(connXianHuKouDiZhi, infoDead.connXianHuKouDiZhi) &&
+        Objects.equals(connYuZiNvShengHuo, infoDead.connYuZiNvShengHuo) &&
+        Objects.equals(connYuShuiShengHuo, infoDead.connYuShuiShengHuo) &&
+        Objects.equals(connXianJuZhuDiZhi, infoDead.connXianJuZhuDiZhi) &&
+        Objects.equals(connZhuZhaiDianHua, infoDead.connZhuZhaiDianHua) &&
+        Objects.equals(connShouJiHaoMa, infoDead.connShouJiHaoMa) &&
+        Objects.equals(connLiShiHaoMa, infoDead.connLiShiHaoMa) &&
+        Objects.equals(connEmailOrQq, infoDead.connEmailOrQq) &&
+        Objects.equals(connPeiOuHuoZiNvEmail, infoDead.connPeiOuHuoZiNvEmail) &&
+        Objects.equals(mateHunYinZhuangKuang, infoDead.mateHunYinZhuangKuang) &&
+        Objects.equals(matePeiOuName, infoDead.matePeiOuName) &&
+        Objects.equals(matePeiOuPhone, infoDead.matePeiOuPhone) &&
+        Objects.equals(matePeiOuJianKang, infoDead.matePeiOuJianKang) &&
+        Objects.equals(lianXiRenName, infoDead.lianXiRenName) &&
+        Objects.equals(lianXiRenGuanXi, infoDead.lianXiRenGuanXi) &&
+        Objects.equals(lianXiRenPhone, infoDead.lianXiRenPhone) &&
+        Objects.equals(hisShuangZhiGong, infoDead.hisShuangZhiGong) &&
+        Objects.equals(childrenZiNvName, infoDead.childrenZiNvName) &&
+        Objects.equals(childrenZiNvAddress, infoDead.childrenZiNvAddress) &&
+        Objects.equals(childrenZiNvDanWei, infoDead.childrenZiNvDanWei) &&
+        Objects.equals(childrenZiNvPhone, infoDead.childrenZiNvPhone) &&
+        Objects.equals(nowAiHaoXiangMu, infoDead.nowAiHaoXiangMu) &&
+        Objects.equals(nowJianChiJianShen, infoDead.nowJianChiJianShen) &&
+        Objects.equals(xiaoNeiName, infoDead.xiaoNeiName) &&
+        Objects.equals(xiaoNeiGuanXi, infoDead.xiaoNeiGuanXi) &&
+        Objects.equals(xiaoNeiPhone, infoDead.xiaoNeiPhone) &&
+        Objects.equals(xiaoNeiBuMen, infoDead.xiaoNeiBuMen) &&
+        Objects.equals(xiaoNeiAddress, infoDead.xiaoNeiAddress) &&
+        Objects.equals(nowLaoNianTiXieZu, infoDead.nowLaoNianTiXieZu) &&
+        Objects.equals(nowLiuLanWebsite, infoDead.nowLiuLanWebsite) &&
+        Objects.equals(nowXiaoWaiTuanTiZhiWu, infoDead.nowXiaoWaiTuanTiZhiWu) &&
+        Objects.equals(hisJunShuJunLie, infoDead.hisJunShuJunLie) &&
+        Objects.equals(remark, infoDead.remark) &&
+        Objects.equals(hisUnionGroup, infoDead.hisUnionGroup) &&
+        Objects.equals(tianBiaoShiJian, infoDead.tianBiaoShiJian) &&
+        Objects.equals(deadTime, infoDead.deadTime);
   }
 
-  public void setDiedDateStart(String diedDateStart) {
-    this.diedDateStart = diedDateStart;
+  @Override
+  public int hashCode() {
+
+    return Objects.hash(id, basePhotoUrl, baseName, baseSex, workKaiShiGongZuo, baseJiGuan, baseShengRi, workDaoXiaoShiJian, baseShenFenZheng, baseMinZu, baseXueLi, baseXueWei, workBianZhiLeiXing, workZhiWu, workZhiWuJiBie, workZhiCheng, workZhiChengJiBie, workTiQianTuiXiu, workZhengShiTuiXiu, workTuiXiuBuMen, baseZhengZhiMianMao, workZhuanYeHeGongZhong, nowSuoShuZhiBu, hisJiaRuZuZhi, hisZhengFuJinTie, hisZhengFuJinTieDengJi, hisFuZhuanTuiJunRen, hisShangCan, hisShangCanDengJi, hisLiZhanGong, hisLaZhanGongDengJi, baseDuShengZiNv, hisLaoMo, hisLaoMoDengJi, nowGongZiHao, nowYiKaTong, nowManXingJiBing, nowJianKangZhuangKuang, connXianHuKouDiZhi, connYuZiNvShengHuo, connYuShuiShengHuo, connXianJuZhuDiZhi, connZhuZhaiDianHua, connShouJiHaoMa, connLiShiHaoMa, connEmailOrQq, connPeiOuHuoZiNvEmail, mateHunYinZhuangKuang, matePeiOuName, matePeiOuPhone, matePeiOuJianKang, lianXiRenName, lianXiRenGuanXi, lianXiRenPhone, hisShuangZhiGong, childrenZiNvName, childrenZiNvAddress, childrenZiNvDanWei, childrenZiNvPhone, nowAiHaoXiangMu, nowJianChiJianShen, xiaoNeiName, xiaoNeiGuanXi, xiaoNeiPhone, xiaoNeiBuMen, xiaoNeiAddress, nowLaoNianTiXieZu, nowLiuLanWebsite, nowXiaoWaiTuanTiZhiWu, hisJunShuJunLie, remark, hisUnionGroup, tianBiaoShiJian, deadTime);
   }
 }

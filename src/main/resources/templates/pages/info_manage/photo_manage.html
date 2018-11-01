@@ -61,260 +61,259 @@
     var uploadPhot;
     var indexs = [];
     layui.use(['element', 'form', 'layer', 'upload', 'jquery'], function () {
-        console.log("已进2");
-        var $ = layui.$;
-        var upload = layui.upload;
-        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
-        form.render();
-        console.log("已进3");
-        query = function () {
-            $.ajax({
-                //几个参数需要注意一下
-                type: "POST",//方法类型
-                dataType: "json",//预期服务器返回的数据类型
-                url: "/baseInfo/searchByNameOrId",//url
-                data: $('#form1').serialize(),
-                success: function (result) {
-                    var headtext = document.getElementById("head");
-                    var temptext;
-                    var photo;
-                    var temp = "";
-                    var divText = document.getElementById("contentdiv");
-                    console.log(result);//打印服务端返回的数据(调试用)
-                    if (result.code === 200 && result.data.length !== 0) {
-                        console.log("sucess");
-                        headtext.innerHTML = "<br>已查询到" + result.data.length + "条记录";
-                        //循环输出记录条数
-                        console.log(result.data.length);
-                        for (var i = 0; i < result.data.length; i++) {
-                            indexs[i] = result.data[i].id;
-                            if (result.data[i].basePhotoUrl === undefined) {
-                                photo = "../../img/default_handsome.png";
-                                temptext = "暂无照片";
-                                temp = temp + '<div class="layui-row layui-col-space15">\n' +
-                                    '           <div class="layui-col-md12">' +
-                                    '                 <div class="layui-card" style="    margin-left: 10%;\n' +
-                                    '    margin-right: 10%;">' +
-                                    '                     <div class="layui-card-header">' +
-                                    '                         <h4  style="margin-top: 10px;text-align: center;"><br>信息详情</h4>' +
-                                    '<input type="text" name="photoUrl" hidden id="photoUrl">' +
-                                    '                        <img style="display: block" src="' + photo + '"  class="img_head test"  id="uploadPhoto' + i + '" onclick="uploadPhot(' + i + ')"  >' +
-                                    '                      <p style="height: 30px;text-align: right;width: 80px;margin-left: 58%;" id="upload_err">' + temptext + '</p>' +
-                                    '                         <p style="margin-left: 30%" id="informations"></p>' +
-                                    result.data[i].baseName + '<br>' + result.data[i].baseSex + '<br>' + result.data[i].baseJiGuan + '<br>' + result.data[i].baseShenFenZheng + '<br>' + result.data[i].connShouJiHaoMa +
-                                    '                     </div>' +
-                                    '                     <div class="layui-card-body">' +
-                                    '                   </div>' +
-                                    '              </div>' +
-                                    '           </div>' +
-                                    '        </div>';
+      console.log("已进2");
+      var $ = layui.$;
+      var upload = layui.upload;
+      var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+      form.render();
+      console.log("已进3");
+      query = function () {
+        $.ajax({
+          //几个参数需要注意一下
+          type: "POST",//方法类型
+          dataType: "json",//预期服务器返回的数据类型
+          url: "/baseInfo/searchByNameOrId",//url
+          data: $('#form1').serialize(),
+          success: function (result) {
+            var headtext = document.getElementById("head");
+            var temptext;
+            var photo;
+            var temp = "";
+            var divText = document.getElementById("contentdiv");
+            console.log(result);//打印服务端返回的数据(调试用)
+            if (result.code === 200 && result.data.length !== 0) {
+              console.log("sucess");
+              headtext.innerHTML = "<br>已查询到" + result.data.length + "条记录";
+              //循环输出记录条数
+              console.log(result.data.length);
+              for (var i = 0; i < result.data.length; i++) {
+                indexs[i] = result.data[i].id;
+                if (result.data[i].basePhotoUrl === undefined) {
+                  photo = "../../img/default_handsome.png";
+                  temptext = "暂无照片";
+                  temp = temp + '<div class="layui-row layui-col-space15">\n' +
+                      '           <div class="layui-col-md12">' +
+                      '                 <div class="layui-card" style="    margin-left: 10%;\n' +
+                      '    margin-right: 10%;">' +
+                      '                     <div class="layui-card-header">' +
+                      '                         <h4  style="margin-top: 10px;text-align: center;"><br>信息详情</h4>' +
+                      '<input type="text" name="photoUrl" hidden id="photoUrl">' +
+                      '                        <img style="display: block" src="' + photo + '"  class="img_head test"  id="uploadPhoto' + i + '" onclick="uploadPhot(' + i + ')"  >' +
+                      '                      <p style="height: 30px;text-align: right;width: 80px;margin-left: 58%;" id="upload_err">' + temptext + '</p>' +
+                      '                         <p style="margin-left: 30%" id="informations"></p>' +
+                      result.data[i].baseName + '<br>' + result.data[i].baseSex + '<br>' + result.data[i].baseJiGuan + '<br>' + result.data[i].baseShenFenZheng + '<br>' + result.data[i].connShouJiHaoMa +
+                      '                     </div>' +
+                      '                     <div class="layui-card-body">' +
+                      '                   </div>' +
+                      '              </div>' +
+                      '           </div>' +
+                      '        </div>';
 
-                            } else {
-                                temptext = "已有照片";
-                                photo = "http://geek-team.xin/lgc/file/downloadFile?uri=/usr/springbootPro/lgc/" + result.data[i].basePhotoUrl;
-                                temp = temp + "<div class=\"layui-row layui-col-space15\">\n" +
-                                    "            <div class=\"layui-col-md12\">\n" +
-                                    "                <div class=\"layui-card\" style='    margin-left: 10%;\n" +
-                                    "    margin-right: 10%;'>\n" +
-                                    "                    <div class=\"layui-card-header\">\n" +
-                                    "                        <h4 id=\"head\" style=\"margin-top: 10px;text-align: center;\"><br>信息详情</h4>\n" +
-                                    '                        <img style="display: block" src="' + photo + '"  class="img_head test"  id="uploadPhoto' + i + '" onclick="uploadPhot(' + i + ')"  >' +
-                                    "                        <p style=\"height: 30px;text-align: right;width: 80px;margin-left: 58%;\" id=\"upload_err\">" + temptext + "</p>\n" +
-                                    "                        <p style=\"margin-left: 30%\" id=\"informations\"></p>\n" +
-                                    "" + result.data[i].baseName + "<br>" + result.data[i].baseSex + "<br>" + result.data[i].baseJiGuan + "<br>" + result.data[i].baseShenFenZheng + "<br>" + result.data[i].connShouJiHaoMa +
-                                    "                    </div>\n" +
-                                    "                    <div class=\"layui-card-body\">\n" +
-                                    "\n" +
-                                    "                    </div>\n" +
-                                    "                </div>\n" +
-                                    "            </div>\n" +
-                                    "        </div>"
-                            }
-                            divText.innerHTML = temp;
-                            upload.render({
-                                elem: '#uploadPhoto0',
-                                url: '/file/upload/',
-                                data: {
-                                    id: indexs[0]
-                                },
-                                field: 'file',
-                                bindAction: '#uploadPhoto0',			//“上传”按钮的ID
-                                auto: true,
-                                before: function (obj) {
-                                    console.log("已进4");
-                                    console.log(obj);
-                                    //预读本地文件示例，不支持ie8
-                                    obj.preview(function (index, file, result) {
-                                        obj.resetFile(index, file, '' + indexs[0] + '.jpg');
-                                        $('#uploadPhoto0').attr('src', result); //图片链接（base64）
-                                    });
-                                },
-                                done: function (res) {
-                                    console.log("已进5");
-                                    console.log(res);
-                                    //如果上传失败
-                                    if (res.code > 0) {
-                                        return layer.msg('上传失败');
-                                    }
-                                    console.log(res.data);
-                                    $.ajax({
-                                        //几个参数需要注意一下
-                                        type: "POST",//方法类型
-                                        dataType: "json",//预期服务器返回的数据类型
-                                        url: "/file/savePhotoURL",//url
-                                        data: {
-                                            id: indexs[0],
-                                            photoURL: res.data
-                                        },
-                                        success: function (res) {
-                                            console.log(res);
-                                            return layer.msg('上传成功！');
-                                        },
-                                        error: function () {
-                                            return layer.msg('服务器异常！');
-                                        }
-                                    })
-                                },
-                                error: function () {
-                                    return layer.msg('上传失败！');
-                                }
-                            });
-                            upload.render({
-                                elem: '#uploadPhoto1',
-                                url: '/file/upload/',
-                                field: 'file',
-                                data: {
-                                    id: indexs[1]
-                                },
-                                bindAction: '#uploadPhoto1',			//“上传”按钮的ID
-                                auto: true,
-                                before: function (obj) {
-                                    console.log("已进4");
-                                    console.log(obj);
-                                    //预读本地文件示例，不支持ie8
-                                    obj.preview(function (index, file, result) {
-                                        console.log(result);
-                                        obj.resetFile(index, file, '' + indexs[1] + '.jpg');
-                                        $('#uploadPhoto1').attr('src', result); //图片链接（base64）
-                                    });
-                                },
-
-                                done: function (res) {
-                                    console.log("已进5");
-                                    console.log(res);
-                                    //如果上传失败
-                                    if (res.code > 0) {
-                                        return layer.msg('上传失败');
-                                    }
-                                    $('#upload_err').html('');
-                                    form.val('filter_baseAdd', {
-                                        'photoUrl': res.data
-                                    });
-                                    form.render();
-                                    console.log(res.data);
-
-                                    $.ajax({
-                                        //几个参数需要注意一下
-                                        type: "POST",//方法类型
-                                        dataType: "json",//预期服务器返回的数据类型
-                                        url: "/file/savePhotoURL",//url
-                                        data: {
-                                            id: indexs[1],
-                                            photoURL: res.data
-                                        },
-                                        success: function (res) {
-                                            console.log(res);
-                                            layer.msg('上传成功！');
-                                        },
-                                        error: function () {
-                                            return layer.msg('服务器异常！');
-                                        }
-                                    })
-                                },
-                                error: function () {
-                                    console.log("失败");
-                                    var upload_err = $('#upload_err');
-                                    upload_err.html(
-                                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                                    upload_err.find('.demo-reload').on('click', function () {
-                                        layer.msg('上传失败！');
-                                    });
-                                }
-                            });
-                            upload.render({
-                                elem: '#uploadPhoto2',
-                                url: '/file/upload/',
-                                field: 'file',
-                                data: {
-                                    id: indexs[2]
-                                },
-                                bindAction: '#uploadPhoto2',
-                                auto: true,
-                                before: function (obj) {
-                                    console.log("已进4");
-                                    console.log(obj);
-                                    obj.preview(function (index, file, result) {
-                                        console.log(result);
-                                        obj.resetFile(index, file, '' + indexs[2] + '.jpg');
-                                        $('#uploadPhoto2').attr('src', result); //图片链接（base64）
-                                    });
-                                },
-                                done: function (res) {
-                                    console.log(res);
-                                    if (res.code > 0) {
-                                        return layer.msg('上传失败！');
-                                    }
-                                    console.log(res.data);
-                                    $.ajax({
-                                        //几个参数需要注意一下
-                                        type: "POST",//方法类型
-                                        dataType: "json",//预期服务器返回的数据类型
-                                        url: "/file/savePhotoURL",//url
-                                        data: {
-                                            id: indexs[2],
-                                            photoURL: res.data
-                                        },
-                                        success: function (res) {
-                                            console.log(res);
-                                           layer.msg('上传成功！');
-                                        },
-                                        error: function () {
-                                            return layer.msg('服务器异常！');
-                                        }
-                                    })
-                                    //上传成功
-                                },
-                                error: function () {
-                                    layer.msg('上传失败！');
-                                }
-                            });
-
-                        }
-                    } else {
-                        divText.innerHTML=" <div class=\"layui-row layui-col-space15\">\n" +
-                            "            <div class=\"layui-col-md12\">\n" +
-                            "                <div class=\"layui-card\" style=\"margin-left: 10%; margin-right: 10%;\">\n" +
-                            "                    <div class=\"layui-card-header\">\n" +
-                            "                        <h4 id=\"head\" style=\"margin-top: 10px;text-align: center;\"><br>抱歉！未查询到相关记录</h4>\n" +
-                            "                        <p style=\"margin-left: 30%\" id=\"informations\"></p>\n" +
-                            "                    </div>\n" +
-                            "                    <div class=\"layui-card-body\">\n" +
-                            "\n" +
-                            "                    </div>\n" +
-                            "                </div>\n" +
-                            "            </div>\n" +
-                            "        </div>\n"
-
-                    }
-                },
-                error: function () {
-                    layer.msg('上传失败！');
+                } else {
+                  temptext = "已有照片";
+                  photo = "http://geek-team.xin/lgc/file/downloadFile?uri=/usr/springbootPro/lgc/" + result.data[i].basePhotoUrl;
+                  temp = temp + "<div class=\"layui-row layui-col-space15\">\n" +
+                      "            <div class=\"layui-col-md12\">\n" +
+                      "                <div class=\"layui-card\" style='    margin-left: 10%;\n" +
+                      "    margin-right: 10%;'>\n" +
+                      "                    <div class=\"layui-card-header\">\n" +
+                      "                        <h4 id=\"head\" style=\"margin-top: 10px;text-align: center;\"><br>信息详情</h4>\n" +
+                      '                        <img style="display: block" src="' + photo + '"  class="img_head test"  id="uploadPhoto' + i + '" onclick="uploadPhot(' + i + ')"  >' +
+                      "                        <p style=\"height: 30px;text-align: right;width: 80px;margin-left: 58%;\" id=\"upload_err\">" + temptext + "</p>\n" +
+                      "                        <p style=\"margin-left: 30%\" id=\"informations\"></p>\n" +
+                      "" + result.data[i].baseName + "<br>" + result.data[i].baseSex + "<br>" + result.data[i].baseJiGuan + "<br>" + result.data[i].baseShenFenZheng + "<br>" + result.data[i].connShouJiHaoMa +
+                      "                    </div>\n" +
+                      "                    <div class=\"layui-card-body\">\n" +
+                      "\n" +
+                      "                    </div>\n" +
+                      "                </div>\n" +
+                      "            </div>\n" +
+                      "        </div>"
                 }
-            });
-        };
-        uploadPhot = function (i) {
-            console.log(indexs[i]);
-        }
+                divText.innerHTML = temp;
+                upload.render({
+                  elem: '#uploadPhoto0',
+                  url: '/file/upload/',
+                  data: {
+                    id: indexs[0]
+                  },
+                  field: 'file',
+                  bindAction: '#uploadPhoto0',			//“上传”按钮的ID
+                  auto: true,
+                  before: function (obj) {
+                    console.log("已进4");
+                    console.log(obj);
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                      obj.resetFile(index, file, '' + indexs[0] + '.jpg');
+                      $('#uploadPhoto0').attr('src', result); //图片链接（base64）
+                    });
+                  },
+                  done: function (res) {
+                    console.log("已进5");
+                    console.log(res);
+                    //如果上传失败
+                    if (res.code > 0) {
+                      return layer.msg('上传失败');
+                    }
+                    console.log(res.data);
+                    $.ajax({
+                      //几个参数需要注意一下
+                      type: "POST",//方法类型
+                      dataType: "json",//预期服务器返回的数据类型
+                      url: "/file/savePhotoURL",//url
+                      data: {
+                        id: indexs[0],
+                        photoURL: res.data
+                      },
+                      success: function (res) {
+                        console.log(res);
+                        return layer.msg('上传成功！');
+                      },
+                      error: function () {
+                        return layer.msg('服务器异常！');
+                      }
+                    })
+                  },
+                  error: function () {
+                    return layer.msg('上传失败！');
+                  }
+                });
+                upload.render({
+                  elem: '#uploadPhoto1',
+                  url: '/file/upload/',
+                  field: 'file',
+                  data: {
+                    id: indexs[1]
+                  },
+                  bindAction: '#uploadPhoto1',			//“上传”按钮的ID
+                  auto: true,
+                  before: function (obj) {
+                    console.log("已进4");
+                    console.log(obj);
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                      console.log(result);
+                      obj.resetFile(index, file, '' + indexs[1] + '.jpg');
+                      $('#uploadPhoto1').attr('src', result); //图片链接（base64）
+                    });
+                  },
+                  done: function (res) {
+                    console.log("已进5");
+                    console.log(res);
+                    //如果上传失败
+                    if (res.code > 0) {
+                      return layer.msg('上传失败');
+                    }
+                    $('#upload_err').html('');
+                    form.val('filter_baseAdd', {
+                      'photoUrl': res.data
+                    });
+                    form.render();
+                    console.log(res.data);
+
+                    $.ajax({
+                      //几个参数需要注意一下
+                      type: "POST",//方法类型
+                      dataType: "json",//预期服务器返回的数据类型
+                      url: "/file/savePhotoURL",//url
+                      data: {
+                        id: indexs[1],
+                        photoURL: res.data
+                      },
+                      success: function (res) {
+                        console.log(res);
+                        layer.msg('上传成功！');
+                      },
+                      error: function () {
+                        return layer.msg('服务器异常！');
+                      }
+                    })
+                  },
+                  error: function () {
+                    console.log("失败");
+                    var upload_err = $('#upload_err');
+                    upload_err.html(
+                        '<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    upload_err.find('.demo-reload').on('click', function () {
+                      layer.msg('上传失败！');
+                    });
+                  }
+                });
+                upload.render({
+                  elem: '#uploadPhoto2',
+                  url: '/file/upload/',
+                  field: 'file',
+                  data: {
+                    id: indexs[2]
+                  },
+                  bindAction: '#uploadPhoto2',
+                  auto: true,
+                  before: function (obj) {
+                    console.log("已进4");
+                    console.log(obj);
+                    obj.preview(function (index, file, result) {
+                      console.log(result);
+                      obj.resetFile(index, file, '' + indexs[2] + '.jpg');
+                      $('#uploadPhoto2').attr('src', result); //图片链接（base64）
+                    });
+                  },
+                  done: function (res) {
+                    console.log(res);
+                    if (res.code > 0) {
+                      return layer.msg('上传失败！');
+                    }
+                    console.log(res.data);
+                    $.ajax({
+                      //几个参数需要注意一下
+                      type: "POST",//方法类型
+                      dataType: "json",//预期服务器返回的数据类型
+                      url: "/file/savePhotoURL",//url
+                      data: {
+                        id: indexs[2],
+                        photoURL: res.data
+                      },
+                      success: function (res) {
+                        console.log(res);
+                        layer.msg('上传成功！');
+                      },
+                      error: function () {
+                        return layer.msg('服务器异常！');
+                      }
+                    })
+                    //上传成功
+                  },
+                  error: function () {
+                    layer.msg('上传失败！');
+                  }
+                });
+
+              }
+            } else {
+              divText.innerHTML = " <div class=\"layui-row layui-col-space15\">\n" +
+                  "            <div class=\"layui-col-md12\">\n" +
+                  "                <div class=\"layui-card\" style=\"margin-left: 10%; margin-right: 10%;\">\n" +
+                  "                    <div class=\"layui-card-header\">\n" +
+                  "                        <h4 id=\"head\" style=\"margin-top: 10px;text-align: center;\"><br>抱歉！未查询到相关记录</h4>\n" +
+                  "                        <p style=\"margin-left: 30%\" id=\"informations\"></p>\n" +
+                  "                    </div>\n" +
+                  "                    <div class=\"layui-card-body\">\n" +
+                  "\n" +
+                  "                    </div>\n" +
+                  "                </div>\n" +
+                  "            </div>\n" +
+                  "        </div>\n"
+
+            }
+          },
+          error: function () {
+            layer.msg('上传失败！');
+          }
+        });
+      };
+      uploadPhot = function (i) {
+        console.log(indexs[i]);
+      }
     });
 
         // var headText = $("head");
@@ -371,12 +370,12 @@
         // } else {
         //   headtext.innerHTML = "<br>抱歉！未查询到相关记录";
         // }
-      },
-      error: function () {
-        alert("异常！");
-      }
-    })
-    }
+    //   },
+    //   error: function () {
+    //     alert("异常！");
+    //   }
+    // })
+    // }
 
   function uploadPhoto(i) {
     console.log(index[i]);

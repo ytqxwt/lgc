@@ -1,4 +1,10 @@
+
 /*公共样式*/
+
+.between1{
+    width: 100%;
+}
+
 .layui-form-label{
     width: 148px;
 }

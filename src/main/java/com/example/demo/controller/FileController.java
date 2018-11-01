@@ -1,11 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.domain.entity.InfoNew;
 import com.example.demo.domain.vo.JsonResult;
 import com.example.demo.util.FileUtil;
-import org.hibernate.boot.jaxb.SourceType;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,71 +34,83 @@ public class FileController {
   @RequestMapping(value = "/upload", produces = {"application/json"}, method = RequestMethod.POST)
   @ResponseBody
   public String fileUpload(@RequestParam("file") MultipartFile file ,@RequestParam("id") String id ) {
-
     System.out.println(file);
     System.out.println(id);
     System.out.println("图片");
     return fileUtil.uploadPhoto(file,id);
   }
-
   @RequestMapping("/downloadFile")
   public void downLoad(HttpServletResponse response, @RequestParam(name = "uri") String uri) throws UnsupportedEncodingException {
     System.out.println(uri);
     File file = new File(uri);
-    if (file.exists()) {
+    if(file.exists()){
+      String s = uri.substring(uri.lastIndexOf('.') + 1);
+      s=s.toUpperCase();
+      System.out.println(s);
       response.setContentType("application/force-download");
       response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(uri.substring(uri.lastIndexOf("/") + 1), "gbk"));
-//      response.setHeader("content-disposition", "attachment;filename=" + uri.substring(uri.lastIndexOf("/") + 1));
-      //根据后缀设置返回类型
-      String suffix = uri.substring(uri.lastIndexOf('.') + 1);
-      switch (suffix) {
-        case "jpg":
-        case "JPG":
-        case "jpeg":
-          response.setContentType("image/jpeg");
-          break;
-        case "txt":
-          response.setContentType("text/plain");
-          break;
-        case "map3":
-          response.setContentType("audio/mpeg");
-          break;
-        case "gif":
-          response.setContentType("image/gif");
-          break;
-        case "ppt":
-          response.setContentType("application/vnd.ms-powerpoint");
-          break;
-        case "pptx":
-          response.setContentType("\t\n" +
-              "application/vnd.openxmlformats-officedocument.presentationml.template");
-          break;
-        case "doc":
-          response.setContentType("application/msword");
-          break;
-        case "apk":
-          response.setContentType("application/vnd.android.package-archive");
-          break;
-        default:
-          response.setContentType("application/octet-stream");
-      }
+      downfile(response, s);
       byte[] buffer = new byte[1024];
-      try (
-
-          FileInputStream fis = new FileInputStream(file);
-          BufferedInputStream bis = new BufferedInputStream(fis);
-          OutputStream os = response.getOutputStream()
-      ) {
-        int i = bis.read(buffer);
-        while (i != -1) {
-          os.write(buffer);
-          i = bis.read(buffer);
-        }
-      } catch (IOException e) {
-        e.printStackTrace();
-      }
+      outputFile(response, file, buffer);
+    } else if (file.exists()) {
+      response.setContentType("application/force-download");
+      response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(uri.substring(uri.lastIndexOf("/") + 1), "gbk"));
+      String suffix = uri.substring(uri.lastIndexOf('.') + 1);
+      downfile(response, suffix);
+      byte[] buffer = new byte[1024];
+      outputFile(response, file, buffer);
     } else {
       response.setStatus(500);
+    }
+  }
+
+  private void outputFile(HttpServletResponse response, File file, byte[] buffer) {
+    try (
+        FileInputStream fis = new FileInputStream(file);
+        BufferedInputStream bis = new BufferedInputStream(fis);
+        OutputStream os = response.getOutputStream()
+    ) {
+      int i = bis.read(buffer);
+      while (i != -1) {
+        os.write(buffer);
+        i = bis.read(buffer);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void downfile(HttpServletResponse response, String s) {
+    switch (s) {
+      case "jpg":
+      case "JPG":
+      case "jpeg":
+        response.setContentType("image/jpeg");
+        break;
+      case "txt":
+        response.setContentType("text/plain");
+        break;
+      case "map3":
+        response.setContentType("audio/mpeg");
+        break;
+      case "gif":
+        response.setContentType("image/gif");
+        break;
+      case "ppt":
+        response.setContentType("application/vnd.ms-powerpoint");
+        break;
+      case "pptx":
+        response.setContentType("\t\n" +
+            "application/vnd.openxmlformats-officedocument.presentationml.template");
+        break;
+      case "doc":
+        response.setContentType("application/msword");
+        break;
+      case "apk":
+        response.setContentType("application/vnd.android.package-archive");
+        break;
+      default:
+        response.setContentType("application/octet-stream");
     }
   }
 
