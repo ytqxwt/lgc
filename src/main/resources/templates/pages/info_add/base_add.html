@@ -618,7 +618,7 @@
       if (postData.nowXiaoWaiTuanTiZhiWu === "有") {
         postData.nowXiaoWaiTuanTiZhiWu = postData.nowXiaoWaiTuanTiZhiWu + postData.xiaoWaiTuanTiZhiWu;
       }
-      postData.token = getQueryString("token");
+      // postData.token = getQueryString("token");
       console.log(postData);
       $.post('/baseInfo/set', postData, function (res) {
         console.log(res);
