@@ -70,9 +70,9 @@
 		margin-top: -6px;
 	}
 </style>
-	<form class="layui-form between-content" method="post" action="/baseInfo/set">
-		<div class="SongTX4" style="margin: 40px auto;width: 400px;">
-
+<form class="layui-form between-content" method="post" action="/baseInfo/set">
+	<div class="SongTX4" style="margin: 40px auto;width: 400px;">
+		<input type="text" hidden name="token" value="javascript:token">
 		<div class="layui-form-item" align="center">
 			<label class="layui-form-label">住院人</label>
 			<div class="layui-input-inline">
@@ -118,19 +118,24 @@
 				       class="layui-input">
 			</div>
 		</div>
-		<div class="layui-form-item" >
+		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit lay-filter="formDemo" id="next">提交</button>
 				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 			</div>
 		</div>
 
-		</div></form>
+	</div>
+</form>
 
 <script>
   layui.use(['form'], function () {
     var form = layui.form;
     form.render();
     console.log("eeeeee")
-  })
+  });
+
+  function token() {
+    return token;
+  }
 </script>

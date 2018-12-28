@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:mysql://120.79.68.208:3306/niannian</property>
+    <property name="connection.url">jdbc:mysql://120.79.68.208:3306/Retirement_management_system</property>
     <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
     <mapping class="com.example.demo.domain.entity.Power"/>
       <mapping class="com.example.demo.domain.entity.User"/>
@@ -12,6 +12,7 @@
       <mapping class="com.example.demo.domain.entity.City"/>
       <mapping class="com.example.demo.domain.entity.InfoNew"/>
     <mapping class="com.example.demo.domain.entity.InfoDead"/>
+    <mapping class="com.example.demo.domain.entity.Case"/>
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

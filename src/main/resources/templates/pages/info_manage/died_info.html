@@ -1,25 +1,25 @@
 <form lay-filter="formSearch" id="form_search" class="layui-form between1" style="margin: 20px">
- 身份证号
-  <input type="text" name="baseShenFenZheng" id="baseShenFenZheng" style="width: 180px">
- 姓名
-  <input type="text" name="baseName" id="baseName" style="width: 80px">
-  去世年月
-  <input type="text" name="diedDateStart" style="width: 200px" id="diedDateStart">
-  到<input type="text" name="diedDateEnd" style="width: 200px" id="diedDateRiEnd">
+	身份证号
+	<input type="text" name="baseShenFenZheng" id="baseShenFenZheng" style="width: 180px">
+	姓名
+	<input type="text" name="baseName" id="baseName" style="width: 80px">
+	去世年月
+	<input type="text" name="diedDateStart" style="width: 200px" id="diedDateStart">
+	到<input type="text" name="diedDateEnd" style="width: 200px" id="diedDateRiEnd">
 
-  部门
-  <input type="text" name="workTuiXiuBuMen" style="width:100px">
-  <span style="color: #1b6d85;size: 20px">(请输入关键词)</span>
-  <button class="layui-btn" lay-submit lay-filter="formSubmitSearch">查询</button>
-  <!--</div>-->
+	部门
+	<input type="text" name="workTuiXiuBuMen" style="width:100px">
+	<span style="color: #1b6d85;size: 20px">(请输入关键词)</span>
+	<button class="layui-btn" lay-submit lay-filter="formSubmitSearch">查询</button>
+	<!--</div>-->
 </form>
 <div style="padding: 15px;">
-  <table id="table_user" lay-filter="table_user"></table>
+	<table id="table_user" lay-filter="table_user"></table>
 </div>
-<script type="text/html"  id="barDemo">
-  <a class="layui-btn  layui-btn-xs" lay-event="see">查看</a>
-  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+<script type="text/html" id="barDemo">
+	<a class="layui-btn  layui-btn-xs" lay-event="see">查看</a>
+	<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script>
   var tableIns;
@@ -32,19 +32,19 @@
       var index = layer.load(1, {shade: false, time: 1000}); //0代表加载的风格，支持0-2
       // layer.msg("标签内容为：" + $("input[name='label']").val());
       console.log(data);
-      var myArray = new Array()
+      var myArray = [];
       if ($("#baseShenFenZheng").val() !== "") {
         myArray = myArray.concat("baseShenFenZheng")
       } else if ($("#baseName").val() !== "") {
         myArray = myArray.concat("baseName")
       } else if ($("#workTuiXiuBuMen").val() !== "") {
-          myArray = myArray.concat("workTuiXiuBuMen")
-      }else if ($("#diedDateStart").val() !== "") {
+        myArray = myArray.concat("workTuiXiuBuMen")
+      } else if ($("#diedDateStart").val() !== "") {
         myArray = myArray.concat("diedDateStart")
-      }else if ($("#diedDateEnd").val() !== "") {
+      } else if ($("#diedDateEnd").val() !== "") {
         myArray = myArray.concat("diedDateEnd")
       }
-      data.field.select =myArray.join();
+      data.field.select = myArray.join();
       var postData = data.field;
       var info_tableIns = table.render({
         elem: '#table_user',
@@ -91,7 +91,7 @@
       var photo_head = "../../img/default_head.png";
       if (typeof(obj.data.basePhotoUrl) === undefined) {
         photo_head = "../../img/default_head.png";
-      } else if (obj.data.basePhotoUrl == null || obj.data.basePhotoUrl == "") {
+      } else if (obj.data.basePhotoUrl == null || obj.data.basePhotoUrl === "") {
         photo_head = "../../img/default_head.png";
       } else {
         photo_head = "http://geek-team.xin/lgc/file/downloadFile?uri=/usr/springbootPro/lgc/" + obj.data.basePhotoUrl;
@@ -105,304 +105,307 @@
           , maxmin: true //允许全屏最小化
           , anim: 1 //0-6的动画形式，-1不开启
           , content: '<div align="right">\n' +
-          '    <button style="" class="layui-btn" id="printForm">打印表格</button>\n' +
-          '<div >' +
-          ' <img  class="img_head2 test" src="' + photo_head + '">' +
-          '</div>' +
-          '</div>\n' +
-          '<br>\n' +
-          '<form id="form_baseInfo" lay-filter="filter_baseAdd" class="layui-form">\n' +
-          '    <input type="text" name="photoUrl" hidden id="photoUrl">\n' +
-          '    <div class="BiaoTou" align="center"><strong>离退休人员基本信息采集表</strong>\n' +
-          '    </div>\n' +
-          '\n' +
-          '    <div class="erhang" align="right">\n' +
-          '        <div class="erhang_ele1">填表时间：</div>\n' +
-          '        <div class="erhang_ele2">\n' +
-          '            <div id="tianBiaoShiJian">\n'
-          + data.tianBiaoShiJian +
-          '            </div>\n' +
-          '        </div>\n' +
-          '    </div>\n' +
-          '    <div class="SongTX4" align="center">\n' +
-          '\n' +
-          '        <table style="border-collapse:collapse " width="660" cellspacing="0" cellpadding="2" border="1">\n' +
-          '            <tbody>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*姓&nbsp;名</td>\n' +
-          '                <td colspan="2" width="28.8%" height="40">\n'
-          + data.baseName +
-          '                <td width="9.54%" height="40">*性别</td>\n' +
-          '                <td width="7.57%" height="40">\n'
-          + data.baseSex +
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*参加工作时间</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n'
-          + data.workKaiShiGongZuo +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*籍&nbsp;贯</td>\n' +
-          '                <td width="28.8%" colspan="2" height="40">\n'
-          + (data.baseJiGuan).substring(0, 2) + '省\n'
-          + (data.baseJiGuan).substring(2, 4) + '市（县）\n' +
-          '                <td colspan="2" height="40">*身份证号码</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.baseShenFenZheng +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*民&nbsp;族</td>\n' +
-          '                <td height="40">'
-          + data.baseMinZu +
-          '</td>\n' +
-          '                <td height="40" width="14.40%">*学&nbsp;历</td>\n' +
-          '                <td colspan="2" width="16.67%" height="40">\n'
-          + data.baseXueLi +
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*到校时间</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n'
-          + data.workDaoXiaoShiJian +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*学&nbsp;位</td>\n' +
-          '                <td height="40">'
-          + data.baseXueWei +
-          '</td>\n' +
-          '                <td height="40" width="14.40%">*职&nbsp;务</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.workZhiWu +
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*职&nbsp;称</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n'
-          + data.workZhiCheng +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*专业或工种</td>\n' +
-          '                <td height="40">'
-          + data.workZhuanYeHeGongZhong +
-          '</td>\n' +
-          '                <td height="40" width="14.40%">职务级别</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.workZhiWuJiBie +
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">职称级别</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n'
-          + data.workZhiChengJiBie +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*退休时部门</td>\n' +
-          '                <td colspan="2" width="14.40%" height="40">\n'
-          + data.workTuiXiuBuMen +
-          '</td>\n' +
-          '                <td width="9.54%" colspan="2" height="40">*退休时间</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.workZhengShiTuiXiu +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*政治面貌</td>\n' +
-          '                <td height="40">\n'
-          + data.baseZhengZhiMianMao +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*加入组织的年月</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.hisJiaRuZuZhi +
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*现所属支部</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n'
-          + data.nowSuoShuZhiBu +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*复转退军人</td>\n' +
-          '                <td height="40">\n' +
-          '                    <div class="table_radio">\n'
-          + data.hisFuZhuanTuiJunRen +
-          '                    </div>\n' +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*伤残</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '                    <div class="table_radio">\n'
-          + data.hisShangCan +
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*是否荣立战功</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n'
-          + data.hisLiZhanGong +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">是否独生子女</td>\n' +
-          '                <td height="40">\n'
-          + data.baseDuShengZiNv +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*一卡通号</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.nowYiKaTong +
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*享受哪级政府特殊津贴</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n' +
-          '                    <div class="table_radio">\n'
-          + data.hisZhengFuJinTie +
-          '                    </div>\n' +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">何时何级劳模</td>\n' +
-          '                <td height="40" colspan="4">\n'
-          + data.hisLaoMo +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*编制类型</td>\n' +
-          '                <td  height="40" colspan="2" >\n'
-          + data.workBianZhiLeiXing +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">慢性疾病</td>\n' +
-          '                <td height="40" colspan="4">\n'
-          + data.nowManXingJiBing +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*目前身体健康状况</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.nowJianKangZhuangKuang +
-          '</td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*现户口地址</td>\n' +
-          '                <td height="40" colspan="4">\n'
-          + data.connXianHuKouDiZhi +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*是否与子女共同生活</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.connYuZiNvShengHuo
-          + data.connYuShuiShengHuo +
-          '                    共同生活\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*现居住地址、通信地址、邮编</td>\n' +
-          '                <td height="40" colspan="6">\n'
-          + data.connXianJuZhuDiZhi +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*住宅电话</td>\n' +
-          '                <td colspan="2" width="14.40%" height="40">\n'
-          + data.connZhuZhaiDianHua +
-          '                <td width="9.54%" colspan="2" height="40">*手机号码</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.connShouJiHaoMa +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">电子邮箱</td>\n' +
-          '                <td colspan="2" width="14.40%" height="40">\n'
-          + data.connEmailOrQq +
-          '</td>\n' +
-          '                <td width="9.54%" colspan="2" height="40">文、体爱好项目</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.nowAiHaoXiangMu +
-          '</td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*婚姻状况</td>\n' +
-          '                <td colspan="2" width="14.40%" height="40">\n'
-          + data.mateHunYinZhuangKuang +
-          '</td>\n' +
-          '                <td width="9.54%" colspan="2" height="40">*联系人姓名、关系、电话\n' +
-          '                </td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.lianXiRenName +
-          '<br>'
-          + data.lianXiRenGuanXi +
-          '<br>'
-          + data.lianXiRenPhone +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">是否本校双职工</td>\n' +
-          '                <td colspan="2" width="14.40%" height="40">\n'
-          + data.hisShuangZhiGong +
-          '<br>'
-          + data.matePeiOuName +
-          '                <td width="9.54%" colspan="2" height="40">*子女姓名、住址、单位、电话\n' +
-          '                </td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<br>'
-          + data.childrenZiNvName +
-          '<br>'
-          + data.childrenZiNvAddress +
-          '<br>'
-          + data.childrenZiNvDanWei +
-          '<br>'
-          + data.childrenZiNvPhone +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*长住或暂住外地时，校内的联系人姓名、住址、部门、电话</td>\n' +
-          '                <td height="40" colspan="6">\n' +
-          '<br>'
-          + data.xiaoNeiName +
-          '<br>'
-          + data.xiaoNeiAddress +
-          '<br>'
-          + data.xiaoNeiBuMen +
-          '<br>'
-          + data.xiaoNeiPhone +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">现在坚持的体育健身项目</td>\n' +
-          '                <td height="40" colspan="2">'
-          + data.nowJianChiJianShen +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%" colspan="2">参加老年体协活动小组</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.nowLaoNianTiXieZu +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">是否浏览过离退休处网站</td>\n' +
-          '                <td height="40">'
-          + data.nowLiuLanWebsite +
-          '</td>\n' +
-          '                <td height="40" width="14.40%">校外社会团体中担任职务</td>\n' +
-          '                <td colspan="2" height="40">\n'
-          + data.nowXiaoWaiTuanTiZhiWu +
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*是否军属、烈属</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n'
-          + data.hisJunShuJunLie +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            </tbody>\n' +
-          '        </table>\n' +
-          '        <br>\n' +
-          '        <br>\n' +
-          '    </div>\n' +
-          '\n' +
-          '</form>'
+              '    <button style="" class="layui-btn" id="printForm">打印表格</button>\n' +
+              '<div >' +
+              ' <img  class="img_head2 test" src="' + photo_head + '">' +
+              '</div>' +
+              '</div>\n' +
+              '<br>\n' +
+              '<form id="form_baseInfo" lay-filter="filter_baseAdd" class="layui-form">\n' +
+              '    <input type="text" name="photoUrl" hidden id="photoUrl">\n' +
+              '    <div class="BiaoTou" align="center"><strong>离退休人员基本信息采集表</strong>\n' +
+              '    </div>\n' +
+              '\n' +
+              '    <div class="erhang" align="right">\n' +
+              '        <div class="erhang_ele1">填表时间：</div>\n' +
+              '        <div class="erhang_ele2">\n' +
+              '            <div id="tianBiaoShiJian">\n'
+              + data.tianBiaoShiJian +
+              '            </div>\n' +
+              '        </div>\n' +
+              '    </div>\n' +
+              '    <div class="SongTX4" align="center">\n' +
+              '\n' +
+              '        <table style="border-collapse:collapse " width="660" cellspacing="0" cellpadding="2" border="1">\n' +
+              '            <tbody>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*姓&nbsp;名</td>\n' +
+              '                <td colspan="2" width="28.8%" height="40">\n'
+              + data.baseName +
+              '                <td width="9.54%" height="40">*性别</td>\n' +
+              '                <td width="7.57%" height="40">\n'
+              + data.baseSex +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*参加工作时间</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n'
+              + data.workKaiShiGongZuo +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*籍&nbsp;贯</td>\n' +
+              '                <td width="28.8%" colspan="2" height="40">\n'
+              + (data.baseJiGuan).substring(0, 2) + '省\n'
+              + (data.baseJiGuan).substring(2, 4) + '市（县）\n' +
+              '                <td colspan="2" height="40">*身份证号码</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.baseShenFenZheng +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*民&nbsp;族</td>\n' +
+              '                <td height="40">'
+              + data.baseMinZu +
+              '</td>\n' +
+              '                <td height="40" width="14.40%">*学&nbsp;历</td>\n' +
+              '                <td colspan="2" width="16.67%" height="40">\n'
+              + data.baseXueLi +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*到校时间</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n'
+              + data.workDaoXiaoShiJian +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*学&nbsp;位</td>\n' +
+              '                <td height="40">'
+              + data.baseXueWei +
+              '</td>\n' +
+              '                <td height="40" width="14.40%">*职&nbsp;务</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.workZhiWu +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*职&nbsp;称</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n'
+              + data.workZhiCheng +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*专业或工种</td>\n' +
+              '                <td height="40">'
+              + data.workZhuanYeHeGongZhong +
+              '</td>\n' +
+              '                <td height="40" width="14.40%">职务级别</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.workZhiWuJiBie +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">职称级别</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n'
+              + data.workZhiChengJiBie +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*退休时部门</td>\n' +
+              '                <td colspan="2" width="14.40%" height="40">\n'
+              + data.workTuiXiuBuMen +
+              '</td>\n' +
+              '                <td width="9.54%" colspan="2" height="40">*退休时间</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.workZhengShiTuiXiu +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*政治面貌</td>\n' +
+              '                <td height="40">\n'
+              + data.baseZhengZhiMianMao +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*加入组织的年月</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.hisJiaRuZuZhi +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*现所属支部</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n'
+              + data.nowSuoShuZhiBu +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*复转退军人</td>\n' +
+              '                <td height="40">\n' +
+              '                    <div class="table_radio">\n'
+              + data.hisFuZhuanTuiJunRen +
+              '                    </div>\n' +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*伤残</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '                    <div class="table_radio">\n'
+              + data.hisShangCan +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*是否荣立战功</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n'
+              + data.hisLiZhanGong +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">是否独生子女</td>\n' +
+              '                <td height="40">\n'
+              + data.baseDuShengZiNv +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*一卡通号</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.nowYiKaTong +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*享受哪级政府特殊津贴</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n' +
+              '                    <div class="table_radio">\n'
+              + data.hisZhengFuJinTie +
+              '                    </div>\n' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">何时何级劳模</td>\n' +
+              '                <td height="40" colspan="4">\n'
+              + data.hisLaoMo +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*编制类型</td>\n' +
+              '                <td  height="40" colspan="2" >\n'
+              + data.workBianZhiLeiXing +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">慢性疾病</td>\n' +
+              '                <td height="40" colspan="4">\n'
+              + data.nowManXingJiBing +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*目前身体健康状况</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.nowJianKangZhuangKuang +
+              '</td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*现户口地址</td>\n' +
+              '                <td height="40" colspan="4">\n'
+              + data.connXianHuKouDiZhi +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*是否与子女共同生活</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.connYuZiNvShengHuo
+              + data.connYuShuiShengHuo +
+              '                    共同生活\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*现居住地址、通信地址、邮编</td>\n' +
+              '                <td height="40" colspan="6">\n'
+              + data.connXianJuZhuDiZhi +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*住宅电话</td>\n' +
+              '                <td colspan="2" width="14.40%" height="40">\n'
+              + data.connZhuZhaiDianHua +
+              '                <td width="9.54%" colspan="2" height="40">*手机号码</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.connShouJiHaoMa +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">电子邮箱</td>\n' +
+              '                <td colspan="2" width="14.40%" height="40">\n'
+              + data.connEmailOrQq +
+              '</td>\n' +
+              '                <td width="9.54%" colspan="2" height="40">文、体爱好项目</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.nowAiHaoXiangMu +
+              '</td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*婚姻状况</td>\n' +
+              '                <td colspan="2" width="14.40%" height="40">\n'
+              + data.mateHunYinZhuangKuang +
+              '</td>\n' +
+              '                <td width="9.54%" colspan="2" height="40">*联系人姓名、关系、电话\n' +
+              '                </td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.lianXiRenName +
+              '<br>'
+              + data.lianXiRenGuanXi +
+              '<br>'
+              + data.lianXiRenPhone +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">是否本校双职工</td>\n' +
+              '                <td colspan="2" width="14.40%" height="40">\n'
+              + data.hisShuangZhiGong +
+              '<br>'
+              + data.matePeiOuName +
+              '                <td width="9.54%" colspan="2" height="40">*子女姓名、住址、单位、电话\n' +
+              '                </td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<br>'
+              + data.childrenZiNvName +
+              '<br>'
+              + data.childrenZiNvAddress +
+              '<br>'
+              + data.childrenZiNvDanWei +
+              '<br>'
+              + data.childrenZiNvPhone +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*长住或暂住外地时，校内的联系人姓名、住址、部门、电话</td>\n' +
+              '                <td height="40" colspan="6">\n' +
+              '<br>'
+              + data.xiaoNeiName +
+              '<br>'
+              + data.xiaoNeiAddress +
+              '<br>'
+              + data.xiaoNeiBuMen +
+              '<br>'
+              + data.xiaoNeiPhone +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">现在坚持的体育健身项目</td>\n' +
+              '                <td height="40" colspan="2">'
+              + data.nowJianChiJianShen +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%" colspan="2">参加老年体协活动小组</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.nowLaoNianTiXieZu +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">是否浏览过离退休处网站</td>\n' +
+              '                <td height="40">'
+              + data.nowLiuLanWebsite +
+              '</td>\n' +
+              '                <td height="40" width="14.40%">校外社会团体中担任职务</td>\n' +
+              '                <td colspan="2" height="40">\n'
+              + data.nowXiaoWaiTuanTiZhiWu +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*是否军属、烈属</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n'
+              + data.hisJunShuJunLie +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            </tbody>\n' +
+              '        </table>\n' +
+              '        <br>\n' +
+              '        <br>\n' +
+              '    </div>\n' +
+              '\n' +
+              '</form>'
         });
       }
       else if (obj.event === 'del') {
         layer.confirm('真的删除行么', function (index) {
           console.log(data.id);
           console.log(resultData);
-          // resultData.token = getQueryString("token");
-          //需要检查权限！
+          var postData = resultData;
+          postData.token = token;
+          console.log(postData);
           obj.del();
           layer.close(index);
           $.ajax({
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
             url: "/deadInfo/del",//url
-            data: resultData,
+            data: postData,
             success: function (result) {
               console.log(result);//打印服务端返回的数据(调试用)
-              if (result.code == 0) {
+              if (result.code === 0) {
                 layer.msg('删除成功！');
+              } else if (result.code === 1) {
+                layer.msg("权限不足！")
               }
             },
             error: function () {
@@ -421,447 +424,447 @@
           , maxmin: true //允许全屏最小化
           , anim: 1 //0-6的动画形式，-1不开启
           , content:
-          '<br>\n' +
-          '<form id="form_baseInfo" lay-filter="filter_baseAdd" class="layui-form">\n' +
-          '    <input type="text" name="photoUrl" hidden id="photoUrl">\n' +
-          '    <div class="BiaoTou" align="center"><strong>离退休人员基本信息采集表</strong>\n' +
-          '    </div>\n' +
-          '\n' +
-          '    <div class="erhang" align="right">\n' +
-          '        <div class="erhang_ele1">填表时间：</div>\n' +
-          '        <div class="erhang_ele2">\n' +
-          '            <div id="tianBiaoShiJian">\n' +
-          '<input name="tianBiaoShiJian"   value="'
-          + data.tianBiaoShiJian +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
-          '            </div>\n' +
-          '        </div>\n' +
-          '<div class="erhang_ele1">去世时间：</div>\n' +
-        '        <div class="erhang_ele2">\n' +
-        '            <div id="deadTime">\n' +
-        '<input name="deadTime"   value="'
-        + data.deadTime +
-        '" class="select" type="text" style="border: none;width:180px"/>' +
-        '            </div>\n' +
-        '        </div>\n' +
-          '    </div>\n' +
+              '<br>\n' +
+              '<form id="form_baseInfo" lay-filter="filter_baseAdd" class="layui-form">\n' +
+              '    <input type="text" name="photoUrl" hidden id="photoUrl">\n' +
+              '    <div class="BiaoTou" align="center"><strong>离退休人员基本信息采集表</strong>\n' +
+              '    </div>\n' +
+              '\n' +
+              '    <div class="erhang" align="right">\n' +
+              '        <div class="erhang_ele1">填表时间：</div>\n' +
+              '        <div class="erhang_ele2">\n' +
+              '            <div id="tianBiaoShiJian">\n' +
+              '<input name="tianBiaoShiJian"   value="'
+              + data.tianBiaoShiJian +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
+              '            </div>\n' +
+              '        </div>\n' +
+              '<div class="erhang_ele1">去世时间：</div>\n' +
+              '        <div class="erhang_ele2">\n' +
+              '            <div id="deadTime">\n' +
+              '<input name="deadTime"   value="'
+              + data.deadTime +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
+              '            </div>\n' +
+              '        </div>\n' +
+              '    </div>\n' +
 
-          '    <div class="SongTX4" align="center">\n' +
-          '\n' +
-          '        <table style="border-collapse:collapse " width="660" cellspacing="0" cellpadding="2" border="1">\n' +
-          '            <tbody>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*姓&nbsp;名</td>\n' +
-          '                <td colspan="2" width="28.8%" height="40">\n' +
-          '<input name="baseName"   value="'
-          + data.baseName +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
-          '</td>\n' +
-          '                <td width="9.54%" height="40">*性别</td>\n' +
-          '                <td width="7.57%" height="40">\n' +
-          '<input name="baseSex"   value="'
-          + data.baseSex +
-          '" class="select" type="text" style="border: none;width:25px"/>' +
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*参加工作时间</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n' +
-          '<input name="workKaiShiGongZuo" value="'
-          + data.workKaiShiGongZuo +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              '    <div class="SongTX4" align="center">\n' +
+              '\n' +
+              '        <table style="border-collapse:collapse " width="660" cellspacing="0" cellpadding="2" border="1">\n' +
+              '            <tbody>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*姓&nbsp;名</td>\n' +
+              '                <td colspan="2" width="28.8%" height="40">\n' +
+              '<input name="baseName"   value="'
+              + data.baseName +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
+              '</td>\n' +
+              '                <td width="9.54%" height="40">*性别</td>\n' +
+              '                <td width="7.57%" height="40">\n' +
+              '<input name="baseSex"   value="'
+              + data.baseSex +
+              '" class="select" type="text" style="border: none;width:25px"/>' +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*参加工作时间</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n' +
+              '<input name="workKaiShiGongZuo" value="'
+              + data.workKaiShiGongZuo +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*籍&nbsp;贯</td>\n' +
-          '                <td width="28.8%" colspan="2" height="40">\n' +
-          '<input name="baseJiGuan1"  value="'
-          + (data.baseJiGuan).substring(0, 2) +
-          '" class="select" type="text" style="width: 40px"/>' +
-          '省\n' +
-          '<input name="baseJiGuan2"   value="'
-          + (data.baseJiGuan).substring(2, 4) +
-          '" class="select" type="text" style="width: 50px"/>' +
-          '市（县）\n' +
-          '                <td colspan="2" height="40">*身份证号码</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="baseShenFenZheng" value="'
-          + data.baseShenFenZheng +
-          '" class="select" type="text" style="border: none;width: 160px"/>' +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*民&nbsp;族</td>\n' +
-          '                <td height="40">' +
-          '<input name="baseMinZu"   value="'
-          + data.baseMinZu +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
-          '</td>\n' +
-          '                <td height="40" width="14.40%">*学&nbsp;历</td>\n' +
-          '                <td colspan="2" width="16.67%" height="40">\n' +
-          '<input name="baseXueLi"   value="'
-          + data.baseXueLi +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*籍&nbsp;贯</td>\n' +
+              '                <td width="28.8%" colspan="2" height="40">\n' +
+              '<input name="baseJiGuan1"  value="'
+              + (data.baseJiGuan).substring(0, 2) +
+              '" class="select" type="text" style="width: 40px"/>' +
+              '省\n' +
+              '<input name="baseJiGuan2"   value="'
+              + (data.baseJiGuan).substring(2, 4) +
+              '" class="select" type="text" style="width: 50px"/>' +
+              '市（县）\n' +
+              '                <td colspan="2" height="40">*身份证号码</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="baseShenFenZheng" value="'
+              + data.baseShenFenZheng +
+              '" class="select" type="text" style="border: none;width: 160px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*民&nbsp;族</td>\n' +
+              '                <td height="40">' +
+              '<input name="baseMinZu"   value="'
+              + data.baseMinZu +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
+              '</td>\n' +
+              '                <td height="40" width="14.40%">*学&nbsp;历</td>\n' +
+              '                <td colspan="2" width="16.67%" height="40">\n' +
+              '<input name="baseXueLi"   value="'
+              + data.baseXueLi +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
 
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*到校时间</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n' +
-          '<input name="workDaoXiaoShiJian"   value="'
-          + data.workDaoXiaoShiJian +
-          '" class="select" type="text" style="border: none;width:160px"/>' +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*到校时间</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n' +
+              '<input name="workDaoXiaoShiJian"   value="'
+              + data.workDaoXiaoShiJian +
+              '" class="select" type="text" style="border: none;width:160px"/>' +
 
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*学&nbsp;位</td>\n' +
-          '                <td height="40">' +
-          '<input name="baseXueWei"   value="'
-          + data.baseXueWei +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
-          '</td>\n' +
-          '                <td height="40" width="14.40%">*职&nbsp;务</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="workZhiWu"   value="'
-          + data.workZhiWu +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*学&nbsp;位</td>\n' +
+              '                <td height="40">' +
+              '<input name="baseXueWei"   value="'
+              + data.baseXueWei +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
+              '</td>\n' +
+              '                <td height="40" width="14.40%">*职&nbsp;务</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="workZhiWu"   value="'
+              + data.workZhiWu +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
 
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*职&nbsp;称</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n' +
-          '<input name="workZhiCheng"   value="'
-          + data.workZhiCheng +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*职&nbsp;称</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n' +
+              '<input name="workZhiCheng"   value="'
+              + data.workZhiCheng +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
 
-          '                </td>\n' +
-          '            </tr>\n' +
-          '\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*专业或工种</td>\n' +
-          '                <td height="40">' +
-          '<input name="workZhuanYeHeGongZhong"   value="'
-          + data.workZhuanYeHeGongZhong +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*专业或工种</td>\n' +
+              '                <td height="40">' +
+              '<input name="workZhuanYeHeGongZhong"   value="'
+              + data.workZhuanYeHeGongZhong +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
 
-          '</td>\n' +
-          '                <td height="40" width="14.40%">职务级别</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="workZhiWuJiBie"   value="'
-          + data.workZhiWuJiBie +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
+              '</td>\n' +
+              '                <td height="40" width="14.40%">职务级别</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="workZhiWuJiBie"   value="'
+              + data.workZhiWuJiBie +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
 
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">职称级别</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n' +
-          '<input name="workZhiChengJiBie"   value="'
-          + data.workZhiChengJiBie +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">职称级别</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n' +
+              '<input name="workZhiChengJiBie"   value="'
+              + data.workZhiChengJiBie +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
 
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*退休时部门</td>\n' +
-          '                <td colspan="2" width="14.40%" height="40">\n' +
-          '<input name="workTuiXiuBuMen"   value="'
-          + data.workTuiXiuBuMen +
-          '" class="select" type="text"  style="border: none;width:160px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*退休时部门</td>\n' +
+              '                <td colspan="2" width="14.40%" height="40">\n' +
+              '<input name="workTuiXiuBuMen"   value="'
+              + data.workTuiXiuBuMen +
+              '" class="select" type="text"  style="border: none;width:160px"/>' +
 
-          '</td>\n' +
-          '                <td width="9.54%" colspan="2" height="40">*退休时间</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="workZhengShiTuiXiu"   value="'
-          + data.workZhengShiTuiXiu +
-          '" class="select" type="text" style="border: none;width: 160px"/>' +
+              '</td>\n' +
+              '                <td width="9.54%" colspan="2" height="40">*退休时间</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="workZhengShiTuiXiu"   value="'
+              + data.workZhengShiTuiXiu +
+              '" class="select" type="text" style="border: none;width: 160px"/>' +
 
-          '                </td>\n' +
-          '            </tr>\n' +
-          '\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*政治面貌</td>\n' +
-          '                <td height="40">\n' +
-          '<input name="baseZhengZhiMianMao"   value="'
-          + data.baseZhengZhiMianMao +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*政治面貌</td>\n' +
+              '                <td height="40">\n' +
+              '<input name="baseZhengZhiMianMao"   value="'
+              + data.baseZhengZhiMianMao +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
 
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*加入组织的年月</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="hisJiaRuZuZhi"   value="'
-          + data.hisJiaRuZuZhi +
-          '" class="select" type="text" style="border: none;width:80px"/>' +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*加入组织的年月</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="hisJiaRuZuZhi"   value="'
+              + data.hisJiaRuZuZhi +
+              '" class="select" type="text" style="border: none;width:80px"/>' +
 
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*现所属支部</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n' +
-          '<input name="nowSuoShuZhiBu"   value="'
-          + data.nowSuoShuZhiBu +
-          '" class="select" type="text" style="border: none;width: 110px"/>' +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*现所属支部</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n' +
+              '<input name="nowSuoShuZhiBu"   value="'
+              + data.nowSuoShuZhiBu +
+              '" class="select" type="text" style="border: none;width: 110px"/>' +
 
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*复转退军人</td>\n' +
-          '                <td height="40">\n' +
-          '                    <div class="table_radio">\n' +
-          '<input name="hisFuZhuanTuiJunRen"   value="'
-          + data.hisFuZhuanTuiJunRen +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*复转退军人</td>\n' +
+              '                <td height="40">\n' +
+              '                    <div class="table_radio">\n' +
+              '<input name="hisFuZhuanTuiJunRen"   value="'
+              + data.hisFuZhuanTuiJunRen +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
 
-          '                    </div>\n' +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*伤残</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '                    <div class="table_radio">\n' +
-          '<input name="hisShangCan"   value="'
-          + data.hisShangCan +
-          '" class="select" type="text" style="border: none;width:95px"/>' +
+              '                    </div>\n' +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*伤残</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '                    <div class="table_radio">\n' +
+              '<input name="hisShangCan"   value="'
+              + data.hisShangCan +
+              '" class="select" type="text" style="border: none;width:95px"/>' +
 
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*是否荣立战功</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n' +
-          '<input name="hisLiZhanGong"   value="'
-          + data.hisLiZhanGong +
-          '" class="select" type="text" style="border: none;width: 110px"/>' +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">是否独生子女</td>\n' +
-          '                <td height="40">\n' +
-          '<input name="baseDuShengZiNv"   value="'
-          + data.baseDuShengZiNv +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*是否荣立战功</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n' +
+              '<input name="hisLiZhanGong"   value="'
+              + data.hisLiZhanGong +
+              '" class="select" type="text" style="border: none;width: 110px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">是否独生子女</td>\n' +
+              '                <td height="40">\n' +
+              '<input name="baseDuShengZiNv"   value="'
+              + data.baseDuShengZiNv +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
 
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*一卡通号</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="nowYiKaTong"   value="'
-          + data.nowYiKaTong +
-          '" class="select" type="text" style="border: none;width:85px"/>' +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*一卡通号</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="nowYiKaTong"   value="'
+              + data.nowYiKaTong +
+              '" class="select" type="text" style="border: none;width:85px"/>' +
 
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*享受哪级政府特殊津贴</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n' +
-          '<input name="hisZhengFuJinTie"   value="'
-          + data.hisZhengFuJinTie +
-          '" class="select" type="text" style="border: none;width:110px"/>' +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">何时何级劳模</td>\n' +
-          '                <td height="40" colspan="4">\n' +
-          '<input name="hisLaoMo"   value="'
-          + data.hisLaoMo +
-          '" class="select" type="text" style="border: none;width: 170px;text-align: left;text-align-last: left;"/>' +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*编制类型</td>\n' +
-          '                <td  height="40" colspan="2" >\n' +
-          '<input name="workBianZhiLeiXing"   value="'
-          + data.workBianZhiLeiXing +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">慢性疾病</td>\n' +
-          '                <td height="40" colspan="4">\n' +
-          '<input name="nowManXingJiBing"   value="'
-          + data.nowManXingJiBing +
-          '" class="select" type="text" style="border: none;width: 170px;text-align: left;text-align-last: left;"/>' +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*目前身体健康状况</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="nowJianKangZhuangKuang"   value="'
-          + data.nowJianKangZhuangKuang +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
-          '</td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*现户口地址</td>\n' +
-          '                <td height="40" colspan="4">\n' +
-          '<input name="connXianHuKouDiZhi"   value="'
-          + data.connXianHuKouDiZhi +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
-          '                </td>\n' +
-          '                <td height="40" width="14.40%">*是否与子女共同生活</td>\n' +
-          '                <td colspan="2" height="40">\n 与' +
-          '<input name="connYuShuiShengHuo"   value="'
-          + data.connYuShuiShengHuo +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*享受哪级政府特殊津贴</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n' +
+              '<input name="hisZhengFuJinTie"   value="'
+              + data.hisZhengFuJinTie +
+              '" class="select" type="text" style="border: none;width:110px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">何时何级劳模</td>\n' +
+              '                <td height="40" colspan="4">\n' +
+              '<input name="hisLaoMo"   value="'
+              + data.hisLaoMo +
+              '" class="select" type="text" style="border: none;width: 170px;text-align: left;text-align-last: left;"/>' +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*编制类型</td>\n' +
+              '                <td  height="40" colspan="2" >\n' +
+              '<input name="workBianZhiLeiXing"   value="'
+              + data.workBianZhiLeiXing +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">慢性疾病</td>\n' +
+              '                <td height="40" colspan="4">\n' +
+              '<input name="nowManXingJiBing"   value="'
+              + data.nowManXingJiBing +
+              '" class="select" type="text" style="border: none;width: 170px;text-align: left;text-align-last: left;"/>' +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*目前身体健康状况</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="nowJianKangZhuangKuang"   value="'
+              + data.nowJianKangZhuangKuang +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
+              '</td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*现户口地址</td>\n' +
+              '                <td height="40" colspan="4">\n' +
+              '<input name="connXianHuKouDiZhi"   value="'
+              + data.connXianHuKouDiZhi +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%">*是否与子女共同生活</td>\n' +
+              '                <td colspan="2" height="40">\n 与' +
+              '<input name="connYuShuiShengHuo"   value="'
+              + data.connYuShuiShengHuo +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          '                    共同生活\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*现居住地址、通信地址、邮编</td>\n' +
-          '                <td height="40" colspan="6">\n' +
-          '<input name="connXianJuZhuDiZhi"   value="'
-          + data.connXianJuZhuDiZhi +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*住宅电话</td>\n' +
-          '                <td colspan="2" width="14.40%" height="40">\n' +
-          '<input name="connZhuZhaiDianHua"   value="'
-          + data.connZhuZhaiDianHua +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
-          '                <td width="9.54%" colspan="2" height="40">*手机号码</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="connShouJiHaoMa"   value="'
-          + data.connShouJiHaoMa +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">电子邮箱</td>\n' +
-          '                <td colspan="2" width="14.40%" height="40">\n' +
-          '<input name="connEmailOrQq"   value="'
-          + data.connEmailOrQq +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              '                    共同生活\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*现居住地址、通信地址、邮编</td>\n' +
+              '                <td height="40" colspan="6">\n' +
+              '<input name="connXianJuZhuDiZhi"   value="'
+              + data.connXianJuZhuDiZhi +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*住宅电话</td>\n' +
+              '                <td colspan="2" width="14.40%" height="40">\n' +
+              '<input name="connZhuZhaiDianHua"   value="'
+              + data.connZhuZhaiDianHua +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
+              '                <td width="9.54%" colspan="2" height="40">*手机号码</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="connShouJiHaoMa"   value="'
+              + data.connShouJiHaoMa +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">电子邮箱</td>\n' +
+              '                <td colspan="2" width="14.40%" height="40">\n' +
+              '<input name="connEmailOrQq"   value="'
+              + data.connEmailOrQq +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          '</td>\n' +
-          '                <td width="9.54%" colspan="2" height="40">文、体爱好项目</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="nowAiHaoXiangMu"   value="'
-          + data.nowAiHaoXiangMu +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              '</td>\n' +
+              '                <td width="9.54%" colspan="2" height="40">文、体爱好项目</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="nowAiHaoXiangMu"   value="'
+              + data.nowAiHaoXiangMu +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          '</td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*婚姻状况</td>\n' +
-          '                <td colspan="2" width="14.40%" height="40">\n' +
-          '<input name="mateHunYinZhuangKuang"   value="'
-          + data.mateHunYinZhuangKuang +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              '</td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*婚姻状况</td>\n' +
+              '                <td colspan="2" width="14.40%" height="40">\n' +
+              '<input name="mateHunYinZhuangKuang"   value="'
+              + data.mateHunYinZhuangKuang +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          '</td>\n' +
-          '                <td width="9.54%" colspan="2" height="40">*联系人姓名、关系、电话\n' +
-          '                </td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          ' <br>' +
-          '<input name="lianXiRenName"   value="'
-          + data.lianXiRenName +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
-          ' <br>' +
-          '<input name="lianXiRenGuanXi"   value="'
-          + data.lianXiRenGuanXi +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              '</td>\n' +
+              '                <td width="9.54%" colspan="2" height="40">*联系人姓名、关系、电话\n' +
+              '                </td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              ' <br>' +
+              '<input name="lianXiRenName"   value="'
+              + data.lianXiRenName +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
+              ' <br>' +
+              '<input name="lianXiRenGuanXi"   value="'
+              + data.lianXiRenGuanXi +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          ' <br>' +
-          '<input name="lianXiRenPhone"   value="'
-          + data.lianXiRenPhone +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              ' <br>' +
+              '<input name="lianXiRenPhone"   value="'
+              + data.lianXiRenPhone +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">是否本校双职工</td>\n' +
-          '                <td colspan="2" width="14.40%" height="40">\n' +
-          '<input name="hisShuangZhiGong"   value="'
-          + data.hisShuangZhiGong +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">是否本校双职工</td>\n' +
+              '                <td colspan="2" width="14.40%" height="40">\n' +
+              '<input name="hisShuangZhiGong"   value="'
+              + data.hisShuangZhiGong +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
 
-          '配偶是：\n' +
-          '<input name="matePeiOuName"   value="'
-          + data.matePeiOuName +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              '配偶是：\n' +
+              '<input name="matePeiOuName"   value="'
+              + data.matePeiOuName +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          '                <td width="9.54%" colspan="2" height="40">*子女姓名、住址、单位、电话\n' +
-          '                </td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          ' <br>' +
-          '<input name="childrenZiNvName"   value="'
-          + data.childrenZiNvName +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              '                <td width="9.54%" colspan="2" height="40">*子女姓名、住址、单位、电话\n' +
+              '                </td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              ' <br>' +
+              '<input name="childrenZiNvName"   value="'
+              + data.childrenZiNvName +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          ' <br>' +
-          '<input name="childrenZiNvAddress"   value="'
-          + data.childrenZiNvAddress +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              ' <br>' +
+              '<input name="childrenZiNvAddress"   value="'
+              + data.childrenZiNvAddress +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          ' <br>' +
-          '<input name="childrenZiNvDanWei"   value="'
-          + data.childrenZiNvDanWei +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              ' <br>' +
+              '<input name="childrenZiNvDanWei"   value="'
+              + data.childrenZiNvDanWei +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          ' <br>' +
-          '<input name="childrenZiNvPhone"   value="'
-          + data.childrenZiNvPhone +
-          '" class="select" type="text" style="border: none;width:180px"/>' +
+              ' <br>' +
+              '<input name="childrenZiNvPhone"   value="'
+              + data.childrenZiNvPhone +
+              '" class="select" type="text" style="border: none;width:180px"/>' +
 
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">*长住或暂住外地时，校内的联系人姓名、住址、部门、电话</td>\n' +
-          '                <td height="40" colspan="6">\n' +
-          ' <br>' +
-          '<input name="xiaoNeiName"   value="'
-          + data.xiaoNeiName +
-          '" class="select" type="text" style="border: none;width:500px"/>' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">*长住或暂住外地时，校内的联系人姓名、住址、部门、电话</td>\n' +
+              '                <td height="40" colspan="6">\n' +
+              ' <br>' +
+              '<input name="xiaoNeiName"   value="'
+              + data.xiaoNeiName +
+              '" class="select" type="text" style="border: none;width:500px"/>' +
 
-          ' <br>' +
-          '<input name="xiaoNeiAddress"   value="'
-          + data.xiaoNeiAddress +
-          '" class="select" type="text" style="border: none;width:500px"/>' +
+              ' <br>' +
+              '<input name="xiaoNeiAddress"   value="'
+              + data.xiaoNeiAddress +
+              '" class="select" type="text" style="border: none;width:500px"/>' +
 
-          ' <br>' +
-          '<input name="xiaoNeiBuMen"   value="'
-          + data.xiaoNeiBuMen +
-          '" class="select" type="text" style="border: none;width:500px"/>' +
+              ' <br>' +
+              '<input name="xiaoNeiBuMen"   value="'
+              + data.xiaoNeiBuMen +
+              '" class="select" type="text" style="border: none;width:500px"/>' +
 
-          ' <br>' +
-          '<input name="xiaoNeiPhone"   value="'
-          + data.xiaoNeiPhone +
-          '" class="select" type="text" style="border: none;width:500px"/>' +
+              ' <br>' +
+              '<input name="xiaoNeiPhone"   value="'
+              + data.xiaoNeiPhone +
+              '" class="select" type="text" style="border: none;width:500px"/>' +
 
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">现在坚持的体育健身项目</td>\n' +
-          '                <td height="40" colspan="2">' +
-          '<input name="nowJianChiJianShen"   value="'
-          + data.nowJianChiJianShen +
-          '" class="select" type="text" style="border: none;width: 145px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">现在坚持的体育健身项目</td>\n' +
+              '                <td height="40" colspan="2">' +
+              '<input name="nowJianChiJianShen"   value="'
+              + data.nowJianChiJianShen +
+              '" class="select" type="text" style="border: none;width: 145px"/>' +
 
-          '                </td>\n' +
-          '                <td height="40" width="14.40%" colspan="2">参加老年体协活动小组</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="nowLaoNianTiXieZu"   value="'
-          + data.nowLaoNianTiXieZu +
-          '" class="select" type="text" style="border: none;width: 220px"/>' +
+              '                </td>\n' +
+              '                <td height="40" width="14.40%" colspan="2">参加老年体协活动小组</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="nowLaoNianTiXieZu"   value="'
+              + data.nowLaoNianTiXieZu +
+              '" class="select" type="text" style="border: none;width: 220px"/>' +
 
-          '                </td>\n' +
-          '            </tr>\n' +
-          '\n' +
-          '            <tr valign="middle" align="center">\n' +
-          '                <td width="17.42%" height="40">是否浏览过离退休处网站</td>\n' +
-          '                <td height="40">' +
-          '<input name="nowLiuLanWebsite"   value="'
-          + data.nowLiuLanWebsite +
-          '" class="select" type="text" style="border: none;width:50px"/>' +
+              '                </td>\n' +
+              '            </tr>\n' +
+              '\n' +
+              '            <tr valign="middle" align="center">\n' +
+              '                <td width="17.42%" height="40">是否浏览过离退休处网站</td>\n' +
+              '                <td height="40">' +
+              '<input name="nowLiuLanWebsite"   value="'
+              + data.nowLiuLanWebsite +
+              '" class="select" type="text" style="border: none;width:50px"/>' +
 
-          '</td>\n' +
-          '                <td height="40" width="14.40%">校外社会团体中担任职务</td>\n' +
-          '                <td colspan="2" height="40">\n' +
-          '<input name="nowXiaoWaiTuanTiZhiWu"   value="'
-          + data.nowXiaoWaiTuanTiZhiWu +
-          '" class="select" type="text" style="border: none;width:80px"/>' +
+              '</td>\n' +
+              '                <td height="40" width="14.40%">校外社会团体中担任职务</td>\n' +
+              '                <td colspan="2" height="40">\n' +
+              '<input name="nowXiaoWaiTuanTiZhiWu"   value="'
+              + data.nowXiaoWaiTuanTiZhiWu +
+              '" class="select" type="text" style="border: none;width:80px"/>' +
 
-          '                </td>\n' +
-          '                <td width="18.48%" height="40">*是否军属、烈属</td>\n' +
-          '                <td colspan="2" width="11.4%" height="44">\n' +
-          '<input name="hisJunShuJunLie"   value="'
-          + data.hisJunShuJunLie +
-          '" class="select" type="text" style="border: none;width:80px"/>' +
+              '                </td>\n' +
+              '                <td width="18.48%" height="40">*是否军属、烈属</td>\n' +
+              '                <td colspan="2" width="11.4%" height="44">\n' +
+              '<input name="hisJunShuJunLie"   value="'
+              + data.hisJunShuJunLie +
+              '" class="select" type="text" style="border: none;width:80px"/>' +
 
-          '                </td>\n' +
-          '            </tr>\n' +
-          '            </tbody>\n' +
-          '        </table>\n' +
-          '        <br>\n' +
-          '        <br>\n' +
-          '<button class="layui-btn no_print" lay-submit="" lay-filter="formDemo" type="button">完成</button>' +
-          '<button class="layui-btn no_print" type="reset">取消</button>' +
-          '    </div>\n' +
-          '\n' +
-          '        <br>\n' +
-          '        <br>\n' +
-          '</form>'
+              '                </td>\n' +
+              '            </tr>\n' +
+              '            </tbody>\n' +
+              '        </table>\n' +
+              '        <br>\n' +
+              '        <br>\n' +
+              '<button class="layui-btn no_print" lay-submit="" lay-filter="formDemo" type="button">完成</button>' +
+              '<button class="layui-btn no_print" type="reset">取消</button>' +
+              '    </div>\n' +
+              '\n' +
+              '        <br>\n' +
+              '        <br>\n' +
+              '</form>'
         });
         form.on('submit(formDemo)', function (data) {//监听提交
           console.log(data);
@@ -876,29 +879,33 @@
           //生日用身份证算
           var idCard = postData.baseShenFenZheng;
           console.log(idCard.length);
+          var year;
+          var mouth;
+          var date;
           if (idCard.length === 18) {
-            var year = idCard.substring(6, 10);
-            var mouth = idCard.substring(10, 12);
-            var date = idCard.substring(12, 14);
+            year = idCard.substring(6, 10);
+            mouth = idCard.substring(10, 12);
+            date = idCard.substring(12, 14);
             postData.baseShengRi = year + "-" + mouth + "-" + date;
-          } else if (idCard.length == 18) {
-            var year = idCard.substring(6, 8);
-            var mouth = idCard.substring(8, 10);
-            var date = idCard.substring(10, 12);
+          } else if (idCard.length === 16) {
+            year = idCard.substring(6, 8);
+            mouth = idCard.substring(8, 10);
+            date = idCard.substring(10, 12);
             postData.idCard = "19" + year + "-" + mouth + "-" + date;
-          }
-          else {
-            layer.msg('身份证格式错误！');
+          } else {
+            layer.alert('身份证格式错误！');
             return false;
           }
           //关于籍贯的组合
           postData.baseJiGuan = postData.baseJiGuan1 + postData.baseJiGuan2;
-          // postData.token = getQueryString("token");
+          postData.token = token;
           console.log(postData);
           $.post('/deadInfo/set', postData, function (res) {
             console.log(res);
             if (res.code === 0) {
               layer.alert("修改成功！")
+            } else if (res.code === 1) {
+              layer.alert("权限不够！")
             }
           });
           return false;

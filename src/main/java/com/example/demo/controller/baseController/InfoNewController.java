@@ -5,7 +5,7 @@ import com.example.demo.domain.vo.JsonResult;
 import com.example.demo.domain.vo.MultipleRegex;
 import com.example.demo.repos.InfoNewRegexSpecification;
 import com.example.demo.repos.InfoNewRepos;
-import com.example.demo.util.PowerUtil;
+import com.example.demo.util.UserUtil;
 import org.apache.poi.hssf.usermodel.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.swing.filechooser.FileSystemView;
-import java.beans.Transient;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,25 +30,34 @@ import java.util.List;
 @ResponseBody
 public class InfoNewController {
   private final InfoNewRepos infoNewRepos;
+  private final UserUtil userUtil;
 
   @Autowired
-  public InfoNewController(InfoNewRepos infoNewRepos, PowerUtil powerUtil) {
+  public InfoNewController(InfoNewRepos infoNewRepos, UserUtil userUtil) {
     this.infoNewRepos = infoNewRepos;
+    this.userUtil = userUtil;
   }
 
 
   @RequestMapping(value = "/set", produces = {"application/json"})
-  public String set(InfoNew baseInfo) {
-    System.out.println(baseInfo.toString());
-    infoNewRepos.save(baseInfo);
-    return new JsonResult(0, "true").toString();
+  public String set(InfoNew baseInfo, @RequestParam("token") String token) {
+    if (userUtil.checkAdmin(token)) {
+      System.out.println(baseInfo.toString());
+      infoNewRepos.save(baseInfo);
+      return new JsonResult(0, "true").toString();
+    } else {
+      return new JsonResult(1, "权限不足").toString();
+    }
   }
 
   @RequestMapping(value = "/del", produces = {"application/json"})
-  public String del(@RequestParam("id") int id) {
-    System.out.println(id);
-    infoNewRepos.deleteById(id);
-    return new JsonResult(0, "true").toString();
+  public String del(@RequestParam("id") int id, @RequestParam("token") String token) {
+    if (userUtil.checkAdmin(token)) {
+      infoNewRepos.deleteById(id);
+      return new JsonResult(0, "true").toString();
+    } else {
+      return new JsonResult(1, "权限不足").toString();
+    }
   }
 
   @RequestMapping(value = "/findByPage", produces = {"application/json"})
@@ -99,7 +107,6 @@ public class InfoNewController {
     Statement stmt = null;
     ResultSet rs1 = null;
     try {
-
       Class.forName("com.mysql.jdbc.Driver");
       conn = DriverManager.getConnection("jdbc:mysql://120.79.68.208:3306/Retirement_management_system", "root", "dyz13125219151YT");
       if (!id.equals("")) {

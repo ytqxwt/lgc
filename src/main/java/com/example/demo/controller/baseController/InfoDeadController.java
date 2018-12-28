@@ -1,14 +1,11 @@
 package com.example.demo.controller.baseController;
 
 import com.example.demo.domain.entity.InfoDead;
-import com.example.demo.domain.entity.InfoNew;
 import com.example.demo.domain.vo.JsonResult;
 import com.example.demo.domain.vo.MultipleRegex;
 import com.example.demo.repos.InfoDeadRegexSpecification;
 import com.example.demo.repos.InfoDeadRepos;
-import com.example.demo.repos.InfoNewRegexSpecification;
-import com.example.demo.repos.InfoNewRepos;
-import com.example.demo.util.PowerUtil;
+import com.example.demo.util.UserUtil;
 import org.apache.poi.hssf.usermodel.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,8 +22,6 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,24 +29,36 @@ import java.util.List;
 @ResponseBody
 public class InfoDeadController {
   private final InfoDeadRepos infoDeadRepos;
+  private final UserUtil userUtil;
 
   @Autowired
-  public InfoDeadController(InfoDeadRepos infoDeadRepos, PowerUtil powerUtil) {
+  public InfoDeadController(InfoDeadRepos infoDeadRepos, UserUtil userUtil) {
     this.infoDeadRepos = infoDeadRepos;
+    this.userUtil = userUtil;
   }
+
   @Transactional
   @RequestMapping(value = "/set", produces = {"application/json"})
-  public String set(InfoDead infoDead) {
-    System.out.println(infoDead.toString());
-    infoDeadRepos.save(infoDead);
-    return new JsonResult(0, "true").toString();
+  public String set(InfoDead infoDead, @RequestParam("token") String token) {
+    System.out.println(token);
+    if (userUtil.checkAdmin(token)) {
+
+      infoDeadRepos.save(infoDead);
+      return new JsonResult(0, "true").toString();
+    } else {
+      return new JsonResult(1, "权限不足").toString();
+    }
   }
 
   @RequestMapping(value = "/del", produces = {"application/json"})
-  public String del(@RequestParam("id") int id) {
-    System.out.println(id);
-    infoDeadRepos.deleteById(id);
-    return new JsonResult(0, "true").toString();
+  public String del(@RequestParam("id") int id, @RequestParam("token") String token) {
+    if (userUtil.checkAdmin(token)) {
+      System.out.println(id);
+      infoDeadRepos.deleteById(id);
+      return new JsonResult(0, "true").toString();
+    } else {
+      return new JsonResult(1, "权限不足").toString();
+    }
   }
 
   @RequestMapping(value = "/findByPage", produces = {"application/json"})
@@ -78,7 +85,7 @@ public class InfoDeadController {
                                       @RequestParam("page") int page,
                                       @RequestParam("limit") int limit) {
     System.out.println(mr);
-    String[] params =mr.getSelect().split(",");
+    String[] params = mr.getSelect().split(",");
     Page<InfoDead> p = infoDeadRepos.findAll(new InfoDeadRegexSpecification(params, mr),
         new PageRequest(page - 1, limit));
     List<InfoDead> infoDeadList = p.getContent();
