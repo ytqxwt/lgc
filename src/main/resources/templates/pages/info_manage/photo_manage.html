@@ -108,7 +108,7 @@
 
               } else {
                 temptext = "已有照片";
-                photo = "http://geek-team.xin/lgc/file/downloadFile?uri=/usr/springbootPro/lgc/" + result.data[i].basePhotoUrl;
+                photo = "http://geek-team.xin/file/downloadFile?uri=/usr/springbootPro/lgc/" + result.data[i].basePhotoUrl;
                 temp = temp + "<div class=\"layui-row layui-col-space15\">\n" +
                     "            <div class=\"layui-col-md12\">\n" +
                     "                <div class=\"layui-card\" style='    margin-left: 10%;\n" +
@@ -326,6 +326,7 @@
         elem: '#uploadPhoto' + index[i] + '',
         url: '/file/upload/',
         field: 'file',
+        data: {token: token},
         before: function (obj) {
           console.log(obj);
           //预读本地文件示例，不支持ie8
@@ -338,8 +339,14 @@
           console.log("已进5");
           console.log(res);
           //如果上传失败
-          if (res.code > 0) {
-            return layer.msg('上传失败');
+          if (res.code === 0) {
+            layer.msg('上传成功');
+          } else if (res.code === 1) {
+            layer.msg('权限不足');
+          } else if (res.code === 3) {
+            layer.msg('文件为空');
+          } else {
+            layer.msg(res.msg)
           }
           $('#upload_err').html('');
           form.val('filter_baseAdd', {
@@ -362,11 +369,6 @@
       });
     });
   }
-</script>
-
-<script>
-
-
 </script>
 
 </body>

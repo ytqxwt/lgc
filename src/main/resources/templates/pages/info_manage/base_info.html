@@ -627,11 +627,12 @@
 <script>
   var postData;
   var resultData;
-  layui.use(['table', 'form', 'layer', 'laydate', 'laypage'], function () {
+  layui.use(['table', 'form', 'layer', 'laydate', 'laypage', 'formSelects'], function () {
     var table = layui.table;
     var form = layui.form;
     var laydate = layui.laydate;
     var laypage = layui.laypage;
+    var formSelects = layui.formSelects;
     form.render();
     //监听提交
     form.on('submit(formSubmitSearch)', function (data) {
@@ -735,16 +736,17 @@
     //监听工具条
 
     table.on('tool(info_table)', function (obj) {
-      console.log(obj);
+      console.log("tool(info_table):" );
+	    console.log(obj)
       var data = obj.data;
       resultData = data;
       var photo_head = "../../img/default_head.png";
-      if (typeof(obj.data.basePhotoUrl) === undefined) {
+      if (typeof (obj.data.basePhotoUrl) === undefined) {
         photo_head = "../../img/default_head.png";
       } else if (obj.data.basePhotoUrl == null || obj.data.basePhotoUrl == "") {
         photo_head = "../../img/default_head.png";
       } else {
-        photo_head = "http://geek-team.xin/lgc/file/downloadFile?uri=/usr/springbootPro/lgc/" + obj.data.basePhotoUrl;
+        photo_head = "http://geek-team.xin/file/downloadFile?uri=/usr/springbootPro/lgc/" + obj.data.basePhotoUrl;
       }
 
       if (obj.event === 'detail') {
@@ -1038,47 +1040,13 @@
               '</form>'
         });
 
-        // $.ajax({
-        //   //几个参数需要注意一下
-        //   type: "POST",//方法类型
-        //   dataType: "json",//预期服务器返回的数据类型
-        //   url: "/baseInfo/searchByNameOrId",//url
-        //   data: {
-        //     baseName:'',
-        //     baseShenFenZheng:data
-        // },
-        //   success: function (result) {
-        //     var headtext = document.getElementById("head");
-        //     var temptext;
-        //     var photo;
-        //     var temp = "";
-        //     var divText = document.getElementById("contentdiv");
-        //     console.log(result);//打印服务端返回的数据(调试用)
-        //     if (result.code === 200 && result.data.length !== 0) {
-        //       console.log("sucess");
-        //       headtext.innerHTML = "<br>已查询到" + result.data.length + "条记录";
-        //       //循环输出记录条数
-        //       console.log(result.data.length);
-        //       for (var i = 0; i < result.data.length; i++) {
-        //         indexs[i] = result.data[i].id;
-        //         if (result.data[i].basePhotoUrl === undefined) {
-        //           photo = "../../img/default_handsome.png";
-        //           $('#Headimg')[0].src=photo;
-        //         } else {
-        //           photo = "http://geek-team.xin/lgc/file/downloadFile?uri=/usr/springbootPro/lgc/" + result.data[i].basePhotoUrl;
-        //           $('#Headimg')[0].src=photo;
-        //         }
-        //       }
-        //     }
-        //   }
-        // });
         $('#printForm').click(function () {
           $('#form_baseInfo').print({
             noPrintSelector: '.no_print'
           })
         });
       } else if (obj.event === 'del') {
-        layer.confirm('真的删除行么', function (index) {
+        layer.confirm('确认删除该条信息？', function (index) {
           console.log(data.id);
           console.log(resultData);
           resultData.token = token;
@@ -1091,10 +1059,10 @@
             data: resultData,
             success: function (result) {
               console.log(result);//打印服务端返回的数据(调试用)
-              if (result.code == 0) {
+              if (result.code === 0) {
                 layer.msg('删除成功！');
-              } else if (result.code == 1) {
-                layer.msg('权限不足');
+              } else if (result.code === 1) {
+                layer.msg('抱歉，您的权限不足！');
               }
             },
             error: function () {
@@ -1115,6 +1083,7 @@
               '<br>\n' +
               '<form id="form_baseInfo" lay-filter="filter_baseAdd" class="layui-form">\n' +
               '    <input type="text" name="photoUrl" hidden id="photoUrl">\n' +
+              '<input name="id"   value="' + data.id + '"  type="text" hidden/>\n' +
               '    <div class="BiaoTou" align="center"><strong>离退休人员基本信息采集表</strong>\n' +
               '    </div>\n' +
               '\n' +
@@ -1539,13 +1508,19 @@
               '        <br>\n' +
               '        <br>\n' +
               '<button class="layui-btn no_print" lay-submit="" lay-filter="formDemo" type="button">完成</button>' +
-              '<button class="layui-btn no_print" type="reset">取消</button>' +
+              '<button class="layui-btn no_print"  lay-submit="" lay-filter="cancel"  type="reset">取消</button>' +
               '    </div>\n' +
               '\n' +
               '        <br>\n' +
               '        <br>\n' +
               '</form>'
         });
+
+        form.on('submit(cancel)', function () {//监听取消
+          layer.closeAll();
+        });
+
+
 
         form.on('submit(formDemo)', function (data) {//监听提交
           console.log(data);
@@ -1570,8 +1545,7 @@
             var mouth = idCard.substring(8, 10);
             var date = idCard.substring(10, 12);
             postData.idCard = "19" + year + "-" + mouth + "-" + date;
-          }
-          else {
+          } else {
             layer.msg('身份证格式错误！');
             return false;
           }
@@ -1591,6 +1565,74 @@
 
       }
     });
+    $(function () {
+      $(".show-labelitem").on("click", function () {
+        $(this).hide();
+        $(".hide-labelitem").show();
+        $("#labelItem").show();
+      });
+      $(".hide-labelitem").on("click", function () {
+        $(this).hide();
+        $(".show-labelitem").show();
+        $("#labelItem").hide();
+      });
+
+      var val = "";
+      $(".label-item").on("click", "li", function () {
+        var id = $(this).attr("data");
+        var text = $(this).children("span").html();
+        var labelHTML = "<li data='" + id + "''>x " + text + "</li>";
+        if ($(this).hasClass("selected")) {
+          return false;
+        }
+        $(".label-selected").append(labelHTML);
+        val = '';
+        for (var i = 0; i < $(".label-selected").children("li").length; i++) {
+          val += $(".label-selected").children("li").eq(i).attr("data") + ',';
+        }
+        $("input[name='label']").val(val);
+        $(this).addClass("selected");
+        changeLabel();
+      });
+
+
+      $(".label-selected").on("click", "li", function () {
+        var id = $(this).attr("data");
+        val = '';
+        $(this).remove();
+        for (var i = 0; i < $(".label-selected").children("li").length; i++) {
+          val += $(".label-selected").children("li").eq(i).attr("data") + ',';
+        }
+        $("input[name='label']").val(val);
+        $(".label-item").find("li[data='" + id + "']").removeClass("selected");
+
+        changeLabel()
+      });
+
+      //获取标签
+      function changeLabel() {
+        if ($("input[name='label']").val() === "") {
+          $('#form_search').css('display', 'none');
+          return false;
+        } else {
+          // layer.msg("标签内容为：" + $("input[name='label']").val());
+          var labelList = $("input[name='label']").val().split(",");
+          $('#form_search').css('display', 'block');
+          $('.layui-form-item').css('display', 'none');
+          $('#btngup_search').css('display', 'block');
+          for (var i = 0; i < labelList.length - 1; i++) {
+            var label = labelList[i];
+            $('#' + label).css('display', 'block');
+          }
+          form.val('form_search', {
+            'select': $("input[name='label']").val()
+          });
+          form.render();
+          formSelects.render();
+        }
+      }
+    });
+
 
   });
 
@@ -1749,112 +1791,26 @@
         });
       });
       form3.on('submit(export2)', function (data) {
-        console.log(data);
-        console.log(postData);
-        postData.titles = $("input[name='label2']").val();
-        console.log(postData);
-        $.ajax({
-          type: "POST",//方法类型
-          dataType: "json",//预期服务器返回的数据类型
-          url: "/baseInfo/export2excel",//url
-          data: postData,
-          success: function (result) {
-            console.log(result);
-            if (result.code == 0) {
-              layer.msg('已成功导出表格到桌面，请及时查看！');
-            }
-          },
-          error: function () {
-            layer.msg("服务器异常！");
-          }
-        });
+        var _postData = (typeof (postData) !== 'undefined') ? postData : {};
+        _postData.titles = $("input[name='label2']").val();
+        console.log(_postData)
+
+        var $eleForm = $("<form method='post' hidden></form>");
+        $eleForm.attr("action", "/baseInfo/export2excel");
+        for (var x in _postData) {
+          var opt = document.createElement("input");
+          opt.name = x;
+          opt.value = _postData[x];
+          $eleForm.append(opt);
+        }
+        $(document.body).append($eleForm);
+        $eleForm.submit();
+
       })
     });
 
   }
 
-</script>
-<script>
-  layui.use(['table', 'form', 'formSelects'], function () {
-    var formSelects = layui.formSelects;
-    var form = layui.form;
-    var $ = layui.$;
-    // formSelects.data('xm_nativePlace', 'server', {
-    //   url: '/city/getCityToNativePlace',
-    //   linkage: true,
-    //   linkageWidth: 130
-    // });
-
-    $(function () {
-      $(".show-labelitem").on("click", function () {
-        $(this).hide();
-        $(".hide-labelitem").show();
-        $("#labelItem").show();
-      });
-      $(".hide-labelitem").on("click", function () {
-        $(this).hide();
-        $(".show-labelitem").show();
-        $("#labelItem").hide();
-      });
-
-      var val = "";
-      $(".label-item").on("click", "li", function () {
-        var id = $(this).attr("data");
-        var text = $(this).children("span").html();
-        var labelHTML = "<li data='" + id + "''>x " + text + "</li>";
-        if ($(this).hasClass("selected")) {
-          return false;
-        }
-        $(".label-selected").append(labelHTML);
-        val = '';
-        for (var i = 0; i < $(".label-selected").children("li").length; i++) {
-          val += $(".label-selected").children("li").eq(i).attr("data") + ',';
-        }
-        $("input[name='label']").val(val);
-        $(this).addClass("selected");
-        changeLabel();
-      });
-
-
-      $(".label-selected").on("click", "li", function () {
-        var id = $(this).attr("data");
-        val = '';
-        $(this).remove();
-        for (var i = 0; i < $(".label-selected").children("li").length; i++) {
-          val += $(".label-selected").children("li").eq(i).attr("data") + ',';
-        }
-        $("input[name='label']").val(val);
-        $(".label-item").find("li[data='" + id + "']").removeClass("selected");
-
-        changeLabel()
-      });
-
-      //获取标签
-      function changeLabel() {
-        if ($("input[name='label']").val() === "") {
-          $('#form_search').css('display', 'none');
-          return false;
-        } else {
-          // layer.msg("标签内容为：" + $("input[name='label']").val());
-          var labelList = $("input[name='label']").val().split(",");
-          $('#form_search').css('display', 'block');
-          $('.layui-form-item').css('display', 'none');
-          $('#btngup_search').css('display', 'block');
-          for (var i = 0; i < labelList.length - 1; i++) {
-            var label = labelList[i];
-            $('#' + label).css('display', 'block');
-          }
-          form.val('form_search', {
-            'select': $("input[name='label']").val()
-          });
-          form.render();
-          formSelects.render();
-        }
-      }
-    });
-
-
-  });
 </script>
 <style>
 	.wrap {
@@ -1914,7 +1870,7 @@
 		display: inline-block;
 		height: 27px;
 		line-height: 27px;
-		font-size: .8rem;
+		font-size: 1.4rem;
 		padding: 0 1rem;
 		border: 1px solid #e6e6e6;
 		border-radius: 2px;
@@ -1986,7 +1942,7 @@
 		display: inline-block;
 		height: 27px;
 		line-height: 27px;
-		font-size: .8rem;
+		font-size: 1.4rem;
 		padding: 0 1rem;
 		border: 1px solid #e6e6e6;
 		border-radius: 2px;
