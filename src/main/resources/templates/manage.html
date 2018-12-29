@@ -112,12 +112,16 @@
   }).extend({
     formSelects: 'formSelects-v4'
   });
-  layui.use('element', function () {
+  layui.use(['element', 'layer'], function () {
     var element = layui.element;
     var $ = layui.$;
-    $.post('', {}, function () {
-      $('#user-name')
-    })
+    var layer = layui.layer;
+    $.post('/user/findById', {id: token}, function (obj) {
+      var data = JSON.parse(obj.msg);
+      if (obj.code === 0) {
+        $('#user-name').text(data.name)
+      }
+    });
 
 
     //左侧导航栏路由
@@ -140,7 +144,18 @@
       $('.layui-body').load('pages/info_add/import_batch.html');
     });
     $('#user_manage').click(function () {
-      $('.layui-body').load('pages/power_manage/user_manage.html');
+      $.post('/user/findById', {id: token}, function (obj) {
+            var data = JSON.parse(obj.msg);
+            if (obj.code === 0) {
+              if (data.type === 'admin') {
+                $('.layui-body').load('pages/power_manage/user_manage.html');
+              } else {
+                layer.alert('您的权限不足')
+              }
+            }
+          }
+      );
+
     });
     $('#base_info').click(function () {
       $('.layui-body').load('pages/info_manage/base_info.html');
