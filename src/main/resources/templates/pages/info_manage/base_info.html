@@ -1059,19 +1059,12 @@
             data: resultData,
             success: function (result) {
               console.log(result);//打印服务端返回的数据(调试用)
-<<<<<<< HEAD
-              if (result.code === 0) {
-                layer.msg('删除成功！');
-              } else if (result.code === 1) {
-                layer.msg('权限不足');
-=======
 
               if (result.code === 0) {
                 layer.msg('删除成功！');
                 obj.del();
               } else if (result.code === 1) {
                 layer.alert("抱歉，您的权限不足！", {icon: 2})
->>>>>>> 6e793109e477685a70db0d51caf3a3aedbdbb6f5
               }
             },
             error: function () {
