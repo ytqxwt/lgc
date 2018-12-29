@@ -55,7 +55,7 @@
         cols: [
           [
             {field: 'id', title: '编号', width: 80, sort: true, fixed: 'left'},
-            {field: 'baseShenFenZheng', title: '身份证号', width: 150, sort: true},
+            {field: 'baseShenFenZheng', title: '身份证号', width: 180, sort: true},
             {field: 'baseName', title: '姓名', width: 100},
             {field: 'baseSex', title: '性别', width: 80, sort: true},
             {field: 'baseJiGuan', title: '籍贯', width: 150},
@@ -69,12 +69,12 @@
     });
     tableIns = table.render({
       elem: '#table_user'
-      , height: 500
+      , height: 430
       , url: '/deadInfo/findByPage'
       , page: true
       , cols: [[
         {field: 'id', title: '编号', width: 80, sort: true, fixed: 'left'},
-        {field: 'baseShenFenZheng', title: '身份证号', width: 150, sort: true},
+        {field: 'baseShenFenZheng', title: '身份证号', width: 180, sort: true},
         {field: 'baseName', title: '姓名', width: 100},
         {field: 'baseSex', title: '性别', width: 80, sort: true},
         {field: 'baseJiGuan', title: '籍贯', width: 150},
@@ -388,12 +388,11 @@
       }
       else if (obj.event === 'del') {
         layer.confirm('确认删除该记录？', function (index) {
-          console.log(data.id);
           console.log(resultData);
           var postData = resultData;
           postData.token = token;
           console.log(postData);
-          obj.del();
+
           layer.close(index);
           $.ajax({
             type: "POST",//方法类型
@@ -403,6 +402,7 @@
             success: function (result) {
               console.log(result);//打印服务端返回的数据(调试用)
               if (result.code === 0) {
+                obj.del();
                 layer.msg('删除成功！');
               } else if (result.code === 1) {
                 layer.alert("抱歉，您的权限不足！", {icon: 2})

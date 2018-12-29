@@ -15,14 +15,14 @@
 }
 .opinion textarea{
     resize: none;
-    width: 70%;
-    min-height: 250px;
+    width: 35%;
+    min-height: 200px;
     margin-bottom: 50px;
 }
 
 /*邮箱*/
 .email .text input{
-    width: 70%;
+    width: 35%;
 }
 
 /*按钮*/
