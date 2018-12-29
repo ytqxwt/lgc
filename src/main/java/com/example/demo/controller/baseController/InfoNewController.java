@@ -55,6 +55,21 @@ public class InfoNewController {
     }
   }
 
+@Transactional
+  @RequestMapping(value = "/set2", produces = {"application/json"})
+  public String set(InfoNew baseInfo) {
+      System.out.println(baseInfo.toString());
+      if(infoNewRepos.findByBaseShenFenZhengEquals(baseInfo.getBaseShenFenZheng())!=null){
+        infoNewRepos.save(baseInfo);
+        return new JsonResult(0, "true").toString();
+      }else {
+        return new JsonResult(1, "false").toString();
+      }
+
+
+
+  }
+
   @RequestMapping(value = "/del", produces = {"application/json"})
   public String del(@RequestParam("id") int id, @RequestParam("token") String token) throws UnsupportedEncodingException {
     if (userUtil.checkAdmin(token)) {

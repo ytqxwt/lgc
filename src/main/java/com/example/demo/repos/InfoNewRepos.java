@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface InfoNewRepos extends JpaRepository<InfoNew, Integer>, JpaSpecificationExecutor<InfoNew> {
-
+    InfoNew findByBaseShenFenZhengEquals(String s);
 
 }
