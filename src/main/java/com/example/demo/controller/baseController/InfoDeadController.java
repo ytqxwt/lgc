@@ -22,6 +22,7 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Controller
@@ -39,7 +40,7 @@ public class InfoDeadController {
 
   @Transactional
   @RequestMapping(value = "/set", produces = {"application/json"})
-  public String set(InfoDead infoDead, @RequestParam("token") String token) {
+  public String set(InfoDead infoDead, @RequestParam("token") String token) throws UnsupportedEncodingException {
     System.out.println(token);
     if (userUtil.checkAdmin(token)) {
 
@@ -51,7 +52,7 @@ public class InfoDeadController {
   }
 
   @RequestMapping(value = "/del", produces = {"application/json"})
-  public String del(@RequestParam("id") int id, @RequestParam("token") String token) {
+  public String del(@RequestParam("id") int id, @RequestParam("token") String token) throws UnsupportedEncodingException {
     if (userUtil.checkAdmin(token)) {
       System.out.println(id);
       infoDeadRepos.deleteById(id);

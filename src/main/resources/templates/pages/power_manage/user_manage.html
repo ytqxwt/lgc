@@ -1,7 +1,7 @@
 <!-- 内容主体区域 -->
 
 <div align="right">
-	<button style="margin: 5px" class="layui-btn" id="add_user">添加管理员</button>
+	<button style="margin: 5px" class="layui-btn" id="add_user">添加用户</button>
 </div>
 <div style="padding: 15px;">
 	<table id="table_user" lay-filter="table_user"></table>
@@ -10,11 +10,17 @@
 	<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
+<script type="text/html" id="selectTpl">
+	<select name="type" lay-filter="select_type" data-id="{{ d.id }}">
+		<option value="admin" {{ (d.type=='admin')?'selected':'' }}>管理员</option>
+		<option value="user" {{ (d.type=='admin')?'':'selected' }}>用户</option>
+	</select>
+</script>
 <script>
   var index;
   var tableIns;
-  layui.use(['table', 'form'], function () {
-
+  layui.use(['table', 'form', 'layer'], function () {
+    var layer = layui.layer;
     var $ = layui.$;
     var table = layui.table;
     var form = layui.form;
@@ -25,65 +31,47 @@
       url: '/user/findAllUser', //数据接口
       page: true,//开启分页
       cols: [[ //表头
+        {field: 'id', hide: true},
         {field: 'name', title: '管理员姓名', width: 200, sort: true, fixed: 'left'},
         {field: 'type', title: '账号类型', width: 100},
         {field: 'createTime', title: '创建时间', width: 200, sort: true},
-        {field: 'phone', title: '电话', width: 250},
+        {field: 'phone', title: '电话', width: 200},
         {
-          field: 'type', title: '权限', width: 100, templet: function (d) {
-            var option = '';
-            if (d.type === 'admin') {
-              option = "<option value=\"admin\">管理员</option>\n" +
-                  "<option value=\"user\">用户</option>\n"
-            } else {
-              option = "<option value=\"admin\">管理员</option>\n" +
-                  "<option value=\"user\">用户</option>\n"
-            }
-            return "<select name=\"type\" lay-verify=\"select_type\">\n" +
-                +option +
-                "</select>"
-          }
+          field: 'type', title: '权限', width: 200, templet: "#selectTpl"
         },
         {fixed: 'right', width: 178, align: 'center', toolbar: '#barDemo'}
       ]],
       done: function (res, curr, count) {
-        //如果是异步请求数据方式，res即为你接口返回的信息。
-        //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
         console.log(res);
-
       }
     });
-    //监听表格复选框选择
-    table.on('select(select_type)', function (data) {
+    form.on('select(select_type)', function (data) {
       console.log(data);
-      $.post('/power/update', {token: token, type: data.value}, function (res) {
+      $.post('/user/update', {token: token, id: data.elem.dataset.id, type: data.value}, function (res) {
         if (res.code === 0) {
           layer.alert("授权成功");
+        } else if (res.code === 1) {
+          layer.alert("权限不足");
         }
+
       });
     });
     //监听工具条
     table.on('tool(table_user)', function (obj) {
+      console.log(obj)
       var data = obj.data;
-      // if (obj.event === 'detail') {
-      //
-      //
-      //   $.post('/power/update', {name: '123', selected: selected}, function (res) {
-      //     if (res.code === 0) {
-      //       layer.alert("授权成功");
-      //     }
-      //   });
-      //   layer.close(index);
-      //
-      //
-      // } else
       if (obj.event === 'del') {
         layer.confirm('真的删除行么', function (index) {
           obj.del();
-          $.post('/user/del', {token: token,id:token});
-          layer.close(index);
+          $.post('/user/del', {token: token, id: obj.data[index].id}, function (res) {
+            layer.close(index);
+		        if (res.code===0){
+              layer.alert("删除成功");
+		        } else if (res.code === 1) {
+              layer.alert("权限不足");
+            }
+          });
         });
-
       } else if (obj.event === 'edit') {
         layer.alert('编辑行：<br>' + JSON.stringify(data))
       }
@@ -91,25 +79,6 @@
     form.on('switch(switch_able)', function (obj) {
       layer.tips(this.value + ' ' + this.name + '：' + obj.elem.checked, obj.othis);
     });
-    $.get("/power/findOtherByUser", {id: 123}, function (res) {
-          console.log(res);
-          var html = '';
-          res.forEach(function (power) {
-            html += '<option onclick="btnLight_right()" value="' + power.id + '">' + power.name + '</option> ';
-          });
-          $("#left_select").html(html);
-        }
-    );
-    $.get("/power/findOwnByUser", {id: 123}, function (res) {
-          console.log(res);
-          var html = '';
-          res.forEach(function (power) {
-            html += '<option onclick="btnLight_left()" value="' + power.id + '">' + power.name + '</option> ';
-          });
-          $("#right_select").html(html);
-        }
-    );
-
 
   });
   $('#add_user').click(function () {
@@ -190,29 +159,7 @@
         } else {
           layer.alert(result.msg, {icon: 2})
         }
-
         tableIns.reload();
-        // layer.close(index);
-        // var headtext = document.getElementById("head");
-        // var temptext = document.getElementById("upload_err");
-        // var photo = document.getElementById("uploadPhoto");
-        // console.log(result);//打印服务端返回的数据(调试用)
-        // if (result.code === 200 && result.data.length !== 0) {
-        //     console.log("sucess");
-        //     headtext.innerHTML = "<br>已查询到" + result.data.length + "条记录";
-        //     photo.style.display = "block";
-        //     var informationstext = document.getElementById("informations");
-        //     informationstext.innerHTML = "" + result.data[0].baseName + "<br>" + result.data[0].baseSex + "<br>" + result.data[0].baseJiGuan + "<br>" + result.data[0].baseShenFenZheng + "<br>" + result.data[0].connShouJiHaoMa;
-        //     if (result.data[0].basePhotoUrl != null) {
-        //         temptext.innerHTML = "已有照片"
-        //         // photo.src=
-        //     } else {
-        //         temptext = document.getElementById("upload_err");
-        //         temptext.innerHTML = "暂无照片"
-        //     }
-        // } else {
-        //     headtext.innerHTML = "<br>抱歉！未查询到相关记录";
-        // }
       },
       error: function () {
         alert("异常！");
@@ -221,38 +168,17 @@
   }
 
 
-  // function btnLight_left() {
-  //   $('#btn_left').css('background-color', '#5FB878');
-  // }
-  //
-  // function btnLight_right() {
-  //   $('#btn_right').css('background-color', '#5FB878');
-  // }
-  //
-  // //isAll 是否全部移动
-  // function left() {
-  //   var os = [];
-  //   os = $("#right_select").find("option");
-  //   for (i = 0; i < os.length; i++) {
-  //     if (os[i].selected) {
-  //       // var o = new Option(os[i].text, os[i].value);
-  //       $("#left_select").append('<option onclick="btnLight_right()" value="' + os[i].value + '">' + os[i].text + '</option> ');
-  //       $("#right_select").find("option:selected").remove();
-  //     }
-  //   }
-  //   $('#btn_left').css('background-color', '#009688');
-  // }
-  //
-  // function right() {
-  //   var os = [];
-  //   os = $("#left_select").find("option");
-  //   for (i = 0; i < os.length; i++) {
-  //     if (os[i].selected) {
-  //       $("#right_select").append('<option onclick="btnLight_left()" value="' + os[i].value + '">' + os[i].text + '</option> ');
-  //       $("#left_select").find("option:selected").remove();
-  //     }
-  //   }
-  //   $('#btn_right').css('background-color', '#009688');
-  // }
-
 </script>
+<style>
+	td[data-field='type'] .layui-table-cell {
+		overflow: visible;
+	}
+
+	.layui-table-body {
+		overflow: visible;
+	}
+
+	.layui-table-box, .layui-table-view {
+		overflow: visible;
+	}
+</style>

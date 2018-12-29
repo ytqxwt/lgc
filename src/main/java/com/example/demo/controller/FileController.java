@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.vo.JsonResult;
 import com.example.demo.util.FileUtil;
+import com.example.demo.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,27 +26,31 @@ import java.util.List;
 @ResponseBody
 public class FileController {
   private final FileUtil fileUtil;
-
+  private final UserUtil userUtil;
   @Autowired
-  public FileController(FileUtil fileUtil) {
+  public FileController(FileUtil fileUtil, UserUtil userUtil) {
     this.fileUtil = fileUtil;
+    this.userUtil = userUtil;
   }
 
   @RequestMapping(value = "/upload", produces = {"application/json"}, method = RequestMethod.POST)
   @ResponseBody
-  public String fileUpload(@RequestParam("file") MultipartFile file ,@RequestParam("id") String id ) {
-    System.out.println(file);
-    System.out.println(id);
-    System.out.println("图片");
-    return fileUtil.uploadPhoto(file,id);
+  public String fileUpload(@RequestParam("file") MultipartFile file,
+                           @RequestParam("token") String token) throws UnsupportedEncodingException {
+    if (userUtil.checkAdmin(token)) {
+      return fileUtil.uploadPhoto(file);
+    } else {
+      return new JsonResult(1, "权限不足").toString();
+    }
   }
+
   @RequestMapping("/downloadFile")
   public void downLoad(HttpServletResponse response, @RequestParam(name = "uri") String uri) throws UnsupportedEncodingException {
     System.out.println(uri);
     File file = new File(uri);
-    if(file.exists()){
+    if (file.exists()) {
       String s = uri.substring(uri.lastIndexOf('.') + 1);
-      s=s.toUpperCase();
+      s = s.toUpperCase();
       System.out.println(s);
       response.setContentType("application/force-download");
       response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(uri.substring(uri.lastIndexOf("/") + 1), "gbk"));
@@ -115,8 +120,8 @@ public class FileController {
   }
 
   @RequestMapping(value = "/savePhotoURL", produces = {"application/json"})
-  public String set(@RequestParam("id") String id,@RequestParam("photoURL") String url) {
-    System.out.println("::"+id+"::"+url);
+  public String set(@RequestParam("id") String id, @RequestParam("photoURL") String url) {
+    System.out.println("::" + id + "::" + url);
     System.out.println(url);
     Connection conn = null;
     Statement stmt = null;
@@ -125,7 +130,7 @@ public class FileController {
       Class.forName("com.mysql.jdbc.Driver");
       conn = DriverManager.getConnection("jdbc:mysql://120.79.68.208:3306/Retirement_management_system", "root", "dyz13125219151YT");
       if (!id.equals("")) {
-        conn.createStatement().execute("UPDATE Retirement_management_system.info_new SET base_photo_url='"+url+"' WHERE  id ='"+id+"';");
+        conn.createStatement().execute("UPDATE Retirement_management_system.info_new SET base_photo_url='" + url + "' WHERE  id ='" + id + "';");
         System.out.println("插入成功");
       } else {
         System.out.println("插入失败");

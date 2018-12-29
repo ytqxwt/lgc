@@ -1,5 +1,8 @@
 package com.example.demo.domain.entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -128,5 +131,15 @@ public class User {
   @Override
   public int hashCode() {
     return Objects.hash(id, name, password, createTime, phone, able, type, remark);
+  }
+
+  @Override
+  public String toString() {
+    try {
+      return new ObjectMapper().writeValueAsString(this);
+    } catch (JsonProcessingException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }

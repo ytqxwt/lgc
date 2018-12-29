@@ -6,18 +6,23 @@ import com.example.demo.domain.vo.JsonResult;
 import com.example.demo.repos.UserRepos;
 import com.example.demo.util.DESUtil;
 import com.example.demo.util.UserUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -36,13 +41,15 @@ public class UserController {
     this.userUtil = userUtil;
   }
 
+
   @RequestMapping(value = "/set", produces = {"application/json"})
   public String set(@RequestParam("id") int id,
                     @RequestParam("name") String name,
                     @RequestParam("password") String password,
                     @RequestParam("phone") String phone,
                     @RequestParam("token") String token
-  ) {
+  ) throws UnsupportedEncodingException {
+    System.out.println(token);
     if (userUtil.checkAdmin(token)) {
       String pwd = DESUtil.encrypt(password, "12345678");
       userRepos.save(new User(id, name, pwd, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()),
@@ -54,7 +61,7 @@ public class UserController {
   }
 
   @RequestMapping(value = "/del", produces = {"application/json"})
-  public String del(@RequestParam("token") String token, @RequestParam("id") Integer id) {
+  public String del(@RequestParam("token") String token, @RequestParam("id") Integer id) throws UnsupportedEncodingException {
     if (userUtil.checkAdmin(token)) {
       userRepos.deleteById(id);
       return new JsonResult(0, "true").toString();
@@ -64,13 +71,14 @@ public class UserController {
 
   }
 
+  @Transactional
   @RequestMapping(value = "/login", produces = {"application/json"})
   public void login(@RequestParam("name") String name,
                     @RequestParam("password") String password,
                     HttpServletResponse httpServletResponse,
                     HttpSession session
   ) throws Exception {
-    User u = userRepos.findByNameEquals(name);
+    User u = userRepos.getOne(Integer.parseInt(name));
     if (u == null) {
       httpServletResponse.sendRedirect("/login?code=2&msg=user not find");
       return;
@@ -85,7 +93,7 @@ public class UserController {
     }
     Integer random = new Random().nextInt();
     session.setAttribute("random", random);
-    httpServletResponse.sendRedirect("/manage?token=" + name + "&random=" + random);
+    httpServletResponse.sendRedirect("/manage?token=" + URLEncoder.encode(name, "utf-8") + "&random=" + random);
   }
 
   @RequestMapping(value = "/findAllUser", produces = {"application/json"})
@@ -94,7 +102,6 @@ public class UserController {
     System.out.println(page + "," + limit);
     Page<User> p = userRepos.findAll(new PageRequest(page - 1, limit));
     List<User> usersList = p.getContent();
-    System.out.println("size:" + usersList.size());
     JSONArray jsonArray = new JSONArray();
     for (User user : usersList) {
       jsonArray.put(new JSONObject(user));
@@ -107,12 +114,29 @@ public class UserController {
     return jsonObject.toString();
   }
 
+  @Transactional
+  @RequestMapping(value = "/findById", produces = {"application/json"})
+  public String findById(@RequestParam("id") String id) throws JsonProcessingException {
+    User u = userRepos.getOne(Integer.parseInt(id));
+    if (u != null) {
+      return new JsonResult(0, u.toString()).toString();
+    } else {
+      return new JsonResult(1, "找不到此用户").toString();
+    }
+  }
+
+  @Transactional
   @RequestMapping(value = "/update", produces = {"application/json"})
   public String update(@RequestParam("token") String token,
-                       @RequestParam("type") String type) {
-    User u = userRepos.findByNameEquals(token);
-    u.setType(type);
-    userRepos.save(u);
-    return new JsonResult(0, "").toString();
+                       @RequestParam("id") Integer id,
+                       @RequestParam("type") String type) throws UnsupportedEncodingException {
+    if (userUtil.checkAdmin(token)) {
+      User u = userRepos.getOne(id);
+      u.setType(type);
+      userRepos.save(u);
+      return new JsonResult(0, "").toString();
+    } else {
+      return new JsonResult(1, "权限不足").toString();
+    }
   }
 }
