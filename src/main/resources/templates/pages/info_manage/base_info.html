@@ -1050,7 +1050,7 @@
           console.log(data.id);
           console.log(resultData);
           resultData.token = token;
-          obj.del();
+
           layer.close(index);
           $.ajax({
             type: "POST",//方法类型
@@ -1062,6 +1062,7 @@
 
               if (result.code === 0) {
                 layer.msg('删除成功！');
+                obj.del();
               } else if (result.code === 1) {
                 layer.alert("抱歉，您的权限不足！", {icon: 2})
               }
