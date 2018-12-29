@@ -387,7 +387,7 @@
         });
       }
       else if (obj.event === 'del') {
-        layer.confirm('真的删除行么', function (index) {
+        layer.confirm('确认删除该记录？', function (index) {
           console.log(data.id);
           console.log(resultData);
           var postData = resultData;
@@ -405,7 +405,7 @@
               if (result.code === 0) {
                 layer.msg('删除成功！');
               } else if (result.code === 1) {
-                layer.msg("权限不足！")
+                layer.alert("抱歉，您的权限不足！", {icon: 2})
               }
             },
             error: function () {
@@ -859,7 +859,7 @@
               '        <br>\n' +
               '        <br>\n' +
               '<button class="layui-btn no_print" lay-submit="" lay-filter="formDemo" type="button">完成</button>' +
-              '<button class="layui-btn no_print" type="reset">取消</button>' +
+              '<button class="layui-btn no_print" lay-submit="" lay-filter="cancel" type="reset">取消</button>' +
               '    </div>\n' +
               '\n' +
               '        <br>\n' +
@@ -905,11 +905,15 @@
             if (res.code === 0) {
               layer.alert("修改成功！")
             } else if (res.code === 1) {
-              layer.alert("权限不够！")
+              layer.alert("抱歉，您的权限不足！", {icon: 2})
             }
           });
           return false;
         });
+        form.on('submit(cancel)', function () {//监听取消
+          layer.closeAll();
+        });
+
       }
     });
   });
