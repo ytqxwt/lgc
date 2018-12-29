@@ -8,17 +8,17 @@
 <body>
 <div class="container">
 	<div class="wrap">
-		<form class="wrap_content" action="/user/update">
+		<form class="wrap_content layui-form">
 			<div class="wrap_deep_content">
-				<label for="name" class="col-sm-2 control-label">姓名:</label>
+				<label for="id" class="col-sm-2 control-label">账号:</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="name">
+					<input type="text" id="id" name="id" class="form-control">
 				</div>
 			</div>
 			<div class="wrap_deep_content">
-				<label for="admin" class="col-sm-2 control-label">账号:</label>
+				<label for="name" class="col-sm-2 control-label">姓名:</label>
 				<div class="col-sm-10">
-					<input type="text" id="admin" class="form-control">
+					<input type="text" class="form-control" id="name" name="name">
 				</div>
 			</div>
 			<div class="wrap_deep_content">
@@ -28,20 +28,26 @@
 				</div>
 			</div>
 			<div class="wrap_deep_content">
+				<label for="inputPassword3" class="col-sm-2 control-label">旧密码:</label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" id="oldPassword3" name="oldPassword3">
+				</div>
+			</div>
+			<div class="wrap_deep_content">
 				<label for="inputPassword3" class="col-sm-2 control-label">修改密码:</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" id="inputPassword3">
+					<input type="password" class="form-control" id="inputPassword3" name="inputPassword3">
 				</div>
 			</div>
 			<div class="wrap_deep_content">
 				<label for="inputPassword3" class="col-sm-2 control-label">确认密码:</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" id="confirmPassword3">
+					<input type="password" class="form-control" id="confirmPassword3" name="confirmPassword3">
 				</div>
 			</div>
 			<div class="wrap_deep_content">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">确认修改</button>
+					<button lay-submit="" lay-filter="change" type="submit" class="btn btn-default">确认修改</button>
 				</div>
 			</div>
 		</form>
@@ -52,12 +58,34 @@
         var data = JSON.parse(obj.msg);
         if (obj.code === 0) {
           $('#name').val(data.name)
-          $('#admin').val(data.id)
+          $('#id').val(data.id)
           $('#phone').val(data.phone)
-
         }
       }
   );
+
+  layui.use(['form', 'layer'], function () {
+    var layer = layui.layer;
+    var $ = layui.$;
+    var form = layui.form;
+    form.on('submit(change)', function (data) {
+      console.log(data.field);
+      $.post('/user/change', data.field, function (data) {
+        if (data.code === 0) {
+          layer.alert("修改成功")
+        } else if (data.code === 1) {
+          layer.alert("两次密码不一致")
+        } else if (data.code === 2) {
+          layer.alert("请输入旧密码")
+        } else if (data.code === 3) {
+          layer.alert("旧密码错误")
+        }
+
+      });
+      return false;
+    });
+  })
+
 </script>
 </body>
 </html>

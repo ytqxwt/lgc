@@ -44,7 +44,7 @@ public class InfoNewController {
     this.fileUtil = fileUtil;
   }
 
-  @RequestMapping(value = "/set", produces = {"application/json"})
+  @RequestMapping(value = "/set", produces = { "application/json" })
   public String set(InfoNew baseInfo, @RequestParam("token") String token) throws UnsupportedEncodingException {
     if (userUtil.checkAdmin(token)) {
       System.out.println(baseInfo.toString());
@@ -55,23 +55,22 @@ public class InfoNewController {
     }
   }
 
-@Transactional
-  @RequestMapping(value = "/set2", produces = {"application/json"})
+  @Transactional
+  @RequestMapping(value = "/set2", produces = { "application/json" })
   public String set(InfoNew baseInfo) {
-      System.out.println(baseInfo.toString());
-      if(infoNewRepos.findByBaseShenFenZhengEquals(baseInfo.getBaseShenFenZheng())!=null){
-        infoNewRepos.save(baseInfo);
-        return new JsonResult(0, "true").toString();
-      }else {
-        return new JsonResult(1, "false").toString();
-      }
-
-
+    System.out.println(baseInfo.toString());
+    if (infoNewRepos.findByBaseShenFenZhengEquals(baseInfo.getBaseShenFenZheng()) != null) {
+      infoNewRepos.save(baseInfo);
+      return new JsonResult(0, "true").toString();
+    } else {
+      return new JsonResult(1, "false").toString();
+    }
 
   }
 
-  @RequestMapping(value = "/del", produces = {"application/json"})
-  public String del(@RequestParam("id") int id, @RequestParam("token") String token) throws UnsupportedEncodingException {
+  @RequestMapping(value = "/del", produces = { "application/json" })
+  public String del(@RequestParam("id") int id, @RequestParam("token") String token)
+      throws UnsupportedEncodingException {
     if (userUtil.checkAdmin(token)) {
       infoNewRepos.deleteById(id);
       return new JsonResult(0, "true").toString();
@@ -80,9 +79,8 @@ public class InfoNewController {
     }
   }
 
-  @RequestMapping(value = "/findByPage", produces = {"application/json"})
-  public String findByPage(@RequestParam("page") int page,
-                           @RequestParam("limit") int limit) {
+  @RequestMapping(value = "/findByPage", produces = { "application/json" })
+  public String findByPage(@RequestParam("page") int page, @RequestParam("limit") int limit) {
     System.out.println(page + "," + limit);
     Page<InfoNew> p = infoNewRepos.findAll(new PageRequest(page - 1, limit));
     List<InfoNew> baseInfoList = p.getContent();
@@ -99,10 +97,9 @@ public class InfoNewController {
     return jsonObject.toString();
   }
 
-  @RequestMapping(value = "searchByMultipleRegex", produces = {"application/json"})
-  public String searchByMultipleRegex(MultipleRegex mr,
-                                      @RequestParam("page") int page,
-                                      @RequestParam("limit") int limit) {
+  @RequestMapping(value = "searchByMultipleRegex", produces = { "application/json" })
+  public String searchByMultipleRegex(MultipleRegex mr, @RequestParam("page") int page,
+      @RequestParam("limit") int limit) {
     System.out.println(mr);
     System.out.println(mr.getSelect());
     String[] params = mr.getSelect().split(",");
@@ -121,19 +118,23 @@ public class InfoNewController {
     return jsonObject.toString();
   }
 
-  @RequestMapping(value = "searchByNameOrId", produces = {"application/json"})
+  @RequestMapping(value = "searchByNameOrId", produces = { "application/json" })
   public String searchByNameOrId(@RequestParam("baseName") String name, @RequestParam("baseShenFenZheng") String id) {
     Connection conn = null;
     Statement stmt = null;
     ResultSet rs1 = null;
     try {
       Class.forName("com.mysql.jdbc.Driver");
-      conn = DriverManager.getConnection("jdbc:mysql://120.79.68.208:3306/Retirement_management_system?useUnicode=true&characterEncoding=utf-8&useSSL=false", "root", "dyz13125219151YT");
+      conn = DriverManager.getConnection(
+          "jdbc:mysql://120.79.68.208:3306/Retirement_management_system?useUnicode=true&characterEncoding=utf-8&useSSL=false",
+          "root", "dyz13125219151YT");
       if (!id.equals("")) {
-        rs1 = conn.createStatement().executeQuery("SELECT * FROM Retirement_management_system.info_new WHERE base_shen_fen_zheng='" + id + "'");
+        rs1 = conn.createStatement()
+            .executeQuery("SELECT * FROM Retirement_management_system.info_new WHERE base_shen_fen_zheng='" + id + "'");
 
       } else {
-        rs1 = conn.createStatement().executeQuery("SELECT * FROM Retirement_management_system.info_new WHERE base_name='" + name + "'");
+        rs1 = conn.createStatement()
+            .executeQuery("SELECT * FROM Retirement_management_system.info_new WHERE base_name='" + name + "'");
       }
       JSONArray jsonArray = new JSONArray();
       List<InfoNew> list = new ArrayList<InfoNew>();
@@ -178,11 +179,11 @@ public class InfoNewController {
 
   }
 
-  @RequestMapping(value = "/export2excel", produces = {"application/json"})
-  public String export2excel(HttpServletResponse response, MultipleRegex mr, @RequestParam("titles") String titles) throws IOException {
+  @RequestMapping(value = "/export2excel", produces = { "application/json" })
+  public String export2excel(HttpServletResponse response, MultipleRegex mr, @RequestParam("titles") String titles)
+      throws IOException {
     fileUtil.export(mr, titles, response);
     return new JsonResult(0, "").toString();
   }
-
 
 }
