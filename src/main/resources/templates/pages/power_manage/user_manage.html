@@ -51,7 +51,7 @@
         if (res.code === 0) {
           layer.alert("授权成功！");
         } else if (res.code === 1) {
-          layer.alert("抱歉，您的权限不足！");
+          layer.alert("抱歉，您的权限不足！", {icon: 2})
         }
 
       });
@@ -68,7 +68,7 @@
 		        if (res.code===0){
               layer.alert("删除成功！");
 		        } else if (res.code === 1) {
-              layer.alert("抱歉，您的权限不足！");
+              layer.alert("抱歉，您的权限不足！", {icon: 2})
             }
           });
 

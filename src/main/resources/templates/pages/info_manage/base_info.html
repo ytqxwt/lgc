@@ -1059,10 +1059,11 @@
             data: resultData,
             success: function (result) {
               console.log(result);//打印服务端返回的数据(调试用)
+
               if (result.code === 0) {
                 layer.msg('删除成功！');
               } else if (result.code === 1) {
-                layer.msg('抱歉，您的权限不足！');
+                layer.alert("抱歉，您的权限不足！", {icon: 2})
               }
             },
             error: function () {
@@ -1558,7 +1559,9 @@
             if (res.code === 0) {
               layer.alert("修改成功！");
               $('.layui-body').load('pages/info_manage/base_info.html');
-            }
+            }else if(res.code === 1){
+              layer.alert("抱歉，您的权限不足！", {icon: 2})
+						}
           });
           return false;
         });
