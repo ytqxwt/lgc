@@ -26,6 +26,13 @@ public class RouterController {
     return "login";
   }
 
+
+  @RequestMapping("addbaseinfo")
+  public String addbaseinfo() {
+    return "base_add";
+  }
+
+
   @RequestMapping("manage")
   public String manage(HttpSession session,
                        @RequestParam("random") Integer random) {
