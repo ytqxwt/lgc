@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
@@ -59,7 +60,23 @@ public class UserController {
       return new JsonResult(1, "权限不足").toString();
     }
   }
+  @RequestMapping(value = "/change", produces = {"application/json"})
+  public String update(@RequestParam("id") int id,
+                    @RequestParam("name") String name,
+                    @RequestParam("password") String password,
+                    @RequestParam("phone") String phone,
+                    @RequestParam("token") String token
+  ) throws UnsupportedEncodingException {
 
+    if (userUtil.checkAdmin(token)) {
+      String pwd = DESUtil.encrypt(password, "12345678");
+      userRepos.save(new User(id, name, pwd, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()),
+          phone, "true", "user", ""));
+      return new JsonResult(0, "true").toString();
+    } else {
+      return new JsonResult(1, "权限不足").toString();
+    }
+  }
   @RequestMapping(value = "/del", produces = {"application/json"})
   public String del(@RequestParam("token") String token, @RequestParam("id") Integer id) throws UnsupportedEncodingException {
     if (userUtil.checkAdmin(token)) {
@@ -130,6 +147,9 @@ public class UserController {
   public String update(@RequestParam("token") String token,
                        @RequestParam("id") Integer id,
                        @RequestParam("type") String type) throws UnsupportedEncodingException {
+    if(Integer.parseInt(token)==id){
+      return new JsonResult(2, "请勿给自己授权").toString();
+    }
     if (userUtil.checkAdmin(token)) {
       User u = userRepos.getOne(id);
       u.setType(type);
