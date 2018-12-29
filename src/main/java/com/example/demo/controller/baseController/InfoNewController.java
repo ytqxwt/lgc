@@ -55,6 +55,13 @@ public class InfoNewController {
     }
   }
 
+  @RequestMapping(value = "/set2", produces = {"application/json"})
+  public String set2(InfoNew baseInfo) throws UnsupportedEncodingException {
+    System.out.println(baseInfo.toString());
+    infoNewRepos.save(baseInfo);
+    return new JsonResult(0, "true").toString();
+  }
+
   @RequestMapping(value = "/del", produces = {"application/json"})
   public String del(@RequestParam("id") int id, @RequestParam("token") String token) throws UnsupportedEncodingException {
     if (userUtil.checkAdmin(token)) {

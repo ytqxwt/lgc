@@ -60,23 +60,47 @@ public class UserController {
       return new JsonResult(1, "权限不足").toString();
     }
   }
-  @RequestMapping(value = "/change", produces = {"application/json"})
-  public String update(@RequestParam("id") int id,
-                    @RequestParam("name") String name,
-                    @RequestParam("password") String password,
-                    @RequestParam("phone") String phone,
-                    @RequestParam("token") String token
-  ) throws UnsupportedEncodingException {
 
-    if (userUtil.checkAdmin(token)) {
-      String pwd = DESUtil.encrypt(password, "12345678");
-      userRepos.save(new User(id, name, pwd, new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()),
-          phone, "true", "user", ""));
-      return new JsonResult(0, "true").toString();
-    } else {
-      return new JsonResult(1, "权限不足").toString();
+  @Transactional
+  @RequestMapping(value = "/change", produces = {"application/json"})
+  public String update(@RequestParam("id") String id,
+                       @RequestParam(value = "name", required = false) String name,
+                       @RequestParam(value = "phone", required = false) String phone,
+                       @RequestParam(value = "oldPassword3", required = false) String oldPassword3,
+                       @RequestParam(value = "inputPassword3", required = false) String inputPassword3,
+                       @RequestParam(value = "confirmPassword3", required = false) String confirmPassword3
+  ) throws Exception {
+    User u = userRepos.getOne(Integer.parseInt(id));
+    if (!name.equals("")) {
+      u.setName(name);
     }
+    if (!phone.equals("")) {
+      u.setPhone(phone);
+    }
+    u.setCreateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date()));
+    if (!inputPassword3.equals("")) {
+      if (oldPassword3.equals("")) {
+        return new JsonResult(2, "请输入旧密码").toString();
+      } else if (!DESUtil.decrypt(u.getPassword(), "12345678").equals(oldPassword3)) {
+        System.out.println(u.getPassword());
+        return new JsonResult(3, "旧密码错误").toString();
+      } else {
+        if (!confirmPassword3.equals("")) {
+          if (inputPassword3.equals(confirmPassword3)) {
+            String pwd = DESUtil.encrypt(inputPassword3, "12345678");
+            u.setPassword(pwd);
+            userRepos.save(u);
+            return new JsonResult(0, "修改成功").toString();
+          } else {
+            return new JsonResult(1, "两次密码不一致").toString();
+          }
+        }
+      }
+    }
+
+    return new JsonResult(0, "修改成功").toString();
   }
+
   @RequestMapping(value = "/del", produces = {"application/json"})
   public String del(@RequestParam("token") String token, @RequestParam("id") Integer id) throws UnsupportedEncodingException {
     if (userUtil.checkAdmin(token)) {
@@ -147,7 +171,7 @@ public class UserController {
   public String update(@RequestParam("token") String token,
                        @RequestParam("id") Integer id,
                        @RequestParam("type") String type) throws UnsupportedEncodingException {
-    if(Integer.parseInt(token)==id){
+    if (Integer.parseInt(token) == id) {
       return new JsonResult(2, "请勿给自己授权").toString();
     }
     if (userUtil.checkAdmin(token)) {
