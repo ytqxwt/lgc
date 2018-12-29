@@ -3,8 +3,8 @@
 
 	<div
 			style="width: 100%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;"><span
-			style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;"><span
-			style="font-size: 20px">1</span>&nbsp;筛选标签</span></div>
+			style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">第<span
+			style="font-size: 20px">1</span>步&nbsp;选择查询标签</span></div>
 
 	<form class="layui-form">
 		<div class="wrap">
@@ -101,9 +101,9 @@
 	<br>
 
 	<div
-			style="width: 100%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;"><span
-			style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;"><span
-			style="font-size: 20px">2</span>&nbsp;填写信息</span></div>
+			style="margin-top: 40px;width: 100%;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;"><span
+			style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">第<span
+			style="font-size: 20px">2</span>步&nbsp;填写检索信息</span></div>
 
 	<form id="form_search" lay-filter="form_search" style="display: none" class="layui-form between-content">
 		<input hidden name="select" type="text">
@@ -605,8 +605,8 @@
 	<br>
 	<div
 			style="width: 100%;margin: 0 auto;margin-bottom: 20px;background: rgb(0,150,136);padding-top: 6px;padding-bottom: 7px;padding-left: 5px;"><span
-			style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;"><span
-			style="font-size: 20px">3</span>&nbsp;查看结果</span></div>
+			style="color: white;font-size: 14px;letter-spacing: 3px;font-weight: bold;">第<span
+			style="font-size: 20px">3</span>步&nbsp;检索结果导出与管理</span></div>
 
 	<div style="width:94%;margin:0 auto">
 		<table id="info_table" lay-filter="info_table"></table>
@@ -1046,11 +1046,11 @@
           })
         });
       } else if (obj.event === 'del') {
-        layer.confirm('真的删除行么', function (index) {
+        layer.confirm('确认删除该条信息？', function (index) {
           console.log(data.id);
           console.log(resultData);
           resultData.token = token;
-          obj.del();
+
           layer.close(index);
           $.ajax({
             type: "POST",//方法类型
@@ -1059,10 +1059,19 @@
             data: resultData,
             success: function (result) {
               console.log(result);//打印服务端返回的数据(调试用)
+<<<<<<< HEAD
               if (result.code === 0) {
                 layer.msg('删除成功！');
               } else if (result.code === 1) {
                 layer.msg('权限不足');
+=======
+
+              if (result.code === 0) {
+                layer.msg('删除成功！');
+                obj.del();
+              } else if (result.code === 1) {
+                layer.alert("抱歉，您的权限不足！", {icon: 2})
+>>>>>>> 6e793109e477685a70db0d51caf3a3aedbdbb6f5
               }
             },
             error: function () {
@@ -1508,13 +1517,19 @@
               '        <br>\n' +
               '        <br>\n' +
               '<button class="layui-btn no_print" lay-submit="" lay-filter="formDemo" type="button">完成</button>' +
-              '<button class="layui-btn no_print" type="reset">取消</button>' +
+              '<button class="layui-btn no_print"  lay-submit="" lay-filter="cancel"  type="reset">取消</button>' +
               '    </div>\n' +
               '\n' +
               '        <br>\n' +
               '        <br>\n' +
               '</form>'
         });
+
+        form.on('submit(cancel)', function () {//监听取消
+          layer.closeAll();
+        });
+
+
 
         form.on('submit(formDemo)', function (data) {//监听提交
           console.log(data);
@@ -1552,7 +1567,9 @@
             if (res.code === 0) {
               layer.alert("修改成功！");
               $('.layui-body').load('pages/info_manage/base_info.html');
-            }
+            }else if(res.code === 1){
+              layer.alert("抱歉，您的权限不足！", {icon: 2})
+						}
           });
           return false;
         });
