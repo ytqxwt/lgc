@@ -27,6 +27,7 @@ import java.util.List;
 public class FileController {
   private final FileUtil fileUtil;
   private final UserUtil userUtil;
+
   @Autowired
   public FileController(FileUtil fileUtil, UserUtil userUtil) {
     this.fileUtil = fileUtil;
@@ -42,6 +43,12 @@ public class FileController {
     } else {
       return new JsonResult(1, "权限不足").toString();
     }
+  }
+
+  @RequestMapping(value = "/openupload", produces = {"application/json"}, method = RequestMethod.POST)
+  @ResponseBody
+  public String openUpload(@RequestParam("file") MultipartFile file) {
+    return fileUtil.uploadPhoto(file);
   }
 
   @RequestMapping("/downloadFile")
