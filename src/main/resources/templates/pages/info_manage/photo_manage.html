@@ -128,11 +128,12 @@
                     "        </div>"
               }
               divText.innerHTML = temp;
+              console.log(indexs[0])
               upload.render({
                 elem: '#uploadPhoto0',
                 url: '/file/upload/',
                 data: {
-                  id: indexs[0]
+                  token: token
                 },
                 field: 'file',
                 bindAction: '#uploadPhoto0',			//“上传”按钮的ID

@@ -1,17 +1,17 @@
 <!-- 内容主体区域 -->
 
 <div align="right">
-	<button style="margin: 5px" class="layui-btn" id="add_user">添加用户</button>
+  <button style="margin: 5px" class="layui-btn" id="add_user">添加用户</button>
 </div>
 <div style="padding: 15px;">
-	<table id="table_user" lay-filter="table_user"></table>
+  <table id="table_user" lay-filter="table_user"></table>
 </div>
 <script type="text/html" id="barDemo">
-	<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script type="text/html" id="selectTpl">
-	<select name="type" lay-filter="select_type" data-id="{{ d.id }}">
+  <select name="type" lay-filter="select_type" data-id="{{ d.id }}">
 		<option value="admin" {{ (d.type=='admin')?'selected':'' }}>管理员</option>
 		<option value="user" {{ (d.type=='admin')?'':'selected' }}>用户</option>
 	</select>
@@ -29,29 +29,67 @@
       elem: '#table_user',
       height: 700,
       url: '/user/findAllUser', //数据接口
-      page: true,//开启分页
-      cols: [[ //表头
-        {field: 'id', hide: true},
-        {field: 'name', title: '管理员姓名', width: 200, sort: true, fixed: 'left'},
-        {field: 'type', title: '账号类型', width: 100},
-        {field: 'createTime', title: '创建时间', width: 200, sort: true},
-        {field: 'phone', title: '电话', width: 200},
-        {
-          field: 'type', title: '权限', width: 200, templet: "#selectTpl"
-        },
-        {fixed: 'right', width: 178, align: 'center', toolbar: '#barDemo'}
-      ]],
+      page: true, //开启分页
+      cols: [
+        [ //表头
+          {
+            field: 'id',
+            hide: true
+          },
+          {
+            field: 'name',
+            title: '管理员姓名',
+            width: 200,
+            sort: true,
+            fixed: 'left'
+          },
+          {
+            field: 'type',
+            title: '账号类型',
+            width: 100
+          },
+          {
+            field: 'createTime',
+            title: '创建时间',
+            width: 200,
+            sort: true
+          },
+          {
+            field: 'phone',
+            title: '电话',
+            width: 200
+          },
+          {
+            field: 'type',
+            title: '权限',
+            width: 200,
+            templet: "#selectTpl"
+          },
+          {
+            fixed: 'right',
+            width: 178,
+            align: 'center',
+            toolbar: '#barDemo'
+          }
+        ]
+      ],
       done: function (res, curr, count) {
         console.log(res);
       }
     });
     form.on('select(select_type)', function (data) {
       console.log(data);
-      $.post('/user/update', {token: token, id: data.elem.dataset.id, type: data.value}, function (res) {
+      $.post('/user/update', {
+        token: token,
+        id: data.elem.dataset.id,
+        type: data.value
+      }, function (res) {
         if (res.code === 0) {
           layer.alert("授权成功！");
         } else if (res.code === 1) {
-          layer.alert("抱歉，您的权限不足！", {icon: 2})
+          layer.alert("抱歉，您的权限不足！", {
+            icon: 2
+          })
         }
 
       });
@@ -63,17 +101,20 @@
       if (obj.event === 'del') {
         layer.confirm('确定删除该条信息？', function (index) {
           obj.del();
-          $.post('/user/del', {token: token, id: obj.data.id}, function (res) {
+          $.post('/user/del', {
+            token: token,
+            id: obj.data[index].id
+          }, function (res) {
             layer.close(index);
-		        if (res.code===0){
-              layer.alert("删除成功！");
-		        } else if (res.code === 1) {
-              layer.alert("抱歉，您的权限不足！", {icon: 2})
+            if (res.code === 0) {
+              layer.alert("删除成功");
+            } else if (res.code === 1) {
+              layer.alert("抱歉，您的权限不足！", {
+                icon: 2
+              })
             }
           });
-
         });
-
       } else if (obj.event === 'edit') {
         layer.alert('编辑行：<br>' + JSON.stringify(data))
       }
@@ -86,61 +127,64 @@
   $('#add_user').click(function () {
     index = layer.open({
       type: 1 //Page层类型
-      , area: ['800px', '600px']
-      , title: '请填写相关信息'
-      , shade: 0.6 //遮罩透明度
-      , maxmin: true //允许全屏最小化
-      // , anim: 1 //0-6的动画形式，-1不开启
-      , content: '<!DOCTYPE html>\n' +
-          '<html lang="en">\n' +
-          '<head>\n' +
-          '    <meta charset="UTF-8">\n' +
-          '    <title>Title</title>\n' +
-          '    <link rel="stylesheet" href="../../css/my_info.css">\n' +
-          '</head>\n' +
-          '<body>\n' +
-          '\n' +
-          '<div class="container">\n' +
-          '    <div class="wrap">\n' +
-          '        <form class="wrap_content" onsubmit="return false" action="##" method="post" id="form_userInfo">\n' +
-          '            <div class="wrap_deep_content">\n' +
-          '                <label for="inputEmail3" class="col-sm-2 control-label">姓名:</label>\n' +
-          '                <div class="col-sm-10">\n' +
-          '                    <input type="text" class="form-control" id="name" name="name">\n' +
-          '                </div>\n' +
-          '            </div>\n' +
-          '            <div class="wrap_deep_content">\n' +
-          '                <label for="inputEmail3" class="col-sm-2 control-label">账号:</label>\n' +
-          '                <div class="col-sm-10">\n' +
-          '                    <input placeholder="请输入6位账号" name="id" id="id" type="text" class="form-control">\n' +
-          '                </div>\n' +
-          '            </div>\n' +
-          '            <div class="wrap_deep_content">\n' +
-          '                <label for="inputEmail3" class="col-sm-2 control-label">电话:</label>\n' +
-          '                <div class="col-sm-10">\n' +
-          '                    <input id="phone" name="phone" type="phone" class="form-control">\n' +
-          '                </div>\n' +
-          '            </div>\n' +
-          '            <div class="wrap_deep_content">\n' +
-          '                <label id="passWord" for="inputPassword3" class="col-sm-2 control-label">密码:</label>\n' +
-          '                <div class="col-sm-10">\n' +
-          '                    <input type="password" class="form-control" id="password" name="password">\n' +
-          '                </div>\n' +
-          '            </div>\n' +
-          '            <div class="wrap_deep_content">\n' +
-          '                <div class="col-sm-offset-2 col-sm-10">\n' +
-          '                    <button  onclick="addUser();"  class="btn btn-default">添加</button>\n' +
-          '                </div>\n' +
-          '            </div>\n' +
-          '        </form>\n' +
-          '    </div>\n' +
-          '</div>\n' +
-          '\n' +
-          '\n' +
-          '\n' +
-          '\n' +
-          '</body>\n' +
-          '</html>'
+        ,
+      area: ['800px', '600px'],
+      title: '请填写相关信息',
+      shade: 0.6 //遮罩透明度
+        ,
+      maxmin: true //允许全屏最小化
+        // , anim: 1 //0-6的动画形式，-1不开启
+        ,
+      content: '<!DOCTYPE html>\n' +
+        '<html lang="en">\n' +
+        '<head>\n' +
+        '    <meta charset="UTF-8">\n' +
+        '    <title>Title</title>\n' +
+        '    <link rel="stylesheet" href="../../css/my_info.css">\n' +
+        '</head>\n' +
+        '<body>\n' +
+        '\n' +
+        '<div class="container">\n' +
+        '    <div class="wrap">\n' +
+        '        <form class="wrap_content" onsubmit="return false" action="##" method="post" id="form_userInfo">\n' +
+        '            <div class="wrap_deep_content">\n' +
+        '                <label for="inputEmail3" class="col-sm-2 control-label">姓名:</label>\n' +
+        '                <div class="col-sm-10">\n' +
+        '                    <input type="text" class="form-control" id="name" name="name">\n' +
+        '                </div>\n' +
+        '            </div>\n' +
+        '            <div class="wrap_deep_content">\n' +
+        '                <label for="inputEmail3" class="col-sm-2 control-label">账号:</label>\n' +
+        '                <div class="col-sm-10">\n' +
+        '                    <input placeholder="请输入6位账号" name="id" id="id" type="text" class="form-control">\n' +
+        '                </div>\n' +
+        '            </div>\n' +
+        '            <div class="wrap_deep_content">\n' +
+        '                <label for="inputEmail3" class="col-sm-2 control-label">电话:</label>\n' +
+        '                <div class="col-sm-10">\n' +
+        '                    <input id="phone" name="phone" type="phone" class="form-control">\n' +
+        '                </div>\n' +
+        '            </div>\n' +
+        '            <div class="wrap_deep_content">\n' +
+        '                <label id="passWord" for="inputPassword3" class="col-sm-2 control-label">密码:</label>\n' +
+        '                <div class="col-sm-10">\n' +
+        '                    <input type="password" class="form-control" id="password" name="password">\n' +
+        '                </div>\n' +
+        '            </div>\n' +
+        '            <div class="wrap_deep_content">\n' +
+        '                <div class="col-sm-offset-2 col-sm-10">\n' +
+        '                    <button  onclick="addUser();"  class="btn btn-default">添加</button>\n' +
+        '                </div>\n' +
+        '            </div>\n' +
+        '        </form>\n' +
+        '    </div>\n' +
+        '</div>\n' +
+        '\n' +
+        '\n' +
+        '\n' +
+        '\n' +
+        '</body>\n' +
+        '</html>'
     });
 
   });
@@ -155,16 +199,20 @@
 
     $.ajax({
       //几个参数需要注意一下
-      type: "POST",//方法类型
-      dataType: "json",//预期服务器返回的数据类型
-      url: "/user/set",//url
+      type: "POST", //方法类型
+      dataType: "json", //预期服务器返回的数据类型
+      url: "/user/set", //url
       data: formData,
       success: function (result) {
         console.log(result);
         if (result.code === 0) {
-          layer.alert("添加成功！", {icon: 1})
+          layer.alert("添加成功！", {
+            icon: 1
+          })
         } else {
-          layer.alert(result.msg, {icon: 2})
+          layer.alert(result.msg, {
+            icon: 2
+          })
         }
         tableIns.reload();
       },
@@ -173,19 +221,18 @@
       }
     });
   }
-
-
 </script>
 <style>
-	td[data-field='type'] .layui-table-cell {
-		overflow: visible;
-	}
+  td[data-field='type'] .layui-table-cell {
+    overflow: visible;
+  }
 
-	.layui-table-body {
-		overflow: visible;
-	}
+  .layui-table-body {
+    overflow: visible;
+  }
 
-	.layui-table-box, .layui-table-view {
-		overflow: visible;
-	}
+  .layui-table-box,
+  .layui-table-view {
+    overflow: visible;
+  }
 </style>
