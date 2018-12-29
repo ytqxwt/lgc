@@ -1,4 +1,5 @@
     .container{
+        width: 100%;
         padding-top: 100px;
     }
     /*底部logo*/
@@ -10,7 +11,7 @@
     /*表单*/
     .wrap{
         height:238px;
-        width: 55%;
+        width: 20%;
         margin: 0 auto;
     }
     .wrap_content{
