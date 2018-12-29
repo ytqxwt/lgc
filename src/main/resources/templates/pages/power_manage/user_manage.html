@@ -27,7 +27,7 @@
     form.render();
     tableIns = table.render({
       elem: '#table_user',
-      height: 700,
+      height: 430,
       url: '/user/findAllUser', //数据接口
       page: true, //开启分页
       cols: [
@@ -96,18 +96,19 @@
     });
     //监听工具条
     table.on('tool(table_user)', function (obj) {
-      console.log(obj)
+
       var data = obj.data;
       if (obj.event === 'del') {
         layer.confirm('确定删除该条信息？', function (index) {
-          obj.del();
+          console.log(data)
           $.post('/user/del', {
             token: token,
-            id: obj.data[index].id
+            id:data.id
           }, function (res) {
             layer.close(index);
             if (res.code === 0) {
-              layer.alert("删除成功");
+              obj.del();
+              layer.alert("删除成功!");
             } else if (res.code === 1) {
               layer.alert("抱歉，您的权限不足！", {
                 icon: 2
