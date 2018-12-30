@@ -105,7 +105,6 @@
       var data = obj.data;
       if (obj.event === 'del') {
         layer.confirm('确定删除该条信息？', function (index) {
-          console.log(data)
           $.post('/user/del', {
             token: token,
             id:data.id

@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.vo.JsonResult;
+import com.example.demo.util.AnotherDES;
 import com.example.demo.util.FileUtil;
 import com.example.demo.util.UserUtil;
+import javassist.bytecode.ByteArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +19,12 @@ import javax.sound.midi.Soundbank;
 import java.io.*;
 import java.net.URI;
 import java.net.URLEncoder;
+import java.security.Key;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.demo.util.AnotherDES.hexStringToByte;
 
 @Controller
 @RequestMapping("/file")
@@ -52,9 +57,14 @@ public class FileController {
   }
 
   @RequestMapping("/downloadFile")
-  public void downLoad(HttpServletResponse response, @RequestParam(name = "uri") String uri) throws UnsupportedEncodingException {
+  public void downLoad(HttpServletResponse response, @RequestParam(name = "uri") String uri) throws Exception {
     System.out.println(uri);
-    File file = new File(uri);
+    AnotherDES dt = new AnotherDES();
+    byte[] passKey = new byte[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    Key key = dt.getKey(passKey);
+    String res = dt.decode(hexStringToByte(uri), key);
+    System.out.println(res);
+    File file = new File("/usr/springbootPro/lgc/uploadfile/" + res);
     if (file.exists()) {
       String s = uri.substring(uri.lastIndexOf('.') + 1);
       s = s.toUpperCase();

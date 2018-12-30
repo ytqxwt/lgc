@@ -746,7 +746,7 @@
       } else if (obj.data.basePhotoUrl == null || obj.data.basePhotoUrl == "") {
         photo_head = "../../img/default_head.png";
       } else {
-        photo_head = "http://geek-team.xin/file/downloadFile?uri=/usr/springbootPro/lgc/" + obj.data.basePhotoUrl;
+        photo_head = "http://geek-team.xin/file/downloadFile?uri=" + obj.data.basePhotoUrl;
       }
 
       if (obj.event === 'detail') {
@@ -1847,7 +1847,7 @@
 		display: inline-block;
 		height: 27px;
 		line-height: 27px;
-		font-size: .8rem;
+		font-size: 1.3rem;
 		padding: 0 1rem;
 		border: 1px solid #e6e6e6;
 		border-radius: 2px;
