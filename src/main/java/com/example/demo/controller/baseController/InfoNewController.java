@@ -59,7 +59,7 @@ public class InfoNewController {
   @RequestMapping(value = "/set2", produces = { "application/json" })
   public String set(InfoNew baseInfo) {
     System.out.println(baseInfo.toString());
-    if (infoNewRepos.findByBaseShenFenZhengEquals(baseInfo.getBaseShenFenZheng()) != null) {
+    if (infoNewRepos.findByBaseShenFenZhengEquals(baseInfo.getBaseShenFenZheng()) = null) {
       infoNewRepos.save(baseInfo);
       return new JsonResult(0, "true").toString();
     } else {
