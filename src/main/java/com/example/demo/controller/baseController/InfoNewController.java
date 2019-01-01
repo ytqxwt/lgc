@@ -44,7 +44,7 @@ public class InfoNewController {
     this.fileUtil = fileUtil;
   }
 
-  @RequestMapping(value = "/set", produces = { "application/json" })
+  @RequestMapping(value = "/set", produces = {"application/json"})
   public String set(InfoNew baseInfo, @RequestParam("token") String token) throws UnsupportedEncodingException {
     if (userUtil.checkAdmin(token)) {
       System.out.println(baseInfo.toString());
@@ -56,10 +56,10 @@ public class InfoNewController {
   }
 
   @Transactional
-  @RequestMapping(value = "/set2", produces = { "application/json" })
+  @RequestMapping(value = "/set2", produces = {"application/json"})
   public String set(InfoNew baseInfo) {
     System.out.println(baseInfo.toString());
-    if (infoNewRepos.findByBaseShenFenZhengEquals(baseInfo.getBaseShenFenZheng()) = null) {
+    if (infoNewRepos.findByBaseShenFenZhengEquals(baseInfo.getBaseShenFenZheng()) != null) {
       infoNewRepos.save(baseInfo);
       return new JsonResult(0, "true").toString();
     } else {
@@ -68,7 +68,7 @@ public class InfoNewController {
 
   }
 
-  @RequestMapping(value = "/del", produces = { "application/json" })
+  @RequestMapping(value = "/del", produces = {"application/json"})
   public String del(@RequestParam("id") int id, @RequestParam("token") String token)
       throws UnsupportedEncodingException {
     if (userUtil.checkAdmin(token)) {
@@ -79,7 +79,7 @@ public class InfoNewController {
     }
   }
 
-  @RequestMapping(value = "/findByPage", produces = { "application/json" })
+  @RequestMapping(value = "/findByPage", produces = {"application/json"})
   public String findByPage(@RequestParam("page") int page, @RequestParam("limit") int limit) {
     System.out.println(page + "," + limit);
     Page<InfoNew> p = infoNewRepos.findAll(new PageRequest(page - 1, limit));
@@ -97,9 +97,9 @@ public class InfoNewController {
     return jsonObject.toString();
   }
 
-  @RequestMapping(value = "searchByMultipleRegex", produces = { "application/json" })
+  @RequestMapping(value = "searchByMultipleRegex", produces = {"application/json"})
   public String searchByMultipleRegex(MultipleRegex mr, @RequestParam("page") int page,
-      @RequestParam("limit") int limit) {
+                                      @RequestParam("limit") int limit) {
     System.out.println(mr);
     System.out.println(mr.getSelect());
     String[] params = mr.getSelect().split(",");
@@ -118,7 +118,7 @@ public class InfoNewController {
     return jsonObject.toString();
   }
 
-  @RequestMapping(value = "searchByNameOrId", produces = { "application/json" })
+  @RequestMapping(value = "searchByNameOrId", produces = {"application/json"})
   public String searchByNameOrId(@RequestParam("baseName") String name, @RequestParam("baseShenFenZheng") String id) {
     Connection conn = null;
     Statement stmt = null;
@@ -179,7 +179,7 @@ public class InfoNewController {
 
   }
 
-  @RequestMapping(value = "/export2excel", produces = { "application/json" })
+  @RequestMapping(value = "/export2excel", produces = {"application/json"})
   public String export2excel(HttpServletResponse response, MultipleRegex mr, @RequestParam("titles") String titles)
       throws IOException {
     fileUtil.export(mr, titles, response);

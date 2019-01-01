@@ -16,26 +16,13 @@ public class RouterController {
     return "login";
   }
 
-//  @RequestMapping(value = "", method = RequestMethod.GET)
-//  public String index2() {
-//    return "login";
-//  }
-
   @RequestMapping("login")
   public String login() {
     return "login";
   }
 
-
-  @RequestMapping("addbaseinfo")
-  public String addbaseinfo() {
-    return "base_add";
-  }
-
-
   @RequestMapping("manage")
-  public String manage(HttpSession session,
-                       @RequestParam("random") Integer random) {
+  public String manage(HttpSession session,   @RequestParam("random") Integer random) {
     if (Objects.equals(session.getAttribute("random"), random)) {
       return "manage";
     } else {

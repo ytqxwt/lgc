@@ -48,7 +48,11 @@
 			<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
 			<ul class="layui-nav layui-nav-tree">
 				<li class="layui-nav-item">
-					<a class="" href="javascript:" id="data_statics2">数据统计</a>
+					<a class="" href="javascript:">信息统计</a>
+					<dl class="layui-nav-child">
+						<dd><a class="" href="javascript:" id="data_statics2">图表统计</a></dd>
+						<dd><a href="javascript:" id="data_statics3">文字统计</a></dd>
+					</dl>
 				</li>
 				<li class="layui-nav-item">
 					<a class="" href="javascript:">信息添加</a>
@@ -66,8 +70,8 @@
 						<dd><a href="javascript:" id="base_info">人员信息</a></dd>
 						<dd><a href="javascript:" id="died_info">去世人员信息</a></dd>
 						<dd><a href="javascript:" id="photo_manage">照片管理</a></dd>
-						<!--<dd><a href="javascript:" id="survivors_info">遗嘱信息</a></dd>-->
-						<!--<dd><a href="javascript:" id="case_info">病例信息</a></dd>-->
+						<dd><a href="javascript:" id="survivors_info">遗嘱信息</a></dd>
+						<dd><a href="javascript:" id="case_info">病例信息</a></dd>
 					</dl>
 				</li>
 				<li class="layui-nav-item">
@@ -92,7 +96,7 @@
 
 		<script type="text/javascript">
       $(document).ready(function () {
-        $('#main_content').load('pages/data_statics.html');
+        $('#main_content').load('pages/data_statics/data_statics.html');
       });
 
 		</script>
@@ -126,7 +130,10 @@
 
     //左侧导航栏路由
     $('#data_statics2').click(function () {
-      $('.layui-body').load('pages/data_statics.html');
+      $('.layui-body').load('pages/data_statics/data_statics.html');
+    });
+    $('#data_statics3').click(function () {
+      $('.layui-body').load('pages/data_statics/data_statics_word.html');
     });
     $('#data_statics').click(function () {
       $('.layui-body').load('pages/data_statics.html');

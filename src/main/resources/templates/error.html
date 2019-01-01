@@ -1,9 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/layui/layui.js"></script>
+	<link rel="stylesheet" href="/css/feedback.css">
+	<link rel="stylesheet" href="/layui/css/layui.css">
+	<title>出错了</title>
 </head>
 <body>
+<div class="container" align="center">
+	<i class="layui-icon layui-icon-face-surprised"
+	   style="	display: inline-block; font-size: 200px; color: #393D49;"></i>
+	<div class="layui-text " style="font-size: 20px; margin-bottom: 10px; color: #3F3F3F">
+		好像出错了呢
+	</div>
+	<!--意见反馈-->
+	<div class="opinion">
+		<div class="title">
+			<img src="/img/feedback.png">
+			<span>错误反馈</span>
+		</div>
+		<div class="text">
+			<textarea class="form-control" rows="2"></textarea>
+		</div>
+	</div>
+	<!--邮箱-->
+	<div class="email">
+		<div class="title">
+			<img src="/img/email.png">
+			<span>您的电话</span>
+		</div>
+		<div class="text">
+			<form>
+				<div class="form-group">
+					<input type="email" class="form-control" id="exampleInputEmail1">
+				</div>
+			</form>
+		</div>
+	</div>
 
+	<!--按钮-->
+	<div class="button">
+		<button class="layui-btn  btn-default" type="submit">提交</button>
+		<button class="layui-btn  btn-default" type="submit">返回登录</button>
+	</div>
+
+</div>
 </body>
 </html>

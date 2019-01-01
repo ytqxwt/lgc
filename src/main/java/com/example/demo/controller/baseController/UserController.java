@@ -27,6 +27,7 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Controller
@@ -119,16 +120,14 @@ public class UserController {
                     HttpServletResponse httpServletResponse,
                     HttpSession session
   ) throws Exception {
-    User u = userRepos.getOne(Integer.parseInt(name));
-    if (u == null) {
-      httpServletResponse.sendRedirect("/login?code=2&msg=user not find");
+    Optional<User> o = userRepos.findById(Integer.parseInt(name));
+    if (!o.isPresent()) {
+      httpServletResponse.sendRedirect("/login?code=1");
       return;
     } else {
-      if (u.getAble().equals("false")) {
-        httpServletResponse.sendRedirect("/login?code=3&msg=user is unable");
-        return;
-      } else if (!password.equals(DESUtil.decrypt(u.getPassword(), "12345678"))) {
-        httpServletResponse.sendRedirect("/login?code=1&msg=password or username is wrong");
+      User u=o.get();
+      if (!password.equals(DESUtil.decrypt(u.getPassword(), "12345678"))) {
+        httpServletResponse.sendRedirect("/login?code=2");
         return;
       }
     }

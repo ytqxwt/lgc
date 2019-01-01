@@ -11,8 +11,8 @@
 		<div class="erhang_ele1">填表时间：</div>
 		<div class="erhang_ele2">
 			<div id="tianBiaoShiJian">
-				<select lay-ignore id="tianBiaoShiJianYear" name="tianBiaoShiJianYear" data=""></select>年 <select
-					lay-ignore id="tianBiaoShiJianMonth" name="tianBiaoShiJianMonth" data=""></select>月 <select
+				<select lay-ignore id="tianBiaoShiJianYear" name="tianBiaoShiJianYear" data=""></select>年<select
+					lay-ignore id="tianBiaoShiJianMonth" name="tianBiaoShiJianMonth" data=""></select>月<select
 					lay-ignore
 					id="tianBiaoShiJianDay"
 					name="tianBiaoShiJianDay"
@@ -27,7 +27,8 @@
 			<tr valign="middle" align="center">
 				<td width="17.42%" height="40">*姓&nbsp;名</td>
 				<td colspan="2" width="28.8%" height="40">
-					<input name="baseName" class="select" type="text" style="border: none;width:180px"/></td>
+					<input lay-verify="required" name="baseName" class="select" type="text" style="border: none;width:180px"/>
+				</td>
 				<td width="9.54%" height="40">*性别</td>
 				<td width="7.57%" height="40">
 
@@ -63,11 +64,11 @@
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="17.42%" height="40">*民&nbsp;族</td>
-				<td height="40"><input lay-ignore name="baseMinZu" class="select" type="text"
+				<td height="40"><input lay-verify="required" lay-ignore name="baseMinZu" class="select" type="text"
 				                       style="border: none;width: 100px"/></td>
 				<td height="40" width="14.40%">*学&nbsp;历</td>
 				<td colspan="2" width="16.67%" height="40">
-					<input lay-ignore name="baseXueLi" class="select" type="text"
+					<input lay-verify="required" lay-verify="required" lay-ignore name="baseXueLi" class="select" type="text"
 					       style="border: none;width: 100px"/>
 				</td>
 				<td width="18.48%" height="40">*到校时间</td>
@@ -83,27 +84,26 @@
 			</tr>
 			<tr valign="middle" align="center">
 				<td width="17.42%" height="40">*学&nbsp;位</td>
-				<td height="40"><input lay-ignore name="baseXueWei" class="select" type="text"
+				<td height="40"><input lay-verify="required" lay-ignore name="baseXueWei" class="select" type="text"
 				                       style="border: none;width: 100px"/></td>
 				<td height="40" width="14.40%">*职&nbsp;务</td>
 				<td colspan="2" height="40">
-					<input lay-ignore name="workZhiWu" class="select" type="text"
+					<input lay-verify="required" lay-ignore name="workZhiWu" class="select" type="text"
 					       style="border: none;width: 100px"/>
 				</td>
 				<td width="18.48%" height="40">*职&nbsp;称</td>
 				<td colspan="2" width="11.4%" height="44">
-					<input lay-ignore name="workZhiCheng" class="select" type="text"
+					<input lay-verify="required" lay-ignore name="workZhiCheng" class="select" type="text"
 					       style="border: none;width: 100px"/>
 				</td>
 			</tr>
 
 			<tr valign="middle" align="center">
 				<td width="17.42%" height="40">*专业或工种</td>
-				<td height="40"><input lay-ignore name="workZhuanYeHeGongZhong" class="select" type="text"
+				<td height="40"><input lay-verify="required" lay-ignore name="workZhuanYeHeGongZhong" class="select" type="text"
 				                       style="border: none;width: 100px"/></td>
 				<td height="40" width="14.40%">职务级别</td>
 				<td colspan="2" height="40">
-
 					<select lay-ignore name="workZhiWuJiBie" class="select" style="border: none;width: 100px">
 						<option value=""></option>
 						<option value="正厅">正厅</option>
@@ -128,7 +128,7 @@
 			<tr valign="middle" align="center">
 				<td width="17.42%" height="40">*退休时部门</td>
 				<td colspan="2" width="14.40%" height="40">
-					<input name="workTuiXiuBuMen" class="select" type="text" style="border: none;width:160px"/></td>
+					<input lay-verify="required" name="workTuiXiuBuMen" class="select" type="text" style="border: none;width:160px"/></td>
 				<td width="9.54%" colspan="2" height="40">*退休时间</td>
 				<td colspan="2" height="40">
 					<div id="tuiXiuShiJian">
@@ -568,8 +568,7 @@
         var mouth = idCard.substring(8, 10);
         var date = idCard.substring(10, 12);
         postData.idCard = "19" + year + "-" + mouth + "-" + date;
-      }
-      else {
+      } else {
         layer.msg('身份证格式错误！');
         return false;
       }

@@ -53,8 +53,13 @@
         layer.alert('登录成功', {
           icon: 1
         });
-      } else {
-        layer.alert(msg, {
+      }else if(code==='1'){
+        layer.alert('找不到该用户', {
+          icon: 2
+        });
+      }
+      else {
+        layer.alert('密码错误', {
           icon: 2
         });
       }
