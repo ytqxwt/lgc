@@ -42,7 +42,7 @@ public class FileController {
   @RequestMapping(value = "/upload", produces = {"application/json"}, method = RequestMethod.POST)
   @ResponseBody
   public String fileUpload(@RequestParam("file") MultipartFile file,
-                           @RequestParam("token") String token) throws UnsupportedEncodingException {
+                           @RequestParam("token") String token) throws Exception {
     if (userUtil.checkAdmin(token)) {
       return fileUtil.uploadPhoto(file);
     } else {
@@ -52,7 +52,7 @@ public class FileController {
 
   @RequestMapping(value = "/openupload", produces = {"application/json"}, method = RequestMethod.POST)
   @ResponseBody
-  public String openUpload(@RequestParam("file") MultipartFile file) {
+  public String openUpload(@RequestParam("file") MultipartFile file) throws Exception {
     return fileUtil.uploadPhoto(file);
   }
 

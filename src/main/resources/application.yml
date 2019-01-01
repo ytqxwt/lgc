@@ -15,7 +15,7 @@ spring:
     minEvictableIdleTimeMillis: 300000
   jpa:
     database: mysql
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: none
     generate-ddl: true

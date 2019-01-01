@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 
 @Service
 public class UserUtil {
@@ -18,8 +16,9 @@ public class UserUtil {
   public UserUtil(UserRepos userRepos) {
     this.userRepos = userRepos;
   }
+
   @Transactional
-  public Boolean checkAdmin(String token) throws UnsupportedEncodingException {
+  public Boolean checkAdmin(String token) {
     System.out.println(token);
     User u = userRepos.getOne(Integer.parseInt(token));
     return u.getType().equals("admin");

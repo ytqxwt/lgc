@@ -16,9 +16,12 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.security.Key;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
+
+import static com.example.demo.util.AnotherDES.bytesToHexString;
 
 @Service
 public class FileUtil {
@@ -33,20 +36,26 @@ public class FileUtil {
     return String.format("%.2f", (double) size / (1024 * 1024)) + "mb";
   }
 
-  public String uploadPhoto(MultipartFile file) {
+  public String uploadPhoto(MultipartFile file) throws Exception {
     JsonResult result = new JsonResult();
     String fileName = file.getOriginalFilename();
+    AnotherDES dt = new AnotherDES();
+    byte[] passKey = new byte[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    Key key = dt.getKey(passKey);
+    byte[] source = dt.encode(fileName.getBytes("UTF-8"), key);
+    String fileNameLater = bytesToHexString(source);
+    System.out.println("加密后:" + fileNameLater);
     if (!file.isEmpty()) {
       File path = new File("uploadfile/");
       if (!path.exists()) path.mkdirs();
       try (BufferedOutputStream out = new BufferedOutputStream(
-          new FileOutputStream(new File(path, fileName)))) {
+          new FileOutputStream(new File(path, fileNameLater)))) {
         out.write(file.getBytes());
         out.flush();
         result.setCode(0);
-        String pathname = path.getPath().replaceAll("\\\\", "/");//java的 正则匹配\是四个，其他语言通常是两个
-        System.out.println(pathname);
-        result.setData(pathname + "/" + fileName);
+//        String pathname = path.getPath().replaceAll("\\\\", "/");//java的 正则匹配\是四个，其他语言通常是两个
+//        System.out.println(pathname);
+        result.setData(fileNameLater);
       } catch (IOException e) {
         e.printStackTrace();
         result.setCode(2);
